@@ -1,1 +1,1 @@
-The task manager app for The Independent Bride.
+A task manager app for The Independent Bride.
