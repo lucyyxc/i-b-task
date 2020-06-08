@@ -1,0 +1,39 @@
+.Nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .nav-content-container {
+        height: 100%;
+        width: 92%;
+        display: flex;
+        justify-content: space-between;
+        padding: 25px 0;
+
+        .logo-container {
+            .logo {
+                height: 120px;
+                width: 120px;
+            }
+        }
+
+        .links-container {
+            padding: 10px 0;
+
+            .link {
+                color: black;
+                font-family: $nav-links;
+                letter-spacing: 2px;
+                font-size: 13px;
+                text-transform: uppercase;
+                margin: 0 15px;
+                transition: color .15s ease;
+
+                &:hover {
+                    color: #9C9999;
+                    transition: color .15s ease;
+                }
+            }
+        }
+    }
+}
