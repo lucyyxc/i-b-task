@@ -3,6 +3,7 @@
    License: none (public domain)
 */
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@600");
+@import url("https://fonts.googleapis.com/css2?family=Asap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -63,17 +64,19 @@ a {
     width: 92%;
     display: flex;
     justify-content: space-between;
-    padding: 25px 0; }
+    padding-top: 40px; }
     .Nav .nav-content-container .logo-container .logo {
-      height: 120px;
-      width: 120px; }
+      height: 150px;
+      width: 150px; }
     .Nav .nav-content-container .links-container {
-      padding: 10px 0; }
+      padding: 10px 0;
+      display: flex;
+      flex-wrap: wrap; }
       .Nav .nav-content-container .links-container .link {
         color: black;
         font-family: "Hind", sans-serif;
         letter-spacing: 2px;
-        font-size: 13px;
+        font-size: 15px;
         text-transform: uppercase;
         margin: 0 15px;
         transition: color .15s ease; }
@@ -103,3 +106,81 @@ a {
       transition: color .15s ease;
       color: black;
       cursor: pointer; }
+
+.Title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Asap", sans-serif; }
+  .Title .title-content {
+    position: relative;
+    height: 100%;
+    width: 92%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    margin: 0 15px; }
+    .Title .title-content .icon {
+      margin-right: 10px; }
+    .Title .title-content .title-text {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 60px;
+      font-size: 70px;
+      text-align: center; }
+    .Title .title-content .profile-content {
+      position: absolute;
+      right: 0; }
+    .Title .title-content .profile-holder {
+      position: relative;
+      justify-self: flex-end;
+      height: 65px; }
+      .Title .title-content .profile-holder .profile-circle {
+        background-color: #fff;
+        border: 2px solid black;
+        height: 60px;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .15s ease; }
+        .Title .title-content .profile-holder .profile-circle:hover {
+          border: 2px solid #9C9999;
+          color: #9C9999;
+          cursor: pointer;
+          transition: all .15s ease; }
+
+.ProfileMenu {
+  position: absolute;
+  opacity: 1;
+  visibility: visible;
+  transition: all .1s ease;
+  box-shadow: 1px 2px 4px #888888;
+  margin-top: 5px;
+  padding: 5px 15px 5px 5px;
+  width: auto;
+  right: 0;
+  border-radius: 3px;
+  white-space: nowrap;
+  background-color: white; }
+  .ProfileMenu .user-info div {
+    padding: 2.5px 5px; }
+  .ProfileMenu .user-info .name {
+    font-weight: bold;
+    font-size: 18px; }
+  .ProfileMenu .link {
+    padding: 2.5px 5px;
+    transition: color .15s ease; }
+    .ProfileMenu .link:hover {
+      color: #9C9999;
+      cursor: pointer;
+      transition: color .15s ease; }
+  .ProfileMenu hr {
+    margin: 4px 0 2px 0; }
+  .ProfileMenu.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .1s ease; }
