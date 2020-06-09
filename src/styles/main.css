@@ -118,7 +118,7 @@ a {
     width: 92%;
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding-top: 20px;
     margin: 0 15px; }
     .Title .title-content .icon {
       margin-right: 10px; }
@@ -184,3 +184,39 @@ a {
     opacity: 0;
     visibility: hidden;
     transition: all .1s ease; }
+
+.Search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Asap", sans-serif; }
+  .Search .search-content {
+    width: 92%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; }
+    .Search .search-content i {
+      font-size: 20px;
+      margin: 0 4px; }
+      .Search .search-content i:hover {
+        color: #9C9999;
+        cursor: pointer;
+        transition: color .15s ease; }
+    .Search .search-content .search-input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      padding: 3px;
+      border-radius: 5px;
+      margin-left: 4px; }
+      .Search .search-content .search-input i {
+        margin: 0 4px 0 0; }
+        .Search .search-content .search-input i:hover {
+          color: black;
+          cursor: default; }
+      .Search .search-content .search-input input {
+        border: none; }
+        .Search .search-content .search-input input:focus {
+          border: none;
+          outline: none; }
