@@ -1,0 +1,18 @@
+.Views {
+  font-family: $secondary;
+
+  button {
+    background-color: white;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    transition: color .15s ease;
+    margin: 5px;
+
+    &:hover {
+      color: #9C9999;
+      transition: color .15s ease;
+      cursor: pointer;
+    }
+  }
+}
