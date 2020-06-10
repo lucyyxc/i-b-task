@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Title from './Title';
 import Search from './Search';
 import Views from './Views';
+import Filters from './Filters';
 
 const App = () => (
   <div className="App">
@@ -15,6 +16,7 @@ const App = () => (
     <div className="views-holder">
       <div className="views-content">
         <Views />
+        <Filters />
       </div>
     </div>
   </div>

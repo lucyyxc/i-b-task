@@ -1,0 +1,9 @@
+.Filters {
+  font-family: $secondary;
+  display: flex;
+
+  select {
+    margin: 5px;
+    font-size: 18px;
+  }
+}

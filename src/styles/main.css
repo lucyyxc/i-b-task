@@ -130,7 +130,6 @@ a {
     width: 92%;
     display: flex;
     justify-content: center;
-    padding-top: 20px;
     margin: 0 15px; }
     .Title .title-content .icon {
       margin-right: 10px; }
@@ -243,3 +242,10 @@ a {
       color: #9C9999;
       transition: color .15s ease;
       cursor: pointer; }
+
+.Filters {
+  font-family: "Asap", sans-serif;
+  display: flex; }
+  .Filters select {
+    margin: 5px;
+    font-size: 18px; }
