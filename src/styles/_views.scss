@@ -1,6 +1,7 @@
 .Views {
   font-family: $secondary;
 
+  
   button {
     background-color: white;
     border: none;
@@ -8,11 +9,44 @@
     font-size: 18px;
     transition: color .15s ease;
     margin: 5px;
-
+    padding: 5px 10px;
+    
     &:hover {
       color: #9C9999;
       transition: color .15s ease;
       cursor: pointer;
+    }
+  }
+
+  &.checklist {
+    #checklist {
+      border-radius: 3px;
+      background-color: black;
+      color: white;
+    }
+  }
+
+  &.calendar {
+    #calendar {
+      border-radius: 3px;
+      background-color: black;
+      color: white;
+    }
+  }
+
+  &.progress {
+    #progress {
+      border-radius: 3px;
+      background-color: black;
+      color: white;
+    }
+  }
+
+  &.files {
+    #files {
+      border-radius: 3px;
+      background-color: black;
+      color: white;
     }
   }
 }

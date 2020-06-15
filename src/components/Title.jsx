@@ -5,7 +5,7 @@ import ProfileMenu from './ProfileMenu';
 
 import stars from '../styles/assets/stars.png';
 
-const Title = ({user, tasks, loading}) => {
+const Title = ({user, tasks, loading, error}) => {
   const [show, setShow] = React.useState('hidden');
 
   const toggleMenu = () => {
@@ -20,7 +20,7 @@ const Title = ({user, tasks, loading}) => {
   let daysTill = '';
   let initials = ''
 
-  if (loading === false) {
+  if (loading === false && error === null) {
     firstName = user.name.split(' ')[0];
     daysTill = moment(user.weddingDate).diff(moment(), 'days');
     initials = user.assignee;

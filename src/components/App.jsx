@@ -8,15 +8,68 @@ import Title from './Title';
 import Search from './Search';
 import Views from './Views';
 import Filters from './Filters';
+import Checklist from './Checklist';
+import Calendar from './Calendar';
+import Progress from './Progress';
+import Files from './Files';
 
 const App = () => {
   
   const [state, setState] = React.useState({
-    user: {},
-    tasks: [],
+    error: null,
     loading: true,
-    error: null
+    selected: 'checklist',
+    dateFilter: '',
+    dateStart: new Date(),
+    dateEnd: '',
+    taskFilter: '',
+    search: '',
+    tasks: [],
+    user: {},
   });
+
+  const updateView = (view) => {
+    setState({
+      ...state,
+      selected: view
+    })
+  };
+
+  const updateTaskFilter = (filter) => {
+    setState({
+      ...state,
+      taskFilter: filter
+    });
+  }
+
+  const updateDateFilter = (filter) => {
+    if (filter !== 'custom') {
+      setState({
+        ...state,
+        dateFilter: filter,
+        dateStart: new Date(),
+        dateEnd: new Date(state.user.weddingDate),
+      });
+    } else {
+      console.log('👻'.repeat(20)); /*TODO Handle custom logic */
+    }
+    
+  }
+
+  const displayView = () => {
+    switch (state.selected) {
+      case 'checklist':
+        return <Checklist />
+      case 'calendar':
+        return <Calendar />
+      case 'progress':
+        return <Progress />
+      case 'files':
+        return <Files />
+      default:
+        return <Checklist />
+    }
+  }
 
   React.useEffect(() => {
     const updateState = (data) => {
@@ -28,6 +81,7 @@ const App = () => {
           user,
           tasks,
           loading: false,
+          dateEnd: new Date(user.weddingDate),
         });
       } else (
         setState({
@@ -51,6 +105,10 @@ const App = () => {
   
   });
 
+  console.log('🍕'.repeat(20));
+  console.log(state);
+  
+
   return (
     <div className="App">
       <Nav />
@@ -59,10 +117,18 @@ const App = () => {
       <Search />
       <div className="views-holder">
         <div className="views-content">
-          <Views />
-          <Filters />
+          <Views
+            {...state}
+            updateView={updateView}
+          />
+          <Filters
+            {...state}
+            updateDateFilter={updateDateFilter}
+            updateTaskFilter={updateTaskFilter}
+          />
         </div>
       </div>
+      {displayView()}
     </div>
   );
 };

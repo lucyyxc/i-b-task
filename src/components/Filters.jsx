@@ -1,19 +1,36 @@
 import React from 'react';
+import DatePicker from "react-datepicker";
 
-const Filters = () => (
+import "react-datepicker/dist/react-datepicker.css";
+
+const Filters = ({ updateDateFilter, updateTaskFilter, dateFilter, taskFilter}) => (
   <div className="Filters">
-    <select id="task" name="task">
-      <option value="" disabled selected hidden>Filter by Task</option>
-      <option value="incomplete">Incomplete</option>
-      <option value="complete">Complete</option>
-      <option value="all">All Tasks</option>
-    </select>
-    <select id="date" name="date">
-    <option value="" disabled selected hidden>Filter by Date</option>
+    {dateFilter === 'custom'
+      ? <>{ /*TODO Add in date range date pickers with react date picker*/}</>
+      : null
+    }
+    <select
+      id="date"
+      name="date"
+      onChange={e => updateDateFilter(e.target.value)}
+      value={dateFilter}
+    >
+      <option value="" disabled selected hidden>Filter by Date</option>
       <option value="all">All</option>
       <option value="this-week">Due This Week</option>
       <option value="next-week">Due Next Week</option>
       <option value="custom">Custom Dates</option>
+    </select>
+    <select
+      id="task"
+      name="task"
+      onChange={e => updateTaskFilter(e.target.value)}
+      value={taskFilter}
+    >
+      <option value="" disabled selected hidden>Filter by Task</option>
+      <option value="incomplete">Incomplete</option>
+      <option value="complete">Complete</option>
+      <option value="all">All Tasks</option>
     </select>
   </div>
 );
