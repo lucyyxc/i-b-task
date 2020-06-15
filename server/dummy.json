@@ -1,0 +1,62 @@
+{
+  "user": {
+    "name": "Bri Holst",
+    "email": "BH@IB.com",
+    "assignee": "BH",
+    "id": "1357",
+    "weddingDate": "2021-05-28"
+  },
+  "tasks": [
+    {
+      "id": "01",
+      "userId": "1357",
+      "taskName": "guest-list",
+      "taskLabel": "Guest List",
+      "assignee": "BH",
+      "tags": "",
+      "startDate": "2020-10-10",
+      "endDate": "2020-12-29",
+      "status": "in-progress",
+      "details": {
+        "advice": "You should get this done",
+        "notes": "I should get this done.",
+        "pintrest": "https://www.pinterest.com/",
+        "blog": "https://twitter.com/"
+      }
+    },
+    {
+      "id": "02",
+      "userId": "1357",
+      "taskName": "create-budget",
+      "taskLabel": "Create Budget",
+      "assignee": "BH",
+      "tags": "",
+      "startDate": "2020-11-11",
+      "endDate": "2021-01-09",
+      "status": "in-progress",
+      "details": {
+        "advice": "You should really get this done",
+        "notes": "I should really get this done.",
+        "pintrest": "https://www.pinterest.com/",
+        "blog": "https://twitter.com/"
+      }
+    },
+    {
+      "id": "03",
+      "userId": "1357",
+      "taskName": "research-venue",
+      "taskLabel": "Research Venue Space",
+      "assignee": "BH",
+      "tags": "",
+      "startDate": "2020-10-09",
+      "endDate": "2020-12-09",
+      "status": "in-progress",
+      "details": {
+        "advice": "This should probably get this done",
+        "notes": "I think I should probably get this done.",
+        "pintrest": "https://www.pinterest.com/",
+        "blog": "https://twitter.com/"
+      }
+    }
+  ]
+}

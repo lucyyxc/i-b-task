@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Views = () => (
-  <div className="Views">
-    <button>Checklist</button>
-    <button>Calendar</button>
-    <button>Progress</button>
-    <button>Files</button>
+const Views = ({selected = 'checklist'}) => (
+  <div className={`Views ${selected}`}>
+    <button className="button" id="checklist">Checklist</button>
+    <button className="button" id="calendar">Calendar</button>
+    <button className="button" id="progress">Progress</button>
+    <button className="button" id="files">Files</button>
   </div>
 );
 

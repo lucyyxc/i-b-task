@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProfileMenu = ({show}) => (
+const ProfileMenu = ({show, name}) => (
   <div className={`ProfileMenu ${show}`}>
     <div className="user-info">
       <div className="name">
-        {`Bri Holst` /*TODO fill with props*/}
+        {`${name}`}
       </div>
       <div className="link">
         Manage Profile
