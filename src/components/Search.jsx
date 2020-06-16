@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Search = () => (
+const Search = ({search, updateStateValue}) => (
   <div className="Search">
     <div className="search-content">
       <i className="fas fa-user-plus"></i>
@@ -8,7 +8,10 @@ const Search = () => (
       <i className="far fa-question-circle"></i>
       <div className="search-input">
         <i className="fas fa-search"></i>
-        <input placeholder="search"/>
+        <input placeholder="search"
+          value={search}
+          onChange={e => updateStateValue('search', e.target.value)}
+        />
       </div>
     </div>
   </div>

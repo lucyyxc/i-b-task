@@ -268,5 +268,10 @@ a {
   font-family: "Asap", sans-serif;
   display: flex; }
   .Filters select {
+    height: 30px;
+    margin: 5px;
+    font-size: 18px; }
+  .Filters .pickers {
+    height: 24px;
     margin: 5px;
     font-size: 18px; }

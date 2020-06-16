@@ -28,17 +28,10 @@ const App = () => {
     user: {},
   });
 
-  const updateView = (view) => {
+  const updateStateValue = (key, value) => {
     setState({
       ...state,
-      selected: view
-    })
-  };
-
-  const updateTaskFilter = (filter) => {
-    setState({
-      ...state,
-      taskFilter: filter
+      [key]: value
     });
   }
 
@@ -51,7 +44,10 @@ const App = () => {
         dateEnd: new Date(state.user.weddingDate),
       });
     } else {
-      console.log('👻'.repeat(20)); /*TODO Handle custom logic */
+      setState({
+        ...state,
+        dateFilter: filter,
+      });
     }
     
   }
@@ -114,17 +110,20 @@ const App = () => {
       <Nav />
       <Title {...state} />
       <Footer />
-      <Search />
+      <Search
+        search={state.search}
+        updateStateValue={updateStateValue}
+      />
       <div className="views-holder">
         <div className="views-content">
           <Views
             {...state}
-            updateView={updateView}
+            updateStateValue={updateStateValue}
           />
           <Filters
             {...state}
             updateDateFilter={updateDateFilter}
-            updateTaskFilter={updateTaskFilter}
+            updateStateValue={updateStateValue}
           />
         </div>
       </div>

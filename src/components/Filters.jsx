@@ -3,10 +3,35 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const Filters = ({ updateDateFilter, updateTaskFilter, dateFilter, taskFilter}) => (
+const Filters = ({
+  updateDateFilter,
+  dateFilter,
+  taskFilter,
+  dateStart,
+  dateEnd,
+  updateStateValue
+}) => (
   <div className="Filters">
     {dateFilter === 'custom'
-      ? <>{ /*TODO Add in date range date pickers with react date picker*/}</>
+      ? <>
+        <DatePicker
+          selected={dateStart}
+          onChange={date => updateStateValue('dateStart', date)}
+          selectsStart
+          startDate={dateStart}
+          endDate={dateEnd}
+          className="pickers"
+        />
+        <DatePicker
+          selected={dateEnd}
+          onChange={date => updateStateValue('dateEnd', date)}
+          selectsEnd
+          startDate={dateStart}
+          endDate={dateEnd}
+          minDate={dateStart}
+          className="pickers"
+        />
+      </>
       : null
     }
     <select
@@ -24,7 +49,7 @@ const Filters = ({ updateDateFilter, updateTaskFilter, dateFilter, taskFilter}) 
     <select
       id="task"
       name="task"
-      onChange={e => updateTaskFilter(e.target.value)}
+      onChange={e => updateStateValue('taskFilter', e.target.value)}
       value={taskFilter}
     >
       <option value="" disabled selected hidden>Filter by Task</option>

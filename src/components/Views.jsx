@@ -1,32 +1,32 @@
 import React from 'react';
 
-const Views = ({selected = 'checklist', updateView}) => (
+const Views = ({selected = 'checklist', updateStateValue}) => (
   <div className={`Views ${selected}`}>
     <button
       className="button"
       id="checklist"
-      onClick={() => updateView('checklist')}
+      onClick={() => updateStateValue('selected', 'checklist')}
     >
       Checklist
     </button>
     <button
       className="button"
       id="calendar"
-      onClick={() => updateView('calendar')}
+      onClick={() => updateStateValue('selected', 'calendar')}
     >
       Calendar
     </button>
     <button
       className="button"
       id="progress"
-      onClick={() => updateView('progress')}
+      onClick={() => updateStateValue('selected', 'progress')}
       >
         Progress
       </button>
     <button
       className="button"
       id="files"
-      onClick={() => updateView('files')}
+      onClick={() => updateStateValue('selected', 'progress')}
     >
       Files
     </button>
