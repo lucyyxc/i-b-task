@@ -21,6 +21,7 @@ const Task = ({task, index}) => {
     <div className={`Task ${index & 1 ? '' : 'gray'}`}>
       <div className="task-name column">
         {taskLabel}
+        {/* Add in more details button and modal */}
       </div>
       <div className="assignee column">
         {assignee}

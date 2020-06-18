@@ -39,7 +39,7 @@ const Filters = ({
       name="date"
       onChange={e => updateDateFilter(e.target.value)}
       value={dateFilter}
-    >
+    > {/*TODO make these filters actually filter */}
       <option value="" disabled selected hidden>Filter by Date</option>
       <option value="all">All</option>
       <option value="this-week">Due This Week</option>
@@ -51,7 +51,7 @@ const Filters = ({
       name="task"
       onChange={e => updateStateValue('taskFilter', e.target.value)}
       value={taskFilter}
-    >
+    > {/*TODO make these filters actually filter */}
       <option value="" disabled selected hidden>Filter by Task</option>
       <option value="incomplete">Incomplete</option>
       <option value="complete">Complete</option>

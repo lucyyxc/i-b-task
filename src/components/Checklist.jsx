@@ -42,6 +42,8 @@ const Checklist = ({tasks}) => {
     });
   };
 
+  {/*TODO Add in actual asc and dec filtering */}
+
   return (
     <div className="Checklist">
       <div className="checklist-header">

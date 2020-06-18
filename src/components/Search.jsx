@@ -10,7 +10,7 @@ const Search = ({search, updateStateValue}) => (
         <i className="fas fa-search"></i>
         <input placeholder="search"
           value={search}
-          onChange={e => updateStateValue('search', e.target.value)}
+          onChange={e => updateStateValue('search', e.target.value) /*TODO add in term searching */} 
         />
       </div>
     </div>
