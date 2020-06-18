@@ -33,7 +33,7 @@
       "tags": "",
       "startDate": "2020-11-11",
       "endDate": "2021-01-09",
-      "status": "in-progress",
+      "status": "complete",
       "details": {
         "advice": "You should really get this done",
         "notes": "I should really get this done.",
@@ -50,7 +50,7 @@
       "tags": "",
       "startDate": "2020-10-09",
       "endDate": "2020-12-09",
-      "status": "in-progress",
+      "status": "not-started",
       "details": {
         "advice": "This should probably get this done",
         "notes": "I think I should probably get this done.",

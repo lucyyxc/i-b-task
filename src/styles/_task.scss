@@ -1,0 +1,13 @@
+.Task {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &.gray {
+    background-color: #EEEEEE;
+  }
+  
+  .column:last-of-type {
+    border-right: 0;
+  }
+}

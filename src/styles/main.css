@@ -275,3 +275,36 @@ a {
     height: 24px;
     margin: 5px;
     font-size: 18px; }
+
+.Checklist {
+  margin-top: 20px;
+  width: 92%;
+  font-family: "Asap", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid black; }
+  .Checklist .column {
+    flex: 1;
+    padding: 3px 5px;
+    border-right: 3px solid black;
+    display: flex;
+    justify-content: space-between; }
+  .Checklist .checklist-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; }
+    .Checklist .checklist-header .column {
+      background-color: #cccccc;
+      font-size: 12px; }
+      .Checklist .checklist-header .column:last-of-type {
+        border-right: 0; }
+
+.Task {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+  .Task.gray {
+    background-color: #EEEEEE; }
+  .Task .column:last-of-type {
+    border-right: 0; }

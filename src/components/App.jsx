@@ -54,8 +54,6 @@ const App = () => {
 
   const displayView = () => {
     switch (state.selected) {
-      case 'checklist':
-        return <Checklist />
       case 'calendar':
         return <Calendar />
       case 'progress':
@@ -63,7 +61,7 @@ const App = () => {
       case 'files':
         return <Files />
       default:
-        return <Checklist />
+        return <Checklist {...state} />
     }
   }
 
