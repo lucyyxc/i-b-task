@@ -3,7 +3,7 @@ import _forIn from 'lodash/forIn'
 
 import Task from './Task';
 
-const Checklist = ({tasks}) => {
+const Checklist = ({tasks, taskFilter}) => {
   const [state, setState] = React.useState({
     taskLabel: '',
     assignee: '',
@@ -45,8 +45,8 @@ const Checklist = ({tasks}) => {
 
   let filteredTasks = tasks;
 
-  const taskFilter = (value, key) => {
-    filteredTasks = tasks.sort((a, b) => {
+  const taskFilterFunc = (value, key) => {
+    filteredTasks = filteredTasks.sort((a, b) => {
       if (value === "DEC") {
         return (a[key] > b[key] ? -1 : (a[key] < b[key] ? 1 : 0))
       } else {
@@ -58,9 +58,16 @@ const Checklist = ({tasks}) => {
   if (tasks){
      _forIn(state, (value, key) => {
       if (value != false) {
-        taskFilter(value, key)
+        taskFilterFunc(value, key)
       }
     });
+    if (taskFilter === 'complete') {
+      filteredTasks = filteredTasks.filter( task => task.status === 'complete');
+    }
+
+    if (taskFilter === 'incomplete') {
+      filteredTasks = filteredTasks.filter( task => task.status !== 'complete');
+    }
   }
 
   return (

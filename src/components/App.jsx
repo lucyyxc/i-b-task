@@ -84,7 +84,6 @@ const App = () => {
           error: data,
         })
       )
-      
     };
 
     if(state.loading === true && state.error === null) {
@@ -96,9 +95,11 @@ const App = () => {
           updateState(err);
         })
     }
-  
   });
   
+  
+  
+
   return (
     <div className="App">
       <Nav />
