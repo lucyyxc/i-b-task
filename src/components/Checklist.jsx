@@ -48,13 +48,10 @@ const Checklist = ({tasks}) => {
   const taskFilter = (value, key) => {
     filteredTasks = tasks.sort((a, b) => {
       if (value === "DEC") {
-        if (a[key] > b[key]) return -1
-        if (a[key] < b[key]) return 1
+        return (a[key] > b[key] ? -1 : (a[key] < b[key] ? 1 : 0))
       } else {
-        if (a[key] > b[key]) return 1
-        if (a[key] < b[key]) return -1
+        return (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0))
       }
-      return 0;
     });
   };
 
