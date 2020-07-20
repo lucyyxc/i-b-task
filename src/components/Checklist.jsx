@@ -1,14 +1,15 @@
 import React from 'react';
+import _forIn from 'lodash/forIn'
 
 import Task from './Task';
 
 const Checklist = ({tasks}) => {
   const [state, setState] = React.useState({
-    task: '',
+    taskLabel: '',
     assignee: '',
     tags: '',
-    start: '',
-    end: '',
+    startDate: '',
+    endDate: '',
     status: ''
   });
 
@@ -29,32 +30,53 @@ const Checklist = ({tasks}) => {
       : (
         state[column] === 'DEC'
         ? 'ASC'
-        : ''
+        : 'DEC'
       );
     setState({
-      task: '',
+      taskLabel: '',
       assignee: '',
       tags: '',
-      start: '',
-      end: '',
+      startDate: '',
+      endDate: '',
       status: '',
       [column]: filter
     });
   };
 
-  {/*TODO Add in actual asc and dec filtering */}
+  let filteredTasks = tasks;
+
+  const taskFilter = (value, key) => {
+    filteredTasks = tasks.sort((a, b) => {
+      if (value === "DEC") {
+        if (a[key] > b[key]) return -1
+        if (a[key] < b[key]) return 1
+      } else {
+        if (a[key] > b[key]) return 1
+        if (a[key] < b[key]) return -1
+      }
+      return 0;
+    });
+  };
+
+  if (tasks){
+     _forIn(state, (value, key) => {
+      if (value != false) {
+        taskFilter(value, key)
+      }
+    });
+  }
 
   return (
     <div className="Checklist">
       <div className="checklist-header">
         <div
           className={`column ${true ? '' : 'hide'}`}
-          onClick={() => updateFilterState('task')}
+          onClick={() => updateFilterState('taskLabel')}
         > {/*TODO hide with props when filtered out */}
           <span>
             Task
           </span>
-          {renderArrows('task')}
+          {renderArrows('taskLabel')}
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}
@@ -76,21 +98,21 @@ const Checklist = ({tasks}) => {
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}
-          onClick={() => updateFilterState('start')}
+          onClick={() => updateFilterState('startDate')}
         > {/*TODO hide with props when filtered out */}
           <span>
             Start Date
           </span>
-          {renderArrows('start')}
+          {renderArrows('startDate')}
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}
-          onClick={() => updateFilterState('end')}
+          onClick={() => updateFilterState('endDate')}
         > {/*TODO hide with props when filtered out */}
         <span>
             End Date
           </span>
-          {renderArrows('end')}
+          {renderArrows('endDate')}
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}
@@ -102,7 +124,7 @@ const Checklist = ({tasks}) => {
           {renderArrows('status')}
         </div>
       </div>
-      {tasks.map((e, i) => <Task task={e} index={i} key={e.id} />)}
+      {filteredTasks.map((e, i) => <Task task={e} index={i} key={e.id} />)}
     </div>
   );
 };

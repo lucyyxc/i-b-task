@@ -98,11 +98,7 @@ const App = () => {
     }
   
   });
-
-  console.log('🍕'.repeat(20));
-  console.log(state);
   
-
   return (
     <div className="App">
       <Nav />

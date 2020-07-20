@@ -26,7 +26,7 @@ const Views = ({selected = 'checklist', updateStateValue}) => (
     <button
       className="button"
       id="files"
-      onClick={() => updateStateValue('selected', 'progress')}
+      onClick={() => updateStateValue('selected', 'files')}
     >
       Files
     </button>

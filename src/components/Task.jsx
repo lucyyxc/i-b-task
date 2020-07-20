@@ -2,10 +2,10 @@ import React from 'react';
 import moment from 'moment';
 
 const Task = ({task, index}) => {
-  let id, taskName, taskLabel, assignee, tags, startDate, endDate, status;
+  let id, taskName, taskLabel, assignee, tags, startDate, endDate, status, details;
   
   if (task) {
-    ({ id, taskName, taskLabel, assignee, tags, startDate, endDate, status } = task);
+    ({ id, taskName, taskLabel, assignee, tags, startDate, endDate, status, details } = task);
   }
 
   const renderStatusLabel = () => {
@@ -19,24 +19,30 @@ const Task = ({task, index}) => {
 
   return (
     <div className={`Task ${index & 1 ? '' : 'gray'}`}>
+      <div className="complete-button" onClick={() => console.log('👻'.repeat(20))}>
+        
+      </div>
       <div className="task-name column">
-        {taskLabel}
-        {/* Add in more details button and modal */}
+        <span className="label">{taskLabel}</span>
+        <div className="details" onClick={() => console.log('👻'.repeat(20))}>
+          <span className="label">Details</span>
+          <i className="fas fa-chevron-right"></i>
+        </div>
       </div>
       <div className="assignee column">
-        {assignee}
+        <span className="label">{assignee}</span>
       </div>
       <div className="tags column">
-        {tags}
+        <span className="label">{tags}</span>
       </div>
       <div className="start column">
-        {moment(startDate, 'YYYY-MM-DD').format('MM/DD/YY')}
+        <span className="label">{moment(startDate, 'YYYY-MM-DD').format('MM/DD/YY')}</span>
       </div>
       <div className="end column">
-        {moment(endDate, 'YYYY-MM-DD').format('MM/DD/YY')}
+        <span className="label">{moment(endDate, 'YYYY-MM-DD').format('MM/DD/YY')}</span>
       </div>
       <div className="status column">
-        {renderStatusLabel()}
+        <span className="label">{renderStatusLabel()}</span>
       </div>
     </div>
   );
