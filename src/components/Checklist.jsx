@@ -2,6 +2,7 @@ import React from 'react';
 import _forIn from 'lodash/forIn'
 
 import Task from './Task';
+import TaskModal from './TaskModal';
 
 const Checklist = ({tasks, taskFilter}) => {
   const [state, setState] = React.useState({
@@ -12,6 +13,9 @@ const Checklist = ({tasks, taskFilter}) => {
     endDate: '',
     status: ''
   });
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [modalTask, setModalTask] = React.useState({});
+  const [modalTaskIndex, setModalTaskIndex] = React.useState(0)
 
   const renderArrows = (column => {
     switch (state[column]) {
@@ -70,8 +74,22 @@ const Checklist = ({tasks, taskFilter}) => {
     }
   }
 
+  const openModal = (id) => {
+    const mTask = tasks.find((task, index) => {
+      if (task.id === id) {
+        setModalTaskIndex(index)
+        return task
+      }
+    })
+    setModalTask(mTask)
+    setIsOpen(true)
+  };
+
   return (
     <div className="Checklist">
+      <div className={`${isOpen ? 'overlay' : ''}`} onClick={() => setIsOpen(false)}>
+      </div>
+      <TaskModal isOpen={isOpen} />
       <div className="checklist-header">
         <div
           className={`column ${true ? '' : 'hide'}`}
@@ -128,7 +146,7 @@ const Checklist = ({tasks, taskFilter}) => {
           {renderArrows('status')}
         </div>
       </div>
-      {filteredTasks.map((e, i) => <Task task={e} index={i} key={e.id} />)}
+      {filteredTasks.map((e, i) => <Task task={e} index={i} key={e.id} openModal={openModal} />)}
     </div>
   );
 };

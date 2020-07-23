@@ -1,12 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 
-const Task = ({task, index}) => {
+const Task = ({task, index, openModal}) => {
   let id, taskName, taskLabel, assignee, tags, startDate, endDate, status, details;
   
   if (task) {
     ({ id, taskName, taskLabel, assignee, tags, startDate, endDate, status, details } = task);
   }
+
 
   const renderStatusLabel = () => {
     return status === "in-progress"
@@ -23,8 +24,9 @@ const Task = ({task, index}) => {
       </div>
       <div className="task-name column">
         <span className="label">{taskLabel}</span>
-        <div className="details" onClick={() => console.log('👻'.repeat(20))}>
-          <span className="label">Details</span> {/* TODO add in details modal */}
+        <div className="details" onClick={() => openModal(id)}>
+          <span className="label">Details</span>
+          {/* TODO add in details modal */}
           <i className="fas fa-chevron-right"></i>
         </div>
       </div>
