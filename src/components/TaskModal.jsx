@@ -2,19 +2,30 @@ import React from 'react';
 
 import DatePicker from "react-datepicker";
 
-const TaskModal = ({isOpen}) => {
+const TaskModal = ({isOpen, setIsOpen}) => {
+
+  const closeModal = (isComplete) => {
+    /*TODO Add in save task functionality */
+    if (isComplete) {
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 1000);
+    } else {
+      setIsOpen(false);
+    }
+  }
 
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
       <div className="modal-container">
         <div className="absolute check">
-          Check
+          <i class="far fa-check-circle" title="Complete Task" onClick={() => closeModal(true)}></i> {/* TODO Add task complete text */}
         </div>
         <div className="absolute exit">
-          Exit
+          <i class="fas fa-times" title="Exit" onClick={() => closeModal(false)}></i>
         </div>
         <div className="absolute delete">
-          Delete
+          <i class="fas fa-trash-alt" title="Delete Task" ></i> {/* TODO Add Delete functionality */}
         </div>
         <div className="absolute icons">
           Icons

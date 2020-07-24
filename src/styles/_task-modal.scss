@@ -39,16 +39,40 @@
     .check {
       top: 0;
       left: 0;
+      padding: 5px;
+      font-size: 28px;
+
+      i {
+        &:hover {
+          color: #05B407;
+          transition: color .15s ease;
+          cursor: pointer;
+        }
+      }
     }
 
     .exit {
       top: 0;
       right: 0;
+      padding: 5px;
+      font-size: 18px;
+      &:hover {
+        color: #9C9999;
+        transition: color .15s ease;
+        cursor: pointer;
+      }
     }
 
     .delete {
       bottom: 0;
       left: 0;
+      padding: 5px;
+      font-size: 24px;
+      &:hover {
+        color: #9C9999;
+        transition: color .15s ease;
+        cursor: pointer;
+      }
     }
 
     .icons {

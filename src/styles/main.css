@@ -385,13 +385,31 @@ a {
       position: absolute; }
     .Task-modal .modal-container .check {
       top: 0;
-      left: 0; }
+      left: 0;
+      padding: 5px;
+      font-size: 28px; }
+      .Task-modal .modal-container .check i:hover {
+        color: #05B407;
+        transition: color .15s ease;
+        cursor: pointer; }
     .Task-modal .modal-container .exit {
       top: 0;
-      right: 0; }
+      right: 0;
+      padding: 5px;
+      font-size: 18px; }
+      .Task-modal .modal-container .exit:hover {
+        color: #9C9999;
+        transition: color .15s ease;
+        cursor: pointer; }
     .Task-modal .modal-container .delete {
       bottom: 0;
-      left: 0; }
+      left: 0;
+      padding: 5px;
+      font-size: 24px; }
+      .Task-modal .modal-container .delete:hover {
+        color: #9C9999;
+        transition: color .15s ease;
+        cursor: pointer; }
     .Task-modal .modal-container .icons {
       bottom: 0;
       right: 0; }

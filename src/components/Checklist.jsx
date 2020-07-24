@@ -89,7 +89,7 @@ const Checklist = ({tasks, taskFilter}) => {
     <div className="Checklist">
       <div className={`${isOpen ? 'overlay' : ''}`} onClick={() => setIsOpen(false)}>
       </div>
-      <TaskModal isOpen={isOpen} />
+      <TaskModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="checklist-header">
         <div
           className={`column ${true ? '' : 'hide'}`}
