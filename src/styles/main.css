@@ -368,26 +368,90 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px 100px; }
+  font-size: 12px;
+  width: 700px; }
   .Task-modal.show {
     opacity: 1;
     visibility: visible;
     transition: opacity .5s ease; }
-  .Task-modal .modal-content {
+  .Task-modal .modal-container {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start; }
-  .Task-modal .status-box {
-    min-width: 180px;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 15px; }
-    .Task-modal .status-box .status-labels {
-      display: flex;
-      flex-direction: column;
-      width: 50%; }
-    .Task-modal .status-box .status-values {
-      display: flex;
-      flex-direction: column;
-      width: 50%; }
+    align-items: center;
+    position: relative; }
+    .Task-modal .modal-container .absolute {
+      position: absolute; }
+    .Task-modal .modal-container .check {
+      top: 0;
+      left: 0; }
+    .Task-modal .modal-container .exit {
+      top: 0;
+      right: 0; }
+    .Task-modal .modal-container .delete {
+      bottom: 0;
+      left: 0; }
+    .Task-modal .modal-container .icons {
+      bottom: 0;
+      right: 0; }
+    .Task-modal .modal-container .modal-content {
+      width: 70%;
+      height: 100%;
+      padding: 30px 0; }
+      .Task-modal .modal-container .modal-content .status-box {
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        width: 50%;
+        margin-bottom: 15px; }
+        .Task-modal .modal-container .modal-content .status-box .status-holder {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          width: 100%;
+          padding: 2px 0; }
+          .Task-modal .modal-container .modal-content .status-box .status-holder span {
+            white-space: nowrap;
+            font-weight: bold;
+            flex: 1; }
+          .Task-modal .modal-container .modal-content .status-box .status-holder input {
+            font-size: 12px;
+            border: none; }
+          .Task-modal .modal-container .modal-content .status-box .status-holder .pickers {
+            width: 100px;
+            flex: 1; }
+          .Task-modal .modal-container .modal-content .status-box .status-holder .task-status {
+            margin-right: 26px;
+            font-size: 12px;
+            border: 0px;
+            outline: 0px;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            padding-right: 15px;
+            padding-left: 5px; }
+      .Task-modal .modal-container .modal-content .task-name {
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 20px; }
+      .Task-modal .modal-container .modal-content .advice {
+        background-color: #F3F3F3;
+        width: 100%;
+        padding: 10px 5px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        box-sizing: border-box; }
+        .Task-modal .modal-container .modal-content .advice .title {
+          font-weight: bold;
+          font-style: italic;
+          margin-bottom: 10px; }
+      .Task-modal .modal-container .modal-content .notes {
+        display: flex;
+        flex-direction: column;
+        width: 100%; }
+        .Task-modal .modal-container .modal-content .notes .title {
+          padding-bottom: 5px; }
+        .Task-modal .modal-container .modal-content .notes textarea {
+          font-family: "Asap", sans-serif; }

@@ -14,7 +14,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px 100px;
+
+  font-size: 12px;
+  width: 700px;
 
   &.show {
     opacity: 1;
@@ -22,29 +24,124 @@
     transition: opacity .5s ease;
   }
 
-  .modal-content {
+  .modal-container {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
+    align-items: center;
+    position: relative;
 
-  .status-box {
-    min-width: 180px;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 15px;
-
-    .status-labels {
-      display: flex;
-      flex-direction: column;
-      width: 50%;
+    .absolute {
+      position: absolute;
     }
 
-    .status-values {
+    .check {
+      top: 0;
+      left: 0;
+    }
+
+    .exit {
+      top: 0;
+      right: 0;
+    }
+
+    .delete {
+      bottom: 0;
+      left: 0;
+    }
+
+    .icons {
+      bottom: 0;
+      right: 0;
+    }
+
+    .modal-content {
+    width: 70%;
+    height: 100%;
+    padding: 30px 0;
+
+    .status-box {
       display: flex;
       flex-direction: column;
+      align-content: space-between;
       width: 50%;
+      margin-bottom: 15px;
+      
+      .status-holder {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+        padding: 2px 0;
+
+        span {
+          white-space: nowrap;
+          font-weight: bold;
+          flex: 1;
+        }
+
+        input {
+          font-size: 12px;
+          border: none;
+        }
+
+        .pickers {
+          width: 100px;
+          flex: 1;
+        }
+
+        .task-status {
+          margin-right: 26px;
+          font-size: 12px;
+          border:0px;
+          outline:0px;
+          -moz-appearance: none;
+          -webkit-appearance: none;
+          padding-right: 15px;
+          padding-left: 5px;
+        }
+      }
+    }
+
+    .task-name {
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .advice {
+      background-color: #F3F3F3;
+      width: 100%;
+      padding: 10px 5px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+
+      .title {
+        font-weight: bold;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+    }
+
+    .notes {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .title {
+        padding-bottom: 5px;
+      }
+
+      textarea {
+        font-family: $secondary;
+      }
     }
   }
+  }
+
+  
 }
