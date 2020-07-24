@@ -28,7 +28,7 @@ const TaskModal = ({isOpen, setIsOpen}) => {
           <i class="fas fa-trash-alt" title="Delete Task" ></i> {/* TODO Add Delete functionality */}
         </div>
         <div className="absolute icons">
-          Icons
+          Icons {/* TODO Add in bottom right icons after meeting */}
         </div>
         <div className="modal-content">
           <div className="status-box">
