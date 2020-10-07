@@ -473,3 +473,68 @@ a {
           padding-bottom: 5px; }
         .Task-modal .modal-container .modal-content .notes textarea {
           font-family: "Asap", sans-serif; }
+
+.Progress {
+  margin-top: 20px;
+  width: 92%;
+  font-family: "Asap", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .Progress .title {
+    font-size: 20px; }
+  .Progress .progress-bar-container {
+    margin: 40px 0;
+    width: 600px;
+    height: 80px;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; }
+    .Progress .progress-bar-container .progress-bar {
+      background-color: white;
+      width: 100%;
+      height: 40px;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between; }
+      .Progress .progress-bar-container .progress-bar .section {
+        height: 100%;
+        z-index: 2; }
+    .Progress .progress-bar-container .rule {
+      height: 100%;
+      width: 1px;
+      background-color: lightgray;
+      position: absolute;
+      top: 0; }
+    .Progress .progress-bar-container .label {
+      position: absolute;
+      bottom: -20px;
+      transform: translateX(-10px); }
+    .Progress .progress-bar-container .twentyfive {
+      left: 25%; }
+    .Progress .progress-bar-container .fifty {
+      left: 50%; }
+    .Progress .progress-bar-container .seventyfive {
+      left: 75%; }
+  .Progress .complete {
+    background-color: #70825A; }
+  .Progress .in-progress {
+    background-color: #F6DDC8; }
+  .Progress .not-started {
+    background-color: #FC6959; }
+  .Progress .legend {
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
+    .Progress .legend .item {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .Progress .legend .item .color {
+        margin-right: 15px;
+        height: 20px;
+        width: 20px; }

@@ -18,7 +18,7 @@ const App = () => {
   const [state, setState] = React.useState({
     error: null,
     loading: true,
-    selected: 'checklist',
+    selected: 'progress', // TODO Make sure default is checklist when done
     dateFilter: '',
     dateStart: new Date(),
     dateEnd: '',
@@ -57,7 +57,7 @@ const App = () => {
       case 'calendar':
         return <Calendar />
       case 'progress':
-        return <Progress />
+        return <Progress {...state} />
       case 'files':
         return <Files />
       default:

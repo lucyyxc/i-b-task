@@ -26,7 +26,6 @@ const Task = ({task, index, openModal}) => {
         <span className="label">{taskLabel}</span>
         <div className="details" onClick={() => openModal(id)}>
           <span className="label">Details</span>
-          {/* TODO add in details modal */}
           <i className="fas fa-chevron-right"></i>
         </div>
       </div>
