@@ -105,21 +105,27 @@ const App = () => {
       <Nav />
       <Title {...state} />
       <Footer />
-      <Search
-        search={state.search}
-        updateStateValue={updateStateValue}
-      />
+      {state.selected === 'checklist'
+        ? <Search
+            search={state.search}
+            updateStateValue={updateStateValue}
+          />
+        : null
+      }
       <div className="views-holder">
         <div className="views-content">
           <Views
             {...state}
             updateStateValue={updateStateValue}
           />
-          <Filters
-            {...state}
-            updateDateFilter={updateDateFilter}
-            updateStateValue={updateStateValue}
-          />
+          {state.selected === 'checklist'
+            ? <Filters
+                {...state}
+                updateDateFilter={updateDateFilter}
+                updateStateValue={updateStateValue}
+              />
+            : null
+          }
         </div>
       </div>
       {displayView()}

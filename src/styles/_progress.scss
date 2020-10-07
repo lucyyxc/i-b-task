@@ -62,18 +62,6 @@
     }
   }
 
-  .complete {
-    background-color: $olive;
-  }
-
-  .in-progress {
-    background-color: $peach;
-  }
-
-  .not-started {
-    background-color: $pink;
-  }
-
   .legend {
     width: 600px;
     display: flex;
@@ -91,5 +79,69 @@
         width: 20px;
       }
     }
+  }
+
+  .circle-container {
+    margin: 30px 0;
+    width: 800px;
+
+    .flex {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      box-sizing: border-box;
+      margin: 20px 0 40px 0;
+    }
+
+    .circle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+
+      .the-circle {
+        height: 125px;
+        width: 125px;
+        background-color: black;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 80px;
+        margin-bottom: 10px;
+      }
+
+      .big {
+        height: 200px;
+        width: 200px;
+        font-size: 150px;
+      }
+
+      .complete {
+        background-color: $olive;
+      }
+    
+      .in-progress {
+        background-color: $peach;
+      }
+    
+      .not-started {
+        background-color: $pink;
+      }
+    }
+  }
+
+  .complete {
+    background-color: $olive;
+  }
+
+  .in-progress {
+    background-color: $peach;
+  }
+
+  .not-started {
+    background-color: $pink;
   }
 }

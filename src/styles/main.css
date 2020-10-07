@@ -53,7 +53,7 @@ a {
 .App {
   position: relative;
   min-height: calc(100vh - 100px);
-  width: 100vw;
+  max-width: 100vw;
   padding-bottom: 100px;
   display: flex;
   flex-direction: column;
@@ -519,12 +519,6 @@ a {
       left: 50%; }
     .Progress .progress-bar-container .seventyfive {
       left: 75%; }
-  .Progress .complete {
-    background-color: #70825A; }
-  .Progress .in-progress {
-    background-color: #F6DDC8; }
-  .Progress .not-started {
-    background-color: #FC6959; }
   .Progress .legend {
     width: 600px;
     display: flex;
@@ -538,3 +532,45 @@ a {
         margin-right: 15px;
         height: 20px;
         width: 20px; }
+  .Progress .circle-container {
+    margin: 30px 0;
+    width: 800px; }
+    .Progress .circle-container .flex {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      box-sizing: border-box;
+      margin: 20px 0 40px 0; }
+    .Progress .circle-container .circle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600; }
+      .Progress .circle-container .circle .the-circle {
+        height: 125px;
+        width: 125px;
+        background-color: black;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 80px;
+        margin-bottom: 10px; }
+      .Progress .circle-container .circle .big {
+        height: 200px;
+        width: 200px;
+        font-size: 150px; }
+      .Progress .circle-container .circle .complete {
+        background-color: #70825A; }
+      .Progress .circle-container .circle .in-progress {
+        background-color: #F6DDC8; }
+      .Progress .circle-container .circle .not-started {
+        background-color: #FC6959; }
+  .Progress .complete {
+    background-color: #70825A; }
+  .Progress .in-progress {
+    background-color: #F6DDC8; }
+  .Progress .not-started {
+    background-color: #FC6959; }
