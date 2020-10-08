@@ -19,13 +19,13 @@ const TaskModal = ({isOpen, setIsOpen}) => {
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
       <div className="modal-container">
         <div className="absolute check">
-          <i class="far fa-check-circle" title="Complete Task" onClick={() => closeModal(true)}></i> {/* TODO Add task complete text */}
+          <i className="far fa-check-circle" title="Complete Task" onClick={() => closeModal(true)}></i> {/* TODO Add task complete text */}
         </div>
         <div className="absolute exit">
-          <i class="fas fa-times" title="Exit" onClick={() => closeModal(false)}></i>
+          <i className="fas fa-times" title="Exit" onClick={() => closeModal(false)}></i>
         </div>
         <div className="absolute delete">
-          <i class="fas fa-trash-alt" title="Delete Task" ></i> {/* TODO Add Delete functionality */}
+          <i className="fas fa-trash-alt" title="Delete Task" ></i> {/* TODO Add Delete functionality */}
         </div>
         <div className="absolute icons">
           Icons {/* TODO Add in bottom right icons after meeting */}

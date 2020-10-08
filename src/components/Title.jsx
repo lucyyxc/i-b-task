@@ -5,7 +5,39 @@ import ProfileMenu from './ProfileMenu';
 
 import stars from '../styles/assets/stars.png';
 
-const Title = ({user, tasks, loading, error}) => {
+const LoggedInTitle = ({firstName, daysTill, toggleMenu, initials, show, user}) => (
+  <>
+    <div className="title-text">
+      <div className="icon">
+        <img src={stars} alt="Stars" />
+      </div>
+      <span>
+        {`Hi ${firstName}, ${daysTill} days until your Big Day!`}
+      </span>
+    </div>
+    <div className="profile-content">
+      <div className="profile-holder">
+        <div className="profile-circle" onClick={() => toggleMenu()}>
+          {`${initials}`}
+        </div>
+        <ProfileMenu show={show} name={user.name} /> {/*TODO add sign out link*/}
+      </div>
+    </div>
+  </>
+);
+
+const IntroTitle = () => (
+  <div className="title-text intro">
+    <span>Welcome to the Bride Tribe!</span>
+    <p className="">
+      We're so glad you've joined and can't wait to show you your personalized wedding
+      checklist! Let's start with a few questions, so we can get to know you better.
+      This will help us put it all together for you.
+    </p>
+  </div>
+);
+
+const Title = ({user, tasks, loading, error, selected}) => {
   const [show, setShow] = React.useState('hidden');
 
   const toggleMenu = () => {
@@ -28,24 +60,12 @@ const Title = ({user, tasks, loading, error}) => {
 
   return (
     <div className="Title">
-    <div className="title-content">
-      <div className="title-text">
-        <div className="icon">
-          <img src={stars} alt="Stars" />
-        </div>
-        <span>
-          {`Hi ${firstName}, ${daysTill} days until your Big Day!`}
-        </span>
+      <div className="title-content">
+        {selected === 'intro'
+          ? <IntroTitle />
+          : <LoggedInTitle {...{firstName, daysTill, toggleMenu, show, user, initials}} />
+        }
       </div>
-      <div className="profile-content">
-        <div className="profile-holder">
-          <div className="profile-circle" onClick={() => toggleMenu()}>
-            {`${initials}`}
-          </div>
-          <ProfileMenu show={show} name={user.name} /> {/*TODO add sign out link*/}
-        </div>
-      </div>
-    </div>
     </div>
   );
 };

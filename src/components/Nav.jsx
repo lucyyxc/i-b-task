@@ -2,9 +2,19 @@ import React from 'react';
 
 import logoBlack from '../styles/assets/logoBlack.png'
 
-const Nav = () => (
+const Nav = ({selected}) => (
   <div className="Nav">
-    <div className="nav-content-container">
+    <div className={`nav-content-container ${selected}`}>
+      {/* {selected === 'intro'
+        ? null
+        : <div className="logo-container">
+            <img
+              src={logoBlack}
+              alt="Indepenent Bride Logo"
+              className="logo"
+            />
+          </div>
+      } */}
       <div className="logo-container">
         <img
           src={logoBlack}

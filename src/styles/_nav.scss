@@ -10,6 +10,10 @@
     justify-content: space-between;
     padding-top: 40px;
 
+    &.intro {
+      // justify-content: flex-end; TODO logo on into page
+    }
+
     .logo-container {
       .logo {
         height: 150px;
@@ -21,6 +25,7 @@
       padding: 10px 0;
       display: flex;
       flex-wrap: wrap;
+      height: 25px;
 
       .link {
         color: black;

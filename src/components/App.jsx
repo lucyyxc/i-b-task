@@ -12,13 +12,14 @@ import Checklist from './Checklist';
 import Calendar from './Calendar';
 import Progress from './Progress';
 import Files from './Files';
+import Intro from './Intro';
 
 const App = () => {
   
   const [state, setState] = React.useState({
     error: null,
     loading: true,
-    selected: 'progress', // TODO Make sure default is checklist when done
+    selected: 'checklist', // TODO Make sure default is what it should be done
     dateFilter: '',
     dateStart: new Date(),
     dateEnd: '',
@@ -60,9 +61,14 @@ const App = () => {
         return <Progress {...state} />
       case 'files':
         return <Files />
-      default:
+      case 'checklist':
         return <Checklist {...state} />
-    }
+      case 'intro':
+        return <Intro updateView={updateStateValue} />
+      default:
+        {/*TODO change this to error page or something when decided. */}
+        return null
+        }
   }
 
   React.useEffect(() => {
@@ -102,7 +108,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Nav />
+      <Nav selected={state.selected} />
       <Title {...state} />
       <Footer />
       {state.selected === 'checklist'
@@ -112,22 +118,25 @@ const App = () => {
           />
         : null
       }
-      <div className="views-holder">
-        <div className="views-content">
-          <Views
-            {...state}
-            updateStateValue={updateStateValue}
-          />
-          {state.selected === 'checklist'
-            ? <Filters
+      {state.selected === 'intro'
+        ? null
+        : <div className="views-holder">
+            <div className="views-content">
+              <Views
                 {...state}
-                updateDateFilter={updateDateFilter}
                 updateStateValue={updateStateValue}
               />
-            : null
-          }
-        </div>
-      </div>
+              {state.selected === 'checklist'
+                ? <Filters
+                    {...state}
+                    updateDateFilter={updateDateFilter}
+                    updateStateValue={updateStateValue}
+                  />
+                : null
+              }
+            </div>
+          </div>
+      }
       {displayView()}
     </div>
   );

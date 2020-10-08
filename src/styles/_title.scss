@@ -22,6 +22,20 @@
       margin-top: 60px;
       font-size: 70px;
       text-align: center;
+
+      &.intro {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0px; //TODO logo on intro page
+
+        p {
+          font-size: 22px;
+          width: 550px;
+          margin-top: 30px;
+          line-height: 1.2;
+        }
+      }
     }
 
     .profile-content {
