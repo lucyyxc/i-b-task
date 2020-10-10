@@ -14,8 +14,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.get('/api/get', (req, res) => {
-  console.log('🍕'.repeat(20));
-  console.log(dummy);
   res.status(200).json(dummy);
 })
 

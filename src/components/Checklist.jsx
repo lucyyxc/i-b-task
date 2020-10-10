@@ -11,11 +11,11 @@ const Checklist = ({tasks, taskFilter}) => {
     tags: '',
     startDate: '',
     endDate: '',
-    status: ''
+    status: '',
+    isOpen: false,
+    modalTask: {},
+    modalTaskIndex: 0,
   });
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [modalTask, setModalTask] = React.useState({});
-  const [modalTaskIndex, setModalTaskIndex] = React.useState(0)
 
   const renderArrows = (column => {
     switch (state[column]) {
@@ -37,6 +37,7 @@ const Checklist = ({tasks, taskFilter}) => {
         : 'DEC'
       );
     setState({
+      ...state,
       taskLabel: '',
       assignee: '',
       tags: '',
@@ -75,21 +76,41 @@ const Checklist = ({tasks, taskFilter}) => {
   }
 
   const openModal = (id) => {
-    const mTask = tasks.find((task, index) => {
+    const newIndex = tasks.findIndex((task) => {
       if (task.id === id) {
-        setModalTaskIndex(index)
-        return task
+        return task;
       }
+    });
+
+    setState({
+      ...state,
+      modalTaskIndex: newIndex,
+      modalTask: tasks[newIndex],
+      isOpen: true,
     })
-    setModalTask(mTask)
-    setIsOpen(true)
+  };
+
+  const changeModalTask = (direction) => {
+    let newIndex;
+
+    if (direction === 'next') {
+      newIndex = state.modalTaskIndex + 1 > tasks.length - 1 ? 0 : state.modalTaskIndex + 1;
+    } else {
+      newIndex = state.modalTaskIndex === 0 ? tasks.length - 1 : state.modalTaskIndex - 1;
+    }
+
+    setState({
+      ...state, 
+      modalTaskIndex: newIndex,
+      modalTask: tasks[newIndex],
+    })
   };
 
   return (
     <div className="Checklist">
-      <div className={`${isOpen ? 'overlay' : ''}`} onClick={() => setIsOpen(false)}>
+      <div className={`${state.isOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isOpen: false})}>
       </div>
-      <TaskModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <TaskModal isOpen={state.isOpen} setIsOpen={(bool) => setState({...state, isOpen: bool})} modalTask={state.modalTask} changeModalTask={changeModalTask}/>
       <div className="checklist-header">
         <div
           className={`column ${true ? '' : 'hide'}`}

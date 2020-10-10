@@ -1,34 +1,74 @@
 import React from 'react';
 
+import _isEmpty from 'lodash/isEmpty';
+import _get from 'lodash/get';
+
+import moment from 'moment';
+
 import DatePicker from "react-datepicker";
 
-const TaskModal = ({isOpen, setIsOpen}) => {
+const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
+  const [task, updateTask] = React.useState({});
+  
+  if (!task.notes) {
+    _get(modalTask, 'details.notes')
+    task.notes = _get(modalTask, 'details.notes');
+  }
 
-  const closeModal = (isComplete) => {
+  const closeModal = (save) => {
     /*TODO Add in save task functionality */
-    if (isComplete) {
+    if (save) {
       setTimeout(() => {
+        updateTask({}) //TODO Temp before we get into saveing
         setIsOpen(false);
       }, 1000);
     } else {
+      updateTask({})
       setIsOpen(false);
     }
+  }
+
+  const deleteTask = () => {
+    //TODO delete when db is ready
+    closeModal(false)
   }
 
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
       <div className="modal-container">
         <div className="absolute check">
-          <i className="far fa-check-circle" title="Complete Task" onClick={() => closeModal(true)}></i> {/* TODO Add task complete text */}
+          <i className="far fa-check-circle" 
+          title="Complete Task" 
+          onClick={() => {
+            updateTask({...task, status: 'complete'})
+            closeModal(true)
+          }}
+        ></i> {/* TODO Add task complete text */}
         </div>
         <div className="absolute exit">
           <i className="fas fa-times" title="Exit" onClick={() => closeModal(false)}></i>
         </div>
-        <div className="absolute delete">
+        <div className="absolute delete"  title="Delete" onClick={() => deleteTask(modalTask.id, modalTask.userId)}>
           <i className="fas fa-trash-alt" title="Delete Task" ></i> {/* TODO Add Delete functionality */}
         </div>
         <div className="absolute icons">
-          Icons {/* TODO Add in bottom right icons after meeting */}
+          Icons {/* TODO Add in bottom right icons*/}
+        </div>
+        <div 
+          className="absolute arrow next" 
+          onClick={() => {
+            updateTask({});
+            changeModalTask('next')
+          }}>
+          <i className="fas fa-chevron-right"></i>
+        </div>
+        <div 
+          className="absolute arrow previous"
+          onClick={() => {
+            updateTask({});
+            changeModalTask('previous')
+          }}>
+          <i className="fas fa-chevron-left"></i>
         </div>
         <div className="modal-content">
           <div className="status-box">
@@ -37,8 +77,8 @@ const TaskModal = ({isOpen, setIsOpen}) => {
               <select
                 id="task"
                 name="task"
-                onChange={status => console.log(status)}
-                value={"complete"}
+                onChange={e => updateTask({...task, status: e.target.value})} //TODO make this change the status in db
+                value={modalTask.status}
                 className="task-status"
               >
                 <option value="not-started">Not Started</option>
@@ -49,39 +89,53 @@ const TaskModal = ({isOpen, setIsOpen}) => {
             <div className="status-holder">
               <span>Start on</span>
               <DatePicker
-                selected={new Date()}
-                onChange={date => console.log(date)}
+                selected={
+                  task.startDate
+                    ? moment(task.startDate).toDate()
+                    : moment(modalTask.startDate).toDate()
+                }
+                onChange={date => updateTask({...task, startDate: moment(date).format('YYYY-MM-DD')})}
                 className="pickers"
               />
             </div>
             <div className="status-holder">
               <span>Complete by</span>
               <DatePicker
-                selected={new Date()}
-                onChange={date => console.log(date)}
+                selected={
+                  task.endDate
+                    ? moment(task.endDate).toDate()
+                    : moment(modalTask.endDate).toDate()
+                }
+                onChange={date => updateTask({...task, endDate: moment(date).format('YYYY-MM-DD')})}
                 className="pickers"
               />
             </div>
         </div>
         <div className="task-name">
-          TASK NAME
+          {modalTask.taskLabel}
         </div>
         <div className="advice">
           <span className="title">
             Advice from The Independent Bride
           </span>
           <span className="the-advice">
-            This will help set the overall tone and feel for the day and will help guide your venue search. 
-            You don't have to be overly specific. It can be a cloudy vision, but get an idea of what you're 
-            both thinking. For example, if you want a black tie wedding and your fiance wants a picnic those 
-            are pretty extreme opposites, so you want to spend some time discussing and coming to agreement. 				
+            {_get(modalTask, 'details.notes', '')}			
           </span>
         </div>
         <div className="notes">
           <span className="title">
             Notes
           </span>
-          <textarea rows="5" />
+          <textarea 
+            rows="5"
+            value={task.notes}
+            onChange={(e) => updateTask({...task, notes: e.target.value})}
+          /> {/*TODO send this to db when done*/}
+        </div>
+        <div className="save-button-holder">
+          <div className="save-button" onClick={() => closeModal(true)}>
+            <span>SAVE</span>
+          </div>
         </div>
       </div>
     </div>
