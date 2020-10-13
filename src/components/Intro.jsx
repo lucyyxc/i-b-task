@@ -163,7 +163,8 @@ const Intro = ({updateView}) => {
     <DateSelect {...{
       value: state.weddingDate, 
       placeholder: 'Just give us your best guess. You can change this later when it\'s finalized!', 
-      item: 'weddingDate', label: 'Wedding Date', 
+      item: 'weddingDate', 
+      label: 'Wedding Date', 
       updateStateValue
     }} />
     <Input {...{

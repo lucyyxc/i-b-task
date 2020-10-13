@@ -4,7 +4,7 @@ import _forIn from 'lodash/forIn'
 import Task from './Task';
 import TaskModal from './TaskModal';
 
-const Checklist = ({tasks, taskFilter, search}) => {
+const Checklist = ({tasks, taskFilter, search, selected}) => {
   const [state, setState] = React.useState({
     taskLabel: '',
     assignee: '',
@@ -115,7 +115,13 @@ const Checklist = ({tasks, taskFilter, search}) => {
     <div className="Checklist">
       <div className={`${state.isOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isOpen: false})}>
       </div>
-      <TaskModal isOpen={state.isOpen} setIsOpen={(bool) => setState({...state, isOpen: bool})} modalTask={state.modalTask} changeModalTask={changeModalTask}/>
+      <TaskModal
+        isOpen={state.isOpen}
+        setIsOpen={(bool) => setState({...state, isOpen: bool})}
+        modalTask={state.modalTask}
+        changeModalTask={changeModalTask}
+        selected={selected}
+      />
       <div className="checklist-header">
         <div
           className={`column ${true ? '' : 'hide'}`}

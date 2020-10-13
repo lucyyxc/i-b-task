@@ -645,7 +645,10 @@ a {
         text-align: center;
         font-weight: bold;
         font-size: 14px;
-        margin-bottom: 20px; }
+        margin-bottom: 20px;
+        border: none;
+        outline: none;
+        width: 100%; }
       .Task-modal .modal-container .modal-content .advice {
         background-color: #F3F3F3;
         width: 100%;
