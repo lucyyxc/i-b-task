@@ -31,9 +31,6 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
     //TODO delete when db is ready
     closeModal(false)
   }
-
-  console.log('🍕'.repeat(20));
-  console.log(task);
   
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
@@ -42,10 +39,10 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
           <i className="far fa-check-circle" 
             title="Complete Task" 
             onClick={() => {
-            updateTask({...task, status: 'complete'})
-            closeModal(true)
-          }}
-        ></i> {/* TODO Add task complete text */}
+              updateTask({...task, status: 'complete'})
+              closeModal(true)
+            }}
+          ></i> {/* TODO Add task complete text */}
         </div>
         <div className="absolute exit">
           <i className="fas fa-times" title="Exit" onClick={() => closeModal(false)}></i>

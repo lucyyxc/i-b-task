@@ -37,8 +37,8 @@ const CollabForm = ({collab, warning, updateCollab, submit}) => (
         value: collab.email,
         item: 'email', 
         label: 'Email',
-        warning: 'This is a required field',
-        showWarning: warning && !collab.email,
+        warning: !(/^.+@.+\..+$/.test(collab.email)) && collab.email ? 'Please enter a valid email address' : 'This is a required field',
+        showWarning: warning && (!collab.email || !(/^.+@.+\..+$/.test(collab.email))),
         collab,
         updateCollab,
         }}
@@ -126,6 +126,7 @@ const Search = ({search, updateStateValue, collabAdded}) => {
     if (
       collab.name &&
       collab.email &&
+      (/^.+@.+\..+$/.test(collab.email)) &&
       collab.relation
     ) {
       //TODO submit collab info
