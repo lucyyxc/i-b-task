@@ -32,6 +32,9 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
     closeModal(false)
   }
 
+  console.log('🍕'.repeat(20));
+  console.log(task);
+  
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
       <div className="modal-container">
@@ -77,7 +80,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
                 id="task"
                 name="task"
                 onChange={e => updateTask({...task, status: e.target.value})} //TODO make this change the status in db
-                value={modalTask.status}
+                value={task.status || modalTask.status}
                 className="task-status"
               >
                 <option value="not-started">Not Started</option>

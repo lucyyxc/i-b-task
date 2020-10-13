@@ -134,9 +134,6 @@ const Search = ({search, updateStateValue, collabAdded}) => {
       setWarning(true)
     }
   };
-
-  console.log('🍕'.repeat(20));
-  console.log(collab);
   
   return (
     <div className="Search">
