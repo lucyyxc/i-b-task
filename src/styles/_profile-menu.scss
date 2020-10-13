@@ -44,23 +44,33 @@
     transition: all .1s ease;
   }
 
-  .logout-confirm {
+  .modal {
     z-index: 4;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    height: 150px;
-    width: 300px;
     box-shadow: 1px 2px 4px #888888;
     opacity: 0;
+    transition: all .25s ease;
     visibility: hidden;
+    border-radius: 3px;
+
+    &.show {
+      opacity: 1;
+      visibility: visible;
+      transition: all .25s ease;
+    }
+  }
+
+  .logout-confirm {
+    height: 150px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    transition: all .25s ease;
 
     .message {
       font-size: 24px;
@@ -88,12 +98,6 @@
           box-shadow: 1px 1px 2px #888888;
         } 
       }
-    }
-
-    &.show {
-      opacity: 1;
-      visibility: visible;
-      transition: all .25s ease;
     }
   }
 }

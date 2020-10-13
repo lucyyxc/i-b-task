@@ -1,6 +1,5 @@
 import React from 'react';
 
-import _isEmpty from 'lodash/isEmpty';
 import _get from 'lodash/get';
 
 import moment from 'moment';
@@ -11,12 +10,12 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
   const [task, updateTask] = React.useState({});
   
   if (!task.notes) {
-    _get(modalTask, 'details.notes')
     task.notes = _get(modalTask, 'details.notes');
   }
 
   const closeModal = (save) => {
-    /*TODO Add in save task functionality */
+    /*TODO Add in save task functionality
+      make sure to update custom value on task so we know */
     if (save) {
       setTimeout(() => {
         updateTask({}) //TODO Temp before we get into saveing
@@ -38,8 +37,8 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
       <div className="modal-container">
         <div className="absolute check">
           <i className="far fa-check-circle" 
-          title="Complete Task" 
-          onClick={() => {
+            title="Complete Task" 
+            onClick={() => {
             updateTask({...task, status: 'complete'})
             closeModal(true)
           }}
@@ -119,7 +118,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask}) => {
             Advice from The Independent Bride
           </span>
           <span className="the-advice">
-            {_get(modalTask, 'details.notes', '')}			
+            {_get(modalTask, 'details.advice', '')}			
           </span>
         </div>
         <div className="notes">

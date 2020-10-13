@@ -20,7 +20,7 @@ const LoggedInTitle = ({firstName, daysTill, toggleMenu, initials, show, user}) 
         <div className="profile-circle" onClick={() => toggleMenu()}>
           {`${initials}`}
         </div>
-        <ProfileMenu show={show} name={user.name} toggleMenu={toggleMenu} /> {/*TODO add sign out link*/}
+        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} /> {/*TODO add sign out link*/}
       </div>
     </div>
   </>

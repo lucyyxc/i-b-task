@@ -4,7 +4,9 @@
     "email": "BH@IB.com",
     "assignee": "BH",
     "id": "1357",
-    "weddingDate": "2021-05-28"
+    "weddingDate": "2021-05-28",
+    "birthday": "1950-01-01",
+    "password": "temp"
   },
   "tasks": [
     {
@@ -17,11 +19,13 @@
       "startDate": "2020-10-10",
       "endDate": "2020-12-29",
       "status": "in-progress",
+      "custom": false,
       "details": {
         "advice": "You should get this done",
         "notes": "I should get this done.",
         "pintrest": "https://www.pinterest.com/",
-        "blog": "https://twitter.com/"
+        "blog": "https://twitter.com/",
+        "moneyTip": "Spend less moneys"
       }
     },
     {
@@ -34,11 +38,13 @@
       "startDate": "2020-11-11",
       "endDate": "2021-01-09",
       "status": "complete",
+      "custom": false,
       "details": {
         "advice": "You should really get this done",
         "notes": "I should really get this done.",
         "pintrest": "https://www.pinterest.com/",
-        "blog": "https://twitter.com/"
+        "blog": "https://twitter.com/",
+        "moneyTip": "Spend more moneys"
       }
     },
     {
@@ -51,11 +57,13 @@
       "startDate": "2020-10-09",
       "endDate": "2020-12-09",
       "status": "not-started",
+      "custom": false,
       "details": {
         "advice": "This should probably get this done",
         "notes": "I think I should probably get this done.",
         "pintrest": "https://www.pinterest.com/",
-        "blog": "https://twitter.com/"
+        "blog": "https://twitter.com/",
+        "moneyTip": ""
       }
     }
   ]
