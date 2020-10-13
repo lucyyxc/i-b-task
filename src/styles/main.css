@@ -262,6 +262,119 @@ a {
   display: flex;
   justify-content: center;
   font-family: "Asap", sans-serif; }
+  .Search .CollabMenu {
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 500px;
+    height: 350px;
+    box-shadow: 1px 2px 4px #888888;
+    opacity: 0;
+    transition: all .25s ease;
+    visibility: hidden;
+    border-radius: 3px; }
+    .Search .CollabMenu.show {
+      opacity: 1;
+      visibility: visible;
+      transition: all .25s ease; }
+    .Search .CollabMenu.short {
+      height: 200px; }
+    .Search .CollabMenu .control-holder {
+      width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: flex-end;
+      justify-self: flex-start; }
+      .Search .CollabMenu .control-holder .control {
+        top: 0;
+        padding: 10px;
+        font-size: 12px;
+        cursor: pointer; }
+    .Search .CollabMenu .CollabAdded {
+      text-align: center;
+      padding-top: 30px;
+      width: 350px;
+      font-size: 18px; }
+    .Search .CollabMenu .title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 5px; }
+      .Search .CollabMenu .title.sent {
+        font-size: 20px;
+        margin-bottom: 10px; }
+    .Search .CollabMenu .blurb {
+      font-size: 14px;
+      width: 300px;
+      text-align: center;
+      margin-bottom: 10px; }
+      .Search .CollabMenu .blurb.sent-blurb {
+        font-size: 16px;
+        margin-top: 20px; }
+    .Search .CollabMenu .input-holder {
+      width: 250px;
+      margin-bottom: 20px; }
+      .Search .CollabMenu .input-holder .input-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5px 0;
+        position: relative; }
+        .Search .CollabMenu .input-holder .input-container .label-container {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center; }
+          .Search .CollabMenu .input-holder .input-container .label-container .input-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px; }
+          .Search .CollabMenu .input-holder .input-container .label-container .warning {
+            color: red;
+            font-size: 12px;
+            display: none; }
+            .Search .CollabMenu .input-holder .input-container .label-container .warning.show {
+              display: block; }
+        .Search .CollabMenu .input-holder .input-container .input {
+          border: none;
+          border-bottom: 1px black solid;
+          background-color: none;
+          width: 100%;
+          font-size: 14px;
+          transition: all .15s ease; }
+          .Search .CollabMenu .input-holder .input-container .input:focus {
+            outline: none;
+            background-color: whitesmoke;
+            transition: all .15s ease;
+            border-radius: 3px; }
+        .Search .CollabMenu .input-holder .input-container .visable-text {
+          position: absolute;
+          right: 50%;
+          top: 50%; }
+          .Search .CollabMenu .input-holder .input-container .visable-text:hover {
+            cursor: pointer; }
+    .Search .CollabMenu .required-note {
+      font-size: 12px; }
+    .Search .CollabMenu .submit {
+      height: 40px;
+      width: 150px;
+      background-color: #70825A;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      margin: 20px auto;
+      cursor: pointer; }
+      .Search .CollabMenu .submit span {
+        font-size: 20px; }
   .Search .search-content {
     width: 92%;
     display: flex;

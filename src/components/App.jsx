@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import _isEmpty from 'lodash/isEmpty'
+import _isEmpty from 'lodash/isEmpty';
+import _get from 'lodash/get';
 
 import Nav from './Nav';
 import Footer from './Footer';
@@ -115,6 +116,7 @@ const App = () => {
         ? <Search
             search={state.search}
             updateStateValue={updateStateValue}
+            collabAdded={_get(state, 'user.collabAdded', false)}
           />
         : null
       }

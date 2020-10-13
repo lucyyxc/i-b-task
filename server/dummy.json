@@ -6,7 +6,9 @@
     "id": "1357",
     "weddingDate": "2021-05-28",
     "birthday": "1950-01-01",
-    "password": "temp"
+    "password": "temp",
+    "collabAdded": false,
+    "collabID": null
   },
   "tasks": [
     {

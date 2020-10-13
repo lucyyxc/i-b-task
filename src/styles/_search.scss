@@ -4,6 +4,165 @@
   justify-content: center;
   font-family: $secondary;
 
+  .CollabMenu {
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 500px;
+    height: 350px;
+    box-shadow: 1px 2px 4px #888888;
+    opacity: 0;
+    transition: all .25s ease;
+    visibility: hidden;
+    border-radius: 3px;
+
+    &.show {
+      opacity: 1;
+      visibility: visible;
+      transition: all .25s ease;
+    }
+
+    &.short {
+      height: 200px;
+    }
+
+    .control-holder {
+      width:500px;
+      height: auto;
+      display: flex;
+      justify-content: flex-end;
+      justify-self: flex-start;
+  
+      .control {
+        top: 0;
+        padding: 10px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+
+    .CollabAdded {
+      text-align: center;
+      padding-top: 30px;
+      width: 350px;
+      font-size: 18px;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 5px;
+
+      &.sent {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .blurb {
+      font-size: 14px;
+      width: 300px;
+      text-align: center;
+      margin-bottom: 10px;
+
+      &.sent-blurb {
+        font-size: 16px;
+        margin-top: 20px;
+      }
+    }
+
+    .input-holder {
+      width: 250px;
+      margin-bottom: 20px;
+  
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5px 0;
+        position: relative;
+  
+        .label-container {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+  
+          .input-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+
+          .warning {
+            color: red;
+            font-size: 12px;
+            display: none;
+  
+            &.show {
+              display: block;
+            }
+          }
+        }
+  
+        .input {
+          border: none;
+          border-bottom: 1px black solid;
+          background-color: none;
+          width: 100%;
+          font-size: 14px;
+          transition: all .15s ease;
+          
+          &:focus {
+            outline: none;
+            background-color: rgb(245, 245, 245);
+            transition: all .15s ease;
+            border-radius: 3px;
+          }
+        }
+  
+        .visable-text {
+          position: absolute;
+          right: 50%;
+          top: 50%;
+  
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .required-note {
+      font-size: 12px;
+    }
+
+    .submit {
+      height: 40px;
+      width: 150px;
+      background-color: $olive;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      margin: 20px auto;
+      cursor: pointer;
+  
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+
   .search-content {
     width: 92%;
     display: flex;
