@@ -114,7 +114,7 @@ const CollabMenu = ({show, cancel, collab, updateCollab, submit, sent, warning, 
   </div>
 );
 
-const Search = ({search, updateStateValue, collabAdded}) => {
+const Search = ({search, updateStateValue, collabAdded, showSearch}) => {
   const [show, toggleShow] = React.useState(false);
   const [sent, send] = React.useState(false);
   const [collab, updateCollab] = React.useState({name: '', email: '', relation: ''});
@@ -140,16 +140,20 @@ const Search = ({search, updateStateValue, collabAdded}) => {
     <div className="Search">
       <CollabMenu {...{show, cancel, collab, updateCollab, submit, sent, warning, collabAdded}}/>
       <div className="search-content">
+        {showSearch
+          ? <div className="search-input">
+              <i className="fas fa-search"></i>
+              <input 
+                placeholder="Search by task name"
+                value={search}
+                onChange={e => updateStateValue('search', e.target.value)} 
+              />
+            </div>
+          : null
+        }
         <i className="fas fa-user-plus" onClick={() => toggleShow(true)}></i> {/*TODO add in ability to add another user */}
         <i className="fas fa-plus-circle"></i> {/*TODO add in ability to add another task */}
         <i className="far fa-question-circle"></i> {/*TODO add in how it works info */}
-        <div className="search-input">
-          <i className="fas fa-search"></i>
-          <input placeholder="search"
-            value={search}
-            onChange={e => updateStateValue('search', e.target.value) /*TODO add in term searching */} 
-          />
-        </div>
       </div>
     </div>
   );

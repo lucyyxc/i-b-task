@@ -4,7 +4,7 @@ import _forIn from 'lodash/forIn'
 import Task from './Task';
 import TaskModal from './TaskModal';
 
-const Checklist = ({tasks, taskFilter}) => {
+const Checklist = ({tasks, taskFilter, search}) => {
   const [state, setState] = React.useState({
     taskLabel: '',
     assignee: '',
@@ -66,12 +66,17 @@ const Checklist = ({tasks, taskFilter}) => {
         taskFilterFunc(value, key)
       }
     });
+
     if (taskFilter === 'complete') {
       filteredTasks = filteredTasks.filter( task => task.status === 'complete');
     }
 
     if (taskFilter === 'incomplete') {
       filteredTasks = filteredTasks.filter( task => task.status !== 'complete');
+    }
+
+    if (search.length > 3) {
+      filteredTasks = filteredTasks.filter( task => task.taskLabel.toLowerCase().includes(search.toLowerCase()))
     }
   }
 

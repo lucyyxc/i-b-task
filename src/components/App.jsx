@@ -112,14 +112,12 @@ const App = () => {
       <Nav selected={state.selected} />
       <Title {...state} />
       <Footer />
-      {state.selected === 'checklist'
-        ? <Search
-            search={state.search}
-            updateStateValue={updateStateValue}
-            collabAdded={_get(state, 'user.collabAdded', false)}
-          />
-        : null
-      }
+      <Search
+        search={state.search}
+        updateStateValue={updateStateValue}
+        collabAdded={_get(state, 'user.collabAdded', false)}
+        showSearch={state.selected === 'checklist' || state.selected === 'files'}
+      />
       {state.selected === 'intro'
         ? null
         : <div className="views-holder">

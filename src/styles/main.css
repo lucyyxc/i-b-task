@@ -61,6 +61,8 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center; }
+  .App .placeholder {
+    height: 30px; }
   .App .views-holder {
     width: 100%;
     height: 100%;
@@ -259,6 +261,7 @@ a {
 
 .Search {
   width: 100%;
+  height: 30px;
   display: flex;
   justify-content: center;
   font-family: "Asap", sans-serif; }
