@@ -862,6 +862,18 @@ a {
         outline: none; }
     .Intro .date-container .react-datepicker-wrapper {
       width: 100%; }
+  .Intro .member {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .Intro .member .login-button {
+      margin-left: 3px;
+      cursor: pointer;
+      font-weight: bold; }
+      .Intro .member .login-button:hover {
+        text-decoration: underline; }
   .Intro .submit {
     height: 60px;
     width: 200px;

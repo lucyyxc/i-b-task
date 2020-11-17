@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import Profile from './Profile';
 
@@ -15,10 +16,10 @@ const LogOutModal = ({modal, logOut, cancel}) => (
 const ProfileMenu = ({show, user, toggleMenu}) => {
   const [modal, showModal] = React.useState(false);
   const [display, swapDisplay] = React.useState('')
+  const { logout } = useAuth0();
 
   const logOut = () => {
-    //TODO add log out logic here
-    alert('logged out')
+    logout({ returnTo: window.location.origin })
     showModal(false)
     swapDisplay('')
     toggleMenu()

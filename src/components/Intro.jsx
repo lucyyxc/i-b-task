@@ -4,6 +4,8 @@ import moment from 'moment';
 
 import "react-datepicker/dist/react-datepicker.css";
 
+import LoginButton from './LoginButton';
+
 const Input = ({type = 'text', placeholder = '', value, item, label, showWarning = false, warning, updateStateValue}) => {
   const [show, setShow] = React.useState(false);
   let displayType;
@@ -199,6 +201,10 @@ const Intro = ({updateView}) => {
       label: 'Confirm Password', 
       updateStateValue
     }} />
+    <div className="member">
+      <p>Already a part of the Bride Tribe?&nbsp;</p>
+      <LoginButton />
+    </div>
     <div 
       className="submit"
       onClick={() => submit()}

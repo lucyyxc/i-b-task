@@ -15,12 +15,13 @@ import Progress from './Progress';
 import Files from './Files';
 import Intro from './Intro';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 const App = () => {
-  
   const [state, setState] = React.useState({
     error: null,
     loading: true,
-    selected: 'checklist', // TODO Make sure default is what it should be done
+    selected: 'intro', // TODO Make sure default is what it should be done
     dateFilter: '',
     dateStart: new Date(),
     dateEnd: '',
@@ -29,6 +30,8 @@ const App = () => {
     tasks: [],
     user: {},
   });
+  
+  const { user, isLoading, isAuthenticated } = useAuth0();
 
   const updateStateValue = (key, value) => {
     setState({
@@ -103,24 +106,29 @@ const App = () => {
         })
     }
   });
-  
-  
-  
+
+  if (!isLoading && isAuthenticated && state.selected === 'intro') {
+    updateStateValue('selected', 'checklist')
+  } else if (!isLoading && !isAuthenticated && state.selected !== 'intro') {
+    updateStateValue('selected', 'intro')
+  }
 
   return (
     <div className="App">
       <Nav selected={state.selected} />
       <Title {...state} />
       <Footer />
-      <Search
-        search={state.search}
-        updateStateValue={updateStateValue}
-        collabAdded={_get(state, 'user.collabAdded', false)}
-        showSearch={state.selected === 'checklist' || state.selected === 'files'}
-      />
+      
       {state.selected === 'intro'
         ? null
-        : <div className="views-holder">
+        : <>
+          <Search
+            search={state.search}
+            updateStateValue={updateStateValue}
+            collabAdded={_get(state, 'user.collabAdded', false)}
+            showSearch={state.selected === 'checklist' || state.selected === 'files'}
+          />
+          <div className="views-holder">
             <div className="views-content">
               <Views
                 {...state}
@@ -134,8 +142,9 @@ const App = () => {
                   />
                 : null
               }
+              </div>
             </div>
-          </div>
+          </>
       }
       {displayView()}
     </div>
