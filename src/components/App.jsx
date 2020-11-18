@@ -14,6 +14,8 @@ import Calendar from './Calendar';
 import Progress from './Progress';
 import Files from './Files';
 import Intro from './Intro';
+import Payment from './Payment';
+import Loading from './Loading';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -31,7 +33,7 @@ const App = () => {
     user: {},
   });
   
-  const { user, isLoading, isAuthenticated } = useAuth0();
+  const {user} = useAuth0();
 
   const updateStateValue = (key, value) => {
     setState({
@@ -65,6 +67,10 @@ const App = () => {
         return <Progress {...state} />
       case 'files':
         return <Files />
+      case 'payment':
+        return <Payment updateView={updateStateValue} />
+      case 'loading':
+        return <Loading />
       case 'checklist':
         return <Checklist {...state} />
       case 'intro':
@@ -86,6 +92,7 @@ const App = () => {
           tasks,
           loading: false,
           dateEnd: new Date(user.weddingDate),
+          selected: 'checklist'
         });
       } else (
         setState({
@@ -96,8 +103,16 @@ const App = () => {
       )
     };
 
-    if(state.loading === true && state.error === null) {
-      axios.get('http://localhost:3333/api/get')
+    let email;
+
+    if (!_isEmpty(user) && _isEmpty(state.user)) {
+      email = user.email;
+    } else if (!_isEmpty(state.user)) {
+      email = state.user.email;
+    }
+
+    if(state.loading === true && state.error === null && (!_isEmpty(user) || _get(state, 'user.email', false))) {
+      axios.get(`http://localhost:3333/api/get/${email}`)
         .then( response => {
           updateState(response.data);
         })
@@ -107,19 +122,13 @@ const App = () => {
     }
   });
 
-  if (!isLoading && isAuthenticated && state.selected === 'intro') {
-    updateStateValue('selected', 'checklist')
-  } else if (!isLoading && !isAuthenticated && state.selected !== 'intro') {
-    updateStateValue('selected', 'intro')
-  }
-
   return (
     <div className="App">
       <Nav selected={state.selected} />
-      <Title {...state} />
+      {state.selected === 'loading' ? null : <Title {...state} />}
       <Footer />
       
-      {state.selected === 'intro'
+      {state.selected === 'intro' || state.selected === 'payment' || state.selected === 'loading'
         ? null
         : <>
           <Search

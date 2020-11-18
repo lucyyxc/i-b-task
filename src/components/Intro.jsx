@@ -1,12 +1,14 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
+import axios from 'axios';
+import passwordValidator from 'password-validator';
 
 import "react-datepicker/dist/react-datepicker.css";
 
 import LoginButton from './LoginButton';
 
-const Input = ({type = 'text', placeholder = '', value, item, label, showWarning = false, warning, updateStateValue}) => {
+const Input = ({type = 'text', placeholder = '', value, item, label, showWarning = false, warning, updateStateValue, showPassTooltip = false}) => {
   const [show, setShow] = React.useState(false);
   let displayType;
 
@@ -16,10 +18,15 @@ const Input = ({type = 'text', placeholder = '', value, item, label, showWarning
     displayType = type;
   }
 
+  const tooltip = <div className="tooltip">
+      <i className="fas fa-info-circle"></i>
+        <span className="tooltiptext">Password must be 8 characters long and contain the following:<br/> uppercase letter, lowercase letter, number.</span>
+    </div>
+
   return (
     <div className="input-container">
       <div className="label-container">
-        <span className="input-label">{label}</span>
+        <span className="input-label">{label} {showPassTooltip ? tooltip : null}</span>
         <span className={`warning ${showWarning ? 'show' : ''}`}>{`*${warning}`}</span>
       </div>
       <input 
@@ -67,8 +74,16 @@ const Intro = ({updateView}) => {
     birthday: '',
     password: '',
     confirm: '',
+    valid: false,
     match: false,
+    error: false,
   });
+
+  let schema = new passwordValidator();
+  schema.is().min(8)
+  .has().lowercase()
+  .has().lowercase()
+  .has().digits()
 
   React.useEffect(() => {
     checkPasswords()
@@ -82,6 +97,10 @@ const Intro = ({updateView}) => {
   }
 
   const validateEmail = (email) => /^.+@.+\..+$/.test(email);
+
+  const validatePassword = (pass) => {
+    return schema.validate(pass)
+  };
 
   const emailInput = (key, value) => {
     if (validateEmail(value)) {
@@ -129,12 +148,11 @@ const Intro = ({updateView}) => {
   const submit = () => {
     const submittableWeddingDate = moment(state.weddingDate).format('YYYY-MM-DD');
     const submittableBirthday = moment(state.birthday).format('YYYY-MM-DD');
-    const submittableState = {
-      name: state.name,
+    const metadata = {
       weddingDate: submittableWeddingDate,
-      email: state.email,
       birthday: submittableBirthday,
-      password: state.password
+      sub: 'false',
+      fullName: state.name,
     };
 
     if (
@@ -143,16 +161,50 @@ const Intro = ({updateView}) => {
       state.email &&
       state.validEmail &&
       state.birthday &&
+      validatePassword(state.password) &&
       state.password &&
       state.match
     ) {
-      updateView('selected', 'checklist')
-      //TODO submit that submittableState when it gets figured out
-    } else {
-      alert('you messed up somewhere dude')
-      //TODO handle this more gracefully
+      axios.post('https://the-independent-bride.us.auth0.com/dbconnections/signup',
+        {
+          client_id: 'MdY4v57ExoBNoxuM9MsFCMULtl44pFQ1',
+          email: state.email,
+          password: state.password,
+          connection: 'Username-Password-Authentication',
+          name: state.name,
+          user_metadata: metadata
+        }
+      )
+      .then(response => {
+        updateView('selected', 'loading');
+        axios.post('http://localhost:3333/api/post/newUser', response.data)
+        .then(response => {
+          updateView('user', {email: state.email});
+          setState({
+            name: '',
+            weddingDate: '',
+            email: '',
+            validEmail: false,
+            birthday: '',
+            password: '',
+            confirm: '',
+            valid: false,
+            match: false,
+            error: false,
+          }); 
+        })
+      })
+      .catch(err => {
+        setState({
+          ...state,
+          error: true,
+        });
+        //TODO Do something with this error state
+      })
     }
   };
+
+  const passwordWarning = validatePassword(state.password) ? 'Passwords do not match.' : 'Password does not meet requirements.'
 
  return (
   <div className="Intro" >
@@ -190,20 +242,21 @@ const Intro = ({updateView}) => {
       type: 'password', 
       item: 'password', 
       label: 'Password',
-      showWarning: !state.match && state.password && state.confirm,
-      warning: 'Passwords do not match.',
+      showWarning: (!validatePassword(state.password) && state.password) || (!state.match && state.password && state.confirm),
+      warning: passwordWarning,
+      showPassTooltip: true,
       updateStateValue
     }} />
     <Input {...{
       value: state.confirm, 
       type: 'password', 
       item: 'confirm', 
-      label: 'Confirm Password', 
+      label: 'Confirm Password',
       updateStateValue
     }} />
     <div className="member">
       <p>Already a part of the Bride Tribe?&nbsp;</p>
-      <LoginButton />
+      <LoginButton updateView={updateView}/>
     </div>
     <div 
       className="submit"

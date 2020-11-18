@@ -23,7 +23,7 @@ const Input = ({placeholder = '', value = '', item, label, collab, updateCollab,
 const CollabForm = ({collab, warning, updateCollab, submit}) => (
   <>
     <h6 className="title">Add someone to help you with all the planning!</h6>
-    <p class="blurb">By adding this collaborator, they'll have access to all tasks and you'll be able to assign tasks and with them as you go.</p>
+    <p className="blurb">By adding this collaborator, they'll have access to all tasks and you'll be able to assign tasks and with them as you go.</p>
     <div className="input-holder">
       <Input {...{
         value: collab.name,

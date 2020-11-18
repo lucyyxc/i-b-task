@@ -85,6 +85,7 @@ const Profile = ({user, modal, cancel}) => {
       profile.password
     ) {
       alert('profile saved');
+      //TODO save this to the DB
       cancelCleanup();
     }
   }
