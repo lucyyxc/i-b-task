@@ -6,7 +6,6 @@ const LoginButton = ({updateView}) => {
 
   return <p className="login-button" onClick={() => {
     loginWithPopup()
-    updateView('selected', 'loading');
   }}>Log In</p>;
 };
 

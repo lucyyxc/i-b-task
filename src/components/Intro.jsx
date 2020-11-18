@@ -176,22 +176,9 @@ const Intro = ({updateView}) => {
         }
       )
       .then(response => {
-        updateView('selected', 'payment');
         axios.post('http://localhost:3333/api/post/newUser', response.data)
         .then(response => {
           updateView('user', {email: state.email});
-          setState({
-            name: '',
-            weddingDate: '',
-            email: '',
-            validEmail: false,
-            birthday: '',
-            password: '',
-            confirm: '',
-            valid: false,
-            match: false,
-            error: false,
-          }); 
         })
       })
       .catch(err => {
