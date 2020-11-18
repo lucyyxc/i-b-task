@@ -176,7 +176,7 @@ const Intro = ({updateView}) => {
         }
       )
       .then(response => {
-        updateView('selected', 'loading');
+        updateView('selected', 'payment');
         axios.post('http://localhost:3333/api/post/newUser', response.data)
         .then(response => {
           updateView('user', {email: state.email});

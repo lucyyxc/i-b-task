@@ -63,6 +63,7 @@ const Profile = ({user, modal, cancel}) => {
   const [profile, updateProfile] = React.useState({name: ''});
   const [show, toggleShow] = React.useState(false);
   const [edit, toggleEdit] = React.useState(false);
+  if (_isEmpty(user)) return null;
 
   
   if (!profile.name && !_isEmpty(user)) {
