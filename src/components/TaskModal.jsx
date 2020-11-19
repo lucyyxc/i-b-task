@@ -7,13 +7,17 @@ import moment from 'moment';
 
 import DatePicker from "react-datepicker";
 
-const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask, selected}) => {
+const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected}) => {
   const [task, updateTask] = React.useState({});
   const [newTask, isNewTask] = React.useState(true);
   
   if (_isEmpty(task) && !_isEmpty(modalTask)) {
     updateTask(modalTask);
     isNewTask(false)
+  }
+
+  if (!isOpen && !_isEmpty(task)) {
+    updateTask({})
   }
 
   const closeModal = (save) => {

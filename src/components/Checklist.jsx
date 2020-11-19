@@ -113,11 +113,10 @@ const Checklist = ({tasks, taskFilter, search, selected}) => {
 
   return (
     <div className="Checklist">
-      <div className={`${state.isOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isOpen: false})}>
-      </div>
+      <div className={`${state.isOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isOpen: false, modalTask: {}})}></div>
       <TaskModal
         isOpen={state.isOpen}
-        setIsOpen={(bool) => setState({...state, isOpen: bool})}
+        setIsOpen={(bool) => setState({...state, isOpen: bool, modalTask: {}})}
         modalTask={state.modalTask}
         changeModalTask={changeModalTask}
         selected={selected}

@@ -71,8 +71,8 @@ const allTasks = [
     taskLabel: 'Guest List',
     assignee: 'TB',
     tags: '',
-    startDate: '2020-10-10',
-    endDate: '2020-12-29',
+    startDate: '2020-11-20',
+    endDate: '2020-11-24',
     status: 'in-progress',
     custom: false,
     details: {
@@ -90,8 +90,8 @@ const allTasks = [
     taskLabel: 'Create Budget',
     assignee: 'TB2',
     tags: '',
-    startDate: '2020-11-11',
-    endDate: '2021-01-09',
+    startDate: '2020-11-16',
+    endDate: '2020-11-20',
     status: 'complete',
     custom: false,
     details: {
@@ -109,8 +109,8 @@ const allTasks = [
     taskLabel: 'Research Venue Space',
     assignee: 'TB',
     tags: '',
-    startDate: '2020-10-09',
-    endDate: '2020-12-09',
+    startDate: '2020-11-19',
+    endDate: '2020-11-22',
     status: 'not-started',
     custom: 'false',
     details: {

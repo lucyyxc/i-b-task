@@ -1,9 +1,89 @@
 import React from 'react';
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import listPlugin from '@fullcalendar/list';
+import moment from 'moment';
 
-const Calendar = () => (
-  <div className="Calendar">
-    Calendar
-  </div>
-);
+import TaskModal from './TaskModal';
+
+const Calendar = ({tasks, selected}) => {
+  const [state, setState] = React.useState({
+    calTasks: tasks,
+    isOpen: false,
+    modalTask: {}
+  })
+
+  React.useEffect(() => {
+    setState({
+      ...state,
+      calTasks: tasks
+    })
+  }, [tasks]);
+
+  const createCalEvents = () => {
+    return state.calTasks.map(task => {
+      let backgroundColor = '';
+      let textColor = '#FFFFFF';
+
+      switch (true) {
+        case moment().format("YYYY-MM-DD") === task.startDate:
+          backgroundColor = '#70825a';
+          break;
+        case moment().add(1, 'd').format("YYYY-MM-DD") === task.endDate:
+          backgroundColor = '#fc6959';
+          break;
+        case task.status === 'in-progress':
+          backgroundColor = '#42413d';
+          break;
+        default:
+          backgroundColor = '#4582EA'
+          break
+      }
+    
+      return { 
+        title: task.taskLabel,
+        id: task.id,
+        start: task.startDate,
+        end: task.endDate,
+        backgroundColor,
+        borderColor: backgroundColor,
+        textColor
+      }
+    });
+  }
+
+  const handleClick = ({event}) => {
+    const modalTask = tasks.find(task => +task.id === +event.id)
+    setState({
+      ...state,
+      isOpen: true,
+      modalTask
+    })
+  }
+  
+  return (
+    <div className="Calendar">
+      <FullCalendar
+        plugins={[ dayGridPlugin, listPlugin]}
+        initialView="dayGridMonth"
+        headerToolbar={{
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth dayGridWeek listMonth'
+        }}
+        fixedWeekCount={false}
+        events={createCalEvents()}
+        eventClick={handleClick}
+      />
+      <div className={`${state.isOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isOpen: false, modalTask: {}})}></div>
+      <TaskModal
+        isOpen={state.isOpen}
+        setIsOpen={(bool) => setState({...state, isOpen: bool, modalTask: {}})}
+        modalTask={state.modalTask}
+        selected={selected}
+      />
+    </div>
+  );
+}
 
 export default Calendar;
