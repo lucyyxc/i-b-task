@@ -93,15 +93,15 @@ const tasksOne = [
 const App = () => {
   const [state, setState] = React.useState({
     error: null,
-    loading: false, //TODO set to true when done
-    selected: 'calendar', // TODO Make sure default is what it should be done
+    loading: true, //TODO set to true when done
+    selected: 'intro', // TODO Make sure default is what it should be done
     dateFilter: '',
     dateStart: new Date(),
     dateEnd: '',
     taskFilter: '',
     search: '',
-    tasks: tasksOne,
-    user: userOne,
+    tasks: {},
+    user: {},
   });
   
   const {user} = useAuth0();
@@ -152,50 +152,50 @@ const App = () => {
         }
   }
 
-  // React.useEffect(() => {
-  //   const updateState = (data) => {
-  //     const user = data.user || {};
-  //     const tasks = data.tasks || {};
-  //     if (!_isEmpty(user) && !_isEmpty(tasks)) {
-  //       const view = user.sub === true ? 'checklist' : 'payment';
-  //       setState({
-  //         ...state,
-  //         user,
-  //         tasks,
-  //         loading: false,
-  //         dateEnd: new Date(user.weddingDate),
-  //         selected: view
-  //       });
-  //     } else (
-  //       setState({
-  //         ...state,
-  //         loading: false,
-  //         error: data,
-  //       })
-  //     )
-  //   };
+  React.useEffect(() => {
+    const updateState = (data) => {
+      const user = data.user || {};
+      const tasks = data.tasks || {};
+      if (!_isEmpty(user) && !_isEmpty(tasks)) {
+        const view = user.sub === true ? 'checklist' : 'payment';
+        setState({
+          ...state,
+          user,
+          tasks,
+          loading: false,
+          dateEnd: new Date(user.weddingDate),
+          selected: view
+        });
+      } else (
+        setState({
+          ...state,
+          loading: false,
+          error: data,
+        })
+      )
+    };
 
-  //   let email;
+    let email;
 
-  //   if (!_isEmpty(user) && _isEmpty(state.user)) {
-  //     email = user.email;
-  //   } else if (!_isEmpty(state.user)) {
-  //     email = state.user.email;
-  //   }
+    if (!_isEmpty(user) && _isEmpty(state.user)) {
+      email = user.email;
+    } else if (!_isEmpty(state.user)) {
+      email = state.user.email;
+    }
 
-  //   if(state.loading === true &&
-  //     state.error === null &&
-  //     state.selected !== 'payment' &&
-  //     (!_isEmpty(user) || _get(state, 'user.email', false))) {
-  //     axios.get(`http://localhost:3333/api/get/${email}`)
-  //       .then( response => {
-  //         updateState(response.data);
-  //       })
-  //       .catch(err => {
-  //         updateState(err);
-  //       })
-  //   }
-  // });
+    if(state.loading === true &&
+      state.error === null &&
+      state.selected !== 'payment' &&
+      (!_isEmpty(user) || _get(state, 'user.email', false))) {
+      axios.get(`http://localhost:3333/api/get/${email}`)
+        .then( response => {
+          updateState(response.data);
+        })
+        .catch(err => {
+          updateState(err);
+        })
+    }
+  });
 
   return (
     <div className="App">

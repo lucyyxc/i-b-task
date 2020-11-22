@@ -128,8 +128,8 @@ const allTasks = [
     taskLabel: 'Research Venue Space',
     assignee: 'GT',
     tags: '',
-    startDate: '2020-10-09',
-    endDate: '2020-12-09',
+    startDate: '2020-11-19',
+    endDate: '2020-11-22',
     status: 'not-started',
     custom: 'false',
     details: {
