@@ -4,7 +4,7 @@ import _forIn from 'lodash/forIn'
 import Task from './Task';
 import TaskModal from './TaskModal';
 
-const Checklist = ({tasks, taskFilter, search, selected}) => {
+const Checklist = ({tasks = [], taskFilter, search, selected}) => {
   const [state, setState] = React.useState({
     taskLabel: '',
     assignee: '',
@@ -17,6 +17,8 @@ const Checklist = ({tasks, taskFilter, search, selected}) => {
     modalTaskIndex: 0,
   });
 
+  if (!tasks.length) return null;
+  
   const renderArrows = (column => {
     switch (state[column]) {
       case 'ASC':

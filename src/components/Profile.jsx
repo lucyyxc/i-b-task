@@ -64,9 +64,9 @@ const Profile = ({user, modal, cancel}) => {
   const [show, toggleShow] = React.useState(false);
   const [edit, toggleEdit] = React.useState(false);
   if (_isEmpty(user)) return null;
-
   
-  if (!profile.name && !_isEmpty(user)) {
+  if (!_isEmpty(user) && !profile.name) {
+    console.log('updating user');
     updateProfile({...user})
   }
 
@@ -108,7 +108,7 @@ const Profile = ({user, modal, cancel}) => {
         </div>
       </div>
       <h1 className="title">
-        {`👋 Hi there, ${profile.name.split(' ')[0]}`}
+        {`👋 Hi there, ${profile.name ? profile.name.split(' ')[0] : null}`}
         <div className={`cancel-confirm ${show ? 'show': ''}`}>
           <span className="message">Do you want to save your changes?</span>
           <div className="button-holder">

@@ -20,8 +20,7 @@ const Task = ({task, index, openModal}) => {
 
   return (
     <div className={`Task ${index & 1 ? '' : 'gray'}`}>
-      <div className="complete-button" onClick={() => console.log('👻'.repeat(20))}> {/* TODO add in completion functionality */}
-      </div>
+      <div className="complete-button" onClick={() => console.log('👻'.repeat(20))}> {/* TODO add in completion functionality */}</div>
       <div className="task-name column">
         <span className="label">{taskLabel}</span>
         <div className="details" onClick={() => openModal(id)}>

@@ -1,13 +1,15 @@
 import React from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 import Profile from './Profile';
+
+import { Redirect } from 'react-router-dom';
 
 const LogOutModal = ({modal, logOut, cancel}) => (
   <div className={`modal logout-confirm ${modal ? 'show': ''}`}>
     <span className="message">Are you sure?</span>
     <div className="button-holder">
-      <div className="button" onClick={() => logOut()}><p>Log Out</p></div>
+      <a className="button logout-link" href="/auth/logout"><p>Log Out</p></a>
       <div className="button" onClick={() => cancel()}><p>Cancel</p></div>
     </div>
   </div>
@@ -15,14 +17,15 @@ const LogOutModal = ({modal, logOut, cancel}) => (
 
 const ProfileMenu = ({show, user, toggleMenu}) => {
   const [modal, showModal] = React.useState(false);
-  const [display, swapDisplay] = React.useState('')
-  const { logout } = useAuth0();
+  const [display, swapDisplay] = React.useState('');
+  const [redirect, setRedirect] = React.useState(false)
+
 
   const logOut = () => {
-    logout({ returnTo: window.location.origin })
     showModal(false)
     swapDisplay('')
     toggleMenu()
+    setRedirect(true)
   };
 
   const cancel = () => {
@@ -32,6 +35,10 @@ const ProfileMenu = ({show, user, toggleMenu}) => {
   };
 
   if(show === 'hidden' && modal) showModal(false);
+
+  if (redirect) {
+    return <Redirect to="/auth/logout" />
+  }
 
   return (
     <div className={`ProfileMenu ${show}`}>

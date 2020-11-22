@@ -3,15 +3,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './styles/main.scss';
 import App from './components/App';
-import { Auth0Provider } from "@auth0/auth0-react";
+import Intro from './components/Intro';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 ReactDOM.render(
-  <Auth0Provider
-    domain="the-independent-bride.us.auth0.com"
-    clientId="MdY4v57ExoBNoxuM9MsFCMULtl44pFQ1"
-    redirectUri={window.location.origin}
-  >
-    <App />
-  </Auth0Provider>,
+    <Router>
+      <Switch>
+        <Route exact path="/checklist">
+          <App {...{selected: 'checklist'}} />
+        </Route>
+        <Route exact path="/calendar">
+          <App {...{selected: 'calendar'}} />
+        </Route>
+        <Route exact path="/files">
+          <App {...{selected: 'files'}} />
+        </Route>
+        <Route exact path="/progress">
+          <App {...{selected: 'progress'}} />
+        </Route>
+        <Route path="/">
+          <Intro />
+        </Route>
+      </Switch>
+    </Router>,
   document.getElementById('root')
 );

@@ -1,19 +1,116 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-var cors = require('cors')
-const dummy = require('./dummy.json');
+const session = require('express-session');
+const dotenv = require('dotenv');
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
+const util = require('util');
+const url = require('url');
+const querystring = require('querystring');
 
-const port = 3333;
+var cors = require('cors')
+
+dotenv.config();
+
+var strategy = new Auth0Strategy(
+  {
+    domain: process.env.AUTH0_DOMAIN,
+    clientID: process.env.AUTH0_CLIENT_ID,
+    clientSecret: process.env.AUTH0_CLIENT_SECRET,
+    callbackURL:
+      process.env.AUTH0_CALLBACK_URL || '/callback'
+  },
+  function (accessToken, refreshToken, extraParams, profile, done) {
+    // accessToken is the token to call Auth0 API (not needed in the most cases)
+    // extraParams.id_token has the JSON Web Token
+    // profile has all the information from the user
+    return done(null, profile);
+  }
+);
+
+passport.use(strategy);
+
+passport.serializeUser(function (user, done) {
+  console.log('serialize', user);
+  done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+  console.log('deserialize', user);
+  done(null, user);
+});
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(cors())
+
+var sess = {
+  secret: 'ChAnGe ThIs SeCrEt',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true
+};
+
+if (app.get('env') === 'production') {
+  sess.cookie.secure = true;
+
+  // Uncomment the line below if your application is behind a proxy (like on Heroku)
+  // or if you're encountering the error message:
+  // "Unable to verify authorization request state"
+  // app.set('trust proxy', 1);
+}
+
+app.use(session(sess));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.static('build'));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 
-app.use(bodyParser.json());
-app.use(cors())
+// Perform the login, after login Auth0 will redirect to callback
+app.get('/auth', passport.authenticate('auth0'));
+
+// Perform the final stage of authentication and redirect to previously requested URL or '/user'
+app.get('/callback', function (req, res, next) {
+  console.log('in /callback');
+  passport.authenticate('auth0', function (err, user, info) {
+    console.log('in authenticate');
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/auth'); }
+    req.logIn(user, function (err) {
+      console.log('in req.login');
+      if (err) { return next(err); }
+      res.redirect('/#/checklist');
+    });
+  })(req, res, next);
+});
+
+// Perform session logout and redirect to homepage
+app.get('/auth/logout', (req, res) => {
+  req.logout();
+
+  var returnTo = req.protocol + '://' + req.hostname;
+  var port = req.connection.localPort;
+  if (port !== undefined && port !== 80 && port !== 443) {
+    returnTo += ':' + port;
+  }
+  var logoutURL = new url.URL(
+    util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
+  );
+  var searchString = querystring.stringify({
+    client_id: process.env.AUTH0_CLIENT_ID,
+    returnTo: returnTo
+  });
+  logoutURL.search = searchString;
+
+  res.redirect(logoutURL);
+});
 
 app.get('/api/get/:email', (req, res) => {
   const { email } = req.params;
@@ -46,8 +143,8 @@ app.post('/api/post/newUser', (req, res) => {
   res.status(200).send('Added new user');
 })
 
+const port = 3333;
 app.listen(port, () => console.log(`listening on port ${port}`));
-
 
 const users =  [
   {

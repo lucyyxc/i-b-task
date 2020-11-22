@@ -17,7 +17,6 @@ import Intro from './Intro';
 import Payment from './Payment';
 import Loading from './Loading';
 
-import { useAuth0 } from '@auth0/auth0-react';
 
 const userOne = {
   name: 'Bri Holst',
@@ -90,21 +89,19 @@ const tasksOne = [
   }
 ]
 
-const App = () => {
+const App = ({selected}) => {
   const [state, setState] = React.useState({
     error: null,
-    loading: true, //TODO set to true when done
-    selected: 'intro', // TODO Make sure default is what it should be done
+    loading: false, //TODO set to true when done
     dateFilter: '',
     dateStart: new Date(),
     dateEnd: '',
     taskFilter: '',
     search: '',
-    tasks: {},
-    user: {},
+    tasks: tasksOne,
+    user: userOne,
   });
   
-  const {user} = useAuth0();
 
   const updateStateValue = (key, value) => {
     setState({
@@ -131,11 +128,11 @@ const App = () => {
   }
 
   const displayView = () => {
-    switch (state.selected) {
+    switch (selected) {
       case 'calendar':
-        return <Calendar {...state} />
+        return <Calendar {...state} selected={selected} />
       case 'progress':
-        return <Progress {...state} />
+        return <Progress {...state} selected={selected} />
       case 'files':
         return <Files />
       case 'payment':
@@ -143,84 +140,84 @@ const App = () => {
       case 'loading':
         return <Loading />
       case 'checklist':
-        return <Checklist {...state} />
-      case 'intro':
-        return <Intro updateView={updateStateValue} />
+        return <Checklist {...state} selected={selected} />
       default:
         {/*TODO change this to error page or something when decided. */}
         return null
         }
   }
 
-  React.useEffect(() => {
-    const updateState = (data) => {
-      const user = data.user || {};
-      const tasks = data.tasks || {};
-      if (!_isEmpty(user) && !_isEmpty(tasks)) {
-        const view = user.sub === true ? 'checklist' : 'payment';
-        setState({
-          ...state,
-          user,
-          tasks,
-          loading: false,
-          dateEnd: new Date(user.weddingDate),
-          selected: view
-        });
-      } else (
-        setState({
-          ...state,
-          loading: false,
-          error: data,
-        })
-      )
-    };
+  // React.useEffect(() => {
+  //   const updateState = (data) => {
+  //     const user = data.user || {};
+  //     const tasks = data.tasks || {};
+  //     if (!_isEmpty(user) && !_isEmpty(tasks)) {
+  //       const view = user.sub === true ? 'checklist' : 'payment';
+  //       setState({
+  //         ...state,
+  //         user,
+  //         tasks,
+  //         loading: false,
+  //         dateEnd: new Date(user.weddingDate),
+  //         selected: view
+  //       });
+  //     } else (
+  //       setState({
+  //         ...state,
+  //         loading: false,
+  //         error: data,
+  //       })
+  //     )
+  //   };
 
-    let email;
+  //   let email;
 
-    if (!_isEmpty(user) && _isEmpty(state.user)) {
-      email = user.email;
-    } else if (!_isEmpty(state.user)) {
-      email = state.user.email;
-    }
+  //   if (!_isEmpty(user) && _isEmpty(state.user)) {
+  //     email = user.email;
+  //   } else if (!_isEmpty(state.user)) {
+  //     email = state.user.email;
+  //   }
 
-    if(state.loading === true &&
-      state.error === null &&
-      state.selected !== 'payment' &&
-      (!_isEmpty(user) || _get(state, 'user.email', false))) {
-      axios.get(`http://localhost:3333/api/get/${email}`)
-        .then( response => {
-          updateState(response.data);
-        })
-        .catch(err => {
-          updateState(err);
-        })
-    }
-  });
+  //   if(state.loading === true &&
+  //     state.error === null &&
+  //     selected !== 'payment' &&
+  //     (!_isEmpty(user) || _get(state, 'user.email', false))) {
+  //     axios.get(`http://localhost:3333/api/get/${email}`)
+  //       .then( response => {
+  //         updateState(response.data);
+  //       })
+  //       .catch(err => {
+  //         updateState(err);
+  //       })
+  //   }
+  // });
 
   return (
     <div className="App">
-      <Nav selected={state.selected} />
-      {state.selected === 'loading' ? null : <Title {...state} />}
+      <Nav selected={selected} />
+      {selected === 'loading' ? null : <Title {...state} />}
       <Footer />
       
-      {state.selected === 'intro' || state.selected === 'payment' || state.selected === 'loading'
+      {selected === 'loading'
         ? null
         : <>
           <Search
             search={state.search}
             updateStateValue={updateStateValue}
             collabAdded={_get(state, 'user.collabAdded', false)}
-            showSearch={state.selected === 'checklist' || state.selected === 'files'}
+            showSearch={selected === 'checklist' || selected === 'files'}
           />
           <div className="views-holder">
             <div className="views-content">
               <Views
                 {...state}
                 updateStateValue={updateStateValue}
+                selected={selected}
               />
-              {state.selected === 'checklist'
+              {selected === 'checklist'
                 ? <Filters
                     {...state}
+                    selected={selected}
                     updateDateFilter={updateDateFilter}
                     updateStateValue={updateStateValue}
                   />

@@ -1,8 +1,7 @@
 .Views {
   font-family: $secondary;
 
-  
-  button {
+  a {
     background-color: white;
     border: none;
     outline: none;
@@ -10,6 +9,10 @@
     transition: color .15s ease;
     margin: 5px;
     padding: 5px 10px;
+    
+    &:visited {
+      color: black
+    }
     
     &:hover {
       color: #9C9999;

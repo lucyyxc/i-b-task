@@ -3,10 +3,21 @@ import DatePicker from "react-datepicker";
 import moment from 'moment';
 import axios from 'axios';
 import passwordValidator from 'password-validator';
+import Nav from './Nav';
+import Footer from './Footer';
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import LoginButton from './LoginButton';
+const IntroTitle = () => (
+  <div className="title-text intro">
+    <span>Welcome to the Bride Tribe!</span>
+    <p className="">
+      We're so glad you've joined and can't wait to show you your personalized wedding
+      checklist! Let's start with a few questions, so we can get to know you better.
+      This will help us put it all together for you.
+    </p>
+  </div>
+)
 
 const Input = ({type = 'text', placeholder = '', value, item, label, showWarning = false, warning, updateStateValue, showPassTooltip = false}) => {
   const [show, setShow] = React.useState(false);
@@ -78,13 +89,15 @@ const Intro = ({updateView}) => {
     match: false,
     error: false,
   });
+  const [redirect, setRedirect] = React.useState(false);
 
+  
   let schema = new passwordValidator();
   schema.is().min(8)
   .has().lowercase()
   .has().lowercase()
   .has().digits()
-
+  
   React.useEffect(() => {
     checkPasswords()
   }, [state.password, state.confirm])
@@ -165,6 +178,7 @@ const Intro = ({updateView}) => {
       state.password &&
       state.match
     ) {
+      console.log('posting');
       axios.post('https://the-independent-bride.us.auth0.com/dbconnections/signup',
         {
           client_id: 'MdY4v57ExoBNoxuM9MsFCMULtl44pFQ1',
@@ -176,16 +190,16 @@ const Intro = ({updateView}) => {
         }
       )
       .then(response => {
-        axios.post('http://localhost:3333/api/post/newUser', response.data)
-        .then(response => {
-          updateView('user', {email: state.email});
-        })
+        console.log(response.data);
+        console.log('sign up completed');
+        setRedirect(true);
       })
       .catch(err => {
-        setState({
-          ...state,
-          error: true,
-        });
+        // setState({
+        //   ...state,
+        //   error: true,
+        // });
+        console.log(err);
         //TODO Do something with this error state
       })
     }
@@ -193,63 +207,74 @@ const Intro = ({updateView}) => {
 
   const passwordWarning = validatePassword(state.password) ? 'Passwords do not match.' : 'Password does not meet requirements.'
 
+  console.log(state);
+
+  if (redirect) {
+    window.location.href = `${process.env.REACT_APP_SERVERHOST}/auth`
+  }
+
  return (
   <div className="Intro" >
-    <Input {...{
-      value: state.name, 
-      item: 'name', 
-      label: 'Name', 
-      updateStateValue
-    }} />
-    <DateSelect {...{
-      value: state.weddingDate, 
-      placeholder: 'Just give us your best guess. You can change this later when it\'s finalized!', 
-      item: 'weddingDate', 
-      label: 'Wedding Date', 
-      updateStateValue
-    }} />
-    <Input {...{
-      value: state.email, 
-      type: 'email', 
-      item: 'email', 
-      label: 'Email Address',
-      showWarning: !state.validEmail && state.email,
-      warning: 'Invalid email address.',
-      updateStateValue: emailInput
-    }} /> {/*TODO won't we already have their email address? */}
-    <DateSelect {...{
-      value: state.birthday, 
-      placeholder: 'We want to make you feel special on your birthday!', 
-      item: 'birthday', 
-      label: 'Birthday', 
-      updateStateValue
-    }} />
-    <Input {...{value: 
-      state.password, 
-      type: 'password', 
-      item: 'password', 
-      label: 'Password',
-      showWarning: (!validatePassword(state.password) && state.password) || (!state.match && state.password && state.confirm),
-      warning: passwordWarning,
-      showPassTooltip: true,
-      updateStateValue
-    }} />
-    <Input {...{
-      value: state.confirm, 
-      type: 'password', 
-      item: 'confirm', 
-      label: 'Confirm Password',
-      updateStateValue
-    }} />
-    <div className="member">
-      <p>Already a part of the Bride Tribe?&nbsp;</p>
-      <LoginButton updateView={updateView}/>
-    </div>
-    <div 
-      className="submit"
-      onClick={() => submit()}
-    > {/*TODO add thinking animation to button */}
-      <span className="label">Let's do this!</span>
+    <Nav />
+    <Footer />
+    {IntroTitle()}
+    <div className="signup">
+      <Input {...{
+        value: state.name, 
+        item: 'name', 
+        label: 'Name', 
+        updateStateValue
+      }} />
+      <DateSelect {...{
+        value: state.weddingDate, 
+        placeholder: 'Just give us your best guess. You can change this later when it\'s finalized!', 
+        item: 'weddingDate', 
+        label: 'Wedding Date', 
+        updateStateValue
+      }} />
+      <Input {...{
+        value: state.email, 
+        type: 'email', 
+        item: 'email', 
+        label: 'Email Address',
+        showWarning: !state.validEmail && state.email,
+        warning: 'Invalid email address.',
+        updateStateValue: emailInput
+      }} /> {/*TODO won't we already have their email address? */}
+      <DateSelect {...{
+        value: state.birthday, 
+        placeholder: 'We want to make you feel special on your birthday!', 
+        item: 'birthday', 
+        label: 'Birthday', 
+        updateStateValue
+      }} />
+      <Input {...{value: 
+        state.password, 
+        type: 'password', 
+        item: 'password', 
+        label: 'Password',
+        showWarning: (!validatePassword(state.password) && state.password) || (!state.match && state.password && state.confirm),
+        warning: passwordWarning,
+        showPassTooltip: true,
+        updateStateValue
+      }} />
+      <Input {...{
+        value: state.confirm, 
+        type: 'password', 
+        item: 'confirm', 
+        label: 'Confirm Password',
+        updateStateValue
+      }} />
+      <div className="member">
+        <p>Already a part of the Bride Tribe?&nbsp;</p>
+        <a href="/auth">Log In</a>
+      </div>
+      <div 
+        className="submit"
+        onClick={() => submit()}
+      > {/*TODO add thinking animation to button */}
+        <span className="label">Let's do this!</span>
+      </div>
     </div>
   </div>
   );

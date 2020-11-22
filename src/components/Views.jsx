@@ -1,36 +1,38 @@
 import React from 'react';
 
-const Views = ({selected = 'checklist', updateStateValue}) => (
+const Views = ({selected}) => {
+  return (
   <div className={`Views ${selected}`}>
-    <button
+    <a
       className="button"
       id="checklist"
-      onClick={() => updateStateValue('selected', 'checklist')}
+      href="/#/checklist"
     >
       Checklist
-    </button>
-    <button
+    </a>
+    <a
       className="button"
       id="calendar"
-      onClick={() => updateStateValue('selected', 'calendar')}
+      href="/#/calendar"
     >
       Calendar
-    </button>
-    <button
+    </a>
+    <a
       className="button"
       id="progress"
-      onClick={() => updateStateValue('selected', 'progress')}
+      href="/#/progress"
       >
         Progress
-      </button>
-    <button
+      </a>
+    <a
       className="button"
       id="files"
-      onClick={() => updateStateValue('selected', 'files')}
+      href="/#/files"
     >
       Files
-    </button>
+    </a>
   </div>
-);
+)
+  }
 
 export default Views;

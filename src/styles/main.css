@@ -256,6 +256,10 @@ a {
         width: 80px;
         font-size: 18px;
         cursor: pointer; }
+        .ProfileMenu .logout-confirm .button-holder .button.logout-link {
+          color: black; }
+          .ProfileMenu .logout-confirm .button-holder .button.logout-link:visited {
+            color: black; }
         .ProfileMenu .logout-confirm .button-holder .button:hover {
           box-shadow: 1px 1px 2px #888888; }
 
@@ -408,7 +412,7 @@ a {
 
 .Views {
   font-family: "Asap", sans-serif; }
-  .Views button {
+  .Views a {
     background-color: white;
     border: none;
     outline: none;
@@ -416,7 +420,9 @@ a {
     transition: color .15s ease;
     margin: 5px;
     padding: 5px 10px; }
-    .Views button:hover {
+    .Views a:visited {
+      color: black; }
+    .Views a:hover {
       color: #9C9999;
       transition: color .15s ease;
       cursor: pointer; }
@@ -792,136 +798,160 @@ a {
     background-color: #FC6959; }
 
 .Intro {
-  height: 100%;
-  width: 92%;
-  max-width: 600px;
-  margin-top: 60px;
-  font-family: "Asap", sans-serif;
   position: relative;
-  box-sizing: border-box; }
-  .Intro .input-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 5px 0;
-    position: relative; }
-    .Intro .input-container .label-container {
-      width: 100%;
+  min-height: calc(100vh - 100px);
+  max-width: 100vw;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .Intro .signup {
+    height: 100%;
+    width: 92%;
+    max-width: 600px;
+    margin-top: 60px;
+    font-family: "Asap", sans-serif;
+    position: relative;
+    box-sizing: border-box; }
+    .Intro .signup .input-container {
       display: flex;
-      justify-content: space-between;
-      align-items: center; }
-      .Intro .input-container .label-container .input-label {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 5px 0;
+      position: relative; }
+      .Intro .signup .input-container .label-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; }
+        .Intro .signup .input-container .label-container .input-label {
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 5px;
+          display: flex; }
+          .Intro .signup .input-container .label-container .input-label .tooltip {
+            margin-left: 3px;
+            position: relative;
+            display: inline-block; }
+            .Intro .signup .input-container .label-container .input-label .tooltip .tooltiptext {
+              font-size: 14px;
+              visibility: hidden;
+              width: 200px;
+              background-color: white;
+              color: black;
+              text-align: center;
+              padding: 10px;
+              border-radius: 6px;
+              border: 1px solid black;
+              position: absolute;
+              z-index: 1;
+              bottom: 125%;
+              left: 50%;
+              margin-left: -60px;
+              opacity: 0;
+              transition: opacity 0.3s; }
+              .Intro .signup .input-container .label-container .input-label .tooltip .tooltiptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 61px;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent; }
+            .Intro .signup .input-container .label-container .input-label .tooltip:hover .tooltiptext {
+              visibility: visible;
+              opacity: 1;
+              transition: opacity 0.3s; }
+        .Intro .signup .input-container .label-container .warning {
+          color: red;
+          font-size: 12px;
+          display: none; }
+          .Intro .signup .input-container .label-container .warning.show {
+            display: block; }
+      .Intro .signup .input-container .input {
+        border: none;
+        border-bottom: 1px black solid;
+        background-color: none;
+        width: 100%;
+        font-size: 16px;
+        transition: all .15s ease;
+        padding: 3px; }
+        .Intro .signup .input-container .input:focus {
+          outline: none;
+          background-color: whitesmoke;
+          transition: all .15s ease;
+          border-radius: 3px; }
+      .Intro .signup .input-container .visable-text {
+        position: absolute;
+        right: 0;
+        top: 50%; }
+        .Intro .signup .input-container .visable-text:hover {
+          cursor: pointer; }
+    .Intro .signup .date-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 5px 0;
+      position: relative; }
+      .Intro .signup .date-container .date-label {
         font-size: 18px;
         font-weight: 600;
-        margin-bottom: 5px;
-        display: flex; }
-        .Intro .input-container .label-container .input-label .tooltip {
-          margin-left: 3px;
-          position: relative;
-          display: inline-block; }
-          .Intro .input-container .label-container .input-label .tooltip .tooltiptext {
-            font-size: 14px;
-            visibility: hidden;
-            width: 200px;
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid black;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s; }
-            .Intro .input-container .label-container .input-label .tooltip .tooltiptext::after {
-              content: "";
-              position: absolute;
-              top: 100%;
-              left: 61px;
-              margin-left: -5px;
-              border-width: 5px;
-              border-style: solid;
-              border-color: #555 transparent transparent transparent; }
-          .Intro .input-container .label-container .input-label .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 0.3s; }
-      .Intro .input-container .label-container .warning {
-        color: red;
-        font-size: 12px;
-        display: none; }
-        .Intro .input-container .label-container .warning.show {
-          display: block; }
-    .Intro .input-container .input {
-      border: none;
-      border-bottom: 1px black solid;
-      background-color: none;
+        margin-bottom: 5px; }
+      .Intro .signup .date-container .picker {
+        border: none;
+        border-bottom: 1px black solid;
+        width: 100%;
+        font-size: 16px;
+        padding: 3px;
+        transition: all .15s ease; }
+        .Intro .signup .date-container .picker:focus {
+          outline: none; }
+      .Intro .signup .date-container .react-datepicker-wrapper {
+        width: 100%; }
+    .Intro .signup .member {
+      margin-top: 20px;
       width: 100%;
-      font-size: 16px;
-      transition: all .15s ease;
-      padding: 3px; }
-      .Intro .input-container .input:focus {
-        outline: none;
-        background-color: whitesmoke;
-        transition: all .15s ease;
-        border-radius: 3px; }
-    .Intro .input-container .visable-text {
-      position: absolute;
-      right: 0;
-      top: 50%; }
-      .Intro .input-container .visable-text:hover {
-        cursor: pointer; }
-  .Intro .date-container {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .Intro .signup .member .login-button {
+        margin-left: 3px;
+        cursor: pointer;
+        font-weight: bold; }
+        .Intro .signup .member .login-button:hover {
+          text-decoration: underline; }
+    .Intro .signup .submit {
+      height: 60px;
+      width: 200px;
+      background-color: #70825A;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      margin: 40px auto;
+      cursor: pointer; }
+      .Intro .signup .submit span {
+        font-size: 24px; }
+  .Intro .title-text {
     display: flex;
+    justify-content: flex-end;
+    margin-top: 60px;
+    font-size: 70px;
+    text-align: center;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 5px 0;
-    position: relative; }
-    .Intro .date-container .date-label {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 5px; }
-    .Intro .date-container .picker {
-      border: none;
-      border-bottom: 1px black solid;
-      width: 100%;
-      font-size: 16px;
-      padding: 3px;
-      transition: all .15s ease; }
-      .Intro .date-container .picker:focus {
-        outline: none; }
-    .Intro .date-container .react-datepicker-wrapper {
-      width: 100%; }
-  .Intro .member {
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-    .Intro .member .login-button {
-      margin-left: 3px;
-      cursor: pointer;
-      font-weight: bold; }
-      .Intro .member .login-button:hover {
-        text-decoration: underline; }
-  .Intro .submit {
-    height: 60px;
-    width: 200px;
-    background-color: #70825A;
-    color: white;
-    display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 3px;
-    margin: 40px auto;
-    cursor: pointer; }
-    .Intro .submit span {
-      font-size: 24px; }
+    margin-top: 0px;
+    font-family: "Asap", sans-serif; }
+    .Intro .title-text p {
+      font-size: 22px;
+      width: 550px;
+      margin-top: 30px;
+      line-height: 1.2; }
 
 .Profile {
   min-height: 150px;

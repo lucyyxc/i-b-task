@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import moment from 'moment';
 
 import ProfileMenu from './ProfileMenu';
@@ -26,18 +26,8 @@ const LoggedInTitle = ({firstName, daysTill, toggleMenu, initials, show, user}) 
   </>
 );
 
-const IntroTitle = () => (
-  <div className="title-text intro">
-    <span>Welcome to the Bride Tribe!</span>
-    <p className="">
-      We're so glad you've joined and can't wait to show you your personalized wedding
-      checklist! Let's start with a few questions, so we can get to know you better.
-      This will help us put it all together for you.
-    </p>
-  </div>
-);
 
-const Title = ({user, tasks, loading, error, selected}) => {
+const Title = ({user = {}, loading, error}) => {
   const [show, setShow] = React.useState('hidden');
 
   const toggleMenu = () => {
@@ -52,7 +42,7 @@ const Title = ({user, tasks, loading, error, selected}) => {
   let daysTill = '';
   let initials = ''
 
-  if (loading === false && error === null) {
+  if (loading === false && error === null && user.name) {
     firstName = user.name.split(' ')[0];
     daysTill = moment(user.weddingDate).diff(moment(), 'days');
     initials = user.assignee;
@@ -61,10 +51,7 @@ const Title = ({user, tasks, loading, error, selected}) => {
   return (
     <div className="Title">
       <div className="title-content">
-        {selected === 'intro'
-          ? <IntroTitle />
-          : <LoggedInTitle {...{firstName, daysTill, toggleMenu, show, user, initials}} />
-        }
+        <LoggedInTitle {...{firstName, daysTill, toggleMenu, show, user, initials}} />
       </div>
     </div>
   );
