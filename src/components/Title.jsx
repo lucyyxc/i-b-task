@@ -44,7 +44,7 @@ const Title = ({user = {}, loading, error}) => {
 
   if (loading === false && error === null && user.name) {
     firstName = user.name.split(' ')[0];
-    daysTill = moment(user.weddingDate).diff(moment(), 'days');
+    daysTill = moment(user.weddingdate).diff(moment(), 'days');
     initials = user.assignee;
   }
 

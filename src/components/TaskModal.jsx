@@ -54,7 +54,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                   }}
                 ></i> {/* TODO Add task complete text */}
               </div>
-              <div className="absolute delete"  title="Delete" onClick={() => deleteTask(modalTask.id, modalTask.userId)}>
+              <div className="absolute delete"  title="Delete" onClick={() => deleteTask(modalTask.id, modalTask.userid)}>
                 <i className="fas fa-trash-alt" title="Delete Task" ></i> {/* TODO Add Delete functionality */}
               </div>
               <div className="absolute icons">
@@ -106,16 +106,16 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             <div className="status-holder">
               <span>Start on</span>
               <DatePicker
-                selected={moment(task.startDate).toDate() || new Date()}
-                onChange={date => updateTask({...task, startDate: moment(date).format('YYYY-MM-DD')})}
+                selected={moment(task.startdate).toDate() || new Date()}
+                onChange={date => updateTask({...task, startdate: moment(date).format('YYYY-MM-DD')})}
                 className="pickers"
               />
             </div>
             <div className="status-holder">
               <span>Complete by</span>
               <DatePicker
-                selected={moment(task.endDate).toDate() || new Date()}
-                onChange={date => updateTask({...task, endDate: moment(date).format('YYYY-MM-DD')})}
+                selected={moment(task.enddate).toDate() || new Date()}
+                onChange={date => updateTask({...task, enddate: moment(date).format('YYYY-MM-DD')})}
                 className="pickers"
               />
             </div>
@@ -123,16 +123,16 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
         <input
           className="task-name"
           type="text"
-          value={task.taskLabel || ''}
+          value={task.tasklabel || ''}
           placeholder="Please enter a task name."
-          onChange={(e) => updateTask({...task, taskLabel: e.target.value})}
+          onChange={(e) => updateTask({...task, tasklabel: e.target.value})}
         />
         <div className="advice">
           <span className="title">
             Advice from The Independent Bride
           </span>
           <span className="the-advice">
-            {_get(task, 'details.advice', 'Your task, your rules!')}			
+            {_get(task, 'advice', 'Your task, your rules!')}			
           </span>
         </div>
         <div className="notes">
@@ -141,9 +141,9 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
           </span>
           <textarea 
             rows="5"
-            value={_get(task, 'details.notes', '')}
+            value={_get(task, 'notes', '')}
             placeholder="Jot down some notes..."
-            onChange={(e) => updateTask({...task, details: {...task.details, notes: e.target.value}})}
+            onChange={(e) => updateTask({...task, notes: e.target.value})}
           /> {/*TODO send this to db when done*/}
         </div>
         <div className="save-button-holder">

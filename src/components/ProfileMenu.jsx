@@ -5,7 +5,7 @@ import Profile from './Profile';
 
 import { Redirect } from 'react-router-dom';
 
-const LogOutModal = ({modal, logOut, cancel}) => (
+const LogOutModal = ({modal, cancel}) => (
   <div className={`modal logout-confirm ${modal ? 'show': ''}`}>
     <span className="message">Are you sure?</span>
     <div className="button-holder">

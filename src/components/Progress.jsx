@@ -78,10 +78,10 @@ const Progress = ({tasks}) => {
       };
 
       switch (true) {
-        case moment(task.endDate).isBefore(moment()):
+        case moment(task.enddate).isBefore(moment()):
           amounts.pastDue++;
           break;
-        case moment(task.endDate).isSame(moment(), 'day'):
+        case moment(task.enddate).isSame(moment(), 'day'):
           amounts.dueToday++;
           break;
         default:

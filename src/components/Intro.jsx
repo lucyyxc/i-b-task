@@ -79,7 +79,7 @@ const DateSelect = ({placeholder, value, item, label, updateStateValue}) => (
 const Intro = ({updateView}) => {
   const [state, setState] = React.useState({
     name: '',
-    weddingDate: '',
+    weddingdate: '',
     email: '',
     validEmail: false,
     birthday: '',
@@ -159,10 +159,10 @@ const Intro = ({updateView}) => {
   };
 
   const submit = () => {
-    const submittableWeddingDate = moment(state.weddingDate).format('YYYY-MM-DD');
+    const submittableweddingdate = moment(state.weddingdate).format('YYYY-MM-DD');
     const submittableBirthday = moment(state.birthday).format('YYYY-MM-DD');
     const metadata = {
-      weddingDate: submittableWeddingDate,
+      weddingdate: submittableweddingdate,
       birthday: submittableBirthday,
       sub: 'false',
       fullName: state.name,
@@ -170,7 +170,7 @@ const Intro = ({updateView}) => {
 
     if (
       state.name &&
-      state.weddingDate &&
+      state.weddingdate &&
       state.email &&
       state.validEmail &&
       state.birthday &&
@@ -192,7 +192,19 @@ const Intro = ({updateView}) => {
       .then(response => {
         console.log(response.data);
         console.log('sign up completed');
-        setRedirect(true);
+        axios.post('/api/post/newUser', response.data)
+        .then(response => {
+          console.log(response.data);
+          setRedirect(true);
+        })
+        .catch(err => {
+          // setState({
+          //   ...state,
+          //   error: true,
+          // });
+          console.log(err);
+          //TODO Do something with this error state
+        })
       })
       .catch(err => {
         // setState({
@@ -226,9 +238,9 @@ const Intro = ({updateView}) => {
         updateStateValue
       }} />
       <DateSelect {...{
-        value: state.weddingDate, 
+        value: state.weddingdate, 
         placeholder: 'Just give us your best guess. You can change this later when it\'s finalized!', 
-        item: 'weddingDate', 
+        item: 'weddingdate', 
         label: 'Wedding Date', 
         updateStateValue
       }} />

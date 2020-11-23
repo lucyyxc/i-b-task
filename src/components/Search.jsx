@@ -90,22 +90,22 @@ const SentCollabForm = () => (
   </>
 );
 
-const CollabAdded = () => (
-  <div className="CollabAdded">
+const collabadded = () => (
+  <div className="collabadded">
     Unfortunately, at this time we're only allowing one collaborator. Since you've already added your collaborator, 
     you're all set here. Happy planning! 🥂
   </div>
 );
 
-const CollabMenu = ({show, cancel, collab, updateCollab, submit, sent, warning, collabAdded = false}) => (
-  <div className={`CollabMenu ${show ? 'show' : ''} ${collabAdded ? 'short' : ''}`}>
+const CollabMenu = ({show, cancel, collab, updateCollab, submit, sent, warning, collabadded = false}) => (
+  <div className={`CollabMenu ${show ? 'show' : ''} ${collabadded ? 'short' : ''}`}>
     <div className="control-holder">
       <div className="control exit" onClick={() => cancel()}>
         <i className="fas fa-times"></i>
       </div>
     </div>
-    {collabAdded
-      ? <CollabAdded />
+    {collabadded
+      ? <collabadded />
       : (!sent
           ? <CollabForm {...{collab, updateCollab, submit, warning}} />
           : <SentCollabForm />
@@ -116,7 +116,7 @@ const CollabMenu = ({show, cancel, collab, updateCollab, submit, sent, warning, 
   </div>
 );
 
-const Search = ({search, updateStateValue, collabAdded, showSearch}) => {
+const Search = ({search, updateStateValue, collabadded, showSearch}) => {
   const [show, toggleShow] = React.useState(false);
   const [sent, send] = React.useState(false);
   const [collab, updateCollab] = React.useState({name: '', email: '', relation: ''});
@@ -141,7 +141,7 @@ const Search = ({search, updateStateValue, collabAdded, showSearch}) => {
   
   return (
     <div className="Search">
-      <CollabMenu {...{show, cancel, collab, updateCollab, submit, sent, warning, collabAdded}}/>
+      <CollabMenu {...{show, cancel, collab, updateCollab, submit, sent, warning, collabadded}}/>
       <div className="search-content">
         {showSearch
           ? <div className="search-input">

@@ -26,10 +26,10 @@ const Calendar = ({tasks, selected}) => {
       let textColor = '#FFFFFF';
 
       switch (true) {
-        case moment().format("YYYY-MM-DD") === task.startDate:
+        case moment().format("YYYY-MM-DD") === task.startdate:
           backgroundColor = '#70825a';
           break;
-        case moment().add(1, 'd').format("YYYY-MM-DD") === task.endDate:
+        case moment().add(1, 'd').format("YYYY-MM-DD") === task.enddate:
           backgroundColor = '#fc6959';
           break;
         case task.status === 'in-progress':
@@ -41,10 +41,10 @@ const Calendar = ({tasks, selected}) => {
       }
     
       return { 
-        title: task.taskLabel,
+        title: task.tasklabel,
         id: task.id,
-        start: task.startDate,
-        end: task.endDate,
+        start: task.startdate,
+        end: task.enddate,
         backgroundColor,
         borderColor: backgroundColor,
         textColor

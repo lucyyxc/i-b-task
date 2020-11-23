@@ -13,7 +13,6 @@ import Checklist from './Checklist';
 import Calendar from './Calendar';
 import Progress from './Progress';
 import Files from './Files';
-import Intro from './Intro';
 import Payment from './Payment';
 import Loading from './Loading';
 
@@ -23,83 +22,80 @@ const userOne = {
   email: 'BH@IB.com',
   assignee: 'BH',
   id: '1357',
-  weddingDate: '2021-05-28',
+  weddingdate: '2021-05-28',
   birthday: '1950-01-01',
-  collabAdded: false,
-  collabID: null
+  collabadded: false,
+  collabid: null
 }
 
 const tasksOne = [
   {
     id: '01',
-    userId: '1357',
-    taskName: 'guest-list',
-    taskLabel: 'Guest List',
+    userid: '1357',
+    taskname: 'guest-list',
+    tasklabel: 'Guest List',
     assignee: 'BH',
     tags: '',
-    startDate: '2020-11-20',
-    endDate: '2020-11-24',
+    startdate: '2020-12-20',
+    enddate: '2020-12-24',
     status: 'in-progress',
     custom: false,
-    details: {
-      advice: 'You should get this done',
-      notes: 'I should get this done.',
-      pintrest: 'https://www.pinterest.com/',
-      blog: 'https://twitter.com/',
-      moneyTip: 'Spend less moneys'
-    }
+    advice: 'You should get this done',
+    notes: 'I should get this done.',
+    pintrest: 'https://www.pinterest.com/',
+    blog: 'https://twitter.com/',
+    moneytip: 'Spend less moneys',
+    archived: false
   },
   {
     id: '02',
-    userId: '1357',
-    taskName: 'create-budget',
-    taskLabel: 'Create Budget',
+    userid: '1357',
+    taskname: 'create-budget',
+    tasklabel: 'Create Budget',
     assignee: 'DP',
     tags: '',
-    startDate: '2020-11-16',
-    endDate: '2020-11-20',
+    startdate: '2020-12-16',
+    enddate: '2020-12-20',
     status: 'complete',
     custom: false,
-    details: {
-      advice: 'You should really get this done',
-      notes: 'I should really get this done.',
-      pintrest: 'https://www.pinterest.com/',
-      blog: 'https://twitter.com/',
-      moneyTip: 'Spend more moneys'
-    }
+    advice: 'You should really get this done',
+    notes: 'I should really get this done.',
+    pintrest: 'https://www.pinterest.com/',
+    blog: 'https://twitter.com/',
+    moneytip: 'Spend more moneys',
+    archived: false
   },
   {
     id: '03',
-    userId: '1357',
-    taskName: 'research-venue',
-    taskLabel: 'Research Venue Space',
+    userid: '1357',
+    taskname: 'research-venue',
+    tasklabel: 'Research Venue Space',
     assignee: 'BH',
     tags: '',
-    startDate: '2020-11-19',
-    endDate: '2020-11-22',
+    startdate: '2020-12-19',
+    enddate: '2020-12-22',
     status: 'not-started',
     custom: 'false',
-    details: {
-      advice: 'This should probably get this done',
-      notes: 'I think I should probably get this done.',
-      pintrest: 'https://www.pinterest.com/',
-      blog: 'https://twitter.com/',
-      moneyTip: '',
-    }
+    advice: 'This should probably get this done',
+    notes: 'I think I should probably get this done.',
+    pintrest: 'https://www.pinterest.com/',
+    blog: 'https://twitter.com/',
+    moneytip: '',
+    archived: false
   }
 ]
 
 const App = ({selected}) => {
   const [state, setState] = React.useState({
     error: null,
-    loading: false, //TODO set to true when done
+    loading: true, //TODO set to true when done
     dateFilter: '',
     dateStart: new Date(),
     dateEnd: '',
     taskFilter: '',
     search: '',
-    tasks: tasksOne,
-    user: userOne,
+    tasks: [],
+    user: {},
   });
   
 
@@ -116,7 +112,7 @@ const App = ({selected}) => {
         ...state,
         dateFilter: filter,
         dateStart: new Date(),
-        dateEnd: new Date(state.user.weddingDate),
+        dateEnd: new Date(state.user.weddingdate),
       });
     } else {
       setState({
@@ -147,50 +143,45 @@ const App = ({selected}) => {
         }
   }
 
-  // React.useEffect(() => {
-  //   const updateState = (data) => {
-  //     const user = data.user || {};
-  //     const tasks = data.tasks || {};
-  //     if (!_isEmpty(user) && !_isEmpty(tasks)) {
-  //       const view = user.sub === true ? 'checklist' : 'payment';
-  //       setState({
-  //         ...state,
-  //         user,
-  //         tasks,
-  //         loading: false,
-  //         dateEnd: new Date(user.weddingDate),
-  //         selected: view
-  //       });
-  //     } else (
-  //       setState({
-  //         ...state,
-  //         loading: false,
-  //         error: data,
-  //       })
-  //     )
-  //   };
+  React.useEffect(() => {
+    const updateState = (data) => {
+      const user = data.user || {};
+      const tasks = data.tasks || {};
+      if (!_isEmpty(user) && !_isEmpty(tasks)) {
+        const view = user.sub === true ? 'checklist' : 'payment';
+        setState({
+          ...state,
+          user,
+          tasks,
+          loading: false,
+          dateEnd: new Date(user.weddingdate),
+          selected: view
+        });
+      } else (
+        setState({
+          ...state,
+          loading: false,
+          error: data,
+        })
+      )
+    };
 
-  //   let email;
-
-  //   if (!_isEmpty(user) && _isEmpty(state.user)) {
-  //     email = user.email;
-  //   } else if (!_isEmpty(state.user)) {
-  //     email = state.user.email;
-  //   }
-
-  //   if(state.loading === true &&
-  //     state.error === null &&
-  //     selected !== 'payment' &&
-  //     (!_isEmpty(user) || _get(state, 'user.email', false))) {
-  //     axios.get(`http://localhost:3333/api/get/${email}`)
-  //       .then( response => {
-  //         updateState(response.data);
-  //       })
-  //       .catch(err => {
-  //         updateState(err);
-  //       })
-  //   }
-  // });
+    if(state.loading === true &&
+      state.error === null &&
+      (!_isEmpty(state.user) || !state.tasks.length)) {
+      const userCall = axios.get('/api/get/user');
+      const tasksCall = axios.get('/api/get/userTasks')
+      axios.all([userCall, tasksCall])
+        .then(responses => {
+          console.log('responses 0', responses[0].data);
+          console.log('responses 1', responses[1].data);
+          updateState({user: responses[0].data, tasks: responses[1].data})
+        })
+        .catch(err => {
+          updateState(err);
+        })
+    }
+  });
 
   return (
     <div className="App">
@@ -204,7 +195,7 @@ const App = ({selected}) => {
           <Search
             search={state.search}
             updateStateValue={updateStateValue}
-            collabAdded={_get(state, 'user.collabAdded', false)}
+            collabadded={_get(state, 'user.collabadded', false)}
             showSearch={selected === 'checklist' || selected === 'files'}
           />
           <div className="views-holder">

@@ -6,11 +6,11 @@ import TaskModal from './TaskModal';
 
 const Checklist = ({tasks = [], taskFilter, search, selected}) => {
   const [state, setState] = React.useState({
-    taskLabel: '',
+    tasklabel: '',
     assignee: '',
     tags: '',
-    startDate: '',
-    endDate: '',
+    startdate: '',
+    enddate: '',
     status: '',
     isOpen: false,
     modalTask: {},
@@ -40,11 +40,11 @@ const Checklist = ({tasks = [], taskFilter, search, selected}) => {
       );
     setState({
       ...state,
-      taskLabel: '',
+      tasklabel: '',
       assignee: '',
       tags: '',
-      startDate: '',
-      endDate: '',
+      startdate: '',
+      enddate: '',
       status: '',
       [column]: filter
     });
@@ -78,7 +78,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected}) => {
     }
 
     if (search.length > 3) {
-      filteredTasks = filteredTasks.filter( task => task.taskLabel.toLowerCase().includes(search.toLowerCase()))
+      filteredTasks = filteredTasks.filter( task => task.tasklabel.toLowerCase().includes(search.toLowerCase()))
     }
   }
 
@@ -126,12 +126,12 @@ const Checklist = ({tasks = [], taskFilter, search, selected}) => {
       <div className="checklist-header">
         <div
           className={`column ${true ? '' : 'hide'}`}
-          onClick={() => updateFilterState('taskLabel')}
+          onClick={() => updateFilterState('tasklabel')}
         > {/*TODO hide with props when filtered out */}
           <span>
             Task
           </span>
-          {renderArrows('taskLabel')}
+          {renderArrows('tasklabel')}
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}
@@ -153,21 +153,21 @@ const Checklist = ({tasks = [], taskFilter, search, selected}) => {
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}
-          onClick={() => updateFilterState('startDate')}
+          onClick={() => updateFilterState('startdate')}
         > {/*TODO hide with props when filtered out */}
           <span>
             Start Date
           </span>
-          {renderArrows('startDate')}
+          {renderArrows('startdate')}
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}
-          onClick={() => updateFilterState('endDate')}
+          onClick={() => updateFilterState('enddate')}
         > {/*TODO hide with props when filtered out */}
         <span>
             End Date
           </span>
-          {renderArrows('endDate')}
+          {renderArrows('enddate')}
         </div>
         <div
           className={`column ${true ? '' : 'hide'}`}

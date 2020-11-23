@@ -81,7 +81,7 @@ const Profile = ({user, modal, cancel}) => {
     if (
       profile.name &&
       profile.email &&
-      profile.weddingDate &&
+      profile.weddingdate &&
       profile.birthday &&
       profile.password
     ) {
@@ -143,11 +143,11 @@ const Profile = ({user, modal, cancel}) => {
           }}
         />
         <DateSelect {...{
-          value:  moment(profile.weddingDate).toDate(), 
-          item: 'weddingDate', 
+          value:  moment(profile.weddingdate).toDate(), 
+          item: 'weddingdate', 
           label: 'Wedding Date', 
           disabled: !edit,
-          updateStateValue: (date) => updateProfile({...profile, weddingDate: moment(date).format('YYYY-MM-DD')}),
+          updateStateValue: (date) => updateProfile({...profile, weddingdate: moment(date).format('YYYY-MM-DD')}),
         }} />
         <DateSelect {...{
           value: moment(profile.birthday).toDate(),

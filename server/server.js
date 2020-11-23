@@ -7,6 +7,7 @@ const Auth0Strategy = require('passport-auth0');
 const util = require('util');
 const url = require('url');
 const querystring = require('querystring');
+const massive = require('massive');
 
 var cors = require('cors')
 
@@ -17,26 +18,31 @@ var strategy = new Auth0Strategy(
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL:
-      process.env.AUTH0_CALLBACK_URL || '/callback'
+    callbackURL: process.env.AUTH0_CALLBACK_URL || '/callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
     // profile has all the information from the user
-    return done(null, profile);
+    console.log('inside auth strat', profile);
+    console.log('inside auth strat', profile.emails[0].value);
+    const db = app.get('db');
+    const email = profile.emails[0].value
+    db.get_user_by_email([email])
+    .then(user => {
+      console.log(user);
+      return done(null, user[0]);
+    })
   }
 );
-
+  
 passport.use(strategy);
 
 passport.serializeUser(function (user, done) {
-  console.log('serialize', user);
   done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
-  console.log('deserialize', user);
   done(null, user);
 });
 
@@ -78,13 +84,10 @@ app.get('/auth', passport.authenticate('auth0'));
 
 // Perform the final stage of authentication and redirect to previously requested URL or '/user'
 app.get('/callback', function (req, res, next) {
-  console.log('in /callback');
   passport.authenticate('auth0', function (err, user, info) {
-    console.log('in authenticate');
     if (err) { return next(err); }
     if (!user) { return res.redirect('/auth'); }
     req.logIn(user, function (err) {
-      console.log('in req.login');
       if (err) { return next(err); }
       res.redirect('/#/checklist');
     });
@@ -112,39 +115,55 @@ app.get('/auth/logout', (req, res) => {
   res.redirect(logoutURL);
 });
 
-app.get('/api/get/:email', (req, res) => {
-  const { email } = req.params;
-  // head to the db and find the user profile that has this email
-  const user = users.find(user => user.email.toLowerCase() === email.toLowerCase());
-  // head back to the database and find all the tasks that are attached to this email's user id
-  const tasks = allTasks.filter(task => task.userId === user.id);
-  res.status(200).json({user, tasks});
+app.get('/api/get/user', (req, res) => {
+  console.log('this is req.user', req.user);
+  res.status(200).json(req.user);
 })
 
+
+
+
 app.post('/api/post/newUser', (req, res) => {
+  const db = req.app.get('db');
   const { body } = req;
   // create the initials
   const initials = body.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
-  // create the user object that is going to be sent to the db
-  const newUser = {
-    name: body.name,
-    email: body.email,
-    assignee: initials,
-    id: '77',
-    weddingDate: body.user_metadata.weddingDate,
-    birthday: body.user_metadata.birthday,
-    collabAdded: false,
-    collabID: null,
-    sub: false
-  }
-  // send it
-  users.push(newUser);
-  // respond with something because we have to
-  res.status(200).send('Added new user');
+  db.create_user([
+    body.name,
+    body.email,
+    initials,
+    body.user_metadata.weddingdate,
+    body.user_metadata.birthday,
+    false,
+    null,
+    false,
+    body._id
+  ])
+  .then(user => {
+    console.log('newUser, user');
+    res.status(200).send('Added new user');
+  })
+  .catch(err => console.log('db create user error', err))
+})
+
+app.get('/api/get/userTasks', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  db.users_tasks([userid])
+  .then(tasks => {
+    console.log('tasks', tasks);
+    res.status(200).json(tasks);
+  })
 })
 
 const port = 3333;
-app.listen(port, () => console.log(`listening on port ${port}`));
+
+massive(process.env.CONNECTION_STRING)
+.then(massiveInstance => {
+  app.set('db', massiveInstance)
+  app.listen(port, () => console.log(`listening on port ${port}`));
+})
+.catch(err => console.log(err))
 
 const users =  [
   {
@@ -152,10 +171,10 @@ const users =  [
     email: 'TrevorBrown25@gmail.com',
     assignee: 'TB',
     id: '1357',
-    weddingDate: '2021-12-25',
+    weddingdate: '2021-12-25',
     birthday: '1992-06-18',
-    collabAdded: false,
-    collabID: null,
+    collabadded: false,
+    collabid: null,
     sub: true
   }
 ];
@@ -163,78 +182,56 @@ const users =  [
 const allTasks = [
   {
     id: '01',
-    userId: '1357',
-    taskName: 'guest-list',
-    taskLabel: 'Guest List',
+    userid: '1357',
+    taskname: 'guest-list',
+    tasklabel: 'Guest List',
     assignee: 'TB',
     tags: '',
-    startDate: '2020-11-20',
-    endDate: '2020-11-24',
+    startdate: '2020-11-20',
+    enddate: '2020-11-24',
     status: 'in-progress',
     custom: false,
-    details: {
-      advice: 'You should get this done',
-      notes: 'I should get this done.',
-      pintrest: 'https://www.pinterest.com/',
-      blog: 'https://twitter.com/',
-      moneyTip: 'Spend less moneys.'
-    }
+    advice: 'You should get this done',
+    notes: 'I should get this done.',
+    pintrest: 'https://www.pinterest.com/',
+    blog: 'https://twitter.com/',
+    moneytip: 'Spend less moneys.',
+    archived: false
   },
   {
     id: '02',
-    userId: '1357',
-    taskName: 'create-budget',
-    taskLabel: 'Create Budget',
+    userid: '1357',
+    taskname: 'create-budget',
+    tasklabel: 'Create Budget',
     assignee: 'TB2',
     tags: '',
-    startDate: '2020-11-16',
-    endDate: '2020-11-20',
+    startdate: '2020-11-16',
+    enddate: '2020-11-20',
     status: 'complete',
     custom: false,
-    details: {
-      advice: 'You should really get this done',
-      notes: 'I should really get this done.',
-      pintrest: 'https://www.pinterest.com/',
-      blog: 'https://twitter.com/',
-      moneyTip: 'Spend even more moneys.'
-    }
+    advice: 'You should really get this done',
+    notes: 'I should really get this done.',
+    pintrest: 'https://www.pinterest.com/',
+    blog: 'https://twitter.com/',
+    moneytip: 'Spend even more moneys.',
+    archived: false
   },
   {
     id: '03',
-    userId: '1357',
-    taskName: 'research-venue',
-    taskLabel: 'Research Venue Space',
+    userid: '1357',
+    taskname: 'research-venue',
+    tasklabel: 'Research Venue Space',
     assignee: 'TB',
     tags: '',
-    startDate: '2020-11-19',
-    endDate: '2020-11-22',
+    startdate: '2020-11-19',
+    enddate: '2020-11-22',
     status: 'not-started',
     custom: 'false',
-    details: {
-      advice: 'This should probably get this done',
-      notes: 'I think I should probably get this done.',
-      pintrest: 'https://www.pinterest.com/',
-      blog: 'https://twitter.com/',
-      moneyTip: '',
-    }
-  },
-  {
-    id: '03',
-    userId: '77',
-    taskName: 'research-venue',
-    taskLabel: 'Research Venue Space',
-    assignee: 'GT',
-    tags: '',
-    startDate: '2020-11-19',
-    endDate: '2020-11-22',
-    status: 'not-started',
-    custom: 'false',
-    details: {
-      advice: 'This should probably get this done',
-      notes: 'I think I should probably get this done.',
-      pintrest: 'https://www.pinterest.com/',
-      blog: 'https://twitter.com/',
-      moneyTip: '',
-    }
-  },
+    advice: 'This should probably get this done',
+    notes: 'I think I should probably get this done.',
+    pintrest: 'https://www.pinterest.com/',
+    blog: 'https://twitter.com/',
+    moneytip: '',
+    archived: false
+  }
 ]

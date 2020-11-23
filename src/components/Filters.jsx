@@ -18,16 +18,16 @@ const Filters = ({
           selected={dateStart}
           onChange={date => updateStateValue('dateStart', date)}
           selectsStart
-          startDate={dateStart}
-          endDate={dateEnd}
+          startdate={dateStart}
+          enddate={dateEnd}
           className="pickers"
         />
         <DatePicker
           selected={dateEnd}
           onChange={date => updateStateValue('dateEnd', date)}
           selectsEnd
-          startDate={dateStart}
-          endDate={dateEnd}
+          startdate={dateStart}
+          enddate={dateEnd}
           minDate={dateStart}
           className="pickers"
         />
