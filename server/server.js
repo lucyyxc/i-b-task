@@ -8,6 +8,7 @@ const util = require('util');
 const url = require('url');
 const querystring = require('querystring');
 const massive = require('massive');
+const moment = require('moment');
 
 var cors = require('cors')
 
@@ -120,9 +121,6 @@ app.get('/api/get/user', (req, res) => {
   res.status(200).json(req.user);
 })
 
-
-
-
 app.post('/api/post/newUser', (req, res) => {
   const db = req.app.get('db');
   const { body } = req;
@@ -131,17 +129,26 @@ app.post('/api/post/newUser', (req, res) => {
   db.create_user([
     body.name,
     body.email,
+    body.user_metadata.emailAgree,
     initials,
     body.user_metadata.weddingdate,
     body.user_metadata.birthday,
     false,
     null,
     false,
+    body.user_metadata.timeUntil,
     body._id
   ])
   .then(user => {
-    console.log('newUser, user');
-    res.status(200).send('Added new user');
+    const taskTimeMultiplier = user[0].timeselected === "2Y" ? 2 :(user[0].timeselected === "6M" ? .5 : 1)
+    const dateFromWedding = (daysAway) => (moment(user[0].weddingdate).subtract(daysAway, 'days').format('YYYY-MM-DD'));
+    const newTasks = [user[0].auth_id, user[0].assignee]
+      .concat(taskStarts.map(e => dateFromWedding(Math.round(e * taskTimeMultiplier))))
+      .concat(taskEnds.map(e => dateFromWedding(Math.round(e * taskTimeMultiplier))));
+    db.create_new_users_tasks(newTasks)
+    .then(response => {
+      res.status(200).send('Added new user');
+    }).catch(err => console.log('db create user new tasks error', err))
   })
   .catch(err => console.log('db create user error', err))
 })
@@ -165,73 +172,5 @@ massive(process.env.CONNECTION_STRING)
 })
 .catch(err => console.log(err))
 
-const users =  [
-  {
-    name: 'Trevor Brown',
-    email: 'TrevorBrown25@gmail.com',
-    assignee: 'TB',
-    id: '1357',
-    weddingdate: '2021-12-25',
-    birthday: '1992-06-18',
-    collabadded: false,
-    collabid: null,
-    sub: true
-  }
-];
-
-const allTasks = [
-  {
-    id: '01',
-    userid: '1357',
-    taskname: 'guest-list',
-    tasklabel: 'Guest List',
-    assignee: 'TB',
-    tags: '',
-    startdate: '2020-11-20',
-    enddate: '2020-11-24',
-    status: 'in-progress',
-    custom: false,
-    advice: 'You should get this done',
-    notes: 'I should get this done.',
-    pintrest: 'https://www.pinterest.com/',
-    blog: 'https://twitter.com/',
-    moneytip: 'Spend less moneys.',
-    archived: false
-  },
-  {
-    id: '02',
-    userid: '1357',
-    taskname: 'create-budget',
-    tasklabel: 'Create Budget',
-    assignee: 'TB2',
-    tags: '',
-    startdate: '2020-11-16',
-    enddate: '2020-11-20',
-    status: 'complete',
-    custom: false,
-    advice: 'You should really get this done',
-    notes: 'I should really get this done.',
-    pintrest: 'https://www.pinterest.com/',
-    blog: 'https://twitter.com/',
-    moneytip: 'Spend even more moneys.',
-    archived: false
-  },
-  {
-    id: '03',
-    userid: '1357',
-    taskname: 'research-venue',
-    tasklabel: 'Research Venue Space',
-    assignee: 'TB',
-    tags: '',
-    startdate: '2020-11-19',
-    enddate: '2020-11-22',
-    status: 'not-started',
-    custom: 'false',
-    advice: 'This should probably get this done',
-    notes: 'I think I should probably get this done.',
-    pintrest: 'https://www.pinterest.com/',
-    blog: 'https://twitter.com/',
-    moneytip: '',
-    archived: false
-  }
-]
+const taskStarts = [365,364,363,362,361,361,360,359,358,360,357,333,242,328,350];
+const taskEnds = [362,357,359,338,361,358,337,352,358,327,305,331,210,321,326];

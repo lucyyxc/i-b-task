@@ -49,7 +49,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                 <i className="far fa-check-circle" 
                   title="Complete Task" 
                   onClick={() => {
-                    updateTask({...task, status: 'complete'})
+                    updateTask({...task, status: 'complete'}) //TODO make this change the status in db
                     closeModal(true)
                   }}
                 ></i> {/* TODO Add task complete text */}
@@ -107,7 +107,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <span>Start on</span>
               <DatePicker
                 selected={moment(task.startdate).toDate() || new Date()}
-                onChange={date => updateTask({...task, startdate: moment(date).format('YYYY-MM-DD')})}
+                onChange={date => updateTask({...task, startdate: moment(date).format('YYYY-MM-DD')})} //TODO make this change the status in db
                 className="pickers"
               />
             </div>
@@ -115,7 +115,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <span>Complete by</span>
               <DatePicker
                 selected={moment(task.enddate).toDate() || new Date()}
-                onChange={date => updateTask({...task, enddate: moment(date).format('YYYY-MM-DD')})}
+                onChange={date => updateTask({...task, enddate: moment(date).format('YYYY-MM-DD')})} //TODO make this change the status in db
                 className="pickers"
               />
             </div>
@@ -125,7 +125,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
           type="text"
           value={task.tasklabel || ''}
           placeholder="Please enter a task name."
-          onChange={(e) => updateTask({...task, tasklabel: e.target.value})}
+          onChange={(e) => updateTask({...task, tasklabel: e.target.value})} //TODO make this change the status in db
         />
         <div className="advice">
           <span className="title">
@@ -143,8 +143,8 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             rows="5"
             value={_get(task, 'notes', '')}
             placeholder="Jot down some notes..."
-            onChange={(e) => updateTask({...task, notes: e.target.value})}
-          /> {/*TODO send this to db when done*/}
+            onChange={(e) => updateTask({...task, notes: e.target.value})} //TODO make this change the status in db
+          />
         </div>
         <div className="save-button-holder">
           <div className="save-button" onClick={() => closeModal(true)}>

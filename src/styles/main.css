@@ -883,6 +883,19 @@ a {
           background-color: whitesmoke;
           transition: all .15s ease;
           border-radius: 3px; }
+      .Intro .signup .input-container .select {
+        border: none;
+        border-bottom: 1px black solid;
+        background-color: none;
+        width: 100%;
+        font-size: 16px;
+        transition: all .15s ease;
+        padding: 3px 3px 3px 0; }
+        .Intro .signup .input-container .select:focus {
+          outline: none;
+          background-color: whitesmoke;
+          transition: all .15s ease;
+          border-radius: 3px; }
       .Intro .signup .input-container .visable-text {
         position: absolute;
         right: 0;
@@ -911,18 +924,43 @@ a {
           outline: none; }
       .Intro .signup .date-container .react-datepicker-wrapper {
         width: 100%; }
+    .Intro .signup .required-field {
+      font-size: 12px;
+      margin-top: 5px;
+      font-style: italic; }
     .Intro .signup .member {
       margin-top: 20px;
       width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      color: black; }
       .Intro .signup .member .login-button {
+        color: black;
         margin-left: 3px;
         cursor: pointer;
         font-weight: bold; }
         .Intro .signup .member .login-button:hover {
           text-decoration: underline; }
+    .Intro .signup .email-opt {
+      margin-top: 10px;
+      padding: 0 20px;
+      display: flex;
+      align-items: flex-start; }
+      .Intro .signup .email-opt input {
+        height: 23px;
+        width: 23px;
+        padding: 0;
+        margin: 0; }
+      .Intro .signup .email-opt .checkbox-text {
+        font-size: 14px;
+        text-align: center;
+        margin-left: 10px;
+        margin-top: 4px; }
+    .Intro .signup .terms {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px; }
     .Intro .signup .submit {
       height: 60px;
       width: 200px;
@@ -932,7 +970,7 @@ a {
       justify-content: center;
       align-items: center;
       border-radius: 3px;
-      margin: 40px auto;
+      margin: 30px auto;
       cursor: pointer; }
       .Intro .signup .submit span {
         font-size: 24px; }

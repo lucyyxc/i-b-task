@@ -16,75 +16,6 @@ import Files from './Files';
 import Payment from './Payment';
 import Loading from './Loading';
 
-
-const userOne = {
-  name: 'Bri Holst',
-  email: 'BH@IB.com',
-  assignee: 'BH',
-  id: '1357',
-  weddingdate: '2021-05-28',
-  birthday: '1950-01-01',
-  collabadded: false,
-  collabid: null
-}
-
-const tasksOne = [
-  {
-    id: '01',
-    userid: '1357',
-    taskname: 'guest-list',
-    tasklabel: 'Guest List',
-    assignee: 'BH',
-    tags: '',
-    startdate: '2020-12-20',
-    enddate: '2020-12-24',
-    status: 'in-progress',
-    custom: false,
-    advice: 'You should get this done',
-    notes: 'I should get this done.',
-    pintrest: 'https://www.pinterest.com/',
-    blog: 'https://twitter.com/',
-    moneytip: 'Spend less moneys',
-    archived: false
-  },
-  {
-    id: '02',
-    userid: '1357',
-    taskname: 'create-budget',
-    tasklabel: 'Create Budget',
-    assignee: 'DP',
-    tags: '',
-    startdate: '2020-12-16',
-    enddate: '2020-12-20',
-    status: 'complete',
-    custom: false,
-    advice: 'You should really get this done',
-    notes: 'I should really get this done.',
-    pintrest: 'https://www.pinterest.com/',
-    blog: 'https://twitter.com/',
-    moneytip: 'Spend more moneys',
-    archived: false
-  },
-  {
-    id: '03',
-    userid: '1357',
-    taskname: 'research-venue',
-    tasklabel: 'Research Venue Space',
-    assignee: 'BH',
-    tags: '',
-    startdate: '2020-12-19',
-    enddate: '2020-12-22',
-    status: 'not-started',
-    custom: 'false',
-    advice: 'This should probably get this done',
-    notes: 'I think I should probably get this done.',
-    pintrest: 'https://www.pinterest.com/',
-    blog: 'https://twitter.com/',
-    moneytip: '',
-    archived: false
-  }
-]
-
 const App = ({selected}) => {
   const [state, setState] = React.useState({
     error: null,
@@ -173,8 +104,6 @@ const App = ({selected}) => {
       const tasksCall = axios.get('/api/get/userTasks')
       axios.all([userCall, tasksCall])
         .then(responses => {
-          console.log('responses 0', responses[0].data);
-          console.log('responses 1', responses[1].data);
           updateState({user: responses[0].data, tasks: responses[1].data})
         })
         .catch(err => {

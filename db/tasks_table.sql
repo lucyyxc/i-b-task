@@ -9,10 +9,11 @@ CREATE TABLE IF NOT EXISTS tasks(
     endDate VARCHAR(180),
     status VARCHAR(180),
     custom bool,
-    advice VARCHAR(180),
-    notes VARCHAR(180),
+    advice TEXT,
+    notes TEXT,
     pintrest VARCHAR(180),
     blog VARCHAR(180),
-    moneyTip VARCHAR(180),
+    blogUrl VARCHAR(180)
+    moneyTip TEXT,
     archived bool
 );

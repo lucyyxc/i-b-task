@@ -10,12 +10,36 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const IntroTitle = () => (
   <div className="title-text intro">
-    <span>Welcome to the Bride Tribe!</span>
+    <span>Let's Get Started</span>
     <p className="">
-      We're so glad you've joined and can't wait to show you your personalized wedding
-      checklist! Let's start with a few questions, so we can get to know you better.
-      This will help us put it all together for you.
+      Congratulations on your engagement! We are honored to
+      be a part of your wedding planning journey. Help us
+      get to know you and create your profile to get started.
     </p>
+  </div>
+)
+
+const TimeDropDown = ({updateStateValue, label, item, value}) => (
+  <div className="input-container">
+      <div className="label-container">
+        <span className="input-label">{label}</span>
+      </div>
+      <select
+        className="select"
+        value={value}
+        onChange={e => updateStateValue(item, e.target.value)}
+      >
+        <option value="6M">Six Months</option>
+        <option value="1Y">One Year</option>
+        <option value="2Y">Two Years</option>
+      </select>
+    </div>
+)
+
+const EmailOptIn = ({updateStateValue, value, item}) => (
+  <div className="email-opt">
+    <input type="checkbox" checked={value} onChange={() => updateStateValue(item, !value)}/>
+    <div className="checkbox-text">You agree to email communication from The Independent Bride to the email address you provided. Unsubscribe at any time.</div>
   </div>
 )
 
@@ -88,6 +112,8 @@ const Intro = ({updateView}) => {
     valid: false,
     match: false,
     error: false,
+    timeUntil: '1Y',
+    emailAgree: true
   });
   const [redirect, setRedirect] = React.useState(false);
 
@@ -95,7 +121,7 @@ const Intro = ({updateView}) => {
   let schema = new passwordValidator();
   schema.is().min(8)
   .has().lowercase()
-  .has().lowercase()
+  .has().uppercase()
   .has().digits()
   
   React.useEffect(() => {
@@ -166,6 +192,8 @@ const Intro = ({updateView}) => {
       birthday: submittableBirthday,
       sub: 'false',
       fullName: state.name,
+      emailAgree: state.emailAgree ? 'true' : 'false',
+      timeUntil: state.timeUntil
     };
 
     if (
@@ -219,8 +247,6 @@ const Intro = ({updateView}) => {
 
   const passwordWarning = validatePassword(state.password) ? 'Passwords do not match.' : 'Password does not meet requirements.'
 
-  console.log(state);
-
   if (redirect) {
     window.location.href = `${process.env.REACT_APP_SERVERHOST}/auth`
   }
@@ -234,21 +260,27 @@ const Intro = ({updateView}) => {
       <Input {...{
         value: state.name, 
         item: 'name', 
-        label: 'Name', 
+        label: 'Name*', 
         updateStateValue
       }} />
       <DateSelect {...{
         value: state.weddingdate, 
         placeholder: 'Just give us your best guess. You can change this later when it\'s finalized!', 
         item: 'weddingdate', 
-        label: 'Wedding Date', 
+        label: 'Wedding Date*', 
         updateStateValue
       }} />
+      <TimeDropDown {...{
+        label: 'Time Until Wedding*',
+        item: 'timeUntil',
+        value: state.timeUntil,
+        updateStateValue
+      }}/>
       <Input {...{
         value: state.email, 
         type: 'email', 
         item: 'email', 
-        label: 'Email Address',
+        label: 'Email Address*',
         showWarning: !state.validEmail && state.email,
         warning: 'Invalid email address.',
         updateStateValue: emailInput
@@ -264,7 +296,7 @@ const Intro = ({updateView}) => {
         state.password, 
         type: 'password', 
         item: 'password', 
-        label: 'Password',
+        label: 'Password*',
         showWarning: (!validatePassword(state.password) && state.password) || (!state.match && state.password && state.confirm),
         warning: passwordWarning,
         showPassTooltip: true,
@@ -274,12 +306,19 @@ const Intro = ({updateView}) => {
         value: state.confirm, 
         type: 'password', 
         item: 'confirm', 
-        label: 'Confirm Password',
+        label: 'Confirm Password*',
         updateStateValue
       }} />
+      <div className="required-field">* required field</div>
+      <EmailOptIn {...{
+        updateStateValue,
+        item: 'emailAgree',
+        value: state.emailAgree
+      }} />
+      <div className="terms">By creating and account, you agree to the Terms of Service and Acknowledge our Privacy Policy.</div>
       <div className="member">
         <p>Already a part of the Bride Tribe?&nbsp;</p>
-        <a href="/auth">Log In</a>
+        <a href="/auth" className="login-button">Log In</a>
       </div>
       <div 
         className="submit"
