@@ -13,7 +13,9 @@ CREATE TABLE IF NOT EXISTS tasks(
     notes TEXT,
     pintrest VARCHAR(180),
     blog VARCHAR(180),
-    blogUrl VARCHAR(180)
+    blogUrl VARCHAR(180),
     moneyTip TEXT,
+    imageName VARCHAR(180),
+    imageUrl TEXT,
     archived bool
 );

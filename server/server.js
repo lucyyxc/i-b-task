@@ -153,6 +153,86 @@ app.post('/api/post/newUser', (req, res) => {
   .catch(err => console.log('db create user error', err))
 })
 
+// untested
+app.post('/api/post/statusUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_task_status([userid, body.id, body.status])
+  .then(response => res.status(200).send('updated task status'))
+  .catch(err => console.log('db update task status error', err));
+});
+
+// untested
+app.post('/api/post/startDateUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_start_date([userid, body.id, body.startDate])
+  .then(response => res.status(200).send('updated task start date'))
+  .catch(err => console.log('db update start date error', err));
+});
+
+// untested
+app.post('/api/post/endDateUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_end_date([userid, body.id, body.endDate])
+  .then(response => res.status(200).send('updated task end date'))
+  .catch(err => console.log('db update end date error', err));
+});
+
+// untested
+app.post('/api/post/nameUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_name([userid, body.id, body.name])
+  .then(response => res.status(200).send('updated task name'))
+  .catch(err => console.log('db update task name error', err));
+});
+
+// untested
+app.post('/api/post/addTaskImage', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.add_task_image([userid, body.id, body.imageNmae, body.imageUrl])
+  .then(response => res.status(200).send('added task image'))
+  .catch(err => console.log('db add task image error', err));
+});
+
+// untested
+app.post('/api/post/archiveTask', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.archive_task([userid, body.id])
+  .then(response => res.status(200).send('archived task'))
+  .catch(err => console.log('db archive task error', err));
+});
+
+// untested
+app.post('/api/post/unarchiveTask', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.unarchive_task([userid, body.id])
+  .then(response => res.status(200).send('unarchived task'))
+  .catch(err => console.log('db unarchive task error', err));
+});
+
+// untested
+app.post('/api/post/notesUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_notes([userid, body.id, body.notes])
+  .then(response => res.status(200).send('task notes updated'))
+  .catch(err => console.log('db notes update error', err));
+});
+
 app.get('/api/get/userTasks', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
