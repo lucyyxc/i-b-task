@@ -14,6 +14,9 @@ var cors = require('cors')
 
 dotenv.config();
 
+const stripe = require('stripe')(process.env.STRIPE_KEY);
+console.log(process.env.STRIPE_KEY);
+
 var strategy = new Auth0Strategy(
   {
     domain: process.env.AUTH0_DOMAIN,
@@ -31,7 +34,6 @@ var strategy = new Auth0Strategy(
     const email = profile.emails[0].value
     db.get_user_by_email([email])
     .then(user => {
-      console.log(user);
       return done(null, user[0]);
     })
   }
@@ -90,7 +92,7 @@ app.get('/callback', function (req, res, next) {
     if (!user) { return res.redirect('/auth'); }
     req.logIn(user, function (err) {
       if (err) { return next(err); }
-      res.redirect('/#/checklist');
+      res.redirect('/#/payment');
     });
   })(req, res, next);
 });
@@ -117,9 +119,32 @@ app.get('/auth/logout', (req, res) => {
 });
 
 app.get('/api/get/user', (req, res) => {
-  console.log('this is req.user', req.user);
   res.status(200).json(req.user);
 })
+
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'The Independent Bride Checklist',
+            images: ['https://i.imgur.com/EHyR2nP.png'],
+          },
+          unit_amount: 9900,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    allow_promotion_codes: true,
+    success_url: `${process.env.SERVERHOST}/#/checklist`,
+    cancel_url: `${process.env.SERVERHOST}/#/`,
+  });
+  res.json({ id: session.id });
+});
 
 app.post('/api/post/newUser', (req, res) => {
   const db = req.app.get('db');
@@ -153,7 +178,6 @@ app.post('/api/post/newUser', (req, res) => {
   .catch(err => console.log('db create user error', err))
 })
 
-// untested
 app.post('/api/post/statusUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
@@ -163,37 +187,33 @@ app.post('/api/post/statusUpdate', (req, res) => {
   .catch(err => console.log('db update task status error', err));
 });
 
-// untested
 app.post('/api/post/startDateUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
   const { body } = req;
-  db.update_start_date([userid, body.id, body.startDate])
+  db.update_start_date([userid, body.id, body.startdate])
   .then(response => res.status(200).send('updated task start date'))
   .catch(err => console.log('db update start date error', err));
 });
 
-// untested
 app.post('/api/post/endDateUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
   const { body } = req;
-  db.update_end_date([userid, body.id, body.endDate])
+  db.update_end_date([userid, body.id, body.enddate])
   .then(response => res.status(200).send('updated task end date'))
   .catch(err => console.log('db update end date error', err));
 });
 
-// untested
 app.post('/api/post/nameUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
   const { body } = req;
-  db.update_name([userid, body.id, body.name])
+  db.update_name([userid, body.id, body.tasklabel])
   .then(response => res.status(200).send('updated task name'))
   .catch(err => console.log('db update task name error', err));
 });
 
-// untested
 app.post('/api/post/addTaskImage', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
@@ -203,7 +223,6 @@ app.post('/api/post/addTaskImage', (req, res) => {
   .catch(err => console.log('db add task image error', err));
 });
 
-// untested
 app.post('/api/post/archiveTask', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
@@ -213,7 +232,6 @@ app.post('/api/post/archiveTask', (req, res) => {
   .catch(err => console.log('db archive task error', err));
 });
 
-// untested
 app.post('/api/post/unarchiveTask', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
@@ -223,7 +241,6 @@ app.post('/api/post/unarchiveTask', (req, res) => {
   .catch(err => console.log('db unarchive task error', err));
 });
 
-// untested
 app.post('/api/post/notesUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
@@ -238,7 +255,6 @@ app.get('/api/get/userTasks', (req, res) => {
   const userid = req.user.auth_id;
   db.users_tasks([userid])
   .then(tasks => {
-    console.log('tasks', tasks);
     res.status(200).json(tasks);
   })
 })

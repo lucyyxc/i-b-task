@@ -53,21 +53,31 @@ const App = ({selected}) => {
     }
     
   }
+  
+  const getUserTasks = () => {
+    axios.get('/api/get/userTasks')
+    .then(response => {
+      setState({
+        ...state,
+        tasks: response.data
+      })
+    })
+  }
 
   const displayView = () => {
     switch (selected) {
       case 'calendar':
-        return <Calendar {...state} selected={selected} />
+        return <Calendar {...state} selected={selected} getUserTasks={getUserTasks} />
       case 'progress':
-        return <Progress {...state} selected={selected} />
+        return <Progress {...state} selected={selected} getUserTasks={getUserTasks} />
       case 'files':
         return <Files />
       case 'payment':
-        return <Payment updateView={updateStateValue} />
+        return <Payment updateView={updateStateValue} getUserTasks={getUserTasks} />
       case 'loading':
         return <Loading />
       case 'checklist':
-        return <Checklist {...state} selected={selected} />
+        return <Checklist {...state} selected={selected} getUserTasks={getUserTasks} />
       default:
         {/*TODO change this to error page or something when decided. */}
         return null
@@ -111,6 +121,7 @@ const App = ({selected}) => {
         })
     }
   });
+
 
   return (
     <div className="App">

@@ -56,11 +56,11 @@ const Progress = ({tasks}) => {
 
   if (tasks.length) {
     let amounts = { //TODO set back to 0s when done
-      pastDue: 2,
-      dueToday: 1,
-      inProgress: 5,
-      totalCompleted: 20,
-      totalToGo: 12,
+      pastDue: 0,
+      dueToday: 0,
+      inProgress: 0,
+      totalCompleted: 0,
+      totalToGo: 0,
     };
     
     tasks.forEach(task => {
@@ -124,8 +124,8 @@ const Progress = ({tasks}) => {
           <Circle text={'Tasks in progress'} num={state.inProgress} color={'in-progress'} />
         </div>
         <div className='flex'>
-          <Circle text={'Total tasks complete 👏'} num={state.totalCompleted} color={'complete'} />
-          <Circle text={'Total tasks to go 🚀'} num={state.totalToGo} />
+          <Circle text={'Total tasks complete'} num={state.totalCompleted} color={'complete'} />
+          <Circle text={'Total tasks to go'} num={state.totalToGo} />
         </div>
         
       </div>

@@ -116,7 +116,7 @@ const CollabMenu = ({show, cancel, collab, updateCollab, submit, sent, warning, 
   </div>
 );
 
-const Search = ({search, updateStateValue, collabadded, showSearch}) => {
+const Search = ({search, updateStateValue, collabadded, showSearch, getUserTasks}) => {
   const [show, toggleShow] = React.useState(false);
   const [sent, send] = React.useState(false);
   const [collab, updateCollab] = React.useState({name: '', email: '', relation: ''});
@@ -156,7 +156,7 @@ const Search = ({search, updateStateValue, collabadded, showSearch}) => {
         }
         <i className="fas fa-user-plus" onClick={() => toggleShow(true)}></i> {/*TODO add in ability to add another user */}
         <i className="fas fa-plus-circle" onClick={() => toggleNewTask(true)}></i> {/*TODO add in ability to add another task */}
-        <TaskModal isOpen={newTask} setIsOpen={toggleNewTask}/>
+        <TaskModal isOpen={newTask} setIsOpen={toggleNewTask} getUserTasks={getUserTasks} />
         <i className="far fa-question-circle"></i> {/*TODO add in how it works info */}
       </div>
     </div>

@@ -46,7 +46,7 @@
 
         transition: color .15s ease;
         &:hover {
-          color: #05B407;
+          color: $olive;
           transition: color .15s ease;
           cursor: pointer;
         }

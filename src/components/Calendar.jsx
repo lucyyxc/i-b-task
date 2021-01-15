@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import TaskModal from './TaskModal';
 
-const Calendar = ({tasks, selected}) => {
+const Calendar = ({tasks, selected, getUserTasks}) => {
   const [state, setState] = React.useState({
     calTasks: tasks,
     isOpen: false,
@@ -81,6 +81,7 @@ const Calendar = ({tasks, selected}) => {
         setIsOpen={(bool) => setState({...state, isOpen: bool, modalTask: {}})}
         modalTask={state.modalTask}
         selected={selected}
+        getUserTasks={getUserTasks}
       />
     </div>
   );

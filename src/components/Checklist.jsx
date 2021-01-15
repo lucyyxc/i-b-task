@@ -4,7 +4,7 @@ import _forIn from 'lodash/forIn'
 import Task from './Task';
 import TaskModal from './TaskModal';
 
-const Checklist = ({tasks = [], taskFilter, search, selected}) => {
+const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => {
   const [state, setState] = React.useState({
     tasklabel: '',
     assignee: '',
@@ -122,10 +122,12 @@ const Checklist = ({tasks = [], taskFilter, search, selected}) => {
         modalTask={state.modalTask}
         changeModalTask={changeModalTask}
         selected={selected}
+        getUserTasks={getUserTasks}
       />
       <div className="checklist-header">
+        <div className="spacer"></div>
         <div
-          className={`column ${true ? '' : 'hide'}`}
+          className={`column task-label ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('tasklabel')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -179,7 +181,8 @@ const Checklist = ({tasks = [], taskFilter, search, selected}) => {
           {renderArrows('status')}
         </div>
       </div>
-      {filteredTasks.map((e, i) => <Task task={e} index={i} key={e.id} openModal={openModal} />)}
+      <hr />
+      {filteredTasks.map((e, i) => <Task task={e} index={i} key={e.id} openModal={openModal} getUserTasks={getUserTasks} />)}
     </div>
   );
 };

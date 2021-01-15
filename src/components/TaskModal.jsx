@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import DatePicker from "react-datepicker";
 
-const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected}) => {
+const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected, getUserTasks}) => {
   const [state, setState] = React.useState({
     task: {},
     newTask: true,
@@ -18,80 +18,68 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
       enddate: '',
       notes: '',
       archive: false,
-      name: ''
+      tasklabel: ''
     }
   })
 
-  const updateTask = (updatedTask, key, change) => {
-    if (key && change) {
-      setState({
-        ...state,
-        'task': updatedTask,
-        changes: {
-          ...state.changes,
-          [key]: change
-        }
-      });
-    } else {
-      setState({
-        ...state,
-        'task': updatedTask
-      });
-    }
-  }
-
-  const isNewTask = (bool) => {
-    setState({
-      ...state,
-      'newTask': bool
-    });
+  const defaultChanges = {
+    status: '',
+      startdate: '',
+      enddate: '',
+      notes: '',
+      archive: false,
+      tasklabel: ''
   }
   
   if (_isEmpty(state.task) && !_isEmpty(modalTask)) {
-    updateTask(modalTask);
-    isNewTask(false)
+    setState({
+      ...state,
+      task: modalTask,
+      isNewTask: false
+    });
   }
 
   if (!isOpen && !_isEmpty(state.task)) {
-    updateTask({})
+    setState({
+      ...state,
+      task:{},
+      changes: defaultChanges
+    });
   }
 
   const closeModal = (save) => {
     if (save) {
       const updates = [];
-      if (state.changes.status) updates.push(axios.post('/api/post/statusUpdate'), {id: state.task.id, status: state.changes.status});
-      if (state.changes.startdate) updates.push(axios.post('/api/post/startDateUpdate'), {id: state.task.id, status: state.changes.startdate});
-      if (state.changes.enddate) updates.push(axios.post('/api/post/endDateUpdate'), {id: state.task.id, status: state.changes.enddate});
-      if (state.changes.notes) updates.push(axios.post('/api/post/notesUpdate'), {id: state.task.id, status: state.changes.notes});
-      if (state.changes.archive) updates.push(axios.post('/api/post/archiveTask'), {id: state.task.id});
-      if (state.changes.name) updates.push(axios.post('/api/post/nameUpdate'), {id: state.task.id, status: state.changes.name});
+      if (state.changes.status) updates.push(axios.post('/api/post/statusUpdate', {id: state.task.id, status: state.changes.status}));
+      if (state.changes.startdate) updates.push(axios.post('/api/post/startDateUpdate', {id: state.task.id, startdate: state.changes.startdate}));
+      if (state.changes.enddate) updates.push(axios.post('/api/post/endDateUpdate', {id: state.task.id, enddate: state.changes.enddate}));
+      if (state.changes.notes) updates.push(axios.post('/api/post/notesUpdate', {id: state.task.id, notes: state.changes.notes}));
+      if (state.changes.archive) updates.push(axios.post('/api/post/archiveTask', {id: state.task.id}));
+      if (state.changes.tasklabel) updates.push(axios.post('/api/post/nameUpdate', {id: state.task.id, tasklabel: state.changes.tasklabel}));
 
       if (updates.length){ //TODO UNTESTED
         axios.all(updates)
         .then(responses => {
           console.log(responses);
-          updateTask({})
+          setState({
+            ...state,
+            task: {},
+            changes: defaultChanges
+          })
           setIsOpen(false);
+          getUserTasks();
         })
+        .catch(err => console.log(err))
       }
     } else {
-      updateTask({})
+      setState({
+        ...state,
+        task: {},
+        changes: defaultChanges
+      })
       setIsOpen(false);
     }
   }
-
-  const deleteTask = () => {
-    setState({
-      ...state,
-      changes: {
-        ...state.changes,
-        archive: true
-      }
-    })
-    closeModal(true)
-  }
-
-  console.log(state);
   
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
@@ -103,12 +91,31 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                 <i className="far fa-check-circle" 
                   title="Complete Task" 
                   onClick={() => {
-                    updateTask({...state.task, status: 'complete'}, 'status', 'complete')
+                    setState({
+                      ...state,
+                      task: {
+                        ...state.task,
+                        status: 'complete'
+                      },
+                      changes: {
+                        ...state.changes,
+                        status: 'complete'
+                      }
+                    })
                     closeModal(true)
                   }}
-                ></i> {/* TODO Add task complete text */}
+                ></i>
               </div>
-              <div className="absolute delete"  title="Delete" onClick={() => deleteTask(modalTask.id, modalTask.userid)}>
+              <div className="absolute delete"  title="Delete" onClick={() => {
+                setState({
+                  ...state,
+                  changes: {
+                    ...state.changes,
+                    archive: true
+                  }
+                })
+                closeModal(true)
+              }}>
                 <i className="fas fa-trash-alt" title="Delete Task" ></i>
               </div>
               <div className="absolute icons">
@@ -125,7 +132,11 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <div 
                 className="absolute arrow next" 
                 onClick={() => {
-                  updateTask({});
+                  setState({
+                    ...state,
+                    task: {},
+                    changes: defaultChanges
+                  })
                   changeModalTask('next')
                 }}>
                 <i className="fas fa-chevron-right"></i>
@@ -133,14 +144,17 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <div 
                 className="absolute arrow previous"
                 onClick={() => {
-                  updateTask({});
+                  setState({
+                    ...state,
+                    task: {},
+                    changes: defaultChanges
+                  })
                   changeModalTask('previous')
                 }}>
                 <i className="fas fa-chevron-left"></i>
               </div>
                   </>
         }
-        
         <div className="modal-content">
           <div className="status-box">
             <div className="status-holder">
@@ -148,7 +162,19 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <select
                 id="task"
                 name="task"
-                onChange={e => updateTask({...state.task, status: e.target.value}, 'status', e.target.value)}
+                onChange={e => {
+                  setState({
+                    ...state,
+                    task: {
+                      ...state.task,
+                      status: e.target.value
+                    },
+                    changes: {
+                      ...state.changes,
+                      status: e.target.value
+                    }
+                  })
+                }}
                 value={state.task.status}
                 className="task-status"
               >
@@ -161,7 +187,19 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <span>Start on</span>
               <DatePicker
                 selected={moment(state.task.startdate).toDate() || new Date()}
-                onChange={date => updateTask({...state.task, startdate: moment(date).format('YYYY-MM-DD')}, 'startdate', moment(date).format('YYYY-MM-DD'))}
+                onChange={date => {
+                  setState({
+                    ...state,
+                    task: {
+                      ...state.task,
+                      startdate: moment(date).format('YYYY-MM-DD')
+                    },
+                    changes: {
+                      ...state.changes,
+                      startdate: moment(date).format('YYYY-MM-DD')
+                    }
+                  })
+                }}
                 className="pickers"
               />
             </div>
@@ -169,7 +207,19 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <span>Complete by</span>
               <DatePicker
                 selected={moment(state.task.enddate).toDate() || new Date()}
-                onChange={date => updateTask({...state.task, enddate: moment(date).format('YYYY-MM-DD')}, 'enddate', moment(date).format('YYYY-MM-DD'))}
+                onChange={date => {
+                  setState({
+                    ...state,
+                    task: {
+                      ...state.task,
+                      enddate: moment(date).format('YYYY-MM-DD')
+                    },
+                    changes: {
+                      ...state.changes,
+                      enddate: moment(date).format('YYYY-MM-DD')
+                    }
+                  })
+                }}
                 className="pickers"
               />
             </div>
@@ -179,7 +229,19 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
           type="text"
           value={state.task.tasklabel || ''}
           placeholder="Please enter a task name."
-          onChange={(e) => updateTask({...state.task, tasklabel: e.target.value}, 'name', e.target.value)}
+          onChange={(e) => {
+            setState({
+              ...state,
+              task: {
+                ...state.task,
+                tasklabel: e.target.value
+              },
+              changes: {
+                ...state.changes,
+                tasklabel: e.target.value
+              }
+            })
+          }}
         />
         <div className="advice">
           <span className="title">
@@ -197,7 +259,19 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             rows="5"
             value={_get(state.task, 'notes', '')}
             placeholder="Jot down some notes..."
-            onChange={(e) => updateTask({...state.task, notes: e.target.value}, 'notes', e.target.value)}
+            onChange={(e) => {
+              setState({
+                ...state,
+                task: {
+                  ...state.task,
+                  notes: e.target.value
+                },
+                changes: {
+                  ...state.changes,
+                  notes: e.target.value
+                }
+              })
+            }}
           />
         </div>
         <div className="save-button-holder">
