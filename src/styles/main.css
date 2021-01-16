@@ -457,7 +457,7 @@ a {
     font-size: 18px; }
 
 .Checklist {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 92%;
   font-family: "Asap", sans-serif;
   display: flex;
@@ -467,7 +467,12 @@ a {
     flex: 1;
     padding: 3px 5px;
     display: flex;
-    justify-content: space-between; }
+    justify-content: flex-start; }
+    .Checklist .column.header span {
+      cursor: pointer;
+      padding-right: 10px; }
+    .Checklist .column.header i {
+      cursor: pointer; }
   .Checklist .overlay {
     position: fixed;
     opacity: 0.5;
@@ -479,6 +484,20 @@ a {
     left: 0;
     position: fixed;
     backdrop-filter: blur(5px); }
+  .Checklist .new-task {
+    align-self: flex-start;
+    background-color: #FC6959;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; }
+    .Checklist .new-task i {
+      margin-right: 10px; }
+    .Checklist .new-task:hover {
+      cursor: pointer; }
   .Checklist .checklist-header {
     width: 100%;
     display: flex;
@@ -578,6 +597,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding: 5px;
   font-size: 12px;
   width: 700px; }
   .Task-modal.show {
@@ -603,6 +623,59 @@ a {
         .Task-modal .modal-container .check i:hover {
           color: #70825A;
           transition: color .15s ease;
+          cursor: pointer; }
+    .Task-modal .modal-container .icons {
+      width: 300px;
+      height: 60px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center; }
+      .Task-modal .modal-container .icons .money {
+        font-size: 30px;
+        padding: 0 5px; }
+        .Task-modal .modal-container .icons .money i {
+          cursor: pointer; }
+        .Task-modal .modal-container .icons .money .tip {
+          background-color: white;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          position: fixed;
+          display: block;
+          max-width: 550px;
+          z-index: 3;
+          font-size: 14px;
+          text-align: center;
+          padding: 20px;
+          border-radius: 3px;
+          border: 1px gray solid; }
+          .Task-modal .modal-container .icons .money .tip .neg-tip {
+            font-size: 24px;
+            margin-bottom: 20px; }
+          .Task-modal .modal-container .icons .money .tip .back {
+            margin: 20px auto 0;
+            height: 30px;
+            width: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FC6959;
+            color: white;
+            font-family: "Asap", sans-serif;
+            font-size: 18px;
+            border-radius: 3px;
+            cursor: pointer; }
+          .Task-modal .modal-container .icons .money .tip.hide {
+            display: none; }
+      .Task-modal .modal-container .icons .blog {
+        padding: 0 5px; }
+        .Task-modal .modal-container .icons .blog .logo {
+          height: 50px;
+          width: 50px; }
+      .Task-modal .modal-container .icons .pintrest {
+        padding: 0 5px;
+        font-size: 30px; }
+        .Task-modal .modal-container .icons .pintrest i {
           cursor: pointer; }
     .Task-modal .modal-container .exit {
       top: 0;
@@ -678,6 +751,8 @@ a {
             -webkit-appearance: none;
             padding-right: 15px;
             padding-left: 5px; }
+        .Task-modal .modal-container .modal-content .status-box .task-assignee {
+          width: 100px; }
       .Task-modal .modal-container .modal-content .task-name {
         text-align: center;
         font-weight: bold;
@@ -756,6 +831,10 @@ a {
       .Progress .progress-bar-container .progress-bar .section {
         height: 100%;
         z-index: 2; }
+        .Progress .progress-bar-container .progress-bar .section.complete {
+          margin-right: 1px; }
+        .Progress .progress-bar-container .progress-bar .section.not-started {
+          margin-left: 1px; }
     .Progress .progress-bar-container .rule {
       height: 100%;
       width: 1px;

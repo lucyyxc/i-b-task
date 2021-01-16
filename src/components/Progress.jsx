@@ -105,12 +105,6 @@ const Progress = ({tasks}) => {
           <Section color={'in-progress'} num={state.inProgress} total={totalTasks} />
           <Section color={'not-started'} num={state.totalToGo - state.inProgress} total={totalTasks} />
         </div>
-        <div className="rule twentyfive"></div>
-        <div className="rule fifty"></div>
-        <div className="rule seventyfive"></div>
-        <div className="label twentyfive">25%</div>
-        <div className="label fifty">50%</div>
-        <div className="label seventyfive">75%</div>
       </div>
       <div className="legend">
         <Item text={'Completed Tasks'} color={'complete'} />

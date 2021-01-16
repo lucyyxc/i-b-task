@@ -7,8 +7,6 @@ import Footer from './Footer';
 const stripePromise = loadStripe('pk_test_51I9iRxKX2bGZIfblIuVdvbVIAJV1PxHx1XWSNOSXBzMWg44ibfZXEjg7PpgvGUW7BFCJf4E7DfcITcHIRliyfeL900GVeXuDQO')
 
 const Payment = ({updateView}) => {
-
-
   const query = new URLSearchParams(window.location.search);
   console.log('query', query);
 

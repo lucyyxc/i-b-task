@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  padding: 5px;
   font-size: 12px;
   width: 700px;
 
@@ -48,6 +48,85 @@
         &:hover {
           color: $olive;
           transition: color .15s ease;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .icons {
+      width: 300px;
+      height:60px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .money {
+        font-size: 30px;
+        padding: 0 5px;
+        i {
+          cursor: pointer;
+        }
+
+        .tip {
+          background-color: white;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          position: fixed;
+          display: block;
+          max-width: 550px;
+          z-index: 3;
+          font-size: 14px;
+          text-align: center;
+          padding: 20px;
+          border-radius: 3px;
+          border: 1px gray solid;
+
+          .neg-tip {
+            font-size: 24px;
+            margin-bottom: 20px;
+          }
+
+          .back {
+            margin: 20px auto 0;
+            height: 30px;
+            width: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $pink;
+            color: white;
+            font-family: $secondary;
+            font-size: 18px;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+          &.hide {
+            display: none;
+          }
+        }
+      }
+
+      .blog {
+        padding: 0 5px;
+
+        .logo {
+          height: 50px;
+          width: 50px;
+        }
+      }
+
+      .pintrest {
+        padding: 0 5px;
+        font-size: 30px;
+        color: black;
+
+        &:visited {
+          color: black;
+        }
+
+        i {
           cursor: pointer;
         }
       }
@@ -155,6 +234,9 @@
             padding-right: 15px;
             padding-left: 5px;
           }
+        }
+        .task-assignee {
+          width: 100px;
         }
       }
 

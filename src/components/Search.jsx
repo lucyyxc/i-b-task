@@ -1,7 +1,5 @@
 import React from 'react';
 
-import TaskModal from './TaskModal';
-
 const Input = ({placeholder = '', value = '', item, label, collab, updateCollab, showWarning = false, warning = ''}) => {
   return (
     <div className="input-container">
@@ -121,7 +119,6 @@ const Search = ({search, updateStateValue, collabadded, showSearch, getUserTasks
   const [sent, send] = React.useState(false);
   const [collab, updateCollab] = React.useState({name: '', email: '', relation: ''});
   const [warning, setWarning] = React.useState(false);
-  const [newTask, toggleNewTask] = React.useState(false);
 
   const cancel = () => toggleShow(false);
 
@@ -155,8 +152,6 @@ const Search = ({search, updateStateValue, collabadded, showSearch, getUserTasks
           : null
         }
         <i className="fas fa-user-plus" onClick={() => toggleShow(true)}></i> {/*TODO add in ability to add another user */}
-        <i className="fas fa-plus-circle" onClick={() => toggleNewTask(true)}></i> {/*TODO add in ability to add another task */}
-        <TaskModal isOpen={newTask} setIsOpen={toggleNewTask} getUserTasks={getUserTasks} />
         <i className="far fa-question-circle"></i> {/*TODO add in how it works info */}
       </div>
     </div>

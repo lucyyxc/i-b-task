@@ -14,7 +14,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
     status: '',
     isOpen: false,
     modalTask: {},
-    modalTaskIndex: 0,
+    modalTaskIndex: 0
   });
 
   if (!tasks.length) return null;
@@ -123,11 +123,17 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
         changeModalTask={changeModalTask}
         selected={selected}
         getUserTasks={getUserTasks}
+        tasksLength={filteredTasks.length}
+        isNewTask={state.isNewTask}
       />
+      <div className="new-task" onClick={() => openModal()}>
+        <i class="fas fa-plus"></i>
+        <span className="new-task-label">Add Task</span>
+      </div>
       <div className="checklist-header">
         <div className="spacer"></div>
         <div
-          className={`column task-label ${true ? '' : 'hide'}`}
+          className={`column header task-label ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('tasklabel')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -136,7 +142,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('tasklabel')}
         </div>
         <div
-          className={`column ${true ? '' : 'hide'}`}
+          className={`column header ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('assignee')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -145,7 +151,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('assignee')}
         </div>
         <div
-          className={`column ${true ? '' : 'hide'}`}
+          className={`column header ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('tags')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -154,7 +160,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('tags')}
         </div>
         <div
-          className={`column ${true ? '' : 'hide'}`}
+          className={`column header ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('startdate')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -163,7 +169,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('startdate')}
         </div>
         <div
-          className={`column ${true ? '' : 'hide'}`}
+          className={`column header ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('enddate')}
         > {/*TODO hide with props when filtered out */}
         <span>
@@ -172,7 +178,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('enddate')}
         </div>
         <div
-          className={`column ${true ? '' : 'hide'}`}
+          className={`column header ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('status')}
         > {/*TODO hide with props when filtered out */}
           <span>

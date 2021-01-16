@@ -5,6 +5,7 @@ import './styles/main.scss';
 import App from './components/App';
 import Intro from './components/Intro';
 import Payment from './components/Payment';
+import Confirmation from './components/Confirmation'
 import {
   HashRouter as Router,
   Switch,
@@ -28,6 +29,9 @@ ReactDOM.render(
         </Route>
         <Route exact path="/payment">
           <Payment />
+        </Route>
+        <Route exact path="/confirmation">
+          <Confirmation />
         </Route>
         <Route path="/">
           <Intro />

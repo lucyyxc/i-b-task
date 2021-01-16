@@ -5,10 +5,11 @@ import _isEmpty from 'lodash/isEmpty';
 
 import moment from 'moment';
 import axios from 'axios';
-
 import DatePicker from "react-datepicker";
 
-const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected, getUserTasks}) => {
+import logoBlack from '../styles/assets/logoBlack.png';
+
+const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected, getUserTasks, tasksLength}) => {
   const [state, setState] = React.useState({
     task: {},
     newTask: true,
@@ -18,24 +19,27 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
       enddate: '',
       notes: '',
       archive: false,
-      tasklabel: ''
-    }
+      tasklabel: '',
+      assignee: ''
+    },
+    showTip: false
   })
 
   const defaultChanges = {
     status: '',
-      startdate: '',
-      enddate: '',
-      notes: '',
-      archive: false,
-      tasklabel: ''
+    startdate: '',
+    enddate: '',
+    notes: '',
+    archive: false,
+    tasklabel: '', 
+    assignee: ''
   }
   
   if (_isEmpty(state.task) && !_isEmpty(modalTask)) {
     setState({
       ...state,
       task: modalTask,
-      isNewTask: false
+      newTask: false
     });
   }
 
@@ -43,43 +47,83 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
     setState({
       ...state,
       task:{},
-      changes: defaultChanges
+      changes: defaultChanges,
+      newTask: true,
+      showTip: false
     });
   }
 
   const closeModal = (save) => {
-    if (save) {
+    if (save && !state.newTask) {
       const updates = [];
       if (state.changes.status) updates.push(axios.post('/api/post/statusUpdate', {id: state.task.id, status: state.changes.status}));
       if (state.changes.startdate) updates.push(axios.post('/api/post/startDateUpdate', {id: state.task.id, startdate: state.changes.startdate}));
       if (state.changes.enddate) updates.push(axios.post('/api/post/endDateUpdate', {id: state.task.id, enddate: state.changes.enddate}));
       if (state.changes.notes) updates.push(axios.post('/api/post/notesUpdate', {id: state.task.id, notes: state.changes.notes}));
+      if (state.changes.assignee) updates.push(axios.post('/api/post/assigneeUpdate', {id: state.task.id, assignee: state.changes.assignee}));
       if (state.changes.archive) updates.push(axios.post('/api/post/archiveTask', {id: state.task.id}));
       if (state.changes.tasklabel) updates.push(axios.post('/api/post/nameUpdate', {id: state.task.id, tasklabel: state.changes.tasklabel}));
 
-      if (updates.length){ //TODO UNTESTED
+      if (updates.length){
         axios.all(updates)
         .then(responses => {
           console.log(responses);
           setState({
             ...state,
             task: {},
-            changes: defaultChanges
+            changes: defaultChanges,
+            newTask: true,
+            showTip: false
           })
           setIsOpen(false);
           getUserTasks();
         })
         .catch(err => console.log(err))
       }
+    } else if ( save && state.newTask && (
+      state.changes.status
+      || state.changes.startdate
+      || state.changes.enddate
+      || state.changes.tasklabel
+      )
+    ){
+      const newTaskBody = {
+        status: state.changes.status || 'not-started',
+        startdate: state.changes.startdate || moment(new Date()).format('YYYY-MM-DD'),
+        enddate: state.changes.enddate || moment(new Date()).format('YYYY-MM-DD'),
+        notes: state.changes.notes,
+        tasklabel: state.changes.tasklabel || 'Unnamed Task',
+        id: tasksLength + 25,
+        assignee: state.changes.assignee
+      }
+
+      axios.post('/api/post/createTask', newTaskBody)
+      .then( response => {
+        console.log(response);
+        setState({
+          ...state,
+          task: {},
+          changes: defaultChanges,
+          newTask: true,
+          showTip: false
+        })
+        setIsOpen(false);
+        getUserTasks();
+      })
+      .catch(err => console.log(err));
     } else {
       setState({
         ...state,
         task: {},
-        changes: defaultChanges
+        changes: defaultChanges,
+        newTask: true,
+        showTip: false
       })
       setIsOpen(false);
     }
   }
+
+  console.log(state);
   
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
@@ -116,17 +160,57 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                 })
                 closeModal(true)
               }}>
-                <i className="fas fa-trash-alt" title="Delete Task" ></i>
+                <i className="fas fa-trash-alt" title="Archive Task" ></i>
               </div>
               <div className="absolute icons">
-                Icons {/* TODO Add in bottom right icons*/}
+                {state.task.blog && state.task.blogurl
+                  ? <div className="blog">
+                      <a href={state.task.blogurl} target="_blank" rel="noopener noreferrer">
+                        <img className="logo" src={logoBlack} alt="logo" title={state.task.blog} />
+                      </a>
+                    </div>
+                  : null
+                }
+                {state.task.moneytip
+                  ? <div className="money">
+                      <i class="fas fa-money-bill-wave" onClick={() => {
+                        setState({
+                          ...state,
+                          showTip: !state.showtip
+                        })
+                      }}></i>
+                      <div className={`tip ${state.showTip ? '' : 'hide'}`}>
+                        <div className="neg-tip">Negotiation Tip</div>
+                        <div>{state.task.moneytip}</div>
+                        <div className="back" onClick={() => {
+                          setState({
+                            ...state,
+                            showTip: false
+                          })
+                        }}>Back</div>
+                      </div>
+                    </div>
+                  : null
+                }
+                {state.task.pintrest
+                  ? <div className="pintrest">
+                      <a href={state.task.pintrest} target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-pinterest"></i>
+                      </a>
+                    </div>
+                  : null
+                }
+                {state.task.imagename && state.task.imageurl
+                  ? <div className="image"></div>
+                  : null
+                }
               </div>
             </>
-        }
+          }
         <div className="absolute exit">
           <i className="fas fa-times" title="Exit" onClick={() => closeModal(false)}></i>
         </div>
-        {_isEmpty(modalTask) || selected === 'calendar'
+        {_isEmpty(modalTask) || selected === 'calendar' || state.newTask
           ? null
           : <>
               <div 
@@ -184,6 +268,29 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               </select>
             </div>
             <div className="status-holder">
+              <span>Assignee</span>
+              <input 
+                type="text"
+                placeholder="Enter an assignee"
+                value={state.task.assignee || ''}
+                maxlength="3"
+                className="task-assignee"
+                onChange={(e) => {
+                  setState({
+                    ...state,
+                    task: {
+                      ...state.task,
+                      assignee: e.target.value
+                    },
+                    changes: {
+                      ...state.changes,
+                      assignee: e.target.value
+                    }
+                  })
+                }}
+              />
+            </div>
+            <div className="status-holder">
               <span>Start on</span>
               <DatePicker
                 selected={moment(state.task.startdate).toDate() || new Date()}
@@ -223,6 +330,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                 className="pickers"
               />
             </div>
+
         </div>
         <input
           className="task-name"

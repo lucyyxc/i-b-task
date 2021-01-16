@@ -140,10 +140,17 @@ app.post('/create-checkout-session', async (req, res) => {
     ],
     mode: 'payment',
     allow_promotion_codes: true,
-    success_url: `${process.env.SERVERHOST}/#/checklist`,
+    success_url: `${process.env.SERVERHOST}/#/confirmation?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.SERVERHOST}/#/`,
   });
   res.json({ id: session.id });
+});
+
+app.post('/create-confirmation-session', async (req, res) => {
+  const { body } = req;
+  const session = await stripe.checkout.sessions.retrieve(body.session_id);
+  const customer = await stripe.customers.retrieve(session.customer);
+  res.status(200).send(customer);
 });
 
 app.post('/api/post/newUser', (req, res) => {
@@ -250,6 +257,16 @@ app.post('/api/post/notesUpdate', (req, res) => {
   .catch(err => console.log('db notes update error', err));
 });
 
+app.post('/api/post/assigneeUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  console.log(body);
+  db.update_assignee([userid, body.id, body.assignee.toUpperCase()])
+  .then(response => res.status(200).send('task assignee updated'))
+  .catch(err => console.log('db notes assignee error', err));
+});
+
 app.get('/api/get/userTasks', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
@@ -258,6 +275,27 @@ app.get('/api/get/userTasks', (req, res) => {
     res.status(200).json(tasks);
   })
 })
+
+app.post('/api/post/createTask', (req, res) => {
+  const db = req.app.get('db');
+  const { auth_id: userid, assignee } = req.user;
+  const { body } = req;
+  db.create_task(
+    [
+      body.id,
+      userid,
+      body.tasklabel.toLowerCase().split(' ').join('-'),
+      body.tasklabel,
+      body.assignee || assignee,
+      body.startdate,
+      body.enddate,
+      body.status,
+      body.notes
+    ]
+  )
+  .then(response => res.status(200).send('task created'))
+  .catch(err => console.log('db create task error', err));
+});
 
 const port = 3333;
 

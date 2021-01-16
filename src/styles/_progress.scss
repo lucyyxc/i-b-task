@@ -32,6 +32,14 @@
       .section {
         height: 100%;
         z-index: 2;
+
+        &.complete {
+          margin-right: 1px;
+        }
+
+        &.not-started {
+          margin-left: 1px;
+        }
       }
     }
 
