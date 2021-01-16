@@ -674,7 +674,10 @@ a {
           width: 50px; }
       .Task-modal .modal-container .icons .pintrest {
         padding: 0 5px;
-        font-size: 30px; }
+        font-size: 30px;
+        color: black; }
+        .Task-modal .modal-container .icons .pintrest:visited {
+          color: black; }
         .Task-modal .modal-container .icons .pintrest i {
           cursor: pointer; }
     .Task-modal .modal-container .exit {
