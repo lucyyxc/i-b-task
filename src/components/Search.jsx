@@ -151,8 +151,8 @@ const Search = ({search, updateStateValue, collabadded, showSearch, getUserTasks
             </div>
           : null
         }
-        <i className="fas fa-user-plus" onClick={() => toggleShow(true)}></i> {/*TODO add in ability to add another user */}
-        <i className="far fa-question-circle"></i> {/*TODO add in how it works info */}
+        {/* <i className="fas fa-user-plus" onClick={() => toggleShow(true)}></i> TODO ADD IN NEW USER COMING LATER */}
+        {/* <i className="far fa-question-circle"></i> TODO TODO HOW TO COMING LATER */}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import moment from 'moment';
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 
-import logoBlack from '../styles/assets/logoBlack.png';
+import pinkLogo from '../styles/assets/pinkLogo.png';
 
 const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected, getUserTasks, tasksLength}) => {
   const [state, setState] = React.useState({
@@ -150,7 +150,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                   }}
                 ></i>
               </div>
-              <div className="absolute delete"  title="Delete" onClick={() => {
+              <div className="absolute delete" onClick={() => {
                 setState({
                   ...state,
                   changes: {
@@ -160,20 +160,20 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                 })
                 closeModal(true)
               }}>
-                <i className="fas fa-trash-alt" title="Archive Task" ></i>
+                <i className="fas fa-trash-alt" title="Archive" ></i>
               </div>
               <div className="absolute icons">
-                {state.task.blog && state.task.blogurl
+                {state.task.blogurl
                   ? <div className="blog">
                       <a href={state.task.blogurl} target="_blank" rel="noopener noreferrer">
-                        <img className="logo" src={logoBlack} alt="logo" title={state.task.blog} />
+                        <img className="logo" src={pinkLogo} alt="logo" title="Blog Post" />
                       </a>
                     </div>
                   : null
                 }
                 {state.task.moneytip
                   ? <div className="money">
-                      <i class="fas fa-money-bill-wave" onClick={() => {
+                      <i class="fas fa-comment-dollar" title="Negotiation Tip" onClick={() => {
                         setState({
                           ...state,
                           showTip: !state.showtip
@@ -195,7 +195,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                 {state.task.pintrest
                   ? <div className="pintrest">
                       <a href={state.task.pintrest} target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-pinterest"></i>
+                        <i class="fab fa-pinterest" title="Pintrest Board" ></i>
                       </a>
                     </div>
                   : null
@@ -208,7 +208,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             </>
           }
         <div className="absolute exit">
-          <i className="fas fa-times" title="Exit" onClick={() => closeModal(false)}></i>
+          <i className="fas fa-times" title="Close" onClick={() => closeModal(false)}></i>
         </div>
         {_isEmpty(modalTask) || selected === 'calendar' || state.newTask
           ? null
@@ -356,7 +356,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             Advice from The Independent Bride
           </span>
           <span className="the-advice">
-            {_get(state.task, 'advice', 'Your task, your rules!')}			
+            {_get(state.task, 'advice', 'Your task, your rules! Add any notes or links in the notes section below.')}			
           </span>
         </div>
         <div className="notes">

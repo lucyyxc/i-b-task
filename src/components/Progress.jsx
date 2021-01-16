@@ -113,13 +113,13 @@ const Progress = ({tasks}) => {
       </div>
       <div className="circle-container"> {/*TODO make this mobile friendly */}
         <div className='flex'>
-          <Circle text={'Tasks past due.'} num={state.pastDue} />
-          <Circle text={'Tasks due today.'} num={state.dueToday} big={'big'}/>
-          <Circle text={'Tasks in progress'} num={state.inProgress} color={'in-progress'} />
+          <Circle text={'Tasks Past Due'} num={state.pastDue} color={'tasks-past-due'} />
+          <Circle text={'Tasks Due Today'} num={state.dueToday} big={'big'} />
+          <Circle text={'Tasks In Progress'} num={state.inProgress} color={'in-progress'} />
         </div>
         <div className='flex'>
-          <Circle text={'Total tasks complete'} num={state.totalCompleted} color={'complete'} />
-          <Circle text={'Total tasks to go'} num={state.totalToGo} />
+          <Circle text={'Total Tasks Complete'} num={state.totalCompleted} color={'complete'} />
+          <Circle text={'Tasks Not Started'} num={state.totalToGo - state.inProgress} color={'not-started'}/>
         </div>
         
       </div>

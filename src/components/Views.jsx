@@ -21,16 +21,16 @@ const Views = ({selected}) => {
       className="button"
       id="progress"
       href="/#/progress"
-      >
-        Progress
-      </a>
-    <a
+    >
+      Progress
+    </a>
+    {/* <a
       className="button"
       id="files"
       href="/#/files"
     >
       Files
-    </a>
+    </a> */}
   </div>
 )
   }

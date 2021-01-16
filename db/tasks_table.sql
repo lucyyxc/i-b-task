@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS tasks(
-    id INT PRIMARY KEY,
+    id INT,
     userId TEXT,
     taskName VARCHAR(180),
     taskLabel VARCHAR(180),

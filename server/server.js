@@ -131,7 +131,7 @@ app.post('/create-checkout-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: 'The Independent Bride Checklist',
-            images: ['https://i.imgur.com/EHyR2nP.png'],
+            images: ['https://flowerlogo.s3.us-east-2.amazonaws.com/TIB-magnolia-circle-RGB-72dpi-nude.png'],
           },
           unit_amount: 9900,
         },
@@ -140,7 +140,7 @@ app.post('/create-checkout-session', async (req, res) => {
     ],
     mode: 'payment',
     allow_promotion_codes: true,
-    success_url: `${process.env.SERVERHOST}/#/confirmation?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${process.env.SERVERHOST}/#/checklist?success=true`,
     cancel_url: `${process.env.SERVERHOST}/#/`,
   });
   res.json({ id: session.id });
@@ -192,6 +192,15 @@ app.post('/api/post/statusUpdate', (req, res) => {
   db.update_task_status([userid, body.id, body.status])
   .then(response => res.status(200).send('updated task status'))
   .catch(err => console.log('db update task status error', err));
+});
+
+app.post('/api/post/subUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_sub([userid, body.id])
+  .then(response => res.status(200).send('updated sub status'))
+  .catch(err => console.log('db update sub error', err));
 });
 
 app.post('/api/post/startDateUpdate', (req, res) => {
@@ -306,5 +315,6 @@ massive(process.env.CONNECTION_STRING)
 })
 .catch(err => console.log(err))
 
+//TODO ALTERNATE SO WE CAN ADD TASKS
 const taskStarts = [365,364,363,362,361,361,360,359,358,360,357,333,242,328,350];
 const taskEnds = [362,357,359,338,361,358,337,352,358,327,305,331,210,321,326];

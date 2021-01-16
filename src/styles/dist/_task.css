@@ -1,0 +1,81 @@
+.Task {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  position: relative;
+}
+.Task .column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Task .column .details {
+  font-size: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: #FC6959;
+  margin-left: 15px;
+}
+.Task .column .details .label {
+  margin-right: 5px;
+  color: #FC6959;
+  text-decoration: underline;
+  font-size: 10px;
+}
+.Task .column .details:visited {
+  color: #FC6959;
+}
+.Task .column .details:hover {
+  cursor: pointer;
+}
+.Task .column.assignee {
+  width: 50px;
+}
+.Task .column.date {
+  width: 100px;
+}
+.Task .column.task-name {
+  flex-grow: 4;
+  justify-content: flex-start;
+}
+.Task .column.task-name .label {
+  font-size: 16px;
+}
+.Task .column.task-name .details .label {
+  font-size: 10px;
+}
+.Task .column:last-of-type {
+  border-right: 0;
+}
+.Task .label {
+  padding: 5px 0;
+}
+.Task .complete-button {
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  transition: all 0.15s ease;
+  margin-right: 10px;
+}
+.Task .complete-button:hover {
+  cursor: pointer;
+  border: 1px solid #70825A;
+  transition: all 0.15s ease;
+}
+.Task .complete-button.completed {
+  color: #70825A;
+  border: 1px solid #70825A;
+}
+.Task .complete-button.completed i {
+  transform: translate(3px, 4px);
+}
+.Task .complete-button.completed:hover {
+  cursor: pointer;
+  color: #9C9999;
+  border: 1px solid #9C9999;
+}

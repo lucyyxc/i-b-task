@@ -22,8 +22,6 @@
         cursor: pointer;
       }
     }
-
-
   }
 
   .overlay {
@@ -40,15 +38,15 @@
   }
 
   .new-task {
-    align-self: flex-start;
-    background-color: $pink;
+    align-self: flex-end;
+    background-color:#FC6959;
     padding: 10px;
     border-radius: 5px;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 
     i {
       margin-right: 10px;

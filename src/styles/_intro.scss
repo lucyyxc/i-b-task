@@ -29,6 +29,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-family: $primary;
 
         .input-label {
           font-size: 18px;
@@ -122,6 +123,7 @@
         font-size: 16px;
         transition: all .15s ease;
         padding: 3px 3px 3px 0;
+        font-family: $primary;
         
         &:focus {
           outline: none;
@@ -155,8 +157,9 @@
         font-weight: 600;
         margin-bottom: 5px;
       }
-
+      
       .picker {
+        font-family: $primary;
         border: none;
         border-bottom: 1px black solid;
         width: 100%;
@@ -230,7 +233,7 @@
     .submit {
       height: 60px;
       width: 200px;
-      background-color: $olive;
+      background-color: #70825A;
       color: white;
       display: flex;
       justify-content: center;

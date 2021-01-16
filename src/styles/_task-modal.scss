@@ -40,13 +40,13 @@
       top: 0;
       left: 0;
       padding: 5px;
-      font-size: 28px;
+      font-size: 40px;
 
       i {
 
         transition: color .15s ease;
         &:hover {
-          color: $olive;
+          color: #70825A;
           transition: color .15s ease;
           cursor: pointer;
         }
@@ -55,13 +55,13 @@
 
     .icons {
       width: 300px;
-      height:60px;
+      height: 60px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
 
       .money {
-        font-size: 30px;
+        font-size: 40px;
         padding: 0 5px;
         i {
           cursor: pointer;
@@ -94,7 +94,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: $pink;
+            background-color:#FC6959;
             color: white;
             font-family: $secondary;
             font-size: 18px;
@@ -112,18 +112,26 @@
         padding: 0 5px;
 
         .logo {
-          height: 50px;
-          width: 50px;
+          height: 40px;
+          width: 40px;
         }
       }
 
       .pintrest {
         padding: 0 5px;
-        font-size: 30px;
+        font-size: 40px;
         color: black;
 
+        a {
+          color: #E60023;
+          
+          &:visited {
+            color: #E60023;
+          }
+        }
+
         &:visited {
-          color: black;
+          color: #E60023;
         }
 
         i {
@@ -136,7 +144,7 @@
       top: 0;
       right: 0;
       padding: 5px;
-      font-size: 18px;
+      font-size: 20px;
       transition: color .15s ease;
 
       &:hover {
@@ -150,11 +158,11 @@
       bottom: 0;
       left: 0;
       padding: 5px;
-      font-size: 24px;
+      font-size: 20px;
       transition: color .15s ease;
 
       &:hover {
-        color: red;
+        color:#FC6959;
         transition: color .15s ease;
         cursor: pointer;
       }
@@ -243,7 +251,7 @@
       .task-name {
         text-align: center;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 18px;
         margin-bottom: 20px;
         border: none;
         outline: none;
@@ -258,10 +266,13 @@
         flex-direction: column;
         margin-bottom: 20px;
         box-sizing: border-box;
+        font-size: 14px;
+        overflow: scroll;
+        //TODO add a scroll bar to the advice
+        height: 150px;
 
         .title {
           font-weight: bold;
-          font-style: italic;
           margin-bottom: 10px;
         }
       }
@@ -269,6 +280,7 @@
       .notes {
         display: flex;
         flex-direction: column;
+        //TODO add a scroll bar to the notes
         width: 100%;
 
         .title {
@@ -295,7 +307,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: $olive;
+          background-color: #70825A;
           color: white;
           font-family: $secondary;
           font-size: 20px;

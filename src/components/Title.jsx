@@ -3,14 +3,9 @@ import moment from 'moment';
 
 import ProfileMenu from './ProfileMenu';
 
-import stars from '../styles/assets/stars.png';
-
 const LoggedInTitle = ({firstName, daysTill, toggleMenu, initials, show, user}) => (
   <>
     <div className="title-text">
-      <div className="icon">
-        <img src={stars} alt="Stars" />
-      </div>
       <span>
         {`Hi ${firstName}, ${daysTill} days until your Big Day!`}
       </span>

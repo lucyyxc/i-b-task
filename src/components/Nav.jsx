@@ -23,25 +23,22 @@ const Nav = ({selected}) => (
         />
       </div>
       <div className="links-container">
-        <a href="/" className="link">
+        <a href="https://theindependentbride.com/home" className="link">
+          Home
+        </a>
+        <a href="https://theindependentbride.com/the-checklist" className="link">
+          The Checklist
+        </a>
+        <a href="https://theindependentbride.com/blogs" className="link">
+          Blogs
+        </a>
+        <a href="https://theindependentbride.com/the-bride-tribe-community" className="link">
+          The Bride Tribe Community
+        </a>
+        <a href="https://theindependentbride.com/our-story" className="link">
           Our Story
         </a>
-        <a href="/" className="link">
-          Membership
-        </a>
-        <a href="/" className="link">
-          Checklist
-        </a>
-        <a href="/" className="link">
-          Resources
-        </a>
-        <a href="/" className="link">
-          Blog
-        </a>
-        <a href="/" className="link">
-          Community
-        </a>
-        <a href="/" className="link">
+        <a href="https://theindependentbride.com/contact-us" className="link">
           Contact Us
         </a>
       </div>

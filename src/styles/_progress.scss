@@ -7,15 +7,14 @@
   align-items: center;
 
   .title {
-    font-size: 20px;
+    font-size: 28px;
+    margin-top: 25px;
   }
 
   .progress-bar-container {
     margin: 40px 0;
-    width: 600px;
+    width: 700px;
     height: 80px;
-    border-left: 1px black solid;
-    border-right: 1px black solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,13 +31,14 @@
       .section {
         height: 100%;
         z-index: 2;
+        border-radius: 5px;
 
         &.complete {
-          margin-right: 1px;
+          margin-right: 2px;
         }
 
         &.not-started {
-          margin-left: 1px;
+          margin-left: 2px;
         }
       }
     }
@@ -111,7 +111,7 @@
       .the-circle {
         height: 125px;
         width: 125px;
-        background-color: black;
+        background-color: #42413D;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -128,28 +128,32 @@
       }
 
       .complete {
-        background-color: $olive;
+        background-color: #70825A;
       }
     
       .in-progress {
-        background-color: $peach;
+        background-color: #F6DDC8;
       }
     
       .not-started {
-        background-color: $pink;
+        background-color:#FC6959;
       }
+      
+        .tasks-past-due {
+          background-color: #EFC30A;
+        }
     }
   }
 
   .complete {
-    background-color: $olive;
+    background-color: #70825A;
   }
 
   .in-progress {
-    background-color: $peach;
+    background-color: #F6DDC8;
   }
 
   .not-started {
-    background-color: $pink;
+    background-color: #FC6959;
   }
 }

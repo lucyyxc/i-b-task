@@ -28,6 +28,11 @@ const App = ({selected}) => {
     tasks: [],
     user: {},
   });
+
+  // if(!_isEmpty(state.user) && !state.user.sub) {
+  //   const isNewSub = window.location.href.split("?")[1] === 'success=true';
+
+  // }
   
 
   const updateStateValue = (key, value) => {
@@ -51,7 +56,6 @@ const App = ({selected}) => {
         dateFilter: filter,
       });
     }
-    
   }
   
   const getUserTasks = () => {

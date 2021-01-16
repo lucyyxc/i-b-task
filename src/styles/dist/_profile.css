@@ -1,0 +1,173 @@
+.Profile {
+  min-height: 150px;
+  min-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20px;
+}
+.Profile .control-holder {
+  width: 800px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.Profile .control-holder .control {
+  top: 0;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.Profile .title {
+  font-size: 55px;
+  padding: 30px 0;
+  position: relative;
+}
+.Profile .title .cancel-confirm {
+  position: absolute;
+  z-index: 5;
+  height: 100px;
+  width: 500px;
+  box-shadow: 1px 2px 4px #888888;
+  background-color: white;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 3px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.Profile .title .cancel-confirm.show {
+  display: flex;
+}
+.Profile .title .cancel-confirm .button-holder {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Profile .title .cancel-confirm .button-holder .button {
+  color: white;
+  background-color: #70825A;
+  cursor: pointer;
+  width: 160px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.Profile .blurb {
+  text-align: center;
+  white-space: normal;
+  max-width: 450px;
+  padding-bottom: 30px;
+}
+.Profile .input-holder {
+  width: 600px;
+}
+.Profile .input-holder .edit-mode {
+  font-size: 10px;
+  color: white;
+  padding-left: 300px;
+}
+.Profile .input-holder .edit-mode.show {
+  color: #70825A;
+}
+.Profile .input-holder .input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5px 0;
+  position: relative;
+}
+.Profile .input-holder .input-container .label-container {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Profile .input-holder .input-container .label-container .input-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.Profile .input-holder .input-container .label-container .warning {
+  color: red;
+  font-size: 12px;
+  display: none;
+}
+.Profile .input-holder .input-container .label-container .warning.show {
+  display: block;
+}
+.Profile .input-holder .input-container .input {
+  border: none;
+  border-bottom: 1px black solid;
+  background-color: none;
+  width: 50%;
+  font-size: 16px;
+  transition: all 0.15s ease;
+  padding: 3px;
+}
+.Profile .input-holder .input-container .input:focus {
+  outline: none;
+  background-color: whitesmoke;
+  transition: all 0.15s ease;
+  border-radius: 3px;
+}
+.Profile .input-holder .input-container .visable-text {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+}
+.Profile .input-holder .input-container .visable-text:hover {
+  cursor: pointer;
+}
+.Profile .input-holder .date-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5px 0;
+  position: relative;
+}
+.Profile .input-holder .date-container .date-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.Profile .input-holder .date-container .picker {
+  border: none;
+  border-bottom: 1px black solid;
+  width: 50%;
+  font-size: 16px;
+  padding: 3px;
+  transition: all 0.15s ease;
+}
+.Profile .input-holder .date-container .picker:focus {
+  outline: none;
+}
+.Profile .input-holder .date-container .react-datepicker-wrapper {
+  width: 100%;
+}
+.Profile .submit {
+  height: 60px;
+  width: 200px;
+  background-color: #70825A;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  margin: 40px auto;
+  cursor: pointer;
+}
+.Profile .submit span {
+  font-size: 24px;
+}

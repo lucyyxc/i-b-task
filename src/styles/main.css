@@ -4,6 +4,7 @@
 */
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@600");
 @import url("https://fonts.googleapis.com/css2?family=Asap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -96,7 +97,7 @@ a {
       height: 25px; }
       .Nav .nav-content-container .links-container .link {
         color: black;
-        font-family: "Hind", sans-serif;
+        font-family: "Roboto", sans-serif;
         letter-spacing: 2px;
         font-size: 15px;
         text-transform: uppercase;
@@ -133,7 +134,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-  font-family: "Asap", sans-serif; }
+  font-family: "Roboto", sans-serif; }
   .Title .title-content {
     position: relative;
     height: 100%;
@@ -148,7 +149,8 @@ a {
       justify-content: flex-end;
       margin-top: 60px;
       font-size: 70px;
-      text-align: center; }
+      text-align: center;
+      margin-bottom: 20px; }
       .Title .title-content .title-text.intro {
         flex-direction: column;
         justify-content: center;
@@ -268,7 +270,7 @@ a {
   height: 30px;
   display: flex;
   justify-content: center;
-  font-family: "Asap", sans-serif; }
+  font-family: "Roboto", sans-serif; }
   .Search .CollabMenu {
     z-index: 2;
     position: fixed;
@@ -411,7 +413,7 @@ a {
           outline: none; }
 
 .Views {
-  font-family: "Asap", sans-serif; }
+  font-family: "Roboto", sans-serif; }
   .Views a {
     background-color: white;
     border: none;
@@ -445,7 +447,7 @@ a {
     color: white; }
 
 .Filters {
-  font-family: "Asap", sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex; }
   .Filters select {
     height: 30px;
@@ -459,7 +461,7 @@ a {
 .Checklist {
   margin-top: 10px;
   width: 92%;
-  font-family: "Asap", sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -485,7 +487,7 @@ a {
     position: fixed;
     backdrop-filter: blur(5px); }
   .Checklist .new-task {
-    align-self: flex-start;
+    align-self: flex-end;
     background-color: #FC6959;
     padding: 10px;
     border-radius: 5px;
@@ -493,7 +495,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px; }
+    margin-bottom: 25px; }
     .Checklist .new-task i {
       margin-right: 10px; }
     .Checklist .new-task:hover {
@@ -564,22 +566,22 @@ a {
     width: 20px;
     background-color: white;
     border-radius: 50%;
-    border: 2px solid black;
+    border: 1px solid black;
     transition: all .15s ease;
     margin-right: 10px; }
     .Task .complete-button:hover {
       cursor: pointer;
-      border: 2px solid #70825A;
+      border: 1px solid #70825A;
       transition: all .15s ease; }
     .Task .complete-button.completed {
       color: #70825A;
-      border: 2px solid #70825A; }
+      border: 1px solid #70825A; }
       .Task .complete-button.completed i {
         transform: translate(3px, 4px); }
       .Task .complete-button.completed:hover {
         cursor: pointer;
         color: #9C9999;
-        border: 2px solid #9C9999; }
+        border: 1px solid #9C9999; }
 
 .Task-modal {
   z-index: 2;
@@ -617,7 +619,7 @@ a {
       top: 0;
       left: 0;
       padding: 5px;
-      font-size: 28px; }
+      font-size: 40px; }
       .Task-modal .modal-container .check i {
         transition: color .15s ease; }
         .Task-modal .modal-container .check i:hover {
@@ -631,7 +633,7 @@ a {
       justify-content: flex-end;
       align-items: center; }
       .Task-modal .modal-container .icons .money {
-        font-size: 30px;
+        font-size: 40px;
         padding: 0 5px; }
         .Task-modal .modal-container .icons .money i {
           cursor: pointer; }
@@ -661,7 +663,7 @@ a {
             align-items: center;
             background-color: #FC6959;
             color: white;
-            font-family: "Asap", sans-serif;
+            font-family: "Roboto", sans-serif;
             font-size: 18px;
             border-radius: 3px;
             cursor: pointer; }
@@ -670,21 +672,25 @@ a {
       .Task-modal .modal-container .icons .blog {
         padding: 0 5px; }
         .Task-modal .modal-container .icons .blog .logo {
-          height: 50px;
-          width: 50px; }
+          height: 40px;
+          width: 40px; }
       .Task-modal .modal-container .icons .pintrest {
         padding: 0 5px;
-        font-size: 30px;
+        font-size: 40px;
         color: black; }
+        .Task-modal .modal-container .icons .pintrest a {
+          color: #E60023; }
+          .Task-modal .modal-container .icons .pintrest a:visited {
+            color: #E60023; }
         .Task-modal .modal-container .icons .pintrest:visited {
-          color: black; }
+          color: #E60023; }
         .Task-modal .modal-container .icons .pintrest i {
           cursor: pointer; }
     .Task-modal .modal-container .exit {
       top: 0;
       right: 0;
       padding: 5px;
-      font-size: 18px;
+      font-size: 20px;
       transition: color .15s ease; }
       .Task-modal .modal-container .exit:hover {
         color: #9C9999;
@@ -694,10 +700,10 @@ a {
       bottom: 0;
       left: 0;
       padding: 5px;
-      font-size: 24px;
+      font-size: 20px;
       transition: color .15s ease; }
       .Task-modal .modal-container .delete:hover {
-        color: red;
+        color: #FC6959;
         transition: color .15s ease;
         cursor: pointer; }
     .Task-modal .modal-container .icons {
@@ -759,7 +765,7 @@ a {
       .Task-modal .modal-container .modal-content .task-name {
         text-align: center;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 18px;
         margin-bottom: 20px;
         border: none;
         outline: none;
@@ -771,10 +777,12 @@ a {
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
-        box-sizing: border-box; }
+        box-sizing: border-box;
+        font-size: 14px;
+        overflow: scroll;
+        height: 150px; }
         .Task-modal .modal-container .modal-content .advice .title {
           font-weight: bold;
-          font-style: italic;
           margin-bottom: 10px; }
       .Task-modal .modal-container .modal-content .notes {
         display: flex;
@@ -785,7 +793,7 @@ a {
         .Task-modal .modal-container .modal-content .notes textarea {
           border: .5px solid black;
           border-radius: 3px;
-          font-family: "Asap", sans-serif; }
+          font-family: "Roboto", sans-serif; }
       .Task-modal .modal-container .modal-content .save-button-holder {
         width: 100%;
         display: flex;
@@ -800,7 +808,7 @@ a {
           align-items: center;
           background-color: #70825A;
           color: white;
-          font-family: "Asap", sans-serif;
+          font-family: "Roboto", sans-serif;
           font-size: 20px;
           border-radius: 3px;
           cursor: pointer; }
@@ -808,18 +816,17 @@ a {
 .Progress {
   margin-top: 20px;
   width: 92%;
-  font-family: "Asap", sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center; }
   .Progress .title {
-    font-size: 20px; }
+    font-size: 28px;
+    margin-top: 25px; }
   .Progress .progress-bar-container {
     margin: 40px 0;
-    width: 600px;
+    width: 700px;
     height: 80px;
-    border-left: 1px black solid;
-    border-right: 1px black solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -833,11 +840,12 @@ a {
       justify-content: space-between; }
       .Progress .progress-bar-container .progress-bar .section {
         height: 100%;
-        z-index: 2; }
+        z-index: 2;
+        border-radius: 5px; }
         .Progress .progress-bar-container .progress-bar .section.complete {
-          margin-right: 1px; }
+          margin-right: 2px; }
         .Progress .progress-bar-container .progress-bar .section.not-started {
-          margin-left: 1px; }
+          margin-left: 2px; }
     .Progress .progress-bar-container .rule {
       height: 100%;
       width: 1px;
@@ -885,7 +893,7 @@ a {
       .Progress .circle-container .circle .the-circle {
         height: 125px;
         width: 125px;
-        background-color: black;
+        background-color: #42413D;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -903,6 +911,8 @@ a {
         background-color: #F6DDC8; }
       .Progress .circle-container .circle .not-started {
         background-color: #FC6959; }
+      .Progress .circle-container .circle .tasks-past-due {
+        background-color: #EFC30A; }
   .Progress .complete {
     background-color: #70825A; }
   .Progress .in-progress {
@@ -923,7 +933,7 @@ a {
     width: 92%;
     max-width: 600px;
     margin-top: 60px;
-    font-family: "Asap", sans-serif;
+    font-family: "Roboto", sans-serif;
     position: relative;
     box-sizing: border-box; }
     .Intro .signup .input-container {
@@ -937,7 +947,8 @@ a {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        align-items: center; }
+        align-items: center;
+        font-family: "Roboto", sans-serif; }
         .Intro .signup .input-container .label-container .input-label {
           font-size: 18px;
           font-weight: 600;
@@ -1003,7 +1014,8 @@ a {
         width: 100%;
         font-size: 16px;
         transition: all .15s ease;
-        padding: 3px 3px 3px 0; }
+        padding: 3px 3px 3px 0;
+        font-family: "Roboto", sans-serif; }
         .Intro .signup .input-container .select:focus {
           outline: none;
           background-color: whitesmoke;
@@ -1027,6 +1039,7 @@ a {
         font-weight: 600;
         margin-bottom: 5px; }
       .Intro .signup .date-container .picker {
+        font-family: "Roboto", sans-serif;
         border: none;
         border-bottom: 1px black solid;
         width: 100%;
@@ -1097,7 +1110,7 @@ a {
     justify-content: center;
     align-items: center;
     margin-top: 0px;
-    font-family: "Asap", sans-serif; }
+    font-family: "Roboto", sans-serif; }
     .Intro .title-text p {
       font-size: 22px;
       width: 550px;
@@ -1253,7 +1266,7 @@ a {
 .Calendar {
   margin: 20px;
   width: 80%;
-  font-family: "Asap", sans-serif; }
+  font-family: "Roboto", sans-serif; }
   .Calendar .overlay {
     position: fixed;
     opacity: 0.5;
@@ -1289,4 +1302,4 @@ a {
   .Payment form {
     width: 450px; }
     .Payment form .card-label {
-      font-family: "Hind", sans-serif; }
+      font-family: "Roboto", sans-serif; }

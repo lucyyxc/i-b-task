@@ -56,7 +56,7 @@
         
         .button {
           color: white;
-          background-color: $olive;
+          background-color:  #70825A;
           cursor: pointer;
           width: 160px;
           height: 30px;
@@ -85,7 +85,7 @@
       padding-left: 300px;
 
       &.show {
-        color: $olive;
+        color: #70825A;
       }
     }
 
@@ -184,7 +184,7 @@
   .submit {
     height: 60px;
     width: 200px;
-    background-color: $olive;
+    background-color: #70825A;
     color: white;
     display: flex;
     justify-content: center;

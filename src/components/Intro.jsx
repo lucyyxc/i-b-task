@@ -29,6 +29,7 @@ const TimeDropDown = ({updateStateValue, label, item, value}) => (
         value={value}
         onChange={e => updateStateValue(item, e.target.value)}
       >
+        <option value="" disabled selected hidden>Choose your wedding planning timeline.</option>
         <option value="6M">Six Months</option>
         <option value="1Y">One Year</option>
         <option value="2Y">Two Years</option>
@@ -112,7 +113,7 @@ const Intro = ({updateView}) => {
     valid: false,
     match: false,
     error: false,
-    timeUntil: '1Y',
+    timeUntil: '',
     emailAgree: true
   });
   const [redirect, setRedirect] = React.useState(false);
@@ -204,6 +205,7 @@ const Intro = ({updateView}) => {
       state.birthday &&
       validatePassword(state.password) &&
       state.password &&
+      state.timeUntil &&
       state.match
     ) {
       console.log('posting');
@@ -265,13 +267,13 @@ const Intro = ({updateView}) => {
       }} />
       <DateSelect {...{
         value: state.weddingdate, 
-        placeholder: 'Just give us your best guess. You can change this later when it\'s finalized!', 
+        placeholder: 'Give us your best guess, this can be updated later.', 
         item: 'weddingdate', 
         label: 'Wedding Date*', 
         updateStateValue
       }} />
       <TimeDropDown {...{
-        label: 'Time Until Wedding*',
+        label: 'Timeline*',
         item: 'timeUntil',
         value: state.timeUntil,
         updateStateValue
