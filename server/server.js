@@ -15,7 +15,6 @@ var cors = require('cors')
 dotenv.config();
 
 const stripe = require('stripe')(process.env.STRIPE_KEY);
-console.log(process.env.STRIPE_KEY);
 
 var strategy = new Auth0Strategy(
   {
@@ -25,11 +24,8 @@ var strategy = new Auth0Strategy(
     callbackURL: process.env.AUTH0_CALLBACK_URL || '/callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
-    // accessToken is the token to call Auth0 API (not needed in the most cases)
-    // extraParams.id_token has the JSON Web Token
-    // profile has all the information from the user
-    console.log('inside auth strat', profile);
-    console.log('inside auth strat', profile.emails[0].value);
+    // console.log('inside auth strat', profile);
+    // console.log('inside auth strat', profile.emails[0].value);
     const db = app.get('db');
     const email = profile.emails[0].value
     db.get_user_by_email([email])
@@ -91,8 +87,13 @@ app.get('/callback', function (req, res, next) {
     if (err) { return next(err); }
     if (!user) { return res.redirect('/auth'); }
     req.logIn(user, function (err) {
+      console.log('user sub', user.sub);
       if (err) { return next(err); }
-      res.redirect('/#/payment');
+      if (user && user.sub) {
+        res.redirect('/#/checklist');
+      } else {
+        res.redirect('/#/payment');
+      }
     });
   })(req, res, next);
 });
@@ -143,7 +144,7 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: `${process.env.SERVERHOST}/#/checklist?success=true`,
     cancel_url: `${process.env.SERVERHOST}/#/`,
   });
-  res.json({ id: session.id });
+  res.json({ id: session.id, user: req.user.auth_id });
 });
 
 app.post('/create-confirmation-session', async (req, res) => {
@@ -198,7 +199,7 @@ app.post('/api/post/subUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
   const { body } = req;
-  db.update_sub([userid, body.id])
+  db.update_sub([userid, body.sub])
   .then(response => res.status(200).send('updated sub status'))
   .catch(err => console.log('db update sub error', err));
 });
@@ -257,6 +258,16 @@ app.post('/api/post/unarchiveTask', (req, res) => {
   .catch(err => console.log('db unarchive task error', err));
 });
 
+app.post('/api/post/subUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  console.log('BODY DOT SUB', body.sub);
+  db.update_sub([userid, body.sub])
+  .then(response => res.status(200).send('user sub updated'))
+  .catch(err => console.log('db user sub update error', err))
+})
+
 app.post('/api/post/notesUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
@@ -274,6 +285,16 @@ app.post('/api/post/assigneeUpdate', (req, res) => {
   db.update_assignee([userid, body.id, body.assignee.toUpperCase()])
   .then(response => res.status(200).send('task assignee updated'))
   .catch(err => console.log('db notes assignee error', err));
+});
+
+app.post('/api/post/tagUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  console.log(body);
+  db.update_tag([userid, body.id, body.tags])
+  .then(response => res.status(200).send('task tag updated'))
+  .catch(err => console.log('db notes tag error', err));
 });
 
 app.get('/api/get/userTasks', (req, res) => {
@@ -296,6 +317,7 @@ app.post('/api/post/createTask', (req, res) => {
       body.tasklabel.toLowerCase().split(' ').join('-'),
       body.tasklabel,
       body.assignee || assignee,
+      body.tags,
       body.startdate,
       body.enddate,
       body.status,

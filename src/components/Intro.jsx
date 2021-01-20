@@ -255,7 +255,7 @@ const Intro = ({updateView}) => {
 
  return (
   <div className="Intro" >
-    <Nav />
+    <Nav selected={'intro'}/>
     <Footer />
     {IntroTitle()}
     <div className="signup">

@@ -1,0 +1,329 @@
+.Task-modal {
+  z-index: 2;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px gray solid;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+  font-size: 12px;
+  width: 700px;
+}
+.Task-modal.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+.Task-modal .modal-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.Task-modal .modal-container .absolute {
+  position: absolute;
+}
+.Task-modal .modal-container .check {
+  top: 0;
+  left: 0;
+  padding: 5px;
+  font-size: 40px;
+}
+.Task-modal .modal-container .check i {
+  transition: color 0.15s ease;
+}
+.Task-modal .modal-container .check i:hover {
+  color: #70825A;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+.Task-modal .modal-container .icons {
+  width: 300px;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.Task-modal .modal-container .icons .money {
+  font-size: 40px;
+  padding: 0 5px;
+}
+.Task-modal .modal-container .icons .money i {
+  cursor: pointer;
+}
+.Task-modal .modal-container .icons .money .tip {
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  display: block;
+  max-width: 550px;
+  z-index: 3;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px gray solid;
+}
+.Task-modal .modal-container .icons .money .tip .neg-tip {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.Task-modal .modal-container .icons .money .tip .back {
+  margin: 20px auto 0;
+  height: 30px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FC6959;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.Task-modal .modal-container .icons .money .tip.hide {
+  display: none;
+}
+.Task-modal .modal-container .icons .blog {
+  padding: 0 5px;
+}
+.Task-modal .modal-container .icons .blog .logo {
+  height: 40px;
+  width: 40px;
+}
+.Task-modal .modal-container .icons .pintrest {
+  padding: 0 5px;
+  font-size: 40px;
+  color: black;
+}
+.Task-modal .modal-container .icons .pintrest a {
+  color: #E60023;
+}
+.Task-modal .modal-container .icons .pintrest a:visited {
+  color: #E60023;
+}
+.Task-modal .modal-container .icons .pintrest:visited {
+  color: #E60023;
+}
+.Task-modal .modal-container .icons .pintrest i {
+  cursor: pointer;
+}
+.Task-modal .modal-container .exit {
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 20px;
+  transition: color 0.15s ease;
+}
+.Task-modal .modal-container .exit:hover {
+  color: #9C9999;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+.Task-modal .modal-container .delete {
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  font-size: 20px;
+  transition: color 0.15s ease;
+}
+.Task-modal .modal-container .delete .confirm {
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  display: block;
+  max-width: 550px;
+  z-index: 3;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px gray solid;
+}
+.Task-modal .modal-container .delete .confirm .confirm-text {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.Task-modal .modal-container .delete .confirm .button-holder {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.Task-modal .modal-container .delete .confirm .button-holder .button {
+  margin: 20px auto 0;
+  height: 30px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FC6959;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.Task-modal .modal-container .delete .confirm .button-holder .cancel {
+  background-color: white;
+  color: black;
+  border: 1px black solid;
+}
+.Task-modal .modal-container .delete .confirm.hide {
+  display: none;
+}
+.Task-modal .modal-container .delete i:hover {
+  color: #FC6959;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+.Task-modal .modal-container .icons {
+  bottom: 0;
+  right: 0;
+}
+.Task-modal .modal-container .arrow {
+  top: 50%;
+  font-size: 30px;
+  transform: scale(1, 2);
+  color: gray;
+  box-sizing: border-box;
+  transition: color 0.15s ease;
+  padding: 0 10px;
+}
+.Task-modal .modal-container .arrow:hover {
+  color: black;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+.Task-modal .modal-container .next {
+  right: 10px;
+}
+.Task-modal .modal-container .previous {
+  left: 10px;
+}
+.Task-modal .modal-container .modal-content {
+  width: 70%;
+  height: 100%;
+  padding: 30px 0;
+}
+.Task-modal .modal-container .modal-content .status-box {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  width: 50%;
+  margin-bottom: 15px;
+  font-family: "Roboto", sans-serif;
+}
+.Task-modal .modal-container .modal-content .status-box .status-holder {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  padding: 2px 0;
+}
+.Task-modal .modal-container .modal-content .status-box .status-holder span {
+  white-space: nowrap;
+  font-weight: bold;
+  flex: 1;
+}
+.Task-modal .modal-container .modal-content .status-box .status-holder input {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  border: none;
+}
+.Task-modal .modal-container .modal-content .status-box .status-holder .pickers {
+  width: 100px;
+  flex: 1;
+  font-family: "Roboto", sans-serif;
+}
+.Task-modal .modal-container .modal-content .status-box .status-holder .task-status {
+  margin-right: 26px;
+  font-size: 12px;
+  border: 0px;
+  outline: 0px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding-right: 15px;
+  padding-left: 5px;
+  font-family: "Roboto", sans-serif;
+}
+.Task-modal .modal-container .modal-content .status-box .task-assignee {
+  width: 100px;
+}
+.Task-modal .modal-container .modal-content .status-box .task-tag {
+  width: 100px;
+}
+.Task-modal .modal-container .modal-content .task-name {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+}
+.Task-modal .modal-container .modal-content .advice {
+  background-color: #F3F3F3;
+  width: 100%;
+  padding: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  overflow: scroll;
+  height: 150px;
+}
+.Task-modal .modal-container .modal-content .advice .title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.Task-modal .modal-container .modal-content .notes {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.Task-modal .modal-container .modal-content .notes .title {
+  padding-bottom: 5px;
+}
+.Task-modal .modal-container .modal-content .notes textarea {
+  border: 0.5px solid black;
+  border-radius: 3px;
+  font-family: "Roboto", sans-serif;
+}
+.Task-modal .modal-container .modal-content .save-button-holder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+.Task-modal .modal-container .modal-content .save-button-holder .save-button {
+  height: 40px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #70825A;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}

@@ -6,10 +6,7 @@ import Footer from './Footer';
 
 const stripePromise = loadStripe('pk_test_51I9iRxKX2bGZIfblIuVdvbVIAJV1PxHx1XWSNOSXBzMWg44ibfZXEjg7PpgvGUW7BFCJf4E7DfcITcHIRliyfeL900GVeXuDQO')
 
-const Payment = ({updateView}) => {
-  const query = new URLSearchParams(window.location.search);
-  console.log('query', query);
-
+const Payment = () => {
   const startCheckout = async () => {
     const stripe = await stripePromise;
 
@@ -27,15 +24,9 @@ const Payment = ({updateView}) => {
     }
   };
 
-  //TODO FIGURE OUT COUPONS
-  //TODO TAXES?
-  //TODO GET IMAGE
-  //TODO WHAT GOES ON THIS PAGE
-
   return (
     <div className="Payment">
-      <button onClick={() => startCheckout()}>START CHECKOUT</button>
-      <a href="/#/checklist">Give $$</a>
+      <span onClick={startCheckout()}></span>
       <Footer />
     </div>
   );

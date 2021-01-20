@@ -70,15 +70,19 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
     });
 
     if (taskFilter === 'complete') {
-      filteredTasks = filteredTasks.filter( task => task.status === 'complete');
+      filteredTasks = filteredTasks.filter( task => task.status === 'complete' && !task.archived);
     }
 
     if (taskFilter === 'incomplete') {
-      filteredTasks = filteredTasks.filter( task => task.status !== 'complete');
+      filteredTasks = filteredTasks.filter( task => task.status !== 'complete' && !task.archived);
+    }
+
+    if(taskFilter === 'archived') {
+      filteredTasks = filteredTasks.filter( task => task.archived)
     }
 
     if (search.length > 3) {
-      filteredTasks = filteredTasks.filter( task => task.tasklabel.toLowerCase().includes(search.toLowerCase()))
+      filteredTasks = filteredTasks.filter( task => task.tasklabel.toLowerCase().includes(search.toLowerCase()) || task.tags.toLowerCase().includes(search.toLowerCase()))
     }
   }
 
@@ -164,7 +168,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           onClick={() => updateFilterState('startdate')}
         > {/*TODO hide with props when filtered out */}
           <span>
-            Start Date
+            Start on
           </span>
           {renderArrows('startdate')}
         </div>
@@ -173,7 +177,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           onClick={() => updateFilterState('enddate')}
         > {/*TODO hide with props when filtered out */}
         <span>
-            End Date
+            Complete by
           </span>
           {renderArrows('enddate')}
         </div>

@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 5;
 
   .nav-content-container {
     height: 100%;
@@ -10,14 +11,28 @@
     justify-content: space-between;
     padding-top: 40px;
 
-    &.intro {
-      // justify-content: flex-end; TODO logo on into page
+    @media screen and (max-width: 1190px) {
+      padding-top: 10px;
+      padding-bottom: 30px;
+    }
+
+    @media screen and (max-width: 838px) {
+      display: none;
     }
 
     .logo-container {
       .logo {
         height: 150px;
         width: 150px;
+
+        @media screen and (max-width: 1190px) {
+          height: 125px;
+          width: 125px;
+        }
+
+        @media screen and (max-width: 1030px) {
+          display: none;
+        }
       }
     }
 
@@ -25,22 +40,115 @@
       padding: 10px 0;
       display: flex;
       flex-wrap: wrap;
+      align-items: flex-end;
       height: 25px;
 
       .link {
-        color: black;
-        font-family: $primary;
-        letter-spacing: 2px;
-        font-size: 15px;
-        text-transform: uppercase;
-        margin: 0 15px;
-        transition: color .15s ease;
+        
+        &.nav-link {
+          color: black;
+          font-family: 'Roboto', sans-serif;
+          letter-spacing: 2px;
+          font-size: 15px;
+          margin: 0 15px;
+          transition: color .15s ease;
+          text-transform: uppercase;
+
+          @media screen and (max-width: 1190px) {
+            font-size: 12px;
+          }
+
+          @media screen and (max-width: 1030px) {
+            font-size: 11px;
+          }
+        }
 
         &:hover {
           color: #9C9999;
           transition: color .15s ease;
         }
       }
+    }
+
+    &.intro {
+      .profile-content {
+        display: none;
+      }
+    }
+  }
+
+  .profile-holder {
+    position: relative;
+    justify-self: flex-end;
+    height: 65px;
+    font-family: 'Roboto', sans-serif;
+
+    .profile-circle {
+      background-color: #70825A;   
+      height: 60px;
+      border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      width: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      transition: all .15s ease;
+
+      @media screen and (max-width: 1190px) {
+        height: 50px;
+        width: 50px;
+      }
+
+      @media screen and (max-width: 1030px) {
+        height: 40px;
+        width: 40px;
+      }
+
+      &:hover {
+        background-color: #818a75;  
+        color:white;
+        cursor: pointer;
+        transition: all .15s ease;
+      }
+    }
+  }
+
+  .mobile-nav {
+    display: none;
+    height: 100px;
+    width: 100%;
+    background-color: #F6DDC8;
+    justify-content: space-between;
+    align-items: center;
+
+    .pink {
+      height: 70px;
+      width: 70px;
+
+      &.left {
+        align-self: flex-end;
+      }
+
+      &.right {
+        align-self: flex-start;
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
+    }
+
+    .white {
+      height: 200px;
+      width: auto;
+    }
+
+    &.intro {
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 838px) {
+      display: flex;
     }
   }
 }

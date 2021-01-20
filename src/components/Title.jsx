@@ -1,22 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
-import ProfileMenu from './ProfileMenu';
-
 const LoggedInTitle = ({firstName, daysTill, toggleMenu, initials, show, user}) => (
   <>
     <div className="title-text">
       <span>
         {`Hi ${firstName}, ${daysTill} days until your Big Day!`}
       </span>
-    </div>
-    <div className="profile-content">
-      <div className="profile-holder">
-        <div className="profile-circle" onClick={() => toggleMenu()}>
-          {`${initials}`}
-        </div>
-        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} /> {/*TODO add sign out link*/}
-      </div>
     </div>
   </>
 );

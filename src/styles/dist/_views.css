@@ -1,0 +1,41 @@
+.Views {
+  font-family: "Roboto", sans-serif;
+}
+.Views a {
+  background-color: white;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  transition: color 0.15s ease;
+  margin: 5px;
+  padding: 5px 10px;
+  color: black;
+}
+.Views a:visited {
+  color: black;
+}
+.Views a:hover {
+  color: #9C9999;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+.Views.checklist #checklist {
+  border-radius: 3px;
+  background-color: #70825A;
+  color: white;
+}
+.Views.calendar #calendar {
+  border-radius: 3px;
+  background-color: #70825A;
+  color: white;
+}
+.Views.progress #progress {
+  border-radius: 3px;
+  background-color: #70825A;
+  color: white;
+}
+.Views.files #files {
+  border-radius: 3px;
+  background-color: #70825A;
+  color: white;
+}

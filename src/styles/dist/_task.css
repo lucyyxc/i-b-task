@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
   position: relative;
 }
 .Task .column {
@@ -42,7 +42,7 @@
   justify-content: flex-start;
 }
 .Task .column.task-name .label {
-  font-size: 16px;
+  font-size: 18px;
 }
 .Task .column.task-name .details .label {
   font-size: 10px;
@@ -73,6 +73,7 @@
 }
 .Task .complete-button.completed i {
   transform: translate(3px, 4px);
+  font-size: 14px;
 }
 .Task .complete-button.completed:hover {
   cursor: pointer;

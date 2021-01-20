@@ -66,7 +66,6 @@ const Profile = ({user, modal, cancel}) => {
   if (_isEmpty(user)) return null;
   
   if (!_isEmpty(user) && !profile.name) {
-    console.log('updating user');
     updateProfile({...user})
   }
 

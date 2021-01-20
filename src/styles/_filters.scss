@@ -1,14 +1,16 @@
 .Filters {
-  font-family: $secondary;
+  font-family: 'Roboto', sans-serif;
   display: flex;
 
   select {
+    font-family: 'Roboto', sans-serif;
     height: 30px;
     margin: 5px;
     font-size: 18px;
   }
 
   .pickers {
+    font-family: 'Roboto', sans-serif;
     height: 24px;
     margin: 5px;
     font-size: 18px;

@@ -23,16 +23,19 @@ const App = ({selected}) => {
     dateFilter: '',
     dateStart: new Date(),
     dateEnd: '',
-    taskFilter: '',
+    taskFilter: 'incomplete',
     search: '',
     tasks: [],
     user: {},
   });
 
-  // if(!_isEmpty(state.user) && !state.user.sub) {
-  //   const isNewSub = window.location.href.split("?")[1] === 'success=true';
-
-  // }
+  if (!_isEmpty(state.user) && !state.user.sub && ( window.location.href.split('?')[1]) === 'success=true' ) {
+    axios.post('/api/post/subUpdate', {sub: true})
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(err => console.log('update sub error', err));
+  }
   
 
   const updateStateValue = (key, value) => {
@@ -129,7 +132,7 @@ const App = ({selected}) => {
 
   return (
     <div className="App">
-      <Nav selected={selected} />
+      <Nav selected={selected} user={state.user} loading={state.loading} error={state.error} />
       {selected === 'loading' ? null : <Title {...state} />}
       <Footer />
       

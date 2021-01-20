@@ -1,0 +1,229 @@
+.Progress {
+  margin-top: 20px;
+  width: 92%;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Progress .title {
+  font-size: 28px;
+  margin-top: 25px;
+}
+@media screen and (max-width: 760px) {
+  .Progress .title {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 536px) {
+  .Progress .title {
+    font-size: 16px;
+  }
+}
+.Progress .progress-bar-container {
+  margin: 40px 0;
+  width: 100%;
+  max-width: 700px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+@media screen and (max-width: 760px) {
+  .Progress .progress-bar-container {
+    margin: 30px 0;
+  }
+}
+@media screen and (max-width: 536px) {
+  .Progress .progress-bar-container {
+    margin: 20px 0;
+  }
+}
+.Progress .progress-bar-container .progress-bar {
+  background-color: white;
+  width: 100%;
+  height: 40px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.Progress .progress-bar-container .progress-bar .section {
+  height: 100%;
+  z-index: 2;
+  border-radius: 5px;
+}
+.Progress .progress-bar-container .progress-bar .section.complete {
+  margin-right: 2px;
+}
+.Progress .progress-bar-container .progress-bar .section.not-started {
+  margin-left: 2px;
+}
+.Progress .progress-bar-container .rule {
+  height: 100%;
+  width: 1px;
+  background-color: lightgray;
+  position: absolute;
+  top: 0;
+}
+.Progress .progress-bar-container .label {
+  position: absolute;
+  bottom: -20px;
+  transform: translateX(-10px);
+}
+.Progress .progress-bar-container .twentyfive {
+  left: 25%;
+}
+.Progress .progress-bar-container .fifty {
+  left: 50%;
+}
+.Progress .progress-bar-container .seventyfive {
+  left: 75%;
+}
+.Progress .legend {
+  width: 600px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+@media screen and (max-width: 760px) {
+  .Progress .legend {
+    max-width: 500px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .Progress .legend {
+    max-width: 400px;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Progress .legend {
+    max-width: 350px;
+    font-size: 10px;
+  }
+}
+.Progress .legend .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Progress .legend .item .color {
+  margin-right: 15px;
+  height: 20px;
+  width: 20px;
+}
+@media screen and (max-width: 4600px) {
+  .Progress .legend .item .color {
+    height: 15px;
+    width: 15px;
+  }
+}
+.Progress .circle-container {
+  margin: 30px 0;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Progress .circle-container .flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  box-sizing: border-box;
+  margin: 20px 0 40px 0;
+  width: 100%;
+}
+@media screen and (max-width: 730px) {
+  .Progress .circle-container .flex {
+    margin: 10px 0 20px 0;
+  }
+}
+@media screen and (max-width: 730px) {
+  .Progress .circle-container .flex.desktop {
+    display: none;
+  }
+}
+.Progress .circle-container .flex.mobile {
+  display: none;
+}
+@media screen and (max-width: 730px) {
+  .Progress .circle-container .flex.mobile {
+    display: flex;
+  }
+}
+.Progress .circle-container .flex.bottom {
+  width: 85%;
+  max-width: 600px;
+}
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .flex.bottom {
+    justify-content: space-between;
+  }
+}
+.Progress .circle-container .circle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .circle {
+    font-size: 12px;
+  }
+}
+.Progress .circle-container .circle .the-circle {
+  height: 125px;
+  width: 125px;
+  background-color: #42413D;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 80px;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .circle .the-circle {
+    height: 100px;
+    width: 100px;
+    font-size: 55px;
+  }
+}
+.Progress .circle-container .circle .big {
+  height: 200px;
+  width: 200px;
+  font-size: 150px;
+}
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .circle .big {
+    height: 150px;
+    width: 150px;
+    font-size: 110px;
+  }
+}
+.Progress .circle-container .circle .complete {
+  background-color: #70825A;
+}
+.Progress .circle-container .circle .in-progress {
+  background-color: #F6DDC8;
+}
+.Progress .circle-container .circle .not-started {
+  background-color: #FC6959;
+}
+.Progress .circle-container .circle .tasks-past-due {
+  background-color: #EFC30A;
+}
+.Progress .complete {
+  background-color: #70825A;
+}
+.Progress .in-progress {
+  background-color: #F6DDC8;
+}
+.Progress .not-started {
+  background-color: #FC6959;
+}

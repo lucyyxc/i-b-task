@@ -1,0 +1,16 @@
+.Filters {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+}
+.Filters select {
+  font-family: "Roboto", sans-serif;
+  height: 30px;
+  margin: 5px;
+  font-size: 18px;
+}
+.Filters .pickers {
+  font-family: "Roboto", sans-serif;
+  height: 24px;
+  margin: 5px;
+  font-size: 18px;
+}

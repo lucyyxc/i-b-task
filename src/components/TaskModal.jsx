@@ -20,9 +20,11 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
       notes: '',
       archive: false,
       tasklabel: '',
-      assignee: ''
+      assignee: '',
+      tags: ''
     },
-    showTip: false
+    showTip: false,
+    confirmArchive: false
   })
 
   const defaultChanges = {
@@ -32,8 +34,15 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
     notes: '',
     archive: false,
     tasklabel: '', 
-    assignee: ''
+    assignee: '',
+    tags: ''
   }
+
+  React.useEffect(() => {
+    if (state.changes.archive) {
+      closeModal(true);
+    }
+  }, [state.confirmArchive])
   
   if (_isEmpty(state.task) && !_isEmpty(modalTask)) {
     setState({
@@ -61,6 +70,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
       if (state.changes.enddate) updates.push(axios.post('/api/post/endDateUpdate', {id: state.task.id, enddate: state.changes.enddate}));
       if (state.changes.notes) updates.push(axios.post('/api/post/notesUpdate', {id: state.task.id, notes: state.changes.notes}));
       if (state.changes.assignee) updates.push(axios.post('/api/post/assigneeUpdate', {id: state.task.id, assignee: state.changes.assignee}));
+      if (state.changes.tags) updates.push(axios.post('/api/post/tagUpdate', {id: state.task.id, tags: state.changes.tags}));
       if (state.changes.archive) updates.push(axios.post('/api/post/archiveTask', {id: state.task.id}));
       if (state.changes.tasklabel) updates.push(axios.post('/api/post/nameUpdate', {id: state.task.id, tasklabel: state.changes.tasklabel}));
 
@@ -73,7 +83,8 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             task: {},
             changes: defaultChanges,
             newTask: true,
-            showTip: false
+            showTip: false,
+            confirmArchive: false
           })
           setIsOpen(false);
           getUserTasks();
@@ -94,18 +105,19 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
         notes: state.changes.notes,
         tasklabel: state.changes.tasklabel || 'Unnamed Task',
         id: tasksLength + 25,
-        assignee: state.changes.assignee
+        assignee: state.changes.assignee,
+        tags: state.changes.tags
       }
 
       axios.post('/api/post/createTask', newTaskBody)
       .then( response => {
-        console.log(response);
         setState({
           ...state,
           task: {},
           changes: defaultChanges,
           newTask: true,
-          showTip: false
+          showTip: false,
+          confirmArchive: false
         })
         setIsOpen(false);
         getUserTasks();
@@ -117,14 +129,15 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
         task: {},
         changes: defaultChanges,
         newTask: true,
-        showTip: false
+        showTip: false,
+        confirmArchive: false
       })
       setIsOpen(false);
     }
   }
 
-  console.log(state);
-  
+  console.log('hi');
+
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
       <div className="modal-container">
@@ -150,17 +163,35 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                   }}
                 ></i>
               </div>
-              <div className="absolute delete" onClick={() => {
-                setState({
-                  ...state,
-                  changes: {
-                    ...state.changes,
-                    archive: true
-                  }
-                })
-                closeModal(true)
-              }}>
-                <i className="fas fa-trash-alt" title="Archive" ></i>
+              <div className="absolute delete">
+                <div className={`confirm ${state.confirmArchive ? '' : 'hide'}`}>
+                  <div className="confirm-text">Are you sure you want to archive this task?</div>
+                  <div className="button-holder">
+                    <div className="button cancel" onClick={() => {
+                      setState({
+                        ...state,
+                        confirmArchive: false
+                      })
+                    }}>Cancel</div>
+                    <div className="button yes" onClick={() => {
+                      setState({
+                        ...state,
+                        confirmArchive: false,
+                        changes: {
+                          ...state.changes,
+                          archive: true,
+                        }
+                      })
+                    }}>Archive</div>
+                  </div>
+                </div>
+                <i className="fas fa-trash-alt" title="Archive"  onClick={() => {
+                  setState({
+                    ...state,
+                    confirmArchive: true
+                  })
+                }}
+                ></i>
               </div>
               <div className="absolute icons">
                 {state.task.blogurl
@@ -273,7 +304,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                 type="text"
                 placeholder="Enter an assignee"
                 value={state.task.assignee || ''}
-                maxlength="3"
+                maxlength="2"
                 className="task-assignee"
                 onChange={(e) => {
                   setState({
@@ -285,6 +316,28 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                     changes: {
                       ...state.changes,
                       assignee: e.target.value
+                    }
+                  })
+                }}
+              />
+            </div>
+            <div className="status-holder">
+              <span>Tag</span>
+              <input 
+                type="text"
+                placeholder="Enter a tag"
+                value={state.task.tags || ''}
+                className="task-tag"
+                onChange={(e) => {
+                  setState({
+                    ...state,
+                    task: {
+                      ...state.task,
+                      tags: e.target.value
+                    },
+                    changes: {
+                      ...state.changes,
+                      tags: e.target.value
                     }
                   })
                 }}

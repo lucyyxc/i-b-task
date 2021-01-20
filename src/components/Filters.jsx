@@ -52,9 +52,9 @@ const Filters = ({
       onChange={e => updateStateValue('taskFilter', e.target.value)}
       value={taskFilter}
     >
-      <option value="" disabled selected hidden>Filter by Task</option>
-      <option value="incomplete">Incomplete</option>
+      <option value="incomplete" selected >Incomplete</option>
       <option value="complete">Complete</option>
+      <option value="archived">Archived</option>
       <option value="all">All Tasks</option>
     </select>
   </div>

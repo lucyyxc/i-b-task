@@ -80,32 +80,110 @@ a {
 .Nav {
   width: 100%;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  z-index: 5; }
   .Nav .nav-content-container {
     height: 100%;
     width: 92%;
     display: flex;
     justify-content: space-between;
     padding-top: 40px; }
+    @media screen and (max-width: 1190px) {
+      .Nav .nav-content-container {
+        padding-top: 10px;
+        padding-bottom: 30px; } }
+    @media screen and (max-width: 838px) {
+      .Nav .nav-content-container {
+        display: none; } }
     .Nav .nav-content-container .logo-container .logo {
       height: 150px;
       width: 150px; }
+      @media screen and (max-width: 1190px) {
+        .Nav .nav-content-container .logo-container .logo {
+          height: 125px;
+          width: 125px; } }
+      @media screen and (max-width: 1030px) {
+        .Nav .nav-content-container .logo-container .logo {
+          display: none; } }
     .Nav .nav-content-container .links-container {
       padding: 10px 0;
       display: flex;
       flex-wrap: wrap;
+      align-items: flex-end;
       height: 25px; }
-      .Nav .nav-content-container .links-container .link {
+      .Nav .nav-content-container .links-container .link.nav-link {
         color: black;
-        font-family: "Roboto", sans-serif;
+        font-family: 'Roboto', sans-serif;
         letter-spacing: 2px;
         font-size: 15px;
-        text-transform: uppercase;
         margin: 0 15px;
+        transition: color .15s ease;
+        text-transform: uppercase; }
+        @media screen and (max-width: 1190px) {
+          .Nav .nav-content-container .links-container .link.nav-link {
+            font-size: 12px; } }
+        @media screen and (max-width: 1030px) {
+          .Nav .nav-content-container .links-container .link.nav-link {
+            font-size: 11px; } }
+      .Nav .nav-content-container .links-container .link:hover {
+        color: #9C9999;
         transition: color .15s ease; }
-        .Nav .nav-content-container .links-container .link:hover {
-          color: #9C9999;
-          transition: color .15s ease; }
+    .Nav .nav-content-container.intro .profile-content {
+      display: none; }
+  .Nav .profile-holder {
+    position: relative;
+    justify-self: flex-end;
+    height: 65px;
+    font-family: 'Roboto', sans-serif; }
+    .Nav .profile-holder .profile-circle {
+      background-color: #70825A;
+      height: 60px;
+      border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      width: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      transition: all .15s ease; }
+      @media screen and (max-width: 1190px) {
+        .Nav .profile-holder .profile-circle {
+          height: 50px;
+          width: 50px; } }
+      @media screen and (max-width: 1030px) {
+        .Nav .profile-holder .profile-circle {
+          height: 40px;
+          width: 40px; } }
+      .Nav .profile-holder .profile-circle:hover {
+        background-color: #818a75;
+        color: white;
+        cursor: pointer;
+        transition: all .15s ease; }
+  .Nav .mobile-nav {
+    display: none;
+    height: 100px;
+    width: 100%;
+    background-color: #F6DDC8;
+    justify-content: space-between;
+    align-items: center; }
+    .Nav .mobile-nav .pink {
+      height: 70px;
+      width: 70px; }
+      .Nav .mobile-nav .pink.left {
+        align-self: flex-end; }
+      .Nav .mobile-nav .pink.right {
+        align-self: flex-start;
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1); }
+    .Nav .mobile-nav .white {
+      height: 200px;
+      width: auto; }
+    .Nav .mobile-nav.intro {
+      margin-bottom: 20px; }
+    @media screen and (max-width: 838px) {
+      .Nav .mobile-nav {
+        display: flex; } }
 
 .Footer {
   position: absolute;
@@ -134,7 +212,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-  font-family: "Roboto", sans-serif; }
+  font-family: 'Roboto', sans-serif; }
   .Title .title-content {
     position: relative;
     height: 100%;
@@ -151,6 +229,15 @@ a {
       font-size: 70px;
       text-align: center;
       margin-bottom: 20px; }
+      @media screen and (max-width: 1300px) {
+        .Title .title-content .title-text {
+          font-size: 60px; } }
+      @media screen and (max-width: 1100px) {
+        .Title .title-content .title-text {
+          font-size: 50px; } }
+      @media screen and (max-width: 900px) {
+        .Title .title-content .title-text {
+          font-size: 40px; } }
       .Title .title-content .title-text.intro {
         flex-direction: column;
         justify-content: center;
@@ -193,24 +280,29 @@ a {
   transition: all .1s ease;
   box-shadow: 1px 2px 4px #888888;
   margin-top: 5px;
-  padding: 5px 15px 5px 5px;
+  padding: 10px 15px 5px 5px;
   width: auto;
   right: 0;
   border-radius: 3px;
   white-space: nowrap;
   background-color: white; }
-  .ProfileMenu .user-info div {
-    padding: 2.5px 5px; }
-  .ProfileMenu .user-info .name {
-    font-weight: bold;
-    font-size: 18px; }
   .ProfileMenu .link {
-    padding: 2.5px 5px;
+    padding: 0 5px 10px 5px;
     transition: color .15s ease; }
     .ProfileMenu .link:hover {
       color: #9C9999;
       cursor: pointer;
       transition: color .15s ease; }
+  .ProfileMenu .name {
+    padding-top: 10px 5px 10px 5px;
+    font-weight: bold;
+    font-size: 18px; }
+    @media screen and (max-width: 1030px) {
+      .ProfileMenu .name {
+        font-size: 15px; } }
+    .ProfileMenu .name:hover {
+      color: black;
+      cursor: default; }
   .ProfileMenu hr {
     margin: 4px 0 2px 0; }
   .ProfileMenu.hidden {
@@ -234,6 +326,7 @@ a {
       visibility: visible;
       transition: all .25s ease; }
   .ProfileMenu .logout-confirm {
+    z-index: 10;
     height: 150px;
     width: 300px;
     display: flex;
@@ -258,6 +351,9 @@ a {
         width: 80px;
         font-size: 18px;
         cursor: pointer; }
+        @media screen and (max-width: 1030px) {
+          .ProfileMenu .logout-confirm .button-holder .button {
+            font-size: 15px; } }
         .ProfileMenu .logout-confirm .button-holder .button.logout-link {
           color: black; }
           .ProfileMenu .logout-confirm .button-holder .button.logout-link:visited {
@@ -270,7 +366,7 @@ a {
   height: 30px;
   display: flex;
   justify-content: center;
-  font-family: "Roboto", sans-serif; }
+  font-family: 'Roboto', sans-serif; }
   .Search .CollabMenu {
     z-index: 2;
     position: fixed;
@@ -403,17 +499,21 @@ a {
       border: 1px solid black;
       padding: 3px;
       border-radius: 5px;
-      margin-left: 4px; }
+      margin-left: 4px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px; }
       .Search .search-content .search-input i {
         margin: 0 4px 0 0; }
       .Search .search-content .search-input input {
-        border: none; }
+        border: none;
+        font-family: 'Roboto', sans-serif; }
         .Search .search-content .search-input input:focus {
+          font-family: 'Roboto', sans-serif;
           border: none;
           outline: none; }
 
 .Views {
-  font-family: "Roboto", sans-serif; }
+  font-family: 'Roboto', sans-serif; }
   .Views a {
     background-color: white;
     border: none;
@@ -447,13 +547,15 @@ a {
     color: white; }
 
 .Filters {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex; }
   .Filters select {
+    font-family: 'Roboto', sans-serif;
     height: 30px;
     margin: 5px;
     font-size: 18px; }
   .Filters .pickers {
+    font-family: 'Roboto', sans-serif;
     height: 24px;
     margin: 5px;
     font-size: 18px; }
@@ -461,7 +563,7 @@ a {
 .Checklist {
   margin-top: 10px;
   width: 92%;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -495,7 +597,8 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    font-size: 18px; }
     .Checklist .new-task i {
       margin-right: 10px; }
     .Checklist .new-task:hover {
@@ -524,7 +627,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
   position: relative; }
   .Task .column {
     display: flex;
@@ -554,7 +657,7 @@ a {
       flex-grow: 4;
       justify-content: flex-start; }
       .Task .column.task-name .label {
-        font-size: 16px; }
+        font-size: 18px; }
       .Task .column.task-name .details .label {
         font-size: 10px; }
   .Task .column:last-of-type {
@@ -577,7 +680,8 @@ a {
       color: #70825A;
       border: 1px solid #70825A; }
       .Task .complete-button.completed i {
-        transform: translate(3px, 4px); }
+        transform: translate(3px, 4px);
+        font-size: 14px; }
       .Task .complete-button.completed:hover {
         cursor: pointer;
         color: #9C9999;
@@ -663,7 +767,7 @@ a {
             align-items: center;
             background-color: #FC6959;
             color: white;
-            font-family: "Roboto", sans-serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 18px;
             border-radius: 3px;
             cursor: pointer; }
@@ -702,7 +806,47 @@ a {
       padding: 5px;
       font-size: 20px;
       transition: color .15s ease; }
-      .Task-modal .modal-container .delete:hover {
+      .Task-modal .modal-container .delete .confirm {
+        background-color: white;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: fixed;
+        display: block;
+        max-width: 550px;
+        z-index: 3;
+        font-size: 14px;
+        text-align: center;
+        padding: 20px;
+        border-radius: 3px;
+        border: 1px gray solid; }
+        .Task-modal .modal-container .delete .confirm .confirm-text {
+          font-size: 24px;
+          margin-bottom: 20px; }
+        .Task-modal .modal-container .delete .confirm .button-holder {
+          display: flex;
+          justify-content: space-around;
+          align-items: center; }
+          .Task-modal .modal-container .delete .confirm .button-holder .button {
+            margin: 20px auto 0;
+            height: 30px;
+            width: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FC6959;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            border-radius: 3px;
+            cursor: pointer; }
+          .Task-modal .modal-container .delete .confirm .button-holder .cancel {
+            background-color: white;
+            color: black;
+            border: 1px black solid; }
+        .Task-modal .modal-container .delete .confirm.hide {
+          display: none; }
+      .Task-modal .modal-container .delete i:hover {
         color: #FC6959;
         transition: color .15s ease;
         cursor: pointer; }
@@ -734,7 +878,8 @@ a {
         flex-direction: column;
         align-content: space-between;
         width: 50%;
-        margin-bottom: 15px; }
+        margin-bottom: 15px;
+        font-family: 'Roboto', sans-serif; }
         .Task-modal .modal-container .modal-content .status-box .status-holder {
           display: flex;
           flex-wrap: nowrap;
@@ -746,11 +891,13 @@ a {
             font-weight: bold;
             flex: 1; }
           .Task-modal .modal-container .modal-content .status-box .status-holder input {
+            font-family: 'Roboto', sans-serif;
             font-size: 12px;
             border: none; }
           .Task-modal .modal-container .modal-content .status-box .status-holder .pickers {
             width: 100px;
-            flex: 1; }
+            flex: 1;
+            font-family: 'Roboto', sans-serif; }
           .Task-modal .modal-container .modal-content .status-box .status-holder .task-status {
             margin-right: 26px;
             font-size: 12px;
@@ -759,8 +906,11 @@ a {
             -moz-appearance: none;
             -webkit-appearance: none;
             padding-right: 15px;
-            padding-left: 5px; }
+            padding-left: 5px;
+            font-family: 'Roboto', sans-serif; }
         .Task-modal .modal-container .modal-content .status-box .task-assignee {
+          width: 100px; }
+        .Task-modal .modal-container .modal-content .status-box .task-tag {
           width: 100px; }
       .Task-modal .modal-container .modal-content .task-name {
         text-align: center;
@@ -769,7 +919,8 @@ a {
         margin-bottom: 20px;
         border: none;
         outline: none;
-        width: 100%; }
+        width: 100%;
+        font-family: 'Roboto', sans-serif; }
       .Task-modal .modal-container .modal-content .advice {
         background-color: #F3F3F3;
         width: 100%;
@@ -793,7 +944,7 @@ a {
         .Task-modal .modal-container .modal-content .notes textarea {
           border: .5px solid black;
           border-radius: 3px;
-          font-family: "Roboto", sans-serif; }
+          font-family: 'Roboto', sans-serif; }
       .Task-modal .modal-container .modal-content .save-button-holder {
         width: 100%;
         display: flex;
@@ -808,7 +959,7 @@ a {
           align-items: center;
           background-color: #70825A;
           color: white;
-          font-family: "Roboto", sans-serif;
+          font-family: 'Roboto', sans-serif;
           font-size: 20px;
           border-radius: 3px;
           cursor: pointer; }
@@ -816,21 +967,34 @@ a {
 .Progress {
   margin-top: 20px;
   width: 92%;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center; }
   .Progress .title {
     font-size: 28px;
     margin-top: 25px; }
+    @media screen and (max-width: 760px) {
+      .Progress .title {
+        font-size: 24px; } }
+    @media screen and (max-width: 536px) {
+      .Progress .title {
+        font-size: 16px; } }
   .Progress .progress-bar-container {
     margin: 40px 0;
-    width: 700px;
+    width: 100%;
+    max-width: 700px;
     height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative; }
+    @media screen and (max-width: 760px) {
+      .Progress .progress-bar-container {
+        margin: 30px 0; } }
+    @media screen and (max-width: 536px) {
+      .Progress .progress-bar-container {
+        margin: 20px 0; } }
     .Progress .progress-bar-container .progress-bar {
       background-color: white;
       width: 100%;
@@ -867,6 +1031,18 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center; }
+    @media screen and (max-width: 760px) {
+      .Progress .legend {
+        max-width: 500px;
+        font-size: 14px; } }
+    @media screen and (max-width: 580px) {
+      .Progress .legend {
+        max-width: 400px;
+        font-size: 12px; } }
+    @media screen and (max-width: 460px) {
+      .Progress .legend {
+        max-width: 350px;
+        font-size: 10px; } }
     .Progress .legend .item {
       display: flex;
       justify-content: center;
@@ -875,21 +1051,50 @@ a {
         margin-right: 15px;
         height: 20px;
         width: 20px; }
+        @media screen and (max-width: 4600px) {
+          .Progress .legend .item .color {
+            height: 15px;
+            width: 15px; } }
   .Progress .circle-container {
     margin: 30px 0;
-    width: 800px; }
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
     .Progress .circle-container .flex {
       display: flex;
       justify-content: space-around;
       align-items: flex-end;
       box-sizing: border-box;
-      margin: 20px 0 40px 0; }
+      margin: 20px 0 40px 0;
+      width: 100%; }
+      @media screen and (max-width: 730px) {
+        .Progress .circle-container .flex {
+          margin: 10px 0 20px 0; } }
+      @media screen and (max-width: 730px) {
+        .Progress .circle-container .flex.desktop {
+          display: none; } }
+      .Progress .circle-container .flex.mobile {
+        display: none; }
+        @media screen and (max-width: 730px) {
+          .Progress .circle-container .flex.mobile {
+            display: flex; } }
+      .Progress .circle-container .flex.bottom {
+        width: 85%;
+        max-width: 600px; }
+        @media screen and (max-width: 500px) {
+          .Progress .circle-container .flex.bottom {
+            justify-content: space-between; } }
     .Progress .circle-container .circle {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       font-weight: 600; }
+      @media screen and (max-width: 500px) {
+        .Progress .circle-container .circle {
+          font-size: 12px; } }
       .Progress .circle-container .circle .the-circle {
         height: 125px;
         width: 125px;
@@ -901,10 +1106,20 @@ a {
         color: white;
         font-size: 80px;
         margin-bottom: 10px; }
+        @media screen and (max-width: 500px) {
+          .Progress .circle-container .circle .the-circle {
+            height: 100px;
+            width: 100px;
+            font-size: 55px; } }
       .Progress .circle-container .circle .big {
         height: 200px;
         width: 200px;
         font-size: 150px; }
+        @media screen and (max-width: 500px) {
+          .Progress .circle-container .circle .big {
+            height: 150px;
+            width: 150px;
+            font-size: 110px; } }
       .Progress .circle-container .circle .complete {
         background-color: #70825A; }
       .Progress .circle-container .circle .in-progress {
@@ -933,7 +1148,7 @@ a {
     width: 92%;
     max-width: 600px;
     margin-top: 60px;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     position: relative;
     box-sizing: border-box; }
     .Intro .signup .input-container {
@@ -948,7 +1163,7 @@ a {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-family: "Roboto", sans-serif; }
+        font-family: 'Roboto', sans-serif; }
         .Intro .signup .input-container .label-container .input-label {
           font-size: 18px;
           font-weight: 600;
@@ -1015,7 +1230,7 @@ a {
         font-size: 16px;
         transition: all .15s ease;
         padding: 3px 3px 3px 0;
-        font-family: "Roboto", sans-serif; }
+        font-family: 'Roboto', sans-serif; }
         .Intro .signup .input-container .select:focus {
           outline: none;
           background-color: whitesmoke;
@@ -1039,7 +1254,7 @@ a {
         font-weight: 600;
         margin-bottom: 5px; }
       .Intro .signup .date-container .picker {
-        font-family: "Roboto", sans-serif;
+        font-family: 'Roboto', sans-serif;
         border: none;
         border-bottom: 1px black solid;
         width: 100%;
@@ -1110,7 +1325,7 @@ a {
     justify-content: center;
     align-items: center;
     margin-top: 0px;
-    font-family: "Roboto", sans-serif; }
+    font-family: 'Roboto', sans-serif; }
     .Intro .title-text p {
       font-size: 22px;
       width: 550px;
@@ -1265,8 +1480,8 @@ a {
 
 .Calendar {
   margin: 20px;
-  width: 80%;
-  font-family: "Roboto", sans-serif; }
+  width: 90%;
+  font-family: 'Roboto', sans-serif; }
   .Calendar .overlay {
     position: fixed;
     opacity: 0.5;
@@ -1281,15 +1496,63 @@ a {
   .Calendar .fc-button-primary {
     background-color: #70825A !important;
     border-color: #70825A !important; }
+    @media screen and (max-width: 610px) {
+      .Calendar .fc-button-primary {
+        padding: 3px !important; } }
+    @media screen and (max-width: 460px) {
+      .Calendar .fc-button-primary {
+        padding: 0 !important; } }
     .Calendar .fc-button-primary:hover {
       background-color: #5b6a49 !important;
       border-color: #5b6a49 !important; }
   .Calendar .fc-day-today {
-    background-color: #F6DDC8 !important; }
+    background-color: #EDE6D6 !important; }
   .Calendar .fc-event-main {
     cursor: pointer; }
   .Calendar .fc-list-event {
     cursor: pointer; }
+  @media screen and (max-width: 610px) {
+    .Calendar .fc-toolbar-title {
+      font-size: 22px !important; } }
+  @media screen and (max-width: 460px) {
+    .Calendar .fc-toolbar-title {
+      font-size: 16px !important; } }
+  .Calendar .legend {
+    max-width: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px auto 10px auto; }
+    @media screen and (max-width: 760px) {
+      .Calendar .legend {
+        max-width: 500px;
+        font-size: 14px; } }
+    @media screen and (max-width: 580px) {
+      .Calendar .legend {
+        max-width: 400px;
+        font-size: 12px; } }
+    @media screen and (max-width: 460px) {
+      .Calendar .legend {
+        max-width: 350px;
+        font-size: 10px; } }
+    .Calendar .legend .item {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .Calendar .legend .item .color {
+        margin-right: 15px;
+        height: 20px;
+        width: 20px; }
+        @media screen and (max-width: 4600px) {
+          .Calendar .legend .item .color {
+            height: 15px;
+            width: 15px; } }
+    .Calendar .legend .start {
+      background-color: #70825a; }
+    .Calendar .legend .end {
+      background-color: #EFC30A; }
+    .Calendar .legend .in-progress {
+      background-color: #f4c7a1; }
 
 .Payment {
   position: relative;
@@ -1302,4 +1565,4 @@ a {
   .Payment form {
     width: 450px; }
     .Payment form .card-label {
-      font-family: "Roboto", sans-serif; }
+      font-family: 'Roboto', sans-serif; }

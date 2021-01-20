@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
   position: relative;
 
   .column {
@@ -47,7 +47,7 @@
       flex-grow: 4;
       justify-content: flex-start;
       .label {
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .details {
@@ -87,6 +87,7 @@
 
       i {
         transform: translate(3px, 4px);
+        font-size: 14px;
       }
       
       &:hover {

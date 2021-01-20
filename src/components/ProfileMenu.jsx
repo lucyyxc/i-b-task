@@ -42,21 +42,18 @@ const ProfileMenu = ({show, user, toggleMenu}) => {
 
   return (
     <div className={`ProfileMenu ${show}`}>
-      <div className="user-info">
-        <div className="name">
-          {`${user.name}`}
-        </div>
-        <div 
-          className="link"
-          onClick={() => {
-            swapDisplay('profile')
-            showModal(true)
-          }}
-        >
-          Manage Profile
-        </div>
+      <div className="name link">
+        {`${user.name}`}
       </div>
-      <hr />
+      <div 
+        className="link"
+        onClick={() => {
+          swapDisplay('profile')
+          showModal(true)
+        }}
+      >
+        Manage Profile
+      </div>
       <div 
         className="link" 
         onClick={() => {

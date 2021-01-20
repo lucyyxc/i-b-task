@@ -144,7 +144,7 @@ const Search = ({search, updateStateValue, collabadded, showSearch, getUserTasks
           ? <div className="search-input">
               <i className="fas fa-search"></i>
               <input 
-                placeholder="Search by task name"
+                placeholder="Search tasks"
                 value={search}
                 onChange={e => updateStateValue('search', e.target.value)} 
               />

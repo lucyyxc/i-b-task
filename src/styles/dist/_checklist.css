@@ -1,0 +1,75 @@
+.Checklist {
+  margin-top: 10px;
+  width: 92%;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Checklist .column {
+  flex: 1;
+  padding: 3px 5px;
+  display: flex;
+  justify-content: flex-start;
+}
+.Checklist .column.header span {
+  cursor: pointer;
+  padding-right: 10px;
+}
+.Checklist .column.header i {
+  cursor: pointer;
+}
+.Checklist .overlay {
+  position: fixed;
+  opacity: 0.5;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  position: fixed;
+  backdrop-filter: blur(5px);
+}
+.Checklist .new-task {
+  align-self: flex-end;
+  background-color: #FC6959;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 18px;
+}
+.Checklist .new-task i {
+  margin-right: 10px;
+}
+.Checklist .new-task:hover {
+  cursor: pointer;
+}
+.Checklist .checklist-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.Checklist .checklist-header .spacer {
+  height: 1px;
+  width: 32px;
+}
+.Checklist .checklist-header .column {
+  font-size: 12px;
+}
+.Checklist .checklist-header .column.task-label {
+  flex-grow: 4;
+}
+.Checklist .checklist-header .column:last-of-type {
+  border-right: 0;
+}
+.Checklist hr {
+  background-color: #dcdcdc;
+  height: 1px;
+  width: 100%;
+  border: none;
+}

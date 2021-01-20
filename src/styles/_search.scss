@@ -3,7 +3,7 @@
   height: 30px;
   display: flex;
   justify-content: center;
-  font-family: $secondary;
+  font-family: 'Roboto', sans-serif;
 
   .CollabMenu {
     z-index: 2;
@@ -188,6 +188,8 @@
       padding: 3px;
       border-radius: 5px;
       margin-left: 4px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
 
       i {
         margin: 0 4px 0 0;
@@ -195,8 +197,10 @@
 
       input {
         border: none;
+        font-family: 'Roboto', sans-serif;
 
         &:focus {
+          font-family: 'Roboto', sans-serif;
           border: none;
           outline: none;
         }

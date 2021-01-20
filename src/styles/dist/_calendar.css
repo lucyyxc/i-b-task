@@ -1,0 +1,104 @@
+.Calendar {
+  margin: 20px;
+  width: 90%;
+  font-family: "Roboto", sans-serif;
+}
+.Calendar .overlay {
+  position: fixed;
+  opacity: 0.5;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  position: fixed;
+  backdrop-filter: blur(5px);
+}
+.Calendar .fc-button-primary {
+  background-color: #70825A !important;
+  border-color: #70825A !important;
+}
+@media screen and (max-width: 610px) {
+  .Calendar .fc-button-primary {
+    padding: 3px !important;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Calendar .fc-button-primary {
+    padding: 0 !important;
+  }
+}
+.Calendar .fc-button-primary:hover {
+  background-color: #5b6a49 !important;
+  border-color: #5b6a49 !important;
+}
+.Calendar .fc-day-today {
+  background-color: #EDE6D6 !important;
+}
+.Calendar .fc-event-main {
+  cursor: pointer;
+}
+.Calendar .fc-list-event {
+  cursor: pointer;
+}
+@media screen and (max-width: 610px) {
+  .Calendar .fc-toolbar-title {
+    font-size: 22px !important;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Calendar .fc-toolbar-title {
+    font-size: 16px !important;
+  }
+}
+.Calendar .legend {
+  max-width: 600px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30px auto 10px auto;
+}
+@media screen and (max-width: 760px) {
+  .Calendar .legend {
+    max-width: 500px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .Calendar .legend {
+    max-width: 400px;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Calendar .legend {
+    max-width: 350px;
+    font-size: 10px;
+  }
+}
+.Calendar .legend .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Calendar .legend .item .color {
+  margin-right: 15px;
+  height: 20px;
+  width: 20px;
+}
+@media screen and (max-width: 4600px) {
+  .Calendar .legend .item .color {
+    height: 15px;
+    width: 15px;
+  }
+}
+.Calendar .legend .start {
+  background-color: #70825a;
+}
+.Calendar .legend .end {
+  background-color: #EFC30A;
+}
+.Calendar .legend .in-progress {
+  background-color: #f4c7a1;
+}
