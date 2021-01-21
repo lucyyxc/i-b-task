@@ -1,10 +1,11 @@
 import React from 'react';
-import _forIn from 'lodash/forIn'
+import _forIn from 'lodash/forIn';
+import moment from 'moment';
 
 import Task from './Task';
 import TaskModal from './TaskModal';
 
-const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => {
+const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateEnd, selected, getUserTasks}) => {
   const [state, setState] = React.useState({
     tasklabel: '',
     assignee: '',
@@ -83,6 +84,18 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
 
     if (search.length > 3) {
       filteredTasks = filteredTasks.filter( task => task.tasklabel.toLowerCase().includes(search.toLowerCase()) || task.tags.toLowerCase().includes(search.toLowerCase()))
+    }
+
+    if (dateFilter === 'this-week') {
+      filteredTasks = filteredTasks.filter( task => task.enddate >= moment(new Date()).format('YYYY-MM-DD') && task.enddate <= moment(new Date()).add(7, 'days').format('YYYY-MM-DD'))
+    }
+
+    if (dateFilter === 'next-week') {
+      filteredTasks = filteredTasks.filter(task => task.enddate >= moment(new Date()).add(7, 'days').format('YYYY-MM-DD') && task.enddate <= moment(new Date()).add(14, 'days').format('YYYY-MM-DD'))
+    }
+
+    if (dateFilter === 'custom') {
+      filteredTasks = filteredTasks.filter(task => task.enddate >= moment(dateStart).format('YYYY-MM-DD') && task.enddate <= moment(dateEnd).format('YYYY-MM-DD'))
     }
   }
 

@@ -136,8 +136,6 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
     }
   }
 
-  console.log('hi');
-
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
       <div className="modal-container">

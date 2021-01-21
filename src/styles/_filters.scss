@@ -1,6 +1,8 @@
 .Filters {
   font-family: 'Roboto', sans-serif;
   display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap-reverse;
 
   select {
     font-family: 'Roboto', sans-serif;

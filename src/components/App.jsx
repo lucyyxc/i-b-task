@@ -45,6 +45,7 @@ const App = ({selected}) => {
     });
   }
 
+  console.log(state);
   const updateDateFilter = (filter) => {
     if (filter !== 'custom') {
       setState({
