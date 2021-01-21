@@ -37,10 +37,32 @@
 
     &.assignee {
       width: 50px;
+
+      @media screen and (max-width: 1140px) {
+        display: none;
+      }
+    }
+
+    &.tags {
+      @media screen and (max-width: 1030px) {
+        display: none;
+      }
+    }
+
+    &.status {
+      @media screen and (max-width: 690px) {
+        display: none;
+      }
     }
 
     &.date {
       width: 100px;
+
+      &.start {
+        @media screen and (max-width: 800px) {
+          display: none;
+        }
+      }
     }
 
     &.task-name {
@@ -48,6 +70,18 @@
       justify-content: flex-start;
       .label {
         font-size: 18px;
+
+        @media screen and (max-width: 1250px) {
+          font-size: 16px;
+        }
+
+        @media screen and (max-width: 890px) {
+          font-size: 14px;
+        }
+
+        @media screen and (max-width: 575px) {
+          font-size: 12px;
+        }
       }
 
       .details {
@@ -64,6 +98,18 @@
 
   .label {
     padding: 5px 0;
+
+    @media screen and (max-width: 1250px) {
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 890px) {
+      font-size: 12px;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 10px;
+    }
   }
 
   .complete-button {

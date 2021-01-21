@@ -81,7 +81,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-  z-index: 5; }
+  z-index: 1; }
   .Nav .nav-content-container {
     height: 100%;
     width: 92%;
@@ -614,6 +614,18 @@ a {
       font-size: 12px; }
       .Checklist .checklist-header .column.task-label {
         flex-grow: 4; }
+      @media screen and (max-width: 1140px) {
+        .Checklist .checklist-header .column.assignee {
+          display: none; } }
+      @media screen and (max-width: 1030px) {
+        .Checklist .checklist-header .column.tags {
+          display: none; } }
+      @media screen and (max-width: 800px) {
+        .Checklist .checklist-header .column.startdate {
+          display: none; } }
+      @media screen and (max-width: 690px) {
+        .Checklist .checklist-header .column.status {
+          display: none; } }
       .Checklist .checklist-header .column:last-of-type {
         border-right: 0; }
   .Checklist hr {
@@ -651,19 +663,49 @@ a {
         cursor: pointer; }
     .Task .column.assignee {
       width: 50px; }
+      @media screen and (max-width: 1140px) {
+        .Task .column.assignee {
+          display: none; } }
+    @media screen and (max-width: 1030px) {
+      .Task .column.tags {
+        display: none; } }
+    @media screen and (max-width: 690px) {
+      .Task .column.status {
+        display: none; } }
     .Task .column.date {
       width: 100px; }
+      @media screen and (max-width: 800px) {
+        .Task .column.date.start {
+          display: none; } }
     .Task .column.task-name {
       flex-grow: 4;
       justify-content: flex-start; }
       .Task .column.task-name .label {
         font-size: 18px; }
+        @media screen and (max-width: 1250px) {
+          .Task .column.task-name .label {
+            font-size: 16px; } }
+        @media screen and (max-width: 890px) {
+          .Task .column.task-name .label {
+            font-size: 14px; } }
+        @media screen and (max-width: 575px) {
+          .Task .column.task-name .label {
+            font-size: 12px; } }
       .Task .column.task-name .details .label {
         font-size: 10px; }
   .Task .column:last-of-type {
     border-right: 0; }
   .Task .label {
     padding: 5px 0; }
+    @media screen and (max-width: 1250px) {
+      .Task .label {
+        font-size: 14px; } }
+    @media screen and (max-width: 890px) {
+      .Task .label {
+        font-size: 12px; } }
+    @media screen and (max-width: 575px) {
+      .Task .label {
+        font-size: 10px; } }
   .Task .complete-button {
     height: 20px;
     width: 20px;
@@ -705,7 +747,8 @@ a {
   justify-content: flex-start;
   padding: 5px;
   font-size: 12px;
-  width: 700px; }
+  width: 100%;
+  max-width: 700px; }
   .Task-modal.show {
     opacity: 1;
     visibility: visible;
@@ -861,6 +904,9 @@ a {
       box-sizing: border-box;
       transition: color .15s ease;
       padding: 0 10px; }
+      @media screen and (max-width: 540px) {
+        .Task-modal .modal-container .arrow {
+          display: none; } }
       .Task-modal .modal-container .arrow:hover {
         color: black;
         transition: color .15s ease;
@@ -872,14 +918,25 @@ a {
     .Task-modal .modal-container .modal-content {
       width: 70%;
       height: 100%;
-      padding: 30px 0; }
+      padding: 30px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      @media screen and (max-width: 540px) {
+        .Task-modal .modal-container .modal-content {
+          width: 95%; } }
       .Task-modal .modal-container .modal-content .status-box {
         display: flex;
         flex-direction: column;
         align-content: space-between;
         width: 50%;
+        min-width: 230px;
         margin-bottom: 15px;
-        font-family: 'Roboto', sans-serif; }
+        font-family: 'Roboto', sans-serif;
+        align-self: flex-start; }
+        @media screen and (max-width: 540px) {
+          .Task-modal .modal-container .modal-content .status-box {
+            align-self: center; } }
         .Task-modal .modal-container .modal-content .status-box .status-holder {
           display: flex;
           flex-wrap: nowrap;
@@ -924,7 +981,7 @@ a {
       .Task-modal .modal-container .modal-content .advice {
         background-color: #F3F3F3;
         width: 100%;
-        padding: 10px 5px;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;

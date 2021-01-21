@@ -34,8 +34,28 @@
 .Task .column.assignee {
   width: 50px;
 }
+@media screen and (max-width: 1140px) {
+  .Task .column.assignee {
+    display: none;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .Task .column.tags {
+    display: none;
+  }
+}
+@media screen and (max-width: 690px) {
+  .Task .column.status {
+    display: none;
+  }
+}
 .Task .column.date {
   width: 100px;
+}
+@media screen and (max-width: 800px) {
+  .Task .column.date.start {
+    display: none;
+  }
 }
 .Task .column.task-name {
   flex-grow: 4;
@@ -43,6 +63,21 @@
 }
 .Task .column.task-name .label {
   font-size: 18px;
+}
+@media screen and (max-width: 1250px) {
+  .Task .column.task-name .label {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 890px) {
+  .Task .column.task-name .label {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .Task .column.task-name .label {
+    font-size: 12px;
+  }
 }
 .Task .column.task-name .details .label {
   font-size: 10px;
@@ -52,6 +87,21 @@
 }
 .Task .label {
   padding: 5px 0;
+}
+@media screen and (max-width: 1250px) {
+  .Task .label {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 890px) {
+  .Task .label {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .Task .label {
+    font-size: 10px;
+  }
 }
 .Task .complete-button {
   height: 20px;

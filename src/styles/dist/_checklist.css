@@ -64,6 +64,26 @@
 .Checklist .checklist-header .column.task-label {
   flex-grow: 4;
 }
+@media screen and (max-width: 1140px) {
+  .Checklist .checklist-header .column.assignee {
+    display: none;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .Checklist .checklist-header .column.tags {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .Checklist .checklist-header .column.startdate {
+    display: none;
+  }
+}
+@media screen and (max-width: 690px) {
+  .Checklist .checklist-header .column.status {
+    display: none;
+  }
+}
 .Checklist .checklist-header .column:last-of-type {
   border-right: 0;
 }

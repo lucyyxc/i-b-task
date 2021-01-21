@@ -75,6 +75,30 @@
         flex-grow: 4;
       }
 
+      &.assignee {
+        @media screen and (max-width: 1140px) {
+          display: none;
+        }
+      }
+
+      &.tags {
+        @media screen and (max-width: 1030px) {
+          display: none;
+        }
+      }
+
+      &.startdate {
+        @media screen and (max-width: 800px) {
+          display: none;
+        }
+      }
+
+      &.status {
+        @media screen and (max-width: 690px) {
+          display: none;
+        }
+      }
+
       &:last-of-type {
         border-right: 0;
       }

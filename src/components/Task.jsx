@@ -60,10 +60,10 @@ const Task = ({task, index, openModal, getUserTasks}) => {
         <div className="tags column">
           <span className="label">{tags}</span>
         </div>
-        <div className="date column">
+        <div className="date start column">
           <span className="label">{moment(startdate, 'YYYY-MM-DD').format('MM/DD/YY')}</span>
         </div>
-        <div className="date column">
+        <div className="date end column">
           <span className="label">{moment(enddate, 'YYYY-MM-DD').format('MM/DD/YY')}</span>
         </div>
         <div className="status column">

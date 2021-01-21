@@ -146,7 +146,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('tasklabel')}
         </div>
         <div
-          className={`column header ${true ? '' : 'hide'}`}
+          className={`column header assignee ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('assignee')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -155,7 +155,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('assignee')}
         </div>
         <div
-          className={`column header ${true ? '' : 'hide'}`}
+          className={`column header tags ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('tags')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -164,7 +164,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('tags')}
         </div>
         <div
-          className={`column header ${true ? '' : 'hide'}`}
+          className={`column header startdate ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('startdate')}
         > {/*TODO hide with props when filtered out */}
           <span>
@@ -173,7 +173,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('startdate')}
         </div>
         <div
-          className={`column header ${true ? '' : 'hide'}`}
+          className={`column header enddate ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('enddate')}
         > {/*TODO hide with props when filtered out */}
         <span>
@@ -182,7 +182,7 @@ const Checklist = ({tasks = [], taskFilter, search, selected, getUserTasks}) => 
           {renderArrows('enddate')}
         </div>
         <div
-          className={`column header ${true ? '' : 'hide'}`}
+          className={`column header status ${true ? '' : 'hide'}`}
           onClick={() => updateFilterState('status')}
         > {/*TODO hide with props when filtered out */}
           <span>
