@@ -77,7 +77,6 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
       if (updates.length){
         axios.all(updates)
         .then(responses => {
-          console.log(responses);
           setState({
             ...state,
             task: {},
