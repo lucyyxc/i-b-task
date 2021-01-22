@@ -68,6 +68,11 @@
     &.task-name {
       flex-grow: 4;
       justify-content: flex-start;
+
+      @media screen and (max-width: 620px) {
+        cursor: pointer;
+      }
+
       .label {
         font-size: 18px;
 
@@ -88,6 +93,10 @@
         .label {
           font-size: 10px;
         }
+
+        @media screen and (max-width: 620px) {
+          display: none;
+        }
       }
     }
   }
@@ -105,10 +114,6 @@
 
     @media screen and (max-width: 890px) {
       font-size: 12px;
-    }
-
-    @media screen and (max-width: 575px) {
-      font-size: 10px;
     }
   }
 

@@ -176,6 +176,15 @@
   margin-top: 5px;
   font-style: italic;
 }
+.Intro .signup .requireds {
+  font-size: 14px;
+  margin-top: 10px;
+  color: red;
+  text-align: center;
+}
+.Intro .signup .requireds.hide {
+  display: none;
+}
 .Intro .signup .member {
   margin-top: 20px;
   width: 100%;

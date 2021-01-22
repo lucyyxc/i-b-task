@@ -2,11 +2,11 @@ import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
-const Task = ({task, index, openModal, getUserTasks}) => {
-  let id, taskname, tasklabel, assignee, tags, startdate, enddate, status, details;
+const Task = ({task, openModal, getUserTasks}) => {
+  let id, tasklabel, assignee, tags, startdate, enddate, status;
   
   if (task) {
-    ({ id, taskname, tasklabel, assignee, tags, startdate, enddate, status, details } = task);
+    ({ id, tasklabel, assignee, tags, startdate, enddate, status } = task);
   }
 
 
@@ -47,7 +47,11 @@ const Task = ({task, index, openModal, getUserTasks}) => {
             ? <i class="fas fa-check"></i>
             : null}
         </div>
-        <div className="task-name column">
+        <div className="task-name column" onClick={() => {
+            if (window.matchMedia('(max-width: 620px)').matches) {
+              openModal(id)
+            }
+          }}>
           <span className="label">{tasklabel}</span>
           <div className="details" onClick={() => openModal(id)}>
             <span className="label">Details</span>

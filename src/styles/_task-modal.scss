@@ -16,8 +16,9 @@
   justify-content: flex-start;
   padding: 5px;
   font-size: 12px;
-  width: 100%;
+  width: 98%;
   max-width: 700px;
+  font-family: 'Roboto', sans-serif;
 
   &.show {
     opacity: 1;
@@ -352,10 +353,12 @@
         overflow: scroll;
         //TODO add a scroll bar to the advice
         height: 150px;
+        font-family: 'Roboto', sans-serif;
 
         .title {
           font-weight: bold;
           margin-bottom: 10px;
+          font-family: 'Roboto', sans-serif;
         }
       }
 

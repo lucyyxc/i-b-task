@@ -16,27 +16,39 @@ const LogOutModal = ({modal, cancel}) => (
 );
 
 const ProfileMenu = ({show, user, toggleMenu}) => {
-  const [modal, showModal] = React.useState(false);
-  const [display, swapDisplay] = React.useState('');
-  const [redirect, setRedirect] = React.useState(false)
-
+  const [state, setState] = React.useState({
+    modal: false,
+    display: 'logout',
+    redirect: false
+  })
 
   const logOut = () => {
-    showModal(false)
-    swapDisplay('')
+    setState({
+      ...state,
+      modal: false,
+      display: '',
+      redirect: true
+    })
     toggleMenu()
-    setRedirect(true)
   };
 
   const cancel = () => {
-    showModal(false)
-    swapDisplay('')
+    setState({
+      ...state,
+      modal: false,
+      display: ''
+    })
     toggleMenu()
   };
 
-  if(show === 'hidden' && modal) showModal(false);
+  if(show === 'hidden' && state.modal) {
+    setState({
+      ...state,
+      modal: false
+    })
+  };
 
-  if (redirect) {
+  if (state.redirect) {
     return <Redirect to="/auth/logout" />
   }
 
@@ -47,25 +59,33 @@ const ProfileMenu = ({show, user, toggleMenu}) => {
       </div>
       <div 
         className="link"
-        onClick={() => {
-          swapDisplay('profile')
-          showModal(true)
+        onClick={(e) => {
+          e.stopPropagation();
+          setState({
+            ...state,
+            display: 'profile',
+            modal: true
+          })
         }}
       >
         Manage Profile
       </div>
       <div 
         className="link" 
-        onClick={() => {
-          swapDisplay('logout')
-          showModal(true)
+        onClick={(e) => {
+          e.stopPropagation();
+          setState({
+            ...state,
+            display: 'logout',
+            modal: true
+          })
         }}
       >
         Log Out
       </div>
-      {display === 'logout'
-        ? <LogOutModal {...{modal, logOut, cancel}} />
-        : <Profile {...{user, modal, cancel}} />
+      {state.display === 'logout'
+        ? <LogOutModal {...{modal: state.modal, logOut, cancel}} />
+        : <Profile {...{user, modal: state.modal, cancel}} />
       }
     </div>
   )

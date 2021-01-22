@@ -61,6 +61,11 @@
   flex-grow: 4;
   justify-content: flex-start;
 }
+@media screen and (max-width: 620px) {
+  .Task .column.task-name {
+    cursor: pointer;
+  }
+}
 .Task .column.task-name .label {
   font-size: 18px;
 }
@@ -82,6 +87,11 @@
 .Task .column.task-name .details .label {
   font-size: 10px;
 }
+@media screen and (max-width: 620px) {
+  .Task .column.task-name .details {
+    display: none;
+  }
+}
 .Task .column:last-of-type {
   border-right: 0;
 }
@@ -96,11 +106,6 @@
 @media screen and (max-width: 890px) {
   .Task .label {
     font-size: 12px;
-  }
-}
-@media screen and (max-width: 575px) {
-  .Task .label {
-    font-size: 10px;
   }
 }
 .Task .complete-button {

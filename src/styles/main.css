@@ -70,12 +70,16 @@ a {
     margin-top: 20px;
     display: flex;
     justify-content: center; }
+    @media screen and (max-width: 838px) {
+      .App .views-holder {
+        display: none; } }
     .App .views-holder .views-content {
       width: 92%;
       height: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between; }
+      justify-content: space-between;
+      align-items: flex-end; }
 
 .Nav {
   width: 100%;
@@ -213,6 +217,9 @@ a {
   display: flex;
   justify-content: center;
   font-family: 'Roboto', sans-serif; }
+  @media screen and (max-width: 838px) {
+    .Title {
+      display: none; } }
   .Title .title-content {
     position: relative;
     height: 100%;
@@ -285,10 +292,12 @@ a {
   right: 0;
   border-radius: 3px;
   white-space: nowrap;
-  background-color: white; }
+  background-color: white;
+  font-family: 'Roboto', sans-serif; }
   .ProfileMenu .link {
     padding: 0 5px 10px 5px;
-    transition: color .15s ease; }
+    transition: color .15s ease;
+    font-size: 16px; }
     .ProfileMenu .link:hover {
       color: #9C9999;
       cursor: pointer;
@@ -502,6 +511,11 @@ a {
       margin-left: 4px;
       font-family: 'Roboto', sans-serif;
       font-size: 18px; }
+      @media screen and (max-width: 450px) {
+        .Search .search-content .search-input {
+          width: 100%;
+          justify-content: flex-start;
+          margin-top: 5px; } }
       .Search .search-content .search-input i {
         margin: 0 4px 0 0; }
       .Search .search-content .search-input input {
@@ -548,7 +562,9 @@ a {
 
 .Filters {
   font-family: 'Roboto', sans-serif;
-  display: flex; }
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap-reverse; }
   .Filters select {
     font-family: 'Roboto', sans-serif;
     height: 30px;
@@ -599,6 +615,9 @@ a {
     align-items: center;
     margin-bottom: 25px;
     font-size: 18px; }
+    @media screen and (max-width: 838px) {
+      .Checklist .new-task {
+        display: none; } }
     .Checklist .new-task i {
       margin-right: 10px; }
     .Checklist .new-task:hover {
@@ -611,7 +630,8 @@ a {
       height: 1px;
       width: 32px; }
     .Checklist .checklist-header .column {
-      font-size: 12px; }
+      font-size: 12px;
+      white-space: nowrap; }
       .Checklist .checklist-header .column.task-label {
         flex-grow: 4; }
       @media screen and (max-width: 1140px) {
@@ -680,6 +700,9 @@ a {
     .Task .column.task-name {
       flex-grow: 4;
       justify-content: flex-start; }
+      @media screen and (max-width: 620px) {
+        .Task .column.task-name {
+          cursor: pointer; } }
       .Task .column.task-name .label {
         font-size: 18px; }
         @media screen and (max-width: 1250px) {
@@ -693,6 +716,9 @@ a {
             font-size: 12px; } }
       .Task .column.task-name .details .label {
         font-size: 10px; }
+      @media screen and (max-width: 620px) {
+        .Task .column.task-name .details {
+          display: none; } }
   .Task .column:last-of-type {
     border-right: 0; }
   .Task .label {
@@ -703,9 +729,6 @@ a {
     @media screen and (max-width: 890px) {
       .Task .label {
         font-size: 12px; } }
-    @media screen and (max-width: 575px) {
-      .Task .label {
-        font-size: 10px; } }
   .Task .complete-button {
     height: 20px;
     width: 20px;
@@ -747,8 +770,9 @@ a {
   justify-content: flex-start;
   padding: 5px;
   font-size: 12px;
-  width: 100%;
-  max-width: 700px; }
+  width: 98%;
+  max-width: 700px;
+  font-family: 'Roboto', sans-serif; }
   .Task-modal.show {
     opacity: 1;
     visibility: visible;
@@ -988,10 +1012,12 @@ a {
         box-sizing: border-box;
         font-size: 14px;
         overflow: scroll;
-        height: 150px; }
+        height: 150px;
+        font-family: 'Roboto', sans-serif; }
         .Task-modal .modal-container .modal-content .advice .title {
           font-weight: bold;
-          margin-bottom: 10px; }
+          margin-bottom: 10px;
+          font-family: 'Roboto', sans-serif; }
       .Task-modal .modal-container .modal-content .notes {
         display: flex;
         flex-direction: column;
@@ -1339,6 +1365,13 @@ a {
       font-size: 12px;
       margin-top: 5px;
       font-style: italic; }
+    .Intro .signup .requireds {
+      font-size: 14px;
+      margin-top: 10px;
+      color: red;
+      text-align: center; }
+      .Intro .signup .requireds.hide {
+        display: none; }
     .Intro .signup .member {
       margin-top: 20px;
       width: 100%;
@@ -1648,3 +1681,77 @@ a {
     width: 450px; }
     .Payment form .card-label {
       font-family: 'Roboto', sans-serif; }
+
+.MobileHeader {
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px black solid;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1;
+  font-family: 'Roboto', sans-serif; }
+  .MobileHeader .icon {
+    font-size: 35px;
+    cursor: pointer; }
+  .MobileHeader .overlay {
+    position: fixed;
+    opacity: 0.5;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: fixed;
+    backdrop-filter: blur(5px); }
+  .MobileHeader .fa-sliders-h {
+    position: relative; }
+    .MobileHeader .fa-sliders-h .filters-holder {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      border: 1px black solid;
+      background-color: white;
+      z-index: 1;
+      border-radius: 3px;
+      transform: translateY(7px); }
+      .MobileHeader .fa-sliders-h .filters-holder.hide {
+        display: none; }
+      .MobileHeader .fa-sliders-h .filters-holder .filter {
+        padding: 5px 5px 5px 10px;
+        font-family: 'Roboto', sans-serif; }
+        .MobileHeader .fa-sliders-h .filters-holder .filter.selected {
+          color: white;
+          background-color: #70825A; }
+  .MobileHeader .fa-user-circle {
+    position: relative; }
+  .MobileHeader .fa-ellipsis-v {
+    position: relative; }
+    .MobileHeader .fa-ellipsis-v .views-holder {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      border: 1px black solid;
+      background-color: white;
+      z-index: 1;
+      border-radius: 3px;
+      transform: translate(-90px, -13px);
+      height: 84px;
+      width: 105px; }
+      .MobileHeader .fa-ellipsis-v .views-holder.hide {
+        display: none; }
+      .MobileHeader .fa-ellipsis-v .views-holder a {
+        padding: 5px 5px 5px 10px;
+        font-family: 'Roboto', sans-serif;
+        color: black; }
+        .MobileHeader .fa-ellipsis-v .views-holder a:visited {
+          color: black; }
+      .MobileHeader .fa-ellipsis-v .views-holder .selected {
+        color: white;
+        background-color: #70825A; }
+  @media screen and (min-width: 839px) {
+    .MobileHeader {
+      display: none; } }

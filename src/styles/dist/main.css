@@ -88,12 +88,14 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .Nav {
   width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 1;
 }
 .Nav .nav-content-container {
   height: 100%;
@@ -102,9 +104,31 @@ a {
   justify-content: space-between;
   padding-top: 40px;
 }
+@media screen and (max-width: 1190px) {
+  .Nav .nav-content-container {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+}
+@media screen and (max-width: 838px) {
+  .Nav .nav-content-container {
+    display: none;
+  }
+}
 .Nav .nav-content-container .logo-container .logo {
   height: 150px;
   width: 150px;
+}
+@media screen and (max-width: 1190px) {
+  .Nav .nav-content-container .logo-container .logo {
+    height: 125px;
+    width: 125px;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .Nav .nav-content-container .logo-container .logo {
+    display: none;
+  }
 }
 .Nav .nav-content-container .links-container {
   padding: 10px 0;
@@ -122,9 +146,22 @@ a {
   transition: color 0.15s ease;
   text-transform: uppercase;
 }
+@media screen and (max-width: 1190px) {
+  .Nav .nav-content-container .links-container .link.nav-link {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .Nav .nav-content-container .links-container .link.nav-link {
+    font-size: 11px;
+  }
+}
 .Nav .nav-content-container .links-container .link:hover {
   color: #9C9999;
   transition: color 0.15s ease;
+}
+.Nav .nav-content-container.intro .profile-content {
+  display: none;
 }
 .Nav .profile-holder {
   position: relative;
@@ -145,11 +182,55 @@ a {
   color: white;
   transition: all 0.15s ease;
 }
+@media screen and (max-width: 1190px) {
+  .Nav .profile-holder .profile-circle {
+    height: 50px;
+    width: 50px;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .Nav .profile-holder .profile-circle {
+    height: 40px;
+    width: 40px;
+  }
+}
 .Nav .profile-holder .profile-circle:hover {
   background-color: #818a75;
   color: white;
   cursor: pointer;
   transition: all 0.15s ease;
+}
+.Nav .mobile-nav {
+  display: none;
+  height: 100px;
+  width: 100%;
+  background-color: #F6DDC8;
+  justify-content: space-between;
+  align-items: center;
+}
+.Nav .mobile-nav .pink {
+  height: 70px;
+  width: 70px;
+}
+.Nav .mobile-nav .pink.left {
+  align-self: flex-end;
+}
+.Nav .mobile-nav .pink.right {
+  align-self: flex-start;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.Nav .mobile-nav .white {
+  height: 200px;
+  width: auto;
+}
+.Nav .mobile-nav.intro {
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 838px) {
+  .Nav .mobile-nav {
+    display: flex;
+  }
 }
 
 .Footer {
@@ -204,6 +285,21 @@ a {
   font-size: 70px;
   text-align: center;
   margin-bottom: 20px;
+}
+@media screen and (max-width: 1300px) {
+  .Title .title-content .title-text {
+    font-size: 60px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .Title .title-content .title-text {
+    font-size: 50px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .Title .title-content .title-text {
+    font-size: 40px;
+  }
 }
 .Title .title-content .title-text.intro {
   flex-direction: column;
@@ -274,6 +370,11 @@ a {
   font-weight: bold;
   font-size: 18px;
 }
+@media screen and (max-width: 1030px) {
+  .ProfileMenu .name {
+    font-size: 15px;
+  }
+}
 .ProfileMenu .name:hover {
   color: black;
   cursor: default;
@@ -305,6 +406,7 @@ a {
   transition: all 0.25s ease;
 }
 .ProfileMenu .logout-confirm {
+  z-index: 10;
   height: 150px;
   width: 300px;
   display: flex;
@@ -332,6 +434,11 @@ a {
   width: 80px;
   font-size: 18px;
   cursor: pointer;
+}
+@media screen and (max-width: 1030px) {
+  .ProfileMenu .logout-confirm .button-holder .button {
+    font-size: 15px;
+  }
 }
 .ProfileMenu .logout-confirm .button-holder .button.logout-link {
   color: black;
@@ -570,6 +677,8 @@ a {
 .Filters {
   font-family: "Roboto", sans-serif;
   display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap-reverse;
 }
 .Filters select {
   font-family: "Roboto", sans-serif;
@@ -650,6 +759,26 @@ a {
 .Checklist .checklist-header .column.task-label {
   flex-grow: 4;
 }
+@media screen and (max-width: 1140px) {
+  .Checklist .checklist-header .column.assignee {
+    display: none;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .Checklist .checklist-header .column.tags {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .Checklist .checklist-header .column.startdate {
+    display: none;
+  }
+}
+@media screen and (max-width: 690px) {
+  .Checklist .checklist-header .column.status {
+    display: none;
+  }
+}
 .Checklist .checklist-header .column:last-of-type {
   border-right: 0;
 }
@@ -696,8 +825,28 @@ a {
 .Task .column.assignee {
   width: 50px;
 }
+@media screen and (max-width: 1140px) {
+  .Task .column.assignee {
+    display: none;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .Task .column.tags {
+    display: none;
+  }
+}
+@media screen and (max-width: 690px) {
+  .Task .column.status {
+    display: none;
+  }
+}
 .Task .column.date {
   width: 100px;
+}
+@media screen and (max-width: 800px) {
+  .Task .column.date.start {
+    display: none;
+  }
 }
 .Task .column.task-name {
   flex-grow: 4;
@@ -705,6 +854,21 @@ a {
 }
 .Task .column.task-name .label {
   font-size: 18px;
+}
+@media screen and (max-width: 1250px) {
+  .Task .column.task-name .label {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 890px) {
+  .Task .column.task-name .label {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .Task .column.task-name .label {
+    font-size: 12px;
+  }
 }
 .Task .column.task-name .details .label {
   font-size: 10px;
@@ -714,6 +878,21 @@ a {
 }
 .Task .label {
   padding: 5px 0;
+}
+@media screen and (max-width: 1250px) {
+  .Task .label {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 890px) {
+  .Task .label {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .Task .label {
+    font-size: 10px;
+  }
 }
 .Task .complete-button {
   height: 20px;
@@ -761,7 +940,8 @@ a {
   justify-content: flex-start;
   padding: 5px;
   font-size: 12px;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
 }
 .Task-modal.show {
   opacity: 1;
@@ -886,11 +1066,6 @@ a {
   font-size: 20px;
   transition: color 0.15s ease;
 }
-.Task-modal .modal-container .delete:hover {
-  color: #FC6959;
-  transition: color 0.15s ease;
-  cursor: pointer;
-}
 .Task-modal .modal-container .delete .confirm {
   background-color: white;
   left: 50%;
@@ -931,9 +1106,16 @@ a {
 }
 .Task-modal .modal-container .delete .confirm .button-holder .cancel {
   background-color: white;
+  color: black;
+  border: 1px black solid;
 }
 .Task-modal .modal-container .delete .confirm.hide {
   display: none;
+}
+.Task-modal .modal-container .delete i:hover {
+  color: #FC6959;
+  transition: color 0.15s ease;
+  cursor: pointer;
 }
 .Task-modal .modal-container .icons {
   bottom: 0;
@@ -947,6 +1129,11 @@ a {
   box-sizing: border-box;
   transition: color 0.15s ease;
   padding: 0 10px;
+}
+@media screen and (max-width: 540px) {
+  .Task-modal .modal-container .arrow {
+    display: none;
+  }
 }
 .Task-modal .modal-container .arrow:hover {
   color: black;
@@ -963,14 +1150,29 @@ a {
   width: 70%;
   height: 100%;
   padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 540px) {
+  .Task-modal .modal-container .modal-content {
+    width: 95%;
+  }
 }
 .Task-modal .modal-container .modal-content .status-box {
   display: flex;
   flex-direction: column;
   align-content: space-between;
   width: 50%;
+  min-width: 230px;
   margin-bottom: 15px;
   font-family: "Roboto", sans-serif;
+  align-self: flex-start;
+}
+@media screen and (max-width: 540px) {
+  .Task-modal .modal-container .modal-content .status-box {
+    align-self: center;
+  }
 }
 .Task-modal .modal-container .modal-content .status-box .status-holder {
   display: flex;
@@ -1024,7 +1226,7 @@ a {
 .Task-modal .modal-container .modal-content .advice {
   background-color: #F3F3F3;
   width: 100%;
-  padding: 10px 5px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -1083,14 +1285,35 @@ a {
   font-size: 28px;
   margin-top: 25px;
 }
+@media screen and (max-width: 760px) {
+  .Progress .title {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 536px) {
+  .Progress .title {
+    font-size: 16px;
+  }
+}
 .Progress .progress-bar-container {
   margin: 40px 0;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+}
+@media screen and (max-width: 760px) {
+  .Progress .progress-bar-container {
+    margin: 30px 0;
+  }
+}
+@media screen and (max-width: 536px) {
+  .Progress .progress-bar-container {
+    margin: 20px 0;
+  }
 }
 .Progress .progress-bar-container .progress-bar {
   background-color: white;
@@ -1138,6 +1361,24 @@ a {
   justify-content: space-around;
   align-items: center;
 }
+@media screen and (max-width: 760px) {
+  .Progress .legend {
+    max-width: 500px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .Progress .legend {
+    max-width: 400px;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Progress .legend {
+    max-width: 350px;
+    font-size: 10px;
+  }
+}
 .Progress .legend .item {
   display: flex;
   justify-content: center;
@@ -1148,9 +1389,19 @@ a {
   height: 20px;
   width: 20px;
 }
+@media screen and (max-width: 4600px) {
+  .Progress .legend .item .color {
+    height: 15px;
+    width: 15px;
+  }
+}
 .Progress .circle-container {
   margin: 30px 0;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .Progress .circle-container .flex {
   display: flex;
@@ -1158,6 +1409,34 @@ a {
   align-items: flex-end;
   box-sizing: border-box;
   margin: 20px 0 40px 0;
+  width: 100%;
+}
+@media screen and (max-width: 730px) {
+  .Progress .circle-container .flex {
+    margin: 10px 0 20px 0;
+  }
+}
+@media screen and (max-width: 730px) {
+  .Progress .circle-container .flex.desktop {
+    display: none;
+  }
+}
+.Progress .circle-container .flex.mobile {
+  display: none;
+}
+@media screen and (max-width: 730px) {
+  .Progress .circle-container .flex.mobile {
+    display: flex;
+  }
+}
+.Progress .circle-container .flex.bottom {
+  width: 85%;
+  max-width: 600px;
+}
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .flex.bottom {
+    justify-content: space-between;
+  }
 }
 .Progress .circle-container .circle {
   display: flex;
@@ -1165,6 +1444,11 @@ a {
   justify-content: center;
   align-items: center;
   font-weight: 600;
+}
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .circle {
+    font-size: 12px;
+  }
 }
 .Progress .circle-container .circle .the-circle {
   height: 125px;
@@ -1178,10 +1462,24 @@ a {
   font-size: 80px;
   margin-bottom: 10px;
 }
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .circle .the-circle {
+    height: 100px;
+    width: 100px;
+    font-size: 55px;
+  }
+}
 .Progress .circle-container .circle .big {
   height: 200px;
   width: 200px;
   font-size: 150px;
+}
+@media screen and (max-width: 500px) {
+  .Progress .circle-container .circle .big {
+    height: 150px;
+    width: 150px;
+    font-size: 110px;
+  }
 }
 .Progress .circle-container .circle .complete {
   background-color: #70825A;
@@ -1244,6 +1542,11 @@ a {
   margin-bottom: 5px;
   display: flex;
 }
+@media screen and (max-width: 500px) {
+  .Intro .signup .input-container .label-container .input-label {
+    font-size: 16px;
+  }
+}
 .Intro .signup .input-container .label-container .input-label .tooltip {
   margin-left: 3px;
   position: relative;
@@ -1298,6 +1601,12 @@ a {
   font-size: 16px;
   transition: all 0.15s ease;
   padding: 3px;
+  font-family: "Roboto", sans-serif;
+}
+@media screen and (max-width: 500px) {
+  .Intro .signup .input-container .input {
+    font-size: 14px;
+  }
 }
 .Intro .signup .input-container .input:focus {
   outline: none;
@@ -1342,6 +1651,11 @@ a {
   font-weight: 600;
   margin-bottom: 5px;
 }
+@media screen and (max-width: 500px) {
+  .Intro .signup .date-container .date-label {
+    font-size: 16px;
+  }
+}
 .Intro .signup .date-container .picker {
   font-family: "Roboto", sans-serif;
   border: none;
@@ -1350,6 +1664,11 @@ a {
   font-size: 16px;
   padding: 3px;
   transition: all 0.15s ease;
+}
+@media screen and (max-width: 500px) {
+  .Intro .signup .date-container .picker {
+    font-size: 14px;
+  }
 }
 .Intro .signup .date-container .picker:focus {
   outline: none;
@@ -1361,6 +1680,15 @@ a {
   font-size: 12px;
   margin-top: 5px;
   font-style: italic;
+}
+.Intro .signup .requireds {
+  font-size: 14px;
+  margin-top: 10px;
+  color: red;
+  text-align: center;
+}
+.Intro .signup .requireds.hide {
+  display: none;
 }
 .Intro .signup .member {
   margin-top: 20px;
@@ -1397,10 +1725,20 @@ a {
   margin-left: 10px;
   margin-top: 4px;
 }
+@media screen and (max-width: 500px) {
+  .Intro .signup .email-opt .checkbox-text {
+    font-size: 12px;
+  }
+}
 .Intro .signup .terms {
   margin-top: 15px;
   text-align: center;
   font-size: 14px;
+}
+@media screen and (max-width: 500px) {
+  .Intro .signup .terms {
+    font-size: 12px;
+  }
 }
 .Intro .signup .submit {
   height: 60px;
@@ -1420,7 +1758,6 @@ a {
 .Intro .title-text {
   display: flex;
   justify-content: flex-end;
-  margin-top: 60px;
   font-size: 70px;
   text-align: center;
   flex-direction: column;
@@ -1429,11 +1766,22 @@ a {
   margin-top: 0px;
   font-family: "Roboto", sans-serif;
 }
+@media screen and (max-width: 600px) {
+  .Intro .title-text {
+    font-size: 46px;
+  }
+}
 .Intro .title-text p {
   font-size: 22px;
-  width: 550px;
+  width: 85%;
+  max-width: 550px;
   margin-top: 30px;
   line-height: 1.2;
+}
+@media screen and (max-width: 600px) {
+  .Intro .title-text p {
+    font-size: 16px;
+  }
 }
 
 .Profile {
@@ -1612,7 +1960,7 @@ a {
 
 .Calendar {
   margin: 20px;
-  width: 80%;
+  width: 90%;
   font-family: "Roboto", sans-serif;
 }
 .Calendar .overlay {
@@ -1631,6 +1979,16 @@ a {
   background-color: #70825A !important;
   border-color: #70825A !important;
 }
+@media screen and (max-width: 610px) {
+  .Calendar .fc-button-primary {
+    padding: 3px !important;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Calendar .fc-button-primary {
+    padding: 0 !important;
+  }
+}
 .Calendar .fc-button-primary:hover {
   background-color: #5b6a49 !important;
   border-color: #5b6a49 !important;
@@ -1643,6 +2001,66 @@ a {
 }
 .Calendar .fc-list-event {
   cursor: pointer;
+}
+@media screen and (max-width: 610px) {
+  .Calendar .fc-toolbar-title {
+    font-size: 22px !important;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Calendar .fc-toolbar-title {
+    font-size: 16px !important;
+  }
+}
+.Calendar .legend {
+  max-width: 600px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30px auto 10px auto;
+}
+@media screen and (max-width: 760px) {
+  .Calendar .legend {
+    max-width: 500px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .Calendar .legend {
+    max-width: 400px;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .Calendar .legend {
+    max-width: 350px;
+    font-size: 10px;
+  }
+}
+.Calendar .legend .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Calendar .legend .item .color {
+  margin-right: 15px;
+  height: 20px;
+  width: 20px;
+}
+@media screen and (max-width: 4600px) {
+  .Calendar .legend .item .color {
+    height: 15px;
+    width: 15px;
+  }
+}
+.Calendar .legend .start {
+  background-color: #70825a;
+}
+.Calendar .legend .end {
+  background-color: #EFC30A;
+}
+.Calendar .legend .in-progress {
+  background-color: #f4c7a1;
 }
 
 .Payment {

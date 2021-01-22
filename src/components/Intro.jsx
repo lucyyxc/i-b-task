@@ -114,7 +114,8 @@ const Intro = ({updateView}) => {
     match: false,
     error: false,
     timeUntil: '',
-    emailAgree: true
+    emailAgree: true,
+    required: false
   });
   const [redirect, setRedirect] = React.useState(false);
 
@@ -187,7 +188,7 @@ const Intro = ({updateView}) => {
 
   const submit = () => {
     const submittableweddingdate = moment(state.weddingdate).format('YYYY-MM-DD');
-    const submittableBirthday = moment(state.birthday).format('YYYY-MM-DD');
+    const submittableBirthday = moment(state.birthday || new Date()).format('YYYY-MM-DD');
     const metadata = {
       weddingdate: submittableweddingdate,
       birthday: submittableBirthday,
@@ -202,13 +203,11 @@ const Intro = ({updateView}) => {
       state.weddingdate &&
       state.email &&
       state.validEmail &&
-      state.birthday &&
       validatePassword(state.password) &&
       state.password &&
       state.timeUntil &&
       state.match
     ) {
-      console.log('posting');
       axios.post('https://the-independent-bride.us.auth0.com/dbconnections/signup',
         {
           client_id: 'MdY4v57ExoBNoxuM9MsFCMULtl44pFQ1',
@@ -220,30 +219,29 @@ const Intro = ({updateView}) => {
         }
       )
       .then(response => {
-        console.log(response.data);
-        console.log('sign up completed');
+
         axios.post('/api/post/newUser', response.data)
         .then(response => {
-          console.log(response.data);
           setRedirect(true);
         })
         .catch(err => {
-          // setState({
-          //   ...state,
-          //   error: true,
-          // });
           console.log(err);
-          //TODO Do something with this error state
         })
       })
       .catch(err => {
-        // setState({
-        //   ...state,
-        //   error: true,
-        // });
         console.log(err);
-        //TODO Do something with this error state
       })
+    } else if (
+      !state.name ||
+      !state.weddingdate ||
+      !state.email ||
+      !state.password ||
+      !state.timeUntil
+    ) {
+      setState({
+        ...state,
+        required: true,
+      });
     }
   };
 
@@ -312,6 +310,7 @@ const Intro = ({updateView}) => {
         updateStateValue
       }} />
       <div className="required-field">* required field</div>
+      <div class={`requireds ${state.required ? '' : 'hide'}`}>Please fill all required fields</div>
       <EmailOptIn {...{
         updateStateValue,
         item: 'emailAgree',
@@ -325,7 +324,7 @@ const Intro = ({updateView}) => {
       <div 
         className="submit"
         onClick={() => submit()}
-      > {/*TODO add thinking animation to button */}
+      >
         <span className="label">Let's do this!</span>
       </div>
     </div>

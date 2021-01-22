@@ -167,6 +167,13 @@
   font-family: "Roboto", sans-serif;
   font-size: 18px;
 }
+@media screen and (max-width: 450px) {
+  .Search .search-content .search-input {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 5px;
+  }
+}
 .Search .search-content .search-input i {
   margin: 0 4px 0 0;
 }

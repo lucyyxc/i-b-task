@@ -198,6 +198,17 @@
       font-style: italic;
     }
 
+    .requireds{
+      font-size: 14px;
+      margin-top: 10px;
+      color: red;
+      text-align: center;
+
+      &.hide {
+        display: none;
+      }
+    }
+
     .member {
       margin-top: 20px;
       width: 100%;

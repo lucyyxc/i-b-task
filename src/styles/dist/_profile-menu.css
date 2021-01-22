@@ -11,10 +11,12 @@
   border-radius: 3px;
   white-space: nowrap;
   background-color: white;
+  font-family: "Roboto", sans-serif;
 }
 .ProfileMenu .link {
   padding: 0 5px 10px 5px;
   transition: color 0.15s ease;
+  font-size: 16px;
 }
 .ProfileMenu .link:hover {
   color: #9C9999;

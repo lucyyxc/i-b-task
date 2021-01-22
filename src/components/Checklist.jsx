@@ -100,7 +100,7 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
   }
 
   const openModal = (id) => {
-    const newIndex = tasks.findIndex((task) => {
+    const newIndex = tasks.findIndex((task) => { 
       if (task.id === id) {
         return task;
       }
@@ -140,7 +140,7 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
         changeModalTask={changeModalTask}
         selected={selected}
         getUserTasks={getUserTasks}
-        tasksLength={filteredTasks.length}
+        tasksLength={tasks}
         isNewTask={state.isNewTask}
       />
       <div className="new-task" onClick={() => openModal()}>

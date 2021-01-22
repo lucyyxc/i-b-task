@@ -15,6 +15,7 @@ import Progress from './Progress';
 import Files from './Files';
 import Payment from './Payment';
 import Loading from './Loading';
+import MobileHeader from './MobileHeader';
 
 const App = ({selected}) => {
   const [state, setState] = React.useState({
@@ -86,9 +87,8 @@ const App = ({selected}) => {
       case 'checklist':
         return <Checklist {...state} selected={selected} getUserTasks={getUserTasks} />
       default:
-        {/*TODO change this to error page or something when decided. */}
-        return null
-        }
+        return <Checklist {...state} selected={selected} getUserTasks={getUserTasks} />
+      }
   }
 
   React.useEffect(() => {
@@ -135,6 +135,14 @@ const App = ({selected}) => {
       <Nav selected={selected} user={state.user} loading={state.loading} error={state.error} />
       {selected === 'loading' ? null : <Title {...state} />}
       <Footer />
+      <MobileHeader 
+        getUserTasks={getUserTasks}
+        tasksLength={state.tasks.length}
+        taskFilter={state.taskFilter}
+        updateStateValue={updateStateValue}
+        user={state.user}
+        selected={selected}
+      />
       
       {selected === 'loading'
         ? null

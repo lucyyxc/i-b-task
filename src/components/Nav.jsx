@@ -13,7 +13,7 @@ const ProfileContent = ({initials, toggleMenu, show, user}) => {
         <div className="profile-circle" onClick={() => toggleMenu()}>
           {`${initials}`}
         </div>
-        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} /> {/*TODO add sign out link*/}
+        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} />
       </div>
     </div>
   );
@@ -47,22 +47,22 @@ const Nav = ({selected, user = {}, loading, error}) => {
           />
         </div>
         <div className="links-container">
-          <a href="https://theindependentbride.com/home" className="link nav-link">
+          <a href="https://theindependentbride.com/home" target="_blank" rel="noopener noreferrer" className="link nav-link">
             Home
           </a>
-          <a href="https://theindependentbride.com/the-checklist" className="link nav-link">
+          <a href="https://theindependentbride.com/the-checklist" target="_blank" rel="noopener noreferrer" className="link nav-link">
             The Checklist
           </a>
-          <a href="https://theindependentbride.com/blogs" className="link nav-link">
+          <a href="https://theindependentbride.com/blogs" target="_blank" rel="noopener noreferrer" className="link nav-link">
             Blogs
           </a>
-          <a href="https://theindependentbride.com/the-bride-tribe-community" className="link nav-link">
+          <a href="https://theindependentbride.com/the-bride-tribe-community" target="_blank" rel="noopener noreferrer" className="link nav-link">
             The Bride Tribe Community
           </a>
-          <a href="https://theindependentbride.com/our-story" className="link nav-link">
+          <a href="https://theindependentbride.com/our-story" target="_blank" rel="noopener noreferrer" className="link nav-link">
             Our Story
           </a>
-          <a href="https://theindependentbride.com/contact-us" className="link nav-link">
+          <a href="https://theindependentbride.com/contact-us" target="_blank" rel="noopener noreferrer" className="link nav-link">
             Contact Us
           </a>
           {selected
@@ -73,7 +73,9 @@ const Nav = ({selected, user = {}, loading, error}) => {
       </div>
       <div className={`mobile-nav ${selected}`}>
         <img src={pinkLogoNotCircle} alt="" className="pink left" />
-        <img src={whiteLogo} alt="" className="white" />
+        <a href="https://theindependentbride.com/home" target="_blank" rel="noopener noreferrer" className="link nav-link">
+          <img src={whiteLogo} alt="" className="white" />
+        </a>
         <img src={pinkLogoNotCircle} alt="" className="pink right" />
       </div>
     </div>
