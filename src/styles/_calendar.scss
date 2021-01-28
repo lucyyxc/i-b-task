@@ -19,13 +19,15 @@
     .fc-button-primary {
         background-color: #70825A !important;
         border-color: #70825A !important;
+        text-transform: capitalize !important;
 
         @media screen and (max-width: 610px) {
             padding: 3px !important;
         }
 
         @media screen and (max-width: 460px) {
-            padding: 0 !important;
+            padding: 1px !important;
+            font-size: 13px !important;
         }
 
         &:hover {
@@ -56,6 +58,12 @@
         }
     }
 
+    .fc-direction-ltr {
+        @media screen and (max-width: 838px) {
+            height: 420px !important;
+          }
+    }
+
     .legend {
         max-width: 600px;
         display: flex;
@@ -84,11 +92,11 @@
           align-items: center;
     
           .color {
-            margin-right: 15px;
+            margin-right: 5px;
             height: 20px;
             width: 20px;
 
-            @media screen and (max-width: 4600px) {
+            @media screen and (max-width: 460px) {
                 height: 15px;
                 width: 15px;
             }

@@ -406,7 +406,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             Advice from The Independent Bride
           </span>
           <span className="the-advice">
-            {_get(state.task, 'advice', 'Your task, your rules! Add any notes or links in the notes section below.')}			
+            {_get(state.task, 'advice', 'Your task your rules! Add any notes or links to the section below.')}			
           </span>
         </div>
         <div className="notes">

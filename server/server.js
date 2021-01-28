@@ -87,7 +87,6 @@ app.get('/callback', function (req, res, next) {
     if (err) { return next(err); }
     if (!user) { return res.redirect('/auth'); }
     req.logIn(user, function (err) {
-      console.log('user sub', user.sub);
       if (err) { return next(err); }
       if (user && user.sub) {
         res.redirect('/#/checklist');

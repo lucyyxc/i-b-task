@@ -55,7 +55,7 @@ const Progress = ({tasks}) => {
   });
 
   if (tasks.length) {
-    let amounts = { //TODO set back to 0s when done
+    let amounts = {
       pastDue: 0,
       dueToday: 0,
       inProgress: 0,

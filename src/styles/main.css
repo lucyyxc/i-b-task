@@ -515,7 +515,7 @@ a {
         .Search .search-content .search-input {
           width: 100%;
           justify-content: flex-start;
-          margin-top: 5px; } }
+          margin-top: 30px; } }
       .Search .search-content .search-input i {
         margin: 0 4px 0 0; }
       .Search .search-content .search-input input {
@@ -583,6 +583,9 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center; }
+  @media screen and (max-width: 450px) {
+    .Checklist {
+      margin-top: 30px; } }
   .Checklist .column {
     flex: 1;
     padding: 3px 5px;
@@ -1054,6 +1057,9 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center; }
+  @media screen and (max-width: 838px) {
+    .Progress {
+      margin-top: 0; } }
   .Progress .title {
     font-size: 28px;
     margin-top: 25px; }
@@ -1610,13 +1616,15 @@ a {
     backdrop-filter: blur(5px); }
   .Calendar .fc-button-primary {
     background-color: #70825A !important;
-    border-color: #70825A !important; }
+    border-color: #70825A !important;
+    text-transform: capitalize !important; }
     @media screen and (max-width: 610px) {
       .Calendar .fc-button-primary {
         padding: 3px !important; } }
     @media screen and (max-width: 460px) {
       .Calendar .fc-button-primary {
-        padding: 0 !important; } }
+        padding: 1px !important;
+        font-size: 13px !important; } }
     .Calendar .fc-button-primary:hover {
       background-color: #5b6a49 !important;
       border-color: #5b6a49 !important; }
@@ -1632,6 +1640,9 @@ a {
   @media screen and (max-width: 460px) {
     .Calendar .fc-toolbar-title {
       font-size: 16px !important; } }
+  @media screen and (max-width: 838px) {
+    .Calendar .fc-direction-ltr {
+      height: 420px !important; } }
   .Calendar .legend {
     max-width: 600px;
     display: flex;
@@ -1655,10 +1666,10 @@ a {
       justify-content: center;
       align-items: center; }
       .Calendar .legend .item .color {
-        margin-right: 15px;
+        margin-right: 5px;
         height: 20px;
         width: 20px; }
-        @media screen and (max-width: 4600px) {
+        @media screen and (max-width: 460px) {
           .Calendar .legend .item .color {
             height: 15px;
             width: 15px; } }
@@ -1685,7 +1696,6 @@ a {
 .MobileHeader {
   height: 50px;
   width: 100%;
-  border-bottom: 1px black solid;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -1693,7 +1703,8 @@ a {
   font-family: 'Roboto', sans-serif; }
   .MobileHeader .icon {
     font-size: 35px;
-    cursor: pointer; }
+    cursor: pointer;
+    color: #42412d; }
   .MobileHeader .overlay {
     position: fixed;
     opacity: 0.5;

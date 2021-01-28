@@ -1,7 +1,6 @@
 .MobileHeader {
   height: 50px;
   width: 100%;
-  border-bottom: 1px black solid;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -11,6 +10,7 @@
 .MobileHeader .icon {
   font-size: 35px;
   cursor: pointer;
+  color: #42412d;
 }
 .MobileHeader .overlay {
   position: fixed;

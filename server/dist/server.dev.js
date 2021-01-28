@@ -88,8 +88,6 @@ app.get('/callback', function (req, res, next) {
     }
 
     req.logIn(user, function (err) {
-      console.log('user sub', user.sub);
-
       if (err) {
         return next(err);
       }

@@ -18,6 +18,7 @@
 .Calendar .fc-button-primary {
   background-color: #70825A !important;
   border-color: #70825A !important;
+  text-transform: capitalize !important;
 }
 @media screen and (max-width: 610px) {
   .Calendar .fc-button-primary {
@@ -26,7 +27,8 @@
 }
 @media screen and (max-width: 460px) {
   .Calendar .fc-button-primary {
-    padding: 0 !important;
+    padding: 1px !important;
+    font-size: 13px !important;
   }
 }
 .Calendar .fc-button-primary:hover {
@@ -50,6 +52,11 @@
 @media screen and (max-width: 460px) {
   .Calendar .fc-toolbar-title {
     font-size: 16px !important;
+  }
+}
+@media screen and (max-width: 838px) {
+  .Calendar .fc-direction-ltr {
+    height: 420px !important;
   }
 }
 .Calendar .legend {
@@ -83,11 +90,11 @@
   align-items: center;
 }
 .Calendar .legend .item .color {
-  margin-right: 15px;
+  margin-right: 5px;
   height: 20px;
   width: 20px;
 }
-@media screen and (max-width: 4600px) {
+@media screen and (max-width: 460px) {
   .Calendar .legend .item .color {
     height: 15px;
     width: 15px;

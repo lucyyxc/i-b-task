@@ -7,6 +7,11 @@
   flex-direction: column;
   align-items: center;
 }
+@media screen and (max-width: 838px) {
+  .Intro {
+    margin-top: 20px;
+  }
+}
 .Intro .signup {
   height: 100%;
   width: 92%;
@@ -46,6 +51,7 @@
   margin-left: 3px;
   position: relative;
   display: inline-block;
+  color: #42412d;
 }
 .Intro .signup .input-container .label-container .input-label .tooltip .tooltiptext {
   font-size: 14px;
