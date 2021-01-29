@@ -1,1036 +1,1038 @@
-// This is just for the dates of the task, this will not change the task names.
+// This is just for the dates of the task, this will not change the task names. That would be done if create_new_user_tasks.sql
 
-export const tastTimes = [
+const taskTimes = [
   {
-    "Share your engagement news!": {
-      startDates: 365,
-      endDatse: 362,
-    },
+      name: "Share your engagement news!",
+      startDate: 365,
+      endDate: 362,
+
   },
   {
-    "Decide if you would like to have an engagement party": {
-      startDates: 364,
-      endDatse: 357,
-    },
+      name: "Decide if you would like to have an engagement party",
+      startDate: 364,
+      endDate: 357,
+
   },
   {
-    "Create rough draft guest list": {
-      startDates: 363,
-      endDatse: 359,
-    },
+      name: "Create rough draft guest list",
+      startDate: 363,
+      endDate: 359,
+
   },
   {
-    "Create budget": {
-      startDates: 362,
-      endDatse: 338,
-    },
+      name: "Create budget",
+      startDate: 362,
+      endDate: 338,
+
   },
   {
-    "Get the email address with your new last name": {
-      startDates: 361,
-      endDatse: 361,
-    },
+      name: "Get the email address with your new last name",
+      startDate: 361,
+      endDate: 361,
+
   },
   {
-    "Discuss potential wedding date options": {
-      startDates: 361,
-      endDatse: 358,
-    },
+      name: "Discuss potential wedding date options",
+      startDate: 361,
+      endDate: 358,
+
   },
   {
-    "Determine wedding location": {
-      startDates: 360,
-      endDatse: 337,
-    },
+      name: "Determine wedding location",
+      startDate: 360,
+      endDate: 337,
+
   },
   {
-    "Create vision board": {
-      startDates: 359,
-      endDatse: 352,
-    },
+      name: "Create vision board",
+      startDate: 359,
+      endDate: 352,
+
   },
   {
-    "Create wedding specific email address": {
-      startDates: 358,
-      endDatse: 358,
-    },
+      name: "Create wedding specific email address",
+      startDate: 358,
+      endDate: 358,
+
   },
   {
-    "Book reception venue ": {
-      startDates: 360,
-      endDatse: 327,
-    },
+      name: "Book reception venue ",
+      startDate: 360,
+      endDate: 327,
+
   },
   {
-    "Book ceremony venue": {
-      startDates: 357,
-      endDatse: 305,
-    },
+      name: "Book ceremony venue",
+      startDate: 357,
+      endDate: 305,
+
   },
   {
-    "Create wedding documents folder": {
-      startDates: 333,
-      endDatse: 331,
-    },
+      name: "Create wedding documents folder",
+      startDate: 333,
+      endDate: 331,
+
   },
   {
-    "Create wedding website": {
-      startDates: 242,
-      endDatse: 210,
-    },
+      name: "Create wedding website",
+      startDate: 242,
+      endDate: 210,
+
   },
   {
-    "Finalize guest list": {
-      startDates: 328,
-      endDatse: 321,
-    },
+      name: "Finalize guest list",
+      startDate: 328,
+      endDate: 321,
+
   },
   {
-    "Decide on your bridesmaids and groomsmen": {
-      startDates: 350,
-      endDatse: 326,
-    },
+      name: "Decide on your bridesmaids and groomsmen",
+      startDate: 350,
+      endDate: 326,
+
   },
   {
-    "Decide on your remaining wedding party": {
-      startDates: 325,
-      endDatse: 311,
-    },
+      name: "Decide on your remaining wedding party",
+      startDate: 325,
+      endDate: 311,
+
   },
   {
-    "Book caterer": {
-      startDates: 324,
-      endDatse: 296,
-    },
+      name: "Book caterer",
+      startDate: 324,
+      endDate: 296,
+
   },
   {
-    "Book videographer": {
-      startDates: 311,
-      endDatse: 291,
-    },
+      name: "Book videographer",
+      startDate: 311,
+      endDate: 291,
+
   },
   {
-    "Purchase wedding dress": {
-      startDates: 351,
-      endDatse: 298,
-    },
+      name: "Purchase wedding dress",
+      startDate: 351,
+      endDate: 298,
+
   },
   {
-    "Book photographer": {
-      startDates: 300,
-      endDatse: 274,
-    },
+      name: "Book photographer",
+      startDate: 300,
+      endDate: 274,
+
   },
   {
-    "Book florist": {
-      startDates: 297,
-      endDatse: 281,
-    },
+      name: "Book florist",
+      startDate: 297,
+      endDate: 281,
+
   },
   {
-    "Book DJ/musical guest": {
-      startDates: 293,
-      endDatse: 264,
-    },
+      name: "Book DJ/musical guest",
+      startDate: 293,
+      endDate: 264,
+
   },
   {
-    "Book hair stylist ": {
-      startDates: 304,
-      endDatse: 276,
-    },
+      name: "Book hair stylist ",
+      startDate: 304,
+      endDate: 276,
+
   },
   {
-    "Book makeup artist ": {
-      startDates: 304,
-      endDatse: 276,
-    },
+      name: "Book makeup artist ",
+      startDate: 304,
+      endDate: 276,
+
   },
   {
-    "Secure hotel room blocks": {
-      startDates: 283,
-      endDatse: 271,
-    },
+      name: "Secure hotel room blocks",
+      startDate: 283,
+      endDate: 271,
+
   },
   {
-    "Determine save the date design ": {
-      startDates: 280,
-      endDatse: 266,
-    },
+      name: "Determine save the date design ",
+      startDate: 280,
+      endDate: 266,
+
   },
   {
-    "Create gift registry ": {
-      startDates: 267,
-      endDatse: 246,
-    },
+      name: "Create gift registry ",
+      startDate: 267,
+      endDate: 246,
+
   },
   {
-    "Book photo booth": {
-      startDates: 316,
-      endDatse: 301,
-    },
+      name: "Book photo booth",
+      startDate: 316,
+      endDate: 301,
+
   },
   {
-    "Collect guest mailing addresses": {
-      startDates: 267,
-      endDatse: 253,
-    },
+      name: "Collect guest mailing addresses",
+      startDate: 267,
+      endDate: 253,
+
   },
   {
-    "Decide the wedding day photography schedule": {
-      startDates: 267,
-      endDatse: 254,
-    },
+      name: "Decide the wedding day photography schedule",
+      startDate: 267,
+      endDate: 254,
+
   },
   {
-    "Decide on bridal shower date options": {
-      startDates: 324,
-      endDatse: 317,
-    },
+      name: "Decide on bridal shower date options",
+      startDate: 324,
+      endDate: 317,
+
   },
   {
-    "Decide key Bachelorette party details": {
-      startDates: 318,
-      endDatse: 312,
-    },
+      name: "Decide key Bachelorette party details",
+      startDate: 318,
+      endDate: 312,
+
   },
   {
-    "Purchase save the date cards": {
-      startDates: 265,
-      endDatse: 258,
-    },
+      name: "Purchase save the date cards",
+      startDate: 265,
+      endDate: 258,
+
   },
   {
-    "Purchase bride's wedding ring": {
-      startDates: 259,
-      endDatse: 232,
-    },
+      name: "Purchase bride's wedding ring",
+      startDate: 259,
+      endDate: 232,
+
   },
   {
-    "Purchase groom's wedding ring": {
-      startDates: 259,
-      endDatse: 232,
-    },
+      name: "Purchase groom's wedding ring",
+      startDate: 259,
+      endDate: 232,
+
   },
   {
-    "Purchase insurance for wedding rings": {
-      startDates: 230,
-      endDatse: 223,
-    },
+      name: "Purchase insurance for wedding rings",
+      startDate: 230,
+      endDate: 223,
+
   },
   {
-    "Schedule engagement photos ": {
-      startDates: 248,
-      endDatse: 243,
-    },
+      name: "Schedule engagement photos ",
+      startDate: 248,
+      endDate: 243,
+
   },
   {
-    "Book musicians for the ceremony": {
-      startDates: 239,
-      endDatse: 209,
-    },
+      name: "Book musicians for the ceremony",
+      startDate: 239,
+      endDate: 209,
+
   },
   {
-    "Book day of wedding planner/coordinator": {
-      startDates: 257,
-      endDatse: 236,
-    },
+      name: "Book day of wedding planner/coordinator",
+      startDate: 257,
+      endDate: 236,
+
   },
   {
-    "Book cake baker": {
-      startDates: 252,
-      endDatse: 231,
-    },
+      name: "Book cake baker",
+      startDate: 252,
+      endDate: 231,
+
   },
   {
-    "Buy stamps for save the date/invitations": {
-      startDates: 231,
-      endDatse: 225,
-    },
+      name: "Buy stamps for save the date/invitations",
+      startDate: 231,
+      endDate: 225,
+
   },
   {
-    "Create transportation plan for wedding party": {
-      startDates: 235,
-      endDatse: 216,
-    },
+      name: "Create transportation plan for wedding party",
+      startDate: 235,
+      endDate: 216,
+
   },
   {
-    "Secure wedding officiant": {
-      startDates: 227,
-      endDatse: 209,
-    },
+      name: "Secure wedding officiant",
+      startDate: 227,
+      endDate: 209,
+
   },
   {
-    "Book wedding night hotel room": {
-      startDates: 270,
-      endDatse: 266,
-    },
+      name: "Book wedding night hotel room",
+      startDate: 270,
+      endDate: 266,
+
   },
   {
-    "Book rehearsal dinner venue": {
-      startDates: 221,
-      endDatse: 197,
-    },
+      name: "Book rehearsal dinner venue",
+      startDate: 221,
+      endDate: 197,
+
   },
   {
-    "Buy or rent groom's wedding suit/tux": {
-      startDates: 218,
-      endDatse: 190,
-    },
+      name: "Buy or rent groom's wedding suit/tux",
+      startDate: 218,
+      endDate: 190,
+
   },
   {
-    "Create a weather plan 'B'": {
-      startDates: 215,
-      endDatse: 188,
-    },
+      name: "Create a weather plan 'B'",
+      startDate: 215,
+      endDate: 188,
+
   },
   {
-    "Determine wedding reception decorations": {
-      startDates: 212,
-      endDatse: 167,
-    },
+      name: "Determine wedding reception decorations",
+      startDate: 212,
+      endDate: 167,
+
   },
   {
-    "Send save the dates": {
-      startDates: 209,
-      endDatse: 204,
-    },
+      name: "Send save the dates",
+      startDate: 209,
+      endDate: 204,
+
   },
   {
-    "Order wedding invitations": {
-      startDates: 208,
-      endDatse: 195,
-    },
+      name: "Order wedding invitations",
+      startDate: 208,
+      endDate: 195,
+
   },
   {
-    "Determine cake style/flavor": {
-      startDates: 200,
-      endDatse: 175,
-    },
+      name: "Determine cake style/flavor",
+      startDate: 200,
+      endDate: 175,
+
   },
   {
-    "Buy wedding shoes": {
-      startDates: 208,
-      endDatse: 180,
-    },
+      name: "Buy wedding shoes",
+      startDate: 208,
+      endDate: 180,
+
   },
   {
-    "Determine wedding day hair style": {
-      startDates: 146,
-      endDatse: 140,
-    },
+      name: "Determine wedding day hair style",
+      startDate: 146,
+      endDate: 140,
+
   },
   {
-    "Determine wedding day makeup": {
-      startDates: 146,
-      endDatse: 140,
-    },
+      name: "Determine wedding day makeup",
+      startDate: 146,
+      endDate: 140,
+
   },
   {
-    "Book/meet with rental and lighting pros": {
-      startDates: 192,
-      endDatse: 164,
-    },
+      name: "Book/meet with rental and lighting pros",
+      startDate: 192,
+      endDate: 164,
+
   },
   {
-    "Purchase flower girl dress": {
-      startDates: 195,
-      endDatse: 181,
-    },
+      name: "Purchase flower girl dress",
+      startDate: 195,
+      endDate: 181,
+
   },
   {
-    "Purchase flower girl accessories ": {
-      startDates: 187,
-      endDatse: 176,
-    },
+      name: "Purchase flower girl accessories ",
+      startDate: 187,
+      endDate: 176,
+
   },
   {
-    "Create guest experience flow ": {
-      startDates: 190,
-      endDatse: 166,
-    },
+      name: "Create guest experience flow ",
+      startDate: 190,
+      endDate: 166,
+
   },
   {
-    "Determine bridesmaid dresses/share with wedding party": {
-      startDates: 180,
-      endDatse: 154,
-    },
+      name: "Determine bridesmaid dresses/share with wedding party",
+      startDate: 180,
+      endDate: 154,
+
   },
   {
-    "Arrange guest shuttle, parking, and/or valet at reception venue": {
-      startDates: 177,
-      endDatse: 157,
-    },
+      name: "Arrange guest shuttle, parking, and/or valet at reception venue",
+      startDate: 177,
+      endDate: 157,
+
   },
   {
-    "Order rental items": {
-      startDates: 175,
-      endDatse: 168,
-    },
+      name: "Order rental items",
+      startDate: 175,
+      endDate: 168,
+
   },
   {
-    "Start premarital counseling ": {
-      startDates: 172,
-      endDatse: 158,
-    },
+      name: "Start premarital counseling ",
+      startDate: 172,
+      endDate: 158,
+
   },
   {
-    "Determine bridesmaids shoes": {
-      startDates: 167,
-      endDatse: 150,
-    },
+      name: "Determine bridesmaids shoes",
+      startDate: 167,
+      endDate: 150,
+
   },
   {
-    "Plan welcome party": {
-      startDates: 165,
-      endDatse: 139,
-    },
+      name: "Plan welcome party",
+      startDate: 165,
+      endDate: 139,
+
   },
   {
-    "Plan day after wedding ": {
-      startDates: 162,
-      endDatse: 131,
-    },
+      name: "Plan day after wedding ",
+      startDate: 162,
+      endDate: 131,
+
   },
   {
-    "Schedule wedding dress alteration/fitting": {
-      startDates: 163,
-      endDatse: 163,
-    },
+      name: "Schedule wedding dress alteration/fitting",
+      startDate: 163,
+      endDate: 163,
+
   },
   {
-    "Purchase headpiece/veil": {
-      startDates: 157,
-      endDatse: 143,
-    },
+      name: "Purchase headpiece/veil",
+      startDate: 157,
+      endDate: 143,
+
   },
   {
-    "Create guest list for rehearsal dinner": {
-      startDates: 156,
-      endDatse: 153,
-    },
+      name: "Create guest list for rehearsal dinner",
+      startDate: 156,
+      endDate: 153,
+
   },
   {
-    "Purchase rehearsal dinner invitations": {
-      startDates: 153,
-      endDatse: 148,
-    },
+      name: "Purchase rehearsal dinner invitations",
+      startDate: 153,
+      endDate: 148,
+
   },
   {
-    "Prep wedding invitations": {
-      startDates: 150,
-      endDatse: 147,
-    },
+      name: "Prep wedding invitations",
+      startDate: 150,
+      endDate: 147,
+
   },
   {
-    "Confirm wedding guest RSVP names": {
-      startDates: 148,
-      endDatse: 147,
-    },
+      name: "Confirm wedding guest RSVP names",
+      startDate: 148,
+      endDate: 147,
+
   },
   {
-    "Send wedding invitations": {
-      startDates: 146,
-      endDatse: 146,
-    },
+      name: "Send wedding invitations",
+      startDate: 146,
+      endDate: 146,
+
   },
   {
-    "Determine ceremony decorations": {
-      startDates: 143,
-      endDatse: 123,
-    },
+      name: "Determine ceremony decorations",
+      startDate: 143,
+      endDate: 123,
+
   },
   {
-    "Monitor RSVPs": {
-      startDates: 139,
-      endDatse: 75,
-    },
+      name: "Monitor RSVPs",
+      startDate: 139,
+      endDate: 75,
+
   },
   {
-    "Order wedding favors": {
-      startDates: 140,
-      endDatse: 122,
-    },
+      name: "Order wedding favors",
+      startDate: 140,
+      endDate: 122,
+
   },
   {
-    "Schedule wedding day hair trial": {
-      startDates: 138,
-      endDatse: 138,
-    },
+      name: "Schedule wedding day hair trial",
+      startDate: 138,
+      endDate: 138,
+
   },
   {
-    "Schedule wedding day makeup trial": {
-      startDates: 137,
-      endDatse: 137,
-    },
+      name: "Schedule wedding day makeup trial",
+      startDate: 137,
+      endDate: 137,
+
   },
   {
-    "Create displays and signage for reception": {
-      startDates: 136,
-      endDatse: 112,
-    },
+      name: "Create displays and signage for reception",
+      startDate: 136,
+      endDate: 112,
+
   },
   {
-    "Purchase cake topper": {
-      startDates: 139,
-      endDatse: 133,
-    },
+      name: "Purchase cake topper",
+      startDate: 139,
+      endDate: 133,
+
   },
   {
-    "Buy under-the-dress essentials": {
-      startDates: 224,
-      endDatse: 219,
-    },
+      name: "Buy under-the-dress essentials",
+      startDate: 224,
+      endDate: 219,
+
   },
   {
-    "Decide on guest book": {
-      startDates: 130,
-      endDatse: 116,
-    },
+      name: "Decide on guest book",
+      startDate: 130,
+      endDate: 116,
+
   },
   {
-    "Book dance lessons ": {
-      startDates: 128,
-      endDatse: 121,
-    },
+      name: "Book dance lessons ",
+      startDate: 128,
+      endDate: 121,
+
   },
   {
-    "Determine suit/tux for groomsmen/share with wedding party": {
-      startDates: 126,
-      endDatse: 120,
-    },
+      name: "Determine suit/tux for groomsmen/share with wedding party",
+      startDate: 126,
+      endDate: 120,
+
   },
   {
-    "Send rehearsal dinner invitations": {
-      startDates: 122,
-      endDatse: 115,
-    },
+      name: "Send rehearsal dinner invitations",
+      startDate: 122,
+      endDate: 115,
+
   },
   {
-    "Purchase bridesmaid gifts": {
-      startDates: 121,
-      endDatse: 100,
-    },
+      name: "Purchase bridesmaid gifts",
+      startDate: 121,
+      endDate: 100,
+
   },
   {
-    "Purchase groomsmen gifts": {
-      startDates: 120,
-      endDatse: 114,
-    },
+      name: "Purchase groomsmen gifts",
+      startDate: 120,
+      endDate: 114,
+
   },
   {
-    "Buy gifts and/or activities for the flower girl(s)/ring bearer(s)": {
-      startDates: 111,
-      endDatse: 105,
-    },
+      name: "Buy gifts and/or activities for the flower girl(s)/ring bearer(s)",
+      startDate: 111,
+      endDate: 105,
+
   },
   {
-    "Purchase gifts for other VIP's": {
-      startDates: 114,
-      endDatse: 108,
-    },
+      name: "Purchase gifts for other VIP's",
+      startDate: 114,
+      endDate: 108,
+
   },
   {
-    "Determine jewelry/accessories for wedding day": {
-      startDates: 116,
-      endDatse: 102,
-    },
+      name: "Determine jewelry/accessories for wedding day",
+      startDate: 116,
+      endDate: 102,
+
   },
   {
-    "Determine groom's accessories for wedding day": {
-      startDates: 115,
-      endDatse: 109,
-    },
+      name: "Determine groom's accessories for wedding day",
+      startDate: 115,
+      endDate: 109,
+
   },
   {
-    "Finalize flowers with florist": {
-      startDates: 113,
-      endDatse: 99,
-    },
+      name: "Finalize flowers with florist",
+      startDate: 113,
+      endDate: 99,
+
   },
   {
-    "Determine bridesmaids bouquets": {
-      startDates: 105,
-      endDatse: 99,
-    },
+      name: "Determine bridesmaids bouquets",
+      startDate: 105,
+      endDate: 99,
+
   },
   {
-    "Determine boutonnieres and corsages for VIPs": {
-      startDates: 110,
-      endDatse: 105,
-    },
+      name: "Determine boutonnieres and corsages for VIPs",
+      startDate: 110,
+      endDate: 105,
+
   },
   {
-    "Order flower petals & basket(s) for flower girl(s)": {
-      startDates: 98,
-      endDatse: 98,
-    },
+      name: "Order flower petals & basket(s) for flower girl(s)",
+      startDate: 98,
+      endDate: 98,
+
   },
   {
-    "Purchase ring bearer pillow(s)": {
-      startDates: 108,
-      endDatse: 101,
-    },
+      name: "Purchase ring bearer pillow(s)",
+      startDate: 108,
+      endDate: 101,
+
   },
   {
-    "Create playlist for wedding ceremony": {
-      startDates: 101,
-      endDatse: 85,
-    },
+      name: "Create playlist for wedding ceremony",
+      startDate: 101,
+      endDate: 85,
+
   },
   {
-    "Determine readings for wedding ceremony": {
-      startDates: 98,
-      endDatse: 84,
-    },
+      name: "Determine readings for wedding ceremony",
+      startDate: 98,
+      endDate: 84,
+
   },
   {
-    "Write/determine vows": {
-      startDates: 104,
-      endDatse: 77,
-    },
+      name: "Write/determine vows",
+      startDate: 104,
+      endDate: 77,
+
   },
   {
-    "Determine how parents will walk into the ceremony": {
-      startDates: 102,
-      endDatse: 102,
-    },
+      name: "Determine how parents will walk into the ceremony",
+      startDate: 102,
+      endDate: 102,
+
   },
   {
-    "Determine grandparents ushers": {
-      startDates: 101,
-      endDatse: 101,
-    },
+      name: "Determine grandparents ushers",
+      startDate: 101,
+      endDate: 101,
+
   },
   {
-    "Plan big exit from the ceremony": {
-      startDates: 100,
-      endDatse: 93,
-    },
+      name: "Plan big exit from the ceremony",
+      startDate: 100,
+      endDate: 93,
+
   },
   {
-    "Schedule and meet with officiant": {
-      startDates: 100,
-      endDatse: 87,
-    },
+      name: "Schedule and meet with officiant",
+      startDate: 100,
+      endDate: 87,
+
   },
   {
-    "Create full ceremony plan and share as needed": {
-      startDates: 99,
-      endDatse: 72,
-    },
+      name: "Create full ceremony plan and share as needed",
+      startDate: 99,
+      endDate: 72,
+
   },
   {
-    "Finalize wedding reception menu": {
-      startDates: 95,
-      endDatse: 89,
-    },
+      name: "Finalize wedding reception menu",
+      startDate: 95,
+      endDate: 89,
+
   },
   {
-    "Plan after party": {
-      startDates: 88,
-      endDatse: 75,
-    },
+      name: "Plan after party",
+      startDate: 88,
+      endDate: 75,
+
   },
   {
-    "Plan days leading up to wedding": {
-      startDates: 81,
-      endDatse: 75,
-    },
+      name: "Plan days leading up to wedding",
+      startDate: 81,
+      endDate: 75,
+
   },
   {
-    "Determine cocktails/wine for reception": {
-      startDates: 87,
-      endDatse: 81,
-    },
+      name: "Determine cocktails/wine for reception",
+      startDate: 87,
+      endDate: 81,
+
   },
   {
-    "Purchase bridal party getting ready outfits": {
-      startDates: 85,
-      endDatse: 79,
-    },
+      name: "Purchase bridal party getting ready outfits",
+      startDate: 85,
+      endDate: 79,
+
   },
   {
-    "Determine wedding photo locations/create shot list": {
-      startDates: 77,
-      endDatse: 71,
-    },
+      name: "Determine wedding photo locations/create shot list",
+      startDate: 77,
+      endDate: 71,
+
   },
   {
-    "Create wedding weekend schedules for VIPs": {
-      startDates: 74,
-      endDatse: 61,
-    },
+      name: "Create wedding weekend schedules for VIPs",
+      startDate: 74,
+      endDate: 61,
+
   },
   {
-    "Determine welcome gift": {
-      startDates: 80,
-      endDatse: 74,
-    },
+      name: "Determine welcome gift",
+      startDate: 80,
+      endDate: 74,
+
   },
   {
-    "Make any additional hair appointments for days prior ": {
-      startDates: 78,
-      endDatse: 78,
-    },
+      name: "Make any additional hair appointments for days prior ",
+      startDate: 78,
+      endDate: 78,
+
   },
   {
-    "Create list of must play and do not play songs for DJ": {
-      startDates: 77,
-      endDatse: 70,
-    },
+      name: "Create list of must play and do not play songs for DJ",
+      startDate: 77,
+      endDate: 70,
+
   },
   {
-    "Create photo slideshow for reception": {
-      startDates: 75,
-      endDatse: 62,
-    },
+      name: "Create photo slideshow for reception",
+      startDate: 75,
+      endDate: 62,
+
   },
   {
-    "Create name tags for reception": {
-      startDates: 73,
-      endDatse: 67,
-    },
+      name: "Create name tags for reception",
+      startDate: 73,
+      endDate: 67,
+
   },
   {
-    "Request time off work for wedding and honeymoon": {
-      startDates: 72,
-      endDatse: 72,
-    },
+      name: "Request time off work for wedding and honeymoon",
+      startDate: 72,
+      endDate: 72,
+
   },
   {
-    "Request bridesmaids to choose wedding hair style": {
-      startDates: 71,
-      endDatse: 58,
-    },
+      name: "Request bridesmaids to choose wedding hair style",
+      startDate: 71,
+      endDate: 58,
+
   },
   {
-    "Purchase cologne for wedding day": {
-      startDates: 70,
-      endDatse: 62,
-    },
+      name: "Purchase cologne for wedding day",
+      startDate: 70,
+      endDate: 62,
+
   },
   {
-    "Purchase perfume for wedding day": {
-      startDates: 70,
-      endDatse: 62,
-    },
+      name: "Purchase perfume for wedding day",
+      startDate: 70,
+      endDate: 62,
+
   },
   {
-    "Create baskets for wedding reception restrooms": {
-      startDates: 51,
-      endDatse: 38,
-    },
+      name: "Create baskets for wedding reception restrooms",
+      startDate: 51,
+      endDate: 38,
+
   },
   {
-    "Build wedding day 'emergency' kit": {
-      startDates: 50,
-      endDatse: 37,
-    },
+      name: "Build wedding day 'emergency' kit",
+      startDate: 50,
+      endDate: 37,
+
   },
   {
-    "Purchase rehearsal dinner outfit": {
-      startDates: 66,
-      endDatse: 52,
-    },
+      name: "Purchase rehearsal dinner outfit",
+      startDate: 66,
+      endDate: 52,
+
   },
   {
-    "Choose something blue, borrowed, old and new": {
-      startDates: 65,
-      endDatse: 58,
-    },
+      name: "Choose something blue, borrowed, old and new",
+      startDate: 65,
+      endDate: 58,
+
   },
   {
-    "Choose prayer/welcome toast ": {
-      startDates: 63,
-      endDatse: 57,
-    },
+      name: "Choose prayer/welcome toast ",
+      startDate: 63,
+      endDate: 57,
+
   },
   {
-    "Make nail and spa appointments": {
-      startDates: 61,
-      endDatse: 60,
-    },
+      name: "Make nail and spa appointments",
+      startDate: 61,
+      endDate: 60,
+
   },
   {
-    "Design wedding program for ceremony & print": {
-      startDates: 60,
-      endDatse: 53,
-    },
+      name: "Design wedding program for ceremony & print",
+      startDate: 60,
+      endDate: 53,
+
   },
   {
-    "Determine photo sharing app to gather guests photos": {
-      startDates: 58,
-      endDatse: 51,
-    },
+      name: "Determine photo sharing app to gather guests photos",
+      startDate: 58,
+      endDate: 51,
+
   },
   {
-    "Create plan 'B' communication plan for wedding day ": {
-      startDates: 57,
-      endDatse: 50,
-    },
+      name: "Create plan 'B' communication plan for wedding day ",
+      startDate: 57,
+      endDate: 50,
+
   },
   {
-    "Create schedule for toasts at wedding reception": {
-      startDates: 55,
-      endDatse: 55,
-    },
+      name: "Create schedule for toasts at wedding reception",
+      startDate: 55,
+      endDate: 55,
+
   },
   {
-    "Write rehearsal and wedding reception toast": {
-      startDates: 54,
-      endDatse: 40,
-    },
+      name: "Write rehearsal and wedding reception toast",
+      startDate: 54,
+      endDate: 40,
+
   },
   {
-    "Create hashtag": {
-      startDates: 52,
-      endDatse: 45,
-    },
+      name: "Create hashtag",
+      startDate: 52,
+      endDate: 45,
+
   },
   {
-    "Write VIP thank yous": {
-      startDates: 57,
-      endDatse: 45,
-    },
+      name: "Write VIP thank yous",
+      startDate: 57,
+      endDate: 45,
+
   },
   {
-    "Create signage ": {
-      startDates: 47,
-      endDatse: 17,
-    },
+      name: "Create signage ",
+      startDate: 47,
+      endDate: 17,
+
   },
   {
-    "Order name cards and table numbers": {
-      startDates: 37,
-      endDatse: 31,
-    },
+      name: "Order name cards and table numbers",
+      startDate: 37,
+      endDate: 31,
+
   },
   {
-    "Put together outfits for days before and after wedding": {
-      startDates: 40,
-      endDatse: 29,
-    },
+      name: "Put together outfits for days before and after wedding",
+      startDate: 40,
+      endDate: 29,
+
   },
   {
-    "Create rehearsal dinner menu": {
-      startDates: 42,
-      endDatse: 35,
-    },
+      name: "Create rehearsal dinner menu",
+      startDate: 42,
+      endDate: 35,
+
   },
   {
-    "Create traveling guest google form": {
-      startDates: 41,
-      endDatse: 34,
-    },
+      name: "Create traveling guest google form",
+      startDate: 41,
+      endDate: 34,
+
   },
   {
-    "Create pre-wedding ceremony menu ": {
-      startDates: 38,
-      endDatse: 31,
-    },
+      name: "Create pre-wedding ceremony menu ",
+      startDate: 38,
+      endDate: 31,
+
   },
   {
-    "Appoint gift and card retriever ": {
-      startDates: 33,
-      endDatse: 26,
-    },
+      name: "Appoint gift and card retriever ",
+      startDate: 33,
+      endDate: 26,
+
   },
   {
-    "Contact people who have not RSVP'd": {
-      startDates: 31,
-      endDatse: 30,
-    },
+      name: "Contact people who have not RSVP'd",
+      startDate: 31,
+      endDate: 30,
+
   },
   {
-    "Break in shoes for wedding day and purchase padding": {
-      startDates: 31,
-      endDatse: 10,
-    },
+      name: "Break in shoes for wedding day and purchase padding",
+      startDate: 31,
+      endDate: 10,
+
   },
   {
-    "Design/print wedding reception menu": {
-      startDates: 30,
-      endDatse: 28,
-    },
+      name: "Design/print wedding reception menu",
+      startDate: 30,
+      endDate: 28,
+
   },
   {
-    "Arrange/communicate transportation for VIP guests": {
-      startDates: 29,
-      endDatse: 27,
-    },
+      name: "Arrange/communicate transportation for VIP guests",
+      startDate: 29,
+      endDate: 27,
+
   },
   {
-    "Ask photographer, DJ, etc. for food preference": {
-      startDates: 29,
-      endDatse: 27,
-    },
+      name: "Ask photographer, DJ, etc. for food preference",
+      startDate: 29,
+      endDate: 27,
+
   },
   {
-    "Create seating chart for the wedding reception": {
-      startDates: 28,
-      endDatse: 14,
-    },
+      name: "Create seating chart for the wedding reception",
+      startDate: 28,
+      endDate: 14,
+
   },
   {
-    "Create entree indicators": {
-      startDates: 27,
-      endDatse: 21,
-    },
+      name: "Create entree indicators",
+      startDate: 27,
+      endDate: 21,
+
   },
   {
-    "Get marriage license": {
-      startDates: 26,
-      endDatse: 22,
-    },
+      name: "Get marriage license",
+      startDate: 26,
+      endDate: 22,
+
   },
   {
-    "Get hand steamer for dresses": {
-      startDates: 36,
-      endDatse: 32,
-    },
+      name: "Get hand steamer for dresses",
+      startDate: 36,
+      endDate: 32,
+
   },
   {
-    "Send email for wedding rehearsal with special instructions": {
-      startDates: 25,
-      endDatse: 22,
-    },
+      name: "Send email for wedding rehearsal with special instructions",
+      startDate: 25,
+      endDate: 22,
+
   },
   {
-    "Send extended family email with special instructions ": {
-      startDates: 25,
-      endDatse: 22,
-    },
+      name: "Send extended family email with special instructions ",
+      startDate: 25,
+      endDate: 22,
+
   },
   {
-    "Confirm payment with vendors": {
-      startDates: 19,
-      endDatse: 17,
-    },
+      name: "Confirm payment with vendors",
+      startDate: 19,
+      endDate: 17,
+
   },
   {
-    "Send your day of schedule to all vendors": {
-      startDates: 13,
-      endDatse: 11,
-    },
+      name: "Send your day of schedule to all vendors",
+      startDate: 13,
+      endDate: 11,
+
   },
   {
-    "Appoint person to check into hotel": {
-      startDates: 21,
-      endDatse: 21,
-    },
+      name: "Appoint person to check into hotel",
+      startDate: 21,
+      endDate: 21,
+
   },
   {
-    "Gather getting ready magazines, books, music, etc.": {
-      startDates: 21,
-      endDatse: 14,
-    },
+      name: "Gather getting ready magazines, books, music, etc.",
+      startDate: 21,
+      endDate: 14,
+
   },
   {
-    "Send email to guests with all important details  ": {
-      startDates: 20,
-      endDatse: 15,
-    },
+      name: "Send email to guests with all important details  ",
+      startDate: 20,
+      endDate: 15,
+
   },
   {
-    "Create packing lists": {
-      startDates: 13,
-      endDatse: 8,
-    },
+      name: "Create packing lists",
+      startDate: 13,
+      endDate: 8,
+
   },
   {
-    "Submit final numbers to caterer": {
-      startDates: 17,
-      endDatse: 14,
-    },
+      name: "Submit final numbers to caterer",
+      startDate: 17,
+      endDate: 14,
+
   },
   {
-    "Pay vendors": {
-      startDates: 16,
-      endDatse: 14,
-    },
+      name: "Pay vendors",
+      startDate: 16,
+      endDate: 14,
+
   },
   {
-    "Delegate person to make day of payments and deliver tips": {
-      startDates: 15,
-      endDatse: 15,
-    },
+      name: "Delegate person to make day of payments and deliver tips",
+      startDate: 15,
+      endDate: 15,
+
   },
   {
-    "Write morning of cards to exchange": {
-      startDates: 14,
-      endDatse: 7,
-    },
+      name: "Write morning of cards to exchange",
+      startDate: 14,
+      endDate: 7,
+
   },
   {
-    "Request early check in": {
-      startDates: 7,
-      endDatse: 7,
-    },
+      name: "Request early check in",
+      startDate: 7,
+      endDate: 7,
+
   },
   {
-    "Clean engagement ring": {
-      startDates: 6,
-      endDatse: 6,
-    },
+      name: "Clean engagement ring",
+      startDate: 6,
+      endDate: 6,
+
   },
   {
-    "Pack for wedding night": {
-      startDates: 5,
-      endDatse: 3,
-    },
+      name: "Pack for wedding night",
+      startDate: 5,
+      endDate: 3,
+
   },
   {
-    "Share a video on how to pin on a boutineer with the wedding party": {
-      startDates: 0,
-      endDatse: 0,
-    },
+      name: "Share a video on how to pin on a boutineer with the wedding party",
+      startDate: 0,
+      endDate: 0,
+
   },
   {
-    "Change relationship status and last name on social media": {
-      startDates: -1,
-      endDatse: -1,
-    },
+      name: "Change relationship status and last name on social media",
+      startDate: -1,
+      endDate: -1,
+
   },
   {
-    "Launch new email address & set up forwarding": {
-      startDates: -3,
-      endDatse: -3,
-    },
+      name: "Launch new email address & set up forwarding",
+      startDate: -3,
+      endDate: -3,
+
   },
   {
-    "Get wedding dress cleaned and preserved": {
-      startDates: -4,
-      endDatse: -45,
-    },
+      name: "Get wedding dress cleaned and preserved",
+      startDate: -4,
+      endDate: -45,
+
   },
   {
-    "Change your name legally": {
-      startDates: -25,
-      endDatse: -40,
-    },
+      name: "Change your name legally",
+      startDate: -25,
+      endDate: -40,
+
   },
   {
-    "Send thank you cards": {
-      startDates: -26,
-      endDatse: -56,
-    },
+      name: "Send thank you cards",
+      startDate: -26,
+      endDate: -56,
+
   },
   {
-    "Write reviews on wedding vendors": {
-      startDates: -30,
-      endDatse: -44,
-    },
+      name: "Write reviews on wedding vendors",
+      startDate: -30,
+      endDate: -44,
+
   },
   {
-    "Review wedding photos and post favorites": {
-      startDates: -90,
-      endDatse: -104,
-    },
+      name: "Review wedding photos and post favorites",
+      startDate: -90,
+      endDate: -104,
+
   },
   {
-    "Create/order wedding album": {
-      startDates: -100,
-      endDatse: -114,
-    },
+      name: "Create/order wedding album",
+      startDate: -100,
+      endDate: -114,
+
   },
 ];
+
+module.exports = taskTimes;

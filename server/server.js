@@ -12,6 +12,8 @@ const moment = require('moment');
 
 var cors = require('cors')
 
+const taskTimes = require('./taskTimes')
+
 dotenv.config();
 
 const stripe = require('stripe')(process.env.STRIPE_KEY);
@@ -175,8 +177,7 @@ app.post('/api/post/newUser', (req, res) => {
     const taskTimeMultiplier = user[0].timeselected === "2Y" ? 2 :(user[0].timeselected === "6M" ? .5 : 1)
     const dateFromWedding = (daysAway) => (moment(user[0].weddingdate).subtract(daysAway, 'days').format('YYYY-MM-DD'));
     const newTasks = [user[0].auth_id, user[0].assignee]
-      .concat(taskStarts.map(e => dateFromWedding(Math.round(e * taskTimeMultiplier))))
-      .concat(taskEnds.map(e => dateFromWedding(Math.round(e * taskTimeMultiplier))));
+      .concat(taskTimes.map(task => [dateFromWedding(Math.round(task.startDate * taskTimeMultiplier)), dateFromWedding(Math.round(task.endDate * taskTimeMultiplier))]).flat());
     db.create_new_users_tasks(newTasks)
     .then(response => {
       res.status(200).send('Added new user');
@@ -335,7 +336,3 @@ massive(process.env.CONNECTION_STRING)
   app.listen(port, () => console.log(`listening on port ${port}`));
 })
 .catch(err => console.log(err))
-
-//TODO ALTERNATE SO WE CAN ADD TASKS
-const taskStarts = [365,364,363,362,361,361,360,359,358,360,357,333,242,328,350];
-const taskEnds = [362,357,359,338,361,358,337,352,358,327,305,331,210,321,326];
