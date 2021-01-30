@@ -283,6 +283,7 @@
   padding-right: 15px;
   padding-left: 5px;
   font-family: "Roboto", sans-serif;
+  background-color: white;
 }
 .Task-modal .modal-container .modal-content .status-box .task-assignee {
   width: 100px;

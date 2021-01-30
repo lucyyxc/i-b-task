@@ -1,4 +1,5 @@
 // This is just for the dates of the task, this will not change the task names. That would be done if create_new_user_tasks.sql
+// This order is important as well, keep it.
 
 const taskTimes = [
   {

@@ -19,6 +19,10 @@
     font-family: 'Roboto', sans-serif;
     position: relative;
     box-sizing: border-box;
+
+    @media screen and (max-width: 600px) {
+      margin-top: 40px;
+    }
   
     .input-container {
       display: flex;
@@ -136,6 +140,7 @@
         transition: all .15s ease;
         padding: 3px 3px 3px 0;
         font-family: 'Roboto', sans-serif;
+        background-color: white;
         
         &:focus {
           outline: none;
@@ -299,6 +304,7 @@
     font-family: 'Roboto', sans-serif;
     
     @media screen and (max-width: 600px) {
+      padding-top: 20px;
       font-size: 46px;
     }
 
