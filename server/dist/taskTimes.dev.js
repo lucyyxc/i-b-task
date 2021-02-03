@@ -7,7 +7,7 @@ var taskTimes = [{
   startDate: 365,
   endDate: 362
 }, {
-  name: "Decide if you would like to have an engagement party",
+  name: "Decide on engagment party",
   startDate: 364,
   endDate: 357
 }, {
@@ -19,7 +19,7 @@ var taskTimes = [{
   startDate: 362,
   endDate: 338
 }, {
-  name: "Get the email address with your new last name",
+  name: "Create new email address",
   startDate: 361,
   endDate: 361
 }, {
@@ -59,11 +59,11 @@ var taskTimes = [{
   startDate: 328,
   endDate: 321
 }, {
-  name: "Decide on your bridesmaids and groomsmen",
+  name: "Choose primary wedding party",
   startDate: 350,
   endDate: 326
 }, {
-  name: "Decide on your remaining wedding party",
+  name: "Create day of photo schedule",
   startDate: 325,
   endDate: 311
 }, {
@@ -163,11 +163,11 @@ var taskTimes = [{
   startDate: 252,
   endDate: 231
 }, {
-  name: "Buy stamps for save the date/invitations",
+  name: "Buy stamps for save the date/invites",
   startDate: 231,
   endDate: 225
 }, {
-  name: "Create transportation plan for wedding party",
+  name: "Create transport plan for wedding party",
   startDate: 235,
   endDate: 216
 }, {
@@ -239,7 +239,7 @@ var taskTimes = [{
   startDate: 180,
   endDate: 154
 }, {
-  name: "Arrange guest shuttle, parking, and/or valet at reception venue",
+  name: "Arrange guest transport/parking",
   startDate: 177,
   endDate: 157
 }, {
@@ -263,7 +263,7 @@ var taskTimes = [{
   startDate: 162,
   endDate: 131
 }, {
-  name: "Schedule wedding dress alteration/fitting",
+  name: "Schedule dress alterations/fittings",
   startDate: 163,
   endDate: 163
 }, {
@@ -311,7 +311,7 @@ var taskTimes = [{
   startDate: 137,
   endDate: 137
 }, {
-  name: "Create displays and signage for reception",
+  name: "Create signage for reception",
   startDate: 136,
   endDate: 112
 }, {
@@ -331,7 +331,7 @@ var taskTimes = [{
   startDate: 128,
   endDate: 121
 }, {
-  name: "Determine suit/tux for groomsmen/share with wedding party",
+  name: "Choose groomsemen attire & share",
   startDate: 126,
   endDate: 120
 }, {
@@ -347,7 +347,7 @@ var taskTimes = [{
   startDate: 120,
   endDate: 114
 }, {
-  name: "Buy gifts and/or activities for the flower girl(s)/ring bearer(s)",
+  name: "Buy gifts/activities for girls/boys",
   startDate: 111,
   endDate: 105
 }, {
@@ -355,11 +355,11 @@ var taskTimes = [{
   startDate: 114,
   endDate: 108
 }, {
-  name: "Determine jewelry/accessories for wedding day",
+  name: "Choose bridal jewerly/accessories",
   startDate: 116,
   endDate: 102
 }, {
-  name: "Determine groom's accessories for wedding day",
+  name: "Choose groom accessories",
   startDate: 115,
   endDate: 109
 }, {
@@ -371,11 +371,11 @@ var taskTimes = [{
   startDate: 105,
   endDate: 99
 }, {
-  name: "Determine boutonnieres and corsages for VIPs",
+  name: "Determine flowers/corsages for VIPs",
   startDate: 110,
   endDate: 105
 }, {
-  name: "Order flower petals & basket(s) for flower girl(s)",
+  name: "Order petals/basket for flower girls",
   startDate: 98,
   endDate: 98
 }, {
@@ -387,7 +387,7 @@ var taskTimes = [{
   startDate: 101,
   endDate: 85
 }, {
-  name: "Determine readings for wedding ceremony",
+  name: "Choose ceremony readings",
   startDate: 98,
   endDate: 84
 }, {
@@ -395,7 +395,7 @@ var taskTimes = [{
   startDate: 104,
   endDate: 77
 }, {
-  name: "Determine how parents will walk into the ceremony",
+  name: "Choose wedding entrace for parents",
   startDate: 102,
   endDate: 102
 }, {
@@ -411,7 +411,7 @@ var taskTimes = [{
   startDate: 100,
   endDate: 87
 }, {
-  name: "Create full ceremony plan and share as needed",
+  name: "Create full ceremony agenda/share",
   startDate: 99,
   endDate: 72
 }, {
@@ -427,19 +427,19 @@ var taskTimes = [{
   startDate: 81,
   endDate: 75
 }, {
-  name: "Determine cocktails/wine for reception",
+  name: "Determine cocktails/drinks for reception",
   startDate: 87,
   endDate: 81
 }, {
-  name: "Purchase bridal party getting ready outfits",
+  name: "Purchase bridal party day of outfits",
   startDate: 85,
   endDate: 79
 }, {
-  name: "Determine wedding photo locations/create shot list",
+  name: "Determine photo locations/shot list",
   startDate: 77,
   endDate: 71
 }, {
-  name: "Create wedding weekend schedules for VIPs",
+  name: "Create wedding week schedules for VIPs",
   startDate: 74,
   endDate: 61
 }, {
@@ -447,11 +447,11 @@ var taskTimes = [{
   startDate: 80,
   endDate: 74
 }, {
-  name: "Make any additional hair appointments for days prior ",
+  name: "Book additional hair appts. if needed",
   startDate: 78,
   endDate: 78
 }, {
-  name: "Create list of must play and do not play songs for DJ",
+  name: "Create must/dont song list for DJ",
   startDate: 77,
   endDate: 70
 }, {
@@ -463,11 +463,11 @@ var taskTimes = [{
   startDate: 73,
   endDate: 67
 }, {
-  name: "Request time off work for wedding and honeymoon",
+  name: "Submit time off work for wedding, etc. ",
   startDate: 72,
   endDate: 72
 }, {
-  name: "Request bridesmaids to choose wedding hair style",
+  name: "Ask bridesmaids to chose hair styles",
   startDate: 71,
   endDate: 58
 }, {
@@ -479,7 +479,7 @@ var taskTimes = [{
   startDate: 70,
   endDate: 62
 }, {
-  name: "Create baskets for wedding reception restrooms",
+  name: "Create baskets for reception restrooms",
   startDate: 51,
   endDate: 38
 }, {
@@ -491,7 +491,7 @@ var taskTimes = [{
   startDate: 66,
   endDate: 52
 }, {
-  name: "Choose something blue, borrowed, old and new",
+  name: "Choose something blue, borrowed, old, new",
   startDate: 65,
   endDate: 58
 }, {
@@ -503,11 +503,11 @@ var taskTimes = [{
   startDate: 61,
   endDate: 60
 }, {
-  name: "Design wedding program for ceremony & print",
+  name: "Design and print wedding program",
   startDate: 60,
   endDate: 53
 }, {
-  name: "Determine photo sharing app to gather guests photos",
+  name: "Select photo sharing app to collect photos",
   startDate: 58,
   endDate: 51
 }, {
@@ -515,11 +515,11 @@ var taskTimes = [{
   startDate: 57,
   endDate: 50
 }, {
-  name: "Create schedule for toasts at wedding reception",
+  name: "Create schedule for reception toasts",
   startDate: 55,
   endDate: 55
 }, {
-  name: "Write rehearsal and wedding reception toast",
+  name: "Write reheasal and reception toasts",
   startDate: 54,
   endDate: 40
 }, {
@@ -539,7 +539,7 @@ var taskTimes = [{
   startDate: 37,
   endDate: 31
 }, {
-  name: "Put together outfits for days before and after wedding",
+  name: "Plan wedding week outfits",
   startDate: 40,
   endDate: 29
 }, {
@@ -563,7 +563,7 @@ var taskTimes = [{
   startDate: 31,
   endDate: 30
 }, {
-  name: "Break in shoes for wedding day and purchase padding",
+  name: "Break in wedding day shoes",
   startDate: 31,
   endDate: 10
 }, {
@@ -571,15 +571,15 @@ var taskTimes = [{
   startDate: 30,
   endDate: 28
 }, {
-  name: "Arrange/communicate transportation for VIP guests",
+  name: "Arrange/share transport for VIP guests",
   startDate: 29,
   endDate: 27
 }, {
-  name: "Ask photographer, DJ, etc. for food preference",
+  name: "Ask vendors for food preferences",
   startDate: 29,
   endDate: 27
 }, {
-  name: "Create seating chart for the wedding reception",
+  name: "Create reception seating chart",
   startDate: 28,
   endDate: 14
 }, {
@@ -595,11 +595,11 @@ var taskTimes = [{
   startDate: 36,
   endDate: 32
 }, {
-  name: "Send email for wedding rehearsal with special instructions",
+  name: "Send out wedding rehersal instructions",
   startDate: 25,
   endDate: 22
 }, {
-  name: "Send extended family email with special instructions ",
+  name: "Send extended family special instructions",
   startDate: 25,
   endDate: 22
 }, {
@@ -607,7 +607,7 @@ var taskTimes = [{
   startDate: 19,
   endDate: 17
 }, {
-  name: "Send your day of schedule to all vendors",
+  name: "Share day of schedule with all vendors",
   startDate: 13,
   endDate: 11
 }, {
@@ -615,11 +615,11 @@ var taskTimes = [{
   startDate: 21,
   endDate: 21
 }, {
-  name: "Gather getting ready magazines, books, music, etc.",
+  name: "Gather day of getting ready items",
   startDate: 21,
   endDate: 14
 }, {
-  name: "Send email to guests with all important details  ",
+  name: "Send out important details to guests  ",
   startDate: 20,
   endDate: 15
 }, {
@@ -635,7 +635,7 @@ var taskTimes = [{
   startDate: 16,
   endDate: 14
 }, {
-  name: "Delegate person to make day of payments and deliver tips",
+  name: "Assign person to deliver payments",
   startDate: 15,
   endDate: 15
 }, {
@@ -655,15 +655,15 @@ var taskTimes = [{
   startDate: 5,
   endDate: 3
 }, {
-  name: "Share a video on how to pin on a boutineer with the wedding party",
+  name: "Share boutineer how to video",
   startDate: 0,
   endDate: 0
 }, {
-  name: "Change relationship status and last name on social media",
+  name: "Update relationship status/name on social",
   startDate: -1,
   endDate: -1
 }, {
-  name: "Launch new email address & set up forwarding",
+  name: "Begin using new email/ set forwarding",
   startDate: -3,
   endDate: -3
 }, {
@@ -683,7 +683,7 @@ var taskTimes = [{
   startDate: -30,
   endDate: -44
 }, {
-  name: "Review wedding photos and post favorites",
+  name: "Review wedding photos, post favorites",
   startDate: -90,
   endDate: -104
 }, {
