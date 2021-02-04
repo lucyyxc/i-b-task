@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import _get from 'lodash/get';
 import _isEmpty from 'lodash/isEmpty';
@@ -24,7 +26,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
       tags: ''
     },
     showTip: false,
-    confirmArchive: false
+    confirmArchive: false,
   })
 
   const defaultChanges = {
@@ -134,6 +136,8 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
       setIsOpen(false);
     }
   }
+
+  console.log(state);
 
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
@@ -345,17 +349,30 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <DatePicker
                 selected={moment(state.task.startdate).toDate() || new Date()}
                 onChange={date => {
-                  setState({
-                    ...state,
-                    task: {
-                      ...state.task,
-                      startdate: moment(date).format('YYYY-MM-DD')
-                    },
-                    changes: {
-                      ...state.changes,
-                      startdate: moment(date).format('YYYY-MM-DD')
-                    }
-                  })
+                  if(moment(state.task.enddate).isBefore(moment(date))) {
+                    toast.error('You cannot select a Complete by date that is before the Start on date.', {
+                      position: "top-center",
+                      autoClose: 4000,
+                      hideProgressBar: true,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      transition: Slide
+                    });
+                  } else {
+                    setState({
+                      ...state,
+                      task: {
+                        ...state.task,
+                        startdate: moment(date).format('YYYY-MM-DD')
+                      },
+                      changes: {
+                        ...state.changes,
+                        startdate: moment(date).format('YYYY-MM-DD')
+                      },
+                    })
+                  }
                 }}
                 className="pickers"
               />
@@ -365,22 +382,34 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <DatePicker
                 selected={moment(state.task.enddate).toDate() || new Date()}
                 onChange={date => {
-                  setState({
-                    ...state,
-                    task: {
-                      ...state.task,
-                      enddate: moment(date).format('YYYY-MM-DD')
-                    },
-                    changes: {
-                      ...state.changes,
-                      enddate: moment(date).format('YYYY-MM-DD')
-                    }
-                  })
+                  if (moment(date).isBefore(state.task.startdate)) {
+                    toast.error('You cannot select a Complete by date that is before the Start on date.', {
+                      position: "top-center",
+                      autoClose: 4000,
+                      hideProgressBar: true,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      transition: Slide,
+                    });
+                  } else {
+                    setState({
+                      ...state,
+                      task: {
+                        ...state.task,
+                        enddate: moment(date).format('YYYY-MM-DD')
+                      },
+                      changes: {
+                        ...state.changes,
+                        enddate: moment(date).format('YYYY-MM-DD')
+                      },
+                    })
+                  }
                 }}
                 className="pickers"
               />
             </div>
-
         </div>
         <input
           className="task-name"
@@ -439,6 +468,18 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
         </div>
       </div>
     </div>
+    <ToastContainer
+      position="top-center"
+      autoClose={4000}
+      hideProgressBar
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      transition={Slide}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
   </div>
   )
 }

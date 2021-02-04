@@ -170,8 +170,7 @@ a {
     width: 100%;
     background-color: #F6DDC8;
     justify-content: space-between;
-    align-items: center;
-    margin-top: -20px; }
+    align-items: center; }
     .Nav .mobile-nav .pink {
       height: 70px;
       width: 70px; }
@@ -1051,6 +1050,8 @@ a {
           font-size: 20px;
           border-radius: 3px;
           cursor: pointer; }
+  .Task-modal .Toastify__toast--error {
+    text-align: center; }
 
 .Progress {
   margin-top: 20px;
@@ -1245,6 +1246,9 @@ a {
     font-family: 'Roboto', sans-serif;
     position: relative;
     box-sizing: border-box; }
+    @media screen and (max-width: 600px) {
+      .Intro .signup {
+        margin-top: 40px; } }
     .Intro .signup .input-container {
       display: flex;
       flex-direction: column;
@@ -1449,6 +1453,7 @@ a {
     font-family: 'Roboto', sans-serif; }
     @media screen and (max-width: 600px) {
       .Intro .title-text {
+        padding-top: 20px;
         font-size: 46px; } }
     .Intro .title-text p {
       font-size: 22px;

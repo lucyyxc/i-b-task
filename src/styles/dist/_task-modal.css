@@ -352,3 +352,6 @@
   border-radius: 3px;
   cursor: pointer;
 }
+.Task-modal .Toastify__toast--error {
+  text-align: center;
+}
