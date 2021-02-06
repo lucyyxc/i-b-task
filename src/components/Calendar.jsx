@@ -14,9 +14,10 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
   })
 
   React.useEffect(() => {
+    const filteredTasks = tasks.filter( task => !task.archived)
     setState({
       ...state,
-      calTasks: tasks
+      calTasks: filteredTasks
     })
   }, [tasks]);
 
