@@ -6,7 +6,7 @@ import Profile from './Profile';
 import { Redirect } from 'react-router-dom';
 
 const LogOutModal = ({modal, cancel}) => (
-  <div className={`modal logout-confirm ${modal ? 'show': ''}`}>
+  <div className={`modal logout-confirm ${modal ? 'show': ''}`} onClick={e => e.stopPropagation()}>
     <span className="message">Are you sure?</span>
     <div className="button-holder">
       <a className="button logout-link" href="/auth/logout"><p>Log Out</p></a>
@@ -15,7 +15,7 @@ const LogOutModal = ({modal, cancel}) => (
   </div>
 );
 
-const ProfileMenu = ({show, user, toggleMenu}) => {
+const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo}) => {
   const [state, setState] = React.useState({
     modal: false,
     display: 'logout',
@@ -85,7 +85,7 @@ const ProfileMenu = ({show, user, toggleMenu}) => {
       </div>
       {state.display === 'logout'
         ? <LogOutModal {...{modal: state.modal, logOut, cancel}} />
-        : <Profile {...{user, modal: state.modal, cancel}} />
+        : <Profile {...{user, modal: state.modal, cancel, getUserTasks, getUserInfo}} />
       }
     </div>
   )

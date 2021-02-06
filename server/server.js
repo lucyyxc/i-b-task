@@ -26,8 +26,6 @@ var strategy = new Auth0Strategy(
     callbackURL: process.env.AUTH0_CALLBACK_URL || '/callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
-    // console.log('inside auth strat', profile);
-    // console.log('inside auth strat', profile.emails[0].value);
     const db = app.get('db');
     const email = profile.emails[0].value
     db.get_user_by_email([email])
@@ -262,7 +260,6 @@ app.post('/api/post/subUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
   const { body } = req;
-  console.log('BODY DOT SUB', body.sub);
   db.update_sub([userid, body.sub])
   .then(response => res.status(200).send('user sub updated'))
   .catch(err => console.log('db user sub update error', err))
@@ -281,17 +278,60 @@ app.post('/api/post/assigneeUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
   const { body } = req;
-  console.log(body);
   db.update_assignee([userid, body.id, body.assignee.toUpperCase()])
   .then(response => res.status(200).send('task assignee updated'))
   .catch(err => console.log('db notes assignee error', err));
+});
+
+app.post('/api/post/usersNameUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const { auth_id: userid, assignee } = req.user;
+  const { body } = req;
+  const initials = body.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
+  db.update_users_name([userid, body.name, initials])
+  .then(response => db.update_users_name_task_assignee([userid, assignee, initials])
+    .then(response => {
+      req.session.passport.user.name = body.name;
+      req.session.passport.user.assignee = initials;
+      req.session.save(function(err) {console.log(err)})
+      res.status(200).send('users name updated')
+    })
+    .catch(err => console.log('db user new name task assignee error, err'))
+  )
+  .catch(err => console.log('db notes assignee error', err));
+});
+
+app.post('/api/post/weddingDateUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_wedding_date([userid, body.weddingdate])
+  .then(response => {
+    req.session.passport.user.weddingdate = body.weddingdate;
+    req.session.save(function(err) {console.log(err)})
+    res.status(200).send('updated user wedding date')
+  })
+  .catch(err => console.log('db update wedding date error', err));
+});
+
+// TODO UNTESTED
+app.post('/api/post/birthdayUpdate', (req, res) => {
+  const db = req.app.get('db');
+  const userid = req.user.auth_id;
+  const { body } = req;
+  db.update_birthday([userid, body.birthday])
+  .then(response => {
+    req.session.passport.user.birthday = body.birthday;
+    req.session.save(function(err) {console.log(err)})
+    res.status(200).send('updated user birthday')
+})
+  .catch(err => console.log('db update birthday error', err));
 });
 
 app.post('/api/post/tagUpdate', (req, res) => {
   const db = req.app.get('db');
   const userid = req.user.auth_id;
   const { body } = req;
-  console.log(body);
   db.update_tag([userid, body.id, body.tags])
   .then(response => res.status(200).send('task tag updated'))
   .catch(err => console.log('db notes tag error', err));

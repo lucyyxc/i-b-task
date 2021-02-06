@@ -137,8 +137,6 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
     }
   }
 
-  console.log(state);
-
   return (
     <div className={`Task-modal ${isOpen ? 'show' : ''}`} >
       <div className="modal-container">
@@ -414,6 +412,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
         <input
           className="task-name"
           type="text"
+          maxlength="41"
           value={state.task.tasklabel || ''}
           placeholder="Please enter a task name."
           onChange={(e) => {

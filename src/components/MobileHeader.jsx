@@ -121,13 +121,13 @@ const MobileHeader = ({getUserTasks, tasksLength, taskFilter, updateStateValue, 
         </div>
         <div className={`${state.isTaskOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isTaskOpen: false, modalTask: {}})}></div>
         <TaskModal
-        isOpen={state.isTaskOpen}
-        setIsOpen={(bool) => setState({...state, isTaskOpen: bool, modalTask: {}})}
-        modalTask={state.modalTask}
-        getUserTasks={getUserTasks}
-        tasksLength={tasksLength}
-        isNewTask={true}
-      />
+            isOpen={state.isTaskOpen}
+            setIsOpen={(bool) => setState({...state, isTaskOpen: bool, modalTask: {}})}
+            modalTask={state.modalTask}
+            getUserTasks={getUserTasks}
+            tasksLength={tasksLength}
+            isNewTask={true}
+        />
     </>
   );
 };

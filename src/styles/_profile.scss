@@ -1,14 +1,20 @@
 .Profile {
   min-height: 150px;
-  min-width: 700px;
+  width: 98%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   padding-bottom: 20px;
 
+  @media screen and (max-width: 838px) {
+    width: 100%
+  }
+
   .control-holder {
-    width:800px;
+    width: 98%;
+    max-width: 700px;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -26,11 +32,16 @@
     padding: 30px 0;
     position: relative;
 
+    @media screen and (max-width: 420px) {
+      font-size: 45px;
+    }
+
     .cancel-confirm {
       position: absolute;
       z-index: 5;
       height: 100px;
-      width: 500px;
+      width: 100%;
+      max-width: 500px;
       box-shadow: 1px 2px 4px #888888;
       background-color: white;
       top: 200px;
@@ -43,27 +54,53 @@
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
+      padding: 0 10px;
+
+      @media screen and (max-width: 450px) {
+        font-size: 18px;
+      }
 
       &.show {
         display: flex;
       }
 
       .button-holder {
-        width: 400px;
+        width: 95%;
+        max-width: 400px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         
         .button {
-          color: white;
-          background-color:  #70825A;
-          cursor: pointer;
-          width: 160px;
-          height: 30px;
+          border: 1px solid black;
+          border-radius: 3px;
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 14px;
+          height: 40px;
+          font-size: 18px;
+          cursor: pointer;
+          padding: 0 10px;
+
+          @media screen and (max-width: 450px) {
+            font-size: 16px;
+          }
+
+          @media screen and (max-width: 1030px) {
+            font-size: 15px;
+          }
+  
+          &.logout-link {
+            color: black;
+  
+            &:visited {
+              color: black;
+            }
+          }
+  
+          &:hover {
+            box-shadow: 1px 1px 2px #888888;
+          } 
         }
       }
     }
@@ -73,11 +110,14 @@
     text-align: center;
     white-space: normal;
     max-width: 450px;
-    padding-bottom: 30px;
+    font-size: 18px;
+    padding: 0 20px 30px 20px;
   }
 
   .input-holder {
-    width: 600px;
+    width: 90%;
+    max-width: 600px;
+
 
     .edit-mode {
       font-size: 10px;
@@ -102,6 +142,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media screen and (max-width: 450px) {
+          width: 100%;
+        }
 
         .input-label {
           font-size: 18px;
@@ -128,6 +172,10 @@
         font-size: 16px;
         transition: all .15s ease;
         padding: 3px;
+
+        @media screen and (max-width: 450px) {
+          width: 100%;
+        }
         
         &:focus {
           outline: none;
@@ -169,6 +217,10 @@
         font-size: 16px;
         padding: 3px;
         transition: all .15s ease;
+
+        @media screen and (max-width: 450px) {
+          width: 100%;
+        }
   
         &:focus {
           outline: none;
@@ -184,17 +236,22 @@
   .submit {
     height: 60px;
     width: 200px;
-    background-color: #70825A;
-    color: white;
+    background-color: white;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 3px;
     margin: 40px auto;
     cursor: pointer;
+    border: 1px solid black;
 
     span {
       font-size: 24px;
     }
+
+    &:hover {
+      box-shadow: 1px 1px 2px #888888;
+    } 
   }
 }

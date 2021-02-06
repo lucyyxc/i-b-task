@@ -36,8 +36,6 @@ var strategy = new Auth0Strategy({
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   callbackURL: process.env.AUTH0_CALLBACK_URL || '/callback'
 }, function (accessToken, refreshToken, extraParams, profile, done) {
-  // console.log('inside auth strat', profile);
-  // console.log('inside auth strat', profile.emails[0].value);
   var db = app.get('db');
   var email = profile.emails[0].value;
   db.get_user_by_email([email]).then(function (user) {
@@ -299,7 +297,6 @@ app.post('/api/post/subUpdate', function (req, res) {
   var db = req.app.get('db');
   var userid = req.user.auth_id;
   var body = req.body;
-  console.log('BODY DOT SUB', body.sub);
   db.update_sub([userid, body.sub]).then(function (response) {
     return res.status(200).send('user sub updated');
   })["catch"](function (err) {
@@ -320,18 +317,69 @@ app.post('/api/post/assigneeUpdate', function (req, res) {
   var db = req.app.get('db');
   var userid = req.user.auth_id;
   var body = req.body;
-  console.log(body);
   db.update_assignee([userid, body.id, body.assignee.toUpperCase()]).then(function (response) {
     return res.status(200).send('task assignee updated');
   })["catch"](function (err) {
     return console.log('db notes assignee error', err);
   });
 });
+app.post('/api/post/usersNameUpdate', function (req, res) {
+  var db = req.app.get('db');
+  var _req$user = req.user,
+      userid = _req$user.auth_id,
+      assignee = _req$user.assignee;
+  var body = req.body;
+  var initials = body.name.split(' ').map(function (name) {
+    return name.charAt(0).toUpperCase();
+  }).join('');
+  db.update_users_name([userid, body.name, initials]).then(function (response) {
+    return db.update_users_name_task_assignee([userid, assignee, initials]).then(function (response) {
+      req.session.passport.user.name = body.name;
+      req.session.passport.user.assignee = initials;
+      req.session.save(function (err) {
+        console.log(err);
+      });
+      res.status(200).send('users name updated');
+    })["catch"](function (err) {
+      return console.log('db user new name task assignee error, err');
+    });
+  })["catch"](function (err) {
+    return console.log('db notes assignee error', err);
+  });
+});
+app.post('/api/post/weddingDateUpdate', function (req, res) {
+  var db = req.app.get('db');
+  var userid = req.user.auth_id;
+  var body = req.body;
+  db.update_wedding_date([userid, body.weddingdate]).then(function (response) {
+    req.session.passport.user.weddingdate = body.weddingdate;
+    req.session.save(function (err) {
+      console.log(err);
+    });
+    res.status(200).send('updated user wedding date');
+  })["catch"](function (err) {
+    return console.log('db update wedding date error', err);
+  });
+}); // TODO UNTESTED
+
+app.post('/api/post/birthdayUpdate', function (req, res) {
+  var db = req.app.get('db');
+  var userid = req.user.auth_id;
+  var body = req.body;
+  db.update_birthday([userid, body.birthday]).then(function (response) {
+    req.session.passport.user.birthday = body.birthday;
+    req.session.save(function (err) {
+      console.log(err);
+    });
+    res.status(200).send('updated user birthday');
+  })["catch"](function (err) {
+    return console.log('db update birthday error', err);
+  });
+});
 app.post('/api/post/tagUpdate', function (req, res) {
   var db = req.app.get('db');
   var userid = req.user.auth_id;
   var body = req.body;
-  console.log(body);
   db.update_tag([userid, body.id, body.tags]).then(function (response) {
     return res.status(200).send('task tag updated');
   })["catch"](function (err) {
@@ -347,9 +395,9 @@ app.get('/api/get/userTasks', function (req, res) {
 });
 app.post('/api/post/createTask', function (req, res) {
   var db = req.app.get('db');
-  var _req$user = req.user,
-      userid = _req$user.auth_id,
-      assignee = _req$user.assignee;
+  var _req$user2 = req.user,
+      userid = _req$user2.auth_id,
+      assignee = _req$user2.assignee;
   var body = req.body;
   db.create_task([body.id, userid, body.tasklabel.toLowerCase().split(' ').join('-'), body.tasklabel, body.assignee || assignee, body.tags, body.startdate, body.enddate, body.status, body.notes]).then(function (response) {
     return res.status(200).send('task created');

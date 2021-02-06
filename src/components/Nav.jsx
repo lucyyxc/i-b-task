@@ -6,20 +6,20 @@ import logoBlack from '../styles/assets/logoBlack.png';
 import whiteLogo from '../styles/assets/whiteLogo.png';
 import pinkLogoNotCircle from '../styles/assets/pinkLogoNotCircle.jpg';
 
-const ProfileContent = ({initials, toggleMenu, show, user}) => {
+const ProfileContent = ({initials, toggleMenu, show, user, getUserTasks, getUserInfo}) => {
   return (
   <div className="profile-content">
       <div className="profile-holder">
         <div className="profile-circle" onClick={() => toggleMenu()}>
           {`${initials}`}
         </div>
-        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} />
+        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} getUserTasks={getUserTasks} getUserInfo={getUserInfo} />
       </div>
     </div>
   );
 }
 
-const Nav = ({selected, user = {}, loading, error}) => {
+const Nav = ({selected, user = {}, loading, error, getUserTasks, getUserInfo}) => {
   const [show, setShow] = React.useState('hidden');
 
   const toggleMenu = () => {
@@ -66,7 +66,7 @@ const Nav = ({selected, user = {}, loading, error}) => {
             Contact Us
           </a>
           {selected
-            ? <ProfileContent {...{initials, user, toggleMenu, show}} />
+            ? <ProfileContent {...{initials, user, toggleMenu, show, getUserTasks, getUserInfo}} />
             : null
           }
         </div>

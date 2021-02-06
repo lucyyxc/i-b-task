@@ -33,7 +33,6 @@ const App = ({selected}) => {
   if (!_isEmpty(state.user) && !state.user.sub && ( window.location.href.split('?')[1]) === 'success=true' ) {
     axios.post('/api/post/subUpdate', {sub: true})
     .then(response => {
-      console.log(response.data);
     })
     .catch(err => console.log('update sub error', err));
   }
@@ -70,6 +69,26 @@ const App = ({selected}) => {
         tasks: response.data
       })
     })
+  }
+
+  const getUserInfo = () => {
+    const userCall = axios.get('/api/get/user');
+    const tasksCall = axios.get('/api/get/userTasks')
+    axios.all([userCall, tasksCall])
+      .then(responses => {
+        setState({
+          ...state,
+          user: responses[0].data, 
+          tasks: responses[1].data
+        })
+      })
+      .catch(err => {
+        setState({
+          ...state,
+          loading: false,
+          error: err,
+        })
+      })
   }
 
   const displayView = () => {
@@ -132,7 +151,7 @@ const App = ({selected}) => {
 
   return (
     <div className="App">
-      <Nav selected={selected} user={state.user} loading={state.loading} error={state.error} />
+      <Nav selected={selected} user={state.user} loading={state.loading} error={state.error} getUserTasks={getUserTasks} getUserInfo={getUserInfo} />
       {selected === 'loading' ? null : <Title {...state} />}
       <Footer />
       <MobileHeader 
