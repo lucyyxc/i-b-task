@@ -35,6 +35,9 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
         case task.status === 'in-progress':
           backgroundColor = '#F6DDC8';
           break;
+        case task.status === 'complete':
+          backgroundColor = ' #70825A';
+          break;
         default:
           backgroundColor = '#fc6959'
           break
