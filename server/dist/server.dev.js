@@ -22,6 +22,8 @@ var massive = require('massive');
 
 var moment = require('moment');
 
+var _ = require('lodash');
+
 var cors = require('cors');
 
 var taskTimes = require('./taskTimes');
@@ -201,9 +203,9 @@ app.post('/api/post/newUser', function (req, res) {
       return moment(user[0].weddingdate).subtract(daysAway, 'days').format('YYYY-MM-DD');
     };
 
-    var newTasks = [user[0].auth_id, user[0].assignee].concat(taskTimes.map(function (task) {
+    var newTasks = [user[0].auth_id, user[0].assignee].concat(_.flattenDeep(taskTimes.map(function (task) {
       return [dateFromWedding(Math.round(task.startDate * taskTimeMultiplier)), dateFromWedding(Math.round(task.endDate * taskTimeMultiplier))];
-    }).flat());
+    })));
     db.create_new_users_tasks(newTasks).then(function (response) {
       res.status(200).send('Added new user');
     })["catch"](function (err) {

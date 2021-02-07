@@ -85,7 +85,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-  z-index: 1; }
+  z-index: 8; }
   .Nav .nav-content-container {
     height: 100%;
     width: 92%;

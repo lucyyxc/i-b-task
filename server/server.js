@@ -9,6 +9,7 @@ const url = require('url');
 const querystring = require('querystring');
 const massive = require('massive');
 const moment = require('moment');
+const _ = require('lodash');
 
 var cors = require('cors')
 
@@ -175,7 +176,7 @@ app.post('/api/post/newUser', (req, res) => {
     const taskTimeMultiplier = user[0].timeselected === "2Y" ? 2 :(user[0].timeselected === "6M" ? .5 : 1)
     const dateFromWedding = (daysAway) => (moment(user[0].weddingdate).subtract(daysAway, 'days').format('YYYY-MM-DD'));
     const newTasks = [user[0].auth_id, user[0].assignee]
-      .concat(taskTimes.map(task => [dateFromWedding(Math.round(task.startDate * taskTimeMultiplier)), dateFromWedding(Math.round(task.endDate * taskTimeMultiplier))]).flat());
+      .concat(_.flattenDeep(taskTimes.map(task => [dateFromWedding(Math.round(task.startDate * taskTimeMultiplier)), dateFromWedding(Math.round(task.endDate * taskTimeMultiplier))])));
     db.create_new_users_tasks(newTasks)
     .then(response => {
       res.status(200).send('Added new user');
