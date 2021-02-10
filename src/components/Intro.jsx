@@ -115,7 +115,9 @@ const Intro = ({updateView}) => {
     error: false,
     timeUntil: '',
     emailAgree: true,
-    required: false
+    required: false,
+    disabled: false,
+    errorMessage: ''
   });
   const [redirect, setRedirect] = React.useState(false);
 
@@ -208,28 +210,40 @@ const Intro = ({updateView}) => {
       state.timeUntil &&
       state.match
     ) {
-      axios.post('https://the-independent-bride.us.auth0.com/dbconnections/signup',
-        {
-          client_id: 'MdY4v57ExoBNoxuM9MsFCMULtl44pFQ1',
-          email: state.email,
-          password: state.password,
-          connection: 'Username-Password-Authentication',
-          name: state.name,
-          user_metadata: metadata
-        }
-      )
+      axios.post('/api/post/duplicateUser', {email: state.email.toLowerCase()})
       .then(response => {
-
-        axios.post('/api/post/newUser', response.data)
-        .then(response => {
-          setRedirect(true);
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      })
-      .catch(err => {
-        console.log(err);
+        console.log(response.data);
+        if (response.data.length) {
+          setState({
+            ...state,
+            required: true,
+            disabled: false,
+            errorMessage: 'An account with this email already exists, please log in.'
+          });
+        } else {
+          axios.post('https://the-independent-bride.us.auth0.com/dbconnections/signup',
+            {
+              client_id: 'MdY4v57ExoBNoxuM9MsFCMULtl44pFQ1',
+              email: state.email,
+              password: state.password,
+              connection: 'Username-Password-Authentication',
+              name: state.name,
+              user_metadata: metadata
+            }
+          )
+          .then(response => {
+            axios.post('/api/post/newUser', response.data)
+            .then(response => {
+              setRedirect(true);
+            })
+            .catch(err => {
+              console.log(err);
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          })
+        }
       })
     } else if (
       !state.name ||
@@ -241,6 +255,8 @@ const Intro = ({updateView}) => {
       setState({
         ...state,
         required: true,
+        disabled: false,
+        errorMessage: 'Please fill all required fields.'
       });
     }
   };
@@ -310,7 +326,7 @@ const Intro = ({updateView}) => {
         updateStateValue
       }} />
       <div className="required-field">* required field</div>
-      <div class={`requireds ${state.required ? '' : 'hide'}`}>Please fill all required fields</div>
+      <div class={`requireds ${state.required ? '' : 'hide'}`}>{state.errorMessage}</div>
       <EmailOptIn {...{
         updateStateValue,
         item: 'emailAgree',
@@ -322,8 +338,16 @@ const Intro = ({updateView}) => {
         <a href="/auth" className="login-button">Log In</a>
       </div>
       <div 
-        className="submit"
-        onClick={() => submit()}
+        className={`submit ${state.disabled ? 'disabled' : ''}`}
+        onClick={() => {
+          if (!state.disabled) {
+            setState({
+              ...state,
+              disabled: true
+            })
+            submit()
+          }
+        }}
       >
         <span className="label">Let's do this!</span>
       </div>

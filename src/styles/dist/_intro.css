@@ -262,6 +262,9 @@
 .Intro .signup .submit span {
   font-size: 24px;
 }
+.Intro .signup .submit.disabled {
+  cursor: wait;
+}
 .Intro .title-text {
   display: flex;
   justify-content: flex-end;

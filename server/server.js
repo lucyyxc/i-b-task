@@ -27,12 +27,16 @@ var strategy = new Auth0Strategy(
     callbackURL: process.env.AUTH0_CALLBACK_URL || '/callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
-    const db = app.get('db');
-    const email = profile.emails[0].value
-    db.get_user_by_email([email])
-    .then(user => {
-      return done(null, user[0]);
-    })
+    if ( profile && profile.emails ) {
+      const db = app.get('db');
+      const email = profile.emails[0].value
+      db.get_user_by_email([email])
+      .then(user => {
+        return done(null, user[0]);
+      })
+    } else {
+      return done(null, profile);
+    }
   }
 );
   
@@ -153,6 +157,16 @@ app.post('/create-confirmation-session', async (req, res) => {
   const customer = await stripe.customers.retrieve(session.customer);
   res.status(200).send(customer);
 });
+
+app.post('/api/post/duplicateUser', (req, res) => {
+  const db = req.app.get('db');
+  const { body } = req;
+  db.duplicate_user([body.email])
+  .then( response => {
+    res.status(200).send(response)
+  })
+  .catch(err => console.log('db duplicate user error', err))
+})
 
 app.post('/api/post/newUser', (req, res) => {
   const db = req.app.get('db');
@@ -340,11 +354,16 @@ app.post('/api/post/tagUpdate', (req, res) => {
 
 app.get('/api/get/userTasks', (req, res) => {
   const db = req.app.get('db');
-  const userid = req.user.auth_id;
-  db.users_tasks([userid])
-  .then(tasks => {
-    res.status(200).json(tasks);
-  })
+  console.log(req.user);
+  if (req.user) {
+    const userid = req.user.auth_id;
+    db.users_tasks([userid])
+    .then(tasks => {
+      res.status(200).json(tasks);
+    })
+  } else {
+    res.status(404).send('No user available');
+  }
 })
 
 app.post('/api/post/createTask', (req, res) => {

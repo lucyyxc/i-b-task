@@ -38,11 +38,15 @@ var strategy = new Auth0Strategy({
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   callbackURL: process.env.AUTH0_CALLBACK_URL || '/callback'
 }, function (accessToken, refreshToken, extraParams, profile, done) {
-  var db = app.get('db');
-  var email = profile.emails[0].value;
-  db.get_user_by_email([email]).then(function (user) {
-    return done(null, user[0]);
-  });
+  if (profile && profile.emails) {
+    var db = app.get('db');
+    var email = profile.emails[0].value;
+    db.get_user_by_email([email]).then(function (user) {
+      return done(null, user[0]);
+    });
+  } else {
+    return done(null, profile);
+  }
 });
 passport.use(strategy);
 passport.serializeUser(function (user, done) {
@@ -187,6 +191,15 @@ app.post('/create-confirmation-session', function _callee2(req, res) {
           return _context2.stop();
       }
     }
+  });
+});
+app.post('/api/post/duplicateUser', function (req, res) {
+  var db = req.app.get('db');
+  var body = req.body;
+  db.duplicate_user([body.email]).then(function (response) {
+    res.status(200).send(response);
+  })["catch"](function (err) {
+    return console.log('db duplicate user error', err);
   });
 });
 app.post('/api/post/newUser', function (req, res) {
@@ -390,10 +403,16 @@ app.post('/api/post/tagUpdate', function (req, res) {
 });
 app.get('/api/get/userTasks', function (req, res) {
   var db = req.app.get('db');
-  var userid = req.user.auth_id;
-  db.users_tasks([userid]).then(function (tasks) {
-    res.status(200).json(tasks);
-  });
+  console.log(req.user);
+
+  if (req.user) {
+    var userid = req.user.auth_id;
+    db.users_tasks([userid]).then(function (tasks) {
+      res.status(200).json(tasks);
+    });
+  } else {
+    res.status(404).send('No user available');
+  }
 });
 app.post('/api/post/createTask', function (req, res) {
   var db = req.app.get('db');

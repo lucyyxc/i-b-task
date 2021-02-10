@@ -1,5 +1,5 @@
 .Task-modal {
-  z-index: 2;
+  z-index: 10;
   position: fixed;
   left: 50%;
   top: 50%;

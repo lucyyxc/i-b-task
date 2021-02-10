@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import _get from 'lodash/get';
+import { ToastContainer, Slide } from 'react-toastify';
 
 import Nav from './Nav';
 import Footer from './Footer';
@@ -133,18 +134,23 @@ const App = ({selected}) => {
       )
     };
 
-    if(state.loading === true &&
-      state.error === null &&
-      (!_isEmpty(state.user) || !state.tasks.length)) {
-      const userCall = axios.get('/api/get/user');
-      const tasksCall = axios.get('/api/get/userTasks')
-      axios.all([userCall, tasksCall])
-        .then(responses => {
-          updateState({user: responses[0].data, tasks: responses[1].data})
-        })
-        .catch(err => {
+  if(state.loading === true &&
+    state.error === null &&
+    (!_isEmpty(state.user) || !state.tasks.length)) {
+    const userCall = axios.get('/api/get/user');
+    const tasksCall = axios.get('/api/get/userTasks')
+    axios.all([userCall, tasksCall])
+      .then(responses => {
+        console.log('good');
+        updateState({user: responses[0].data, tasks: responses[1].data})
+      })
+      .catch(err => {
+        if (err.response.data) {
+          window.location.href = `${process.env.REACT_APP_SERVERHOST}/auth/logout`
+        } else {
           updateState(err);
-        })
+        }
+      })
     }
   });
 
@@ -193,6 +199,18 @@ const App = ({selected}) => {
           </>
       }
       {displayView()}
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        transition={Slide}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

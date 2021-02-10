@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToastContainer, toast, Slide } from 'react-toastify';
+import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import _get from 'lodash/get';
@@ -467,18 +467,6 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
         </div>
       </div>
     </div>
-    <ToastContainer
-      position="top-center"
-      autoClose={4000}
-      hideProgressBar
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      transition={Slide}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-    />
   </div>
   )
 }
