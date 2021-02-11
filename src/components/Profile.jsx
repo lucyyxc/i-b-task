@@ -61,7 +61,7 @@ const DateSelect = ({value, item, label, updateChangesValue, disabled}) => (
   </div>
 );
 
-const Profile = ({user, modal, cancel, getUserTasks, getUserInfo}) => {
+const Profile = ({user, modal, cancel, getUserInfo}) => {
   const [profile, updateProfile] = React.useState({name: ''});
   const [show, toggleShow] = React.useState(false);
   const [edit, toggleEdit] = React.useState(false);

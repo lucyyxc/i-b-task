@@ -15,7 +15,7 @@ const Task = ({task, openModal, getUserTasks}) => {
       ? 'In Progress' 
       : (status === 'complete'
         ? 'Complete'
-        : 'Not Stared'
+        : 'Not Started'
       )
   };
 
@@ -52,7 +52,7 @@ const Task = ({task, openModal, getUserTasks}) => {
               openModal(id)
             }
           }}>
-          <span className="label">{tasklabel}</span>
+          <span className="label" onClick={() => openModal(id)}>{tasklabel}</span>
           <div className="details" onClick={() => openModal(id)}>
             <span className="label">Details</span>
             <i className="fas fa-chevron-right"></i>

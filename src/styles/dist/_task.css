@@ -16,17 +16,18 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  color: #FC6959;
+  color: black;
   margin-left: 15px;
 }
 .Task .column .details .label {
+  font-weight: bold;
   margin-right: 5px;
-  color: #FC6959;
+  color: black;
   text-decoration: underline;
-  font-size: 10px;
+  font-size: 12px;
 }
 .Task .column .details:visited {
-  color: #FC6959;
+  color: black;
 }
 .Task .column .details:hover {
   cursor: pointer;
@@ -68,6 +69,7 @@
 }
 .Task .column.task-name .label {
   font-size: 18px;
+  cursor: pointer;
 }
 @media screen and (max-width: 1250px) {
   .Task .column.task-name .label {

@@ -85,7 +85,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-  z-index: 8; }
+  z-index: 1; }
   .Nav .nav-content-container {
     height: 100%;
     width: 92%;
@@ -674,15 +674,16 @@ a {
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
-      color: #FC6959;
+      color: black;
       margin-left: 15px; }
       .Task .column .details .label {
+        font-weight: bold;
         margin-right: 5px;
-        color: #FC6959;
+        color: black;
         text-decoration: underline;
-        font-size: 10px; }
+        font-size: 12px; }
       .Task .column .details:visited {
-        color: #FC6959; }
+        color: black; }
       .Task .column .details:hover {
         cursor: pointer; }
     .Task .column.assignee {
@@ -1759,7 +1760,7 @@ a {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   font-family: 'Roboto', sans-serif; }
   .MobileHeader .icon {
     font-size: 35px;
