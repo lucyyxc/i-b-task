@@ -116,7 +116,7 @@ app.get('/auth/logout', (req, res) => {
   );
   var searchString = querystring.stringify({
     client_id: process.env.AUTH0_CLIENT_ID,
-    returnTo: returnTo
+    returnTo: 'http://theindependentbride.com/'
   });
   logoutURL.search = searchString;
 

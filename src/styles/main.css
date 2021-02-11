@@ -1429,6 +1429,11 @@ a {
       @media screen and (max-width: 500px) {
         .Intro .signup .terms {
           font-size: 12px; } }
+      .Intro .signup .terms a {
+        color: black;
+        font-weight: bold; }
+        .Intro .signup .terms a:hover {
+          text-decoration: underline; }
     .Intro .signup .submit {
       height: 60px;
       width: 200px;

@@ -40,11 +40,13 @@ const Nav = ({selected, user = {}, loading, error, getUserTasks, getUserInfo}) =
     <div className="Nav">
       <div className={`nav-content-container ${selected}`}>
         <div className="logo-container">
-          <img
-            src={logoBlack}
-            alt="Indepenent Bride Logo"
-            className="logo"
-          />
+          <a href="https://theindependentbride.com/home">
+            <img
+              src={logoBlack}
+              alt="Indepenent Bride Logo"
+              className="logo"
+            />
+          </a>
         </div>
         <div className="links-container">
           <a href="https://theindependentbride.com/home" target="_blank" rel="noopener noreferrer" className="link nav-link">

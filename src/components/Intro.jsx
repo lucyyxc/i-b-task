@@ -332,7 +332,7 @@ const Intro = ({updateView}) => {
         item: 'emailAgree',
         value: state.emailAgree
       }} />
-      <div className="terms">By creating and account, you agree to the Terms of Service and Acknowledge our Privacy Policy.</div>
+      <div className="terms">By creating an account, you agree to the <a href="https://app.termly.io/document/terms-of-use-for-website/5866c9c2-7cc3-48b9-84dd-540558694e87" target="_blank" rel="noopener noreferrer">Terms of Service</a> and Acknowledge our <a href="https://app.termly.io/document/privacy-policy/0cda50da-d6f1-4c2c-9dd7-04a7e017d8d0" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</div>
       <div className="member">
         <p>Already a part of the Bride Tribe?&nbsp;</p>
         <a href="/auth" className="login-button">Log In</a>
