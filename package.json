@@ -1,5 +1,5 @@
 {
-  "name": "i-b-tasker",
+  "name": "i-b-task",
   "version": "0.1.0",
   "proxy": "http://localhost:3333",
   "private": true,
