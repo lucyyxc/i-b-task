@@ -119,18 +119,28 @@
   transition: all 0.15s ease;
   margin-right: 10px;
 }
+.Task .complete-button .fa-check {
+  display: none;
+}
+.Task .complete-button .fa-check.show {
+  display: block;
+}
 .Task .complete-button:hover {
   cursor: pointer;
+  color: #70825A;
   border: 1px solid #70825A;
   transition: all 0.15s ease;
+}
+.Task .complete-button:hover .fa-check {
+  display: block;
+}
+.Task .complete-button i {
+  transform: translate(3px, 3px);
+  font-size: 14px;
 }
 .Task .complete-button.completed {
   color: #70825A;
   border: 1px solid #70825A;
-}
-.Task .complete-button.completed i {
-  transform: translate(3px, 4px);
-  font-size: 14px;
 }
 .Task .complete-button.completed:hover {
   cursor: pointer;

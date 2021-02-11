@@ -709,7 +709,8 @@ a {
         .Task .column.task-name {
           cursor: pointer; } }
       .Task .column.task-name .label {
-        font-size: 18px; }
+        font-size: 18px;
+        cursor: pointer; }
         @media screen and (max-width: 1250px) {
           .Task .column.task-name .label {
             font-size: 16px; } }
@@ -742,16 +743,23 @@ a {
     border: 1px solid black;
     transition: all .15s ease;
     margin-right: 10px; }
+    .Task .complete-button .fa-check {
+      display: none; }
+      .Task .complete-button .fa-check.show {
+        display: block; }
     .Task .complete-button:hover {
       cursor: pointer;
+      color: #70825A;
       border: 1px solid #70825A;
       transition: all .15s ease; }
+      .Task .complete-button:hover .fa-check {
+        display: block; }
+    .Task .complete-button i {
+      transform: translate(3px, 3px);
+      font-size: 14px; }
     .Task .complete-button.completed {
       color: #70825A;
       border: 1px solid #70825A; }
-      .Task .complete-button.completed i {
-        transform: translate(3px, 4px);
-        font-size: 14px; }
       .Task .complete-button.completed:hover {
         cursor: pointer;
         color: #9C9999;
@@ -1198,7 +1206,7 @@ a {
         justify-content: center;
         align-items: center;
         color: white;
-        font-size: 80px;
+        font-size: 75px;
         margin-bottom: 10px; }
         @media screen and (max-width: 500px) {
           .Progress .circle-container .circle .the-circle {

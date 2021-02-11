@@ -127,21 +127,35 @@
     border: 1px solid black;
     transition: all .15s ease;
     margin-right: 10px;
+    
+    .fa-check {
+      display: none;
+
+      &.show {
+        display: block;
+      }
+    }
 
     &:hover {
       cursor: pointer;
+      color: #70825A;
       border: 1px solid #70825A;
       transition: all .15s ease;
+
+      .fa-check {
+        display: block;
+      }
+    }
+
+    i {
+      transform: translate(3px, 3px);
+      font-size: 14px;
     }
 
     &.completed {
       color: #70825A;
       border: 1px solid #70825A;
 
-      i {
-        transform: translate(3px, 4px);
-        font-size: 14px;
-      }
       
       &:hover {
         cursor: pointer;

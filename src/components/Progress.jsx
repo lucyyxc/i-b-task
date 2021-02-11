@@ -54,7 +54,9 @@ const Progress = ({tasks}) => {
     totalToGo: 0,
   });
 
-  if (tasks.length) {
+  const notArchivedTasks = tasks.filter(task => !task.archived)
+
+  if (notArchivedTasks.length) {
     let amounts = {
       pastDue: 0,
       dueToday: 0,
@@ -63,7 +65,7 @@ const Progress = ({tasks}) => {
       totalToGo: 0,
     };
     
-    tasks.forEach(task => {
+    notArchivedTasks.forEach(task => {
       switch (task.status) {
         case 'complete':
           amounts.totalCompleted++;

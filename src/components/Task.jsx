@@ -43,9 +43,7 @@ const Task = ({task, openModal, getUserTasks}) => {
             completeTask();
           }
         }}>
-          {status === 'complete'
-            ? <i class="fas fa-check"></i>
-            : null}
+          <i class={`fas fa-check ${status === 'complete' ? 'show' : ''}`}></i>
         </div>
         <div className="task-name column" onClick={() => {
             if (window.matchMedia('(max-width: 620px)').matches) {
