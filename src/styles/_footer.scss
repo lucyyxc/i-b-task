@@ -18,6 +18,11 @@
       transition: color .15s ease;
       color: #9E9E9E;
     }
+
+    .words {
+      transition: color .15s ease;
+      color: #9E9E9E;
+    }
   }
 
   i {
@@ -27,6 +32,22 @@
       transition: color .15s ease;
       color: black;
       cursor: pointer;
+    }
+  }
+
+  &.links {
+    transform: translateY(90px);
+    font-family: 'Roboto', sans-serif;
+
+    a {
+      padding: 0 5px;
+
+      &:hover {
+        text-decoration: underline;
+        transition: color .15s ease;
+        color: black;
+        cursor: pointer;
+      }
     }
   }
 }

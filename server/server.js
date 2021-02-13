@@ -370,6 +370,9 @@ app.post('/api/post/createTask', (req, res) => {
   const db = req.app.get('db');
   const { auth_id: userid, assignee } = req.user;
   const { body } = req;
+  console.log(userid);
+  console.log(assignee);
+  console.log(body);
   db.create_task(
     [
       body.id,

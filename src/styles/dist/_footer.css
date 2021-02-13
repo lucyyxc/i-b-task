@@ -1,0 +1,44 @@
+.Footer {
+  position: absolute;
+  width: 100%;
+  height: 90px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F0F0F0;
+  transition: color 0.15s ease;
+}
+.Footer a {
+  color: black;
+}
+.Footer:hover i {
+  transition: color 0.15s ease;
+  color: #9E9E9E;
+}
+.Footer:hover .words {
+  transition: color 0.15s ease;
+  color: #9E9E9E;
+}
+.Footer i {
+  margin: 0 8px;
+  font-size: 26px;
+}
+.Footer i:hover {
+  transition: color 0.15s ease;
+  color: black;
+  cursor: pointer;
+}
+.Footer.links {
+  transform: translateY(90px);
+  font-family: "Roboto", sans-serif;
+}
+.Footer.links a {
+  padding: 0 5px;
+}
+.Footer.links a:hover {
+  text-decoration: underline;
+  transition: color 0.15s ease;
+  color: black;
+  cursor: pointer;
+}

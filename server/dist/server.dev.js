@@ -420,6 +420,9 @@ app.post('/api/post/createTask', function (req, res) {
       userid = _req$user2.auth_id,
       assignee = _req$user2.assignee;
   var body = req.body;
+  console.log(userid);
+  console.log(assignee);
+  console.log(body);
   db.create_task([body.id, userid, body.tasklabel.toLowerCase().split(' ').join('-'), body.tasklabel, body.assignee || assignee, body.tags, body.startdate, body.enddate, body.status, body.notes]).then(function (response) {
     return res.status(200).send('task created');
   })["catch"](function (err) {
