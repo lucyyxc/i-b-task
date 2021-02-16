@@ -29,8 +29,6 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
     confirmArchive: false,
   })
 
-  console.log(tasksLength);
-
   const defaultChanges = {
     status: '',
     startdate: '',

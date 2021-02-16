@@ -2,7 +2,7 @@ import React from 'react';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import listPlugin from '@fullcalendar/list';
-import moment from 'moment';
+// import moment from 'moment';
 
 import TaskModal from './TaskModal';
 
