@@ -4,7 +4,8 @@
   justify-content: center;
   z-index: 1;
 }
-.Nav .overlay {
+.Nav .gray {
+  display: none;
   position: fixed;
   opacity: 0.5;
   background: #000;
@@ -15,6 +16,12 @@
   left: 0;
   position: fixed;
   backdrop-filter: blur(5px);
+}
+.Nav.overlay {
+  z-index: 2;
+}
+.Nav.overlay .gray {
+  display: inline;
 }
 .Nav .nav-content-container {
   z-index: 2;

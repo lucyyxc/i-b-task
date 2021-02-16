@@ -20,6 +20,11 @@
   max-width: 700px;
   font-family: "Roboto", sans-serif;
 }
+@media screen and (min-width: 838px) {
+  .Task-modal {
+    font-size: 14px;
+  }
+}
 .Task-modal.show {
   opacity: 1;
   visibility: visible;
@@ -79,9 +84,19 @@
   border-radius: 3px;
   border: 1px gray solid;
 }
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .icons .money .tip {
+    font-size: 16px;
+  }
+}
 .Task-modal .modal-container .icons .money .tip .neg-tip {
   font-size: 24px;
   margin-bottom: 20px;
+}
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .icons .money .tip .neg-tip {
+    font-size: 28px;
+  }
 }
 .Task-modal .modal-container .icons .money .tip .back {
   margin: 20px auto 0;
@@ -96,6 +111,11 @@
   font-size: 18px;
   border-radius: 3px;
   cursor: pointer;
+}
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .icons .money .tip .back {
+    font-size: 20px;
+  }
 }
 .Task-modal .modal-container .icons .money .tip.hide {
   display: none;
@@ -158,9 +178,19 @@
   border-radius: 3px;
   border: 1px gray solid;
 }
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .delete .confirm {
+    font-size: 16px;
+  }
+}
 .Task-modal .modal-container .delete .confirm .confirm-text {
   font-size: 24px;
   margin-bottom: 20px;
+}
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .delete .confirm .confirm-text {
+    font-size: 28px;
+  }
 }
 .Task-modal .modal-container .delete .confirm .button-holder {
   display: flex;
@@ -268,6 +298,11 @@
   font-size: 12px;
   border: none;
 }
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .modal-content .status-box .status-holder input {
+    font-size: 14px;
+  }
+}
 .Task-modal .modal-container .modal-content .status-box .status-holder .pickers {
   width: 100px;
   flex: 1;
@@ -285,6 +320,12 @@
   font-family: "Roboto", sans-serif;
   background-color: white;
 }
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .modal-content .status-box .status-holder .task-status {
+    margin-right: 18px;
+    font-size: 14px;
+  }
+}
 .Task-modal .modal-container .modal-content .status-box .task-assignee {
   width: 100px;
 }
@@ -301,6 +342,11 @@
   width: 100%;
   font-family: "Roboto", sans-serif;
 }
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .modal-content .task-name {
+    font-size: 20px;
+  }
+}
 .Task-modal .modal-container .modal-content .advice {
   background-color: #F3F3F3;
   width: 100%;
@@ -313,6 +359,11 @@
   overflow: scroll;
   height: 150px;
   font-family: "Roboto", sans-serif;
+}
+@media screen and (min-width: 838px) {
+  .Task-modal .modal-container .modal-content .advice {
+    font-size: 16px;
+  }
 }
 .Task-modal .modal-container .modal-content .advice .title {
   font-weight: bold;

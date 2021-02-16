@@ -37,7 +37,7 @@
     }
 
     .fc-day-today {
-        background-color: #EDE6D6 !important;
+        background-color:#EFC30A !important;
     }
 
     .fc-event-main {
@@ -103,16 +103,16 @@
           }
         }
 
-        .start {
+        .complete {
         background-color: #70825a;
         }
     
-        .end {
-        background-color: #EFC30A;
+        .not-started {
+        background-color: #FC6959;
         }
     
         .in-progress {
-        background-color:#f4c7a1;
+        background-color: #F6DDC8;
         }
     }
 }

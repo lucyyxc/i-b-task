@@ -37,8 +37,8 @@ const Nav = ({selected, user = {}, loading, error, getUserTasks, getUserInfo}) =
   }
 
   return (
-    <div className="Nav">
-      <div className={show !== 'hidden' ? 'overlay' : ''} onClick={() => toggleMenu()}></div>
+    <div className={`Nav ${show !== 'hidden' ? 'overlay' : ''}`}>
+      <div className="gray" onClick={() => toggleMenu()}></div>
       <div className={`nav-content-container ${selected}`}>
         <div className="logo-container">
           <a href="https://theindependentbride.com/home">

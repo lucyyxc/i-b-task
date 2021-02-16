@@ -36,7 +36,7 @@
   border-color: #5b6a49 !important;
 }
 .Calendar .fc-day-today {
-  background-color: #EDE6D6 !important;
+  background-color: #EFC30A !important;
 }
 .Calendar .fc-event-main {
   cursor: pointer;
@@ -100,12 +100,12 @@
     width: 15px;
   }
 }
-.Calendar .legend .start {
+.Calendar .legend .complete {
   background-color: #70825a;
 }
-.Calendar .legend .end {
-  background-color: #EFC30A;
+.Calendar .legend .not-started {
+  background-color: #FC6959;
 }
 .Calendar .legend .in-progress {
-  background-color: #f4c7a1;
+  background-color: #F6DDC8;
 }

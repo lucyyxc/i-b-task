@@ -24,15 +24,15 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
   const createCalEvents = () => {
     return state.calTasks.map(task => {
       let backgroundColor = '';
-      let textColor = '#FFFFFF';
+      let textColor = '#000000';
 
       switch (true) {
-        case moment().format("YYYY-MM-DD") === task.startdate: // Starts today
-          backgroundColor = '#70825a';
-          break;
-        case moment().add(1, 'd').format("YYYY-MM-DD") === task.enddate: // Ends tomorrow (last day to work on it is today)
-          backgroundColor = '#EFC30A';
-          break;
+        // case moment().format("YYYY-MM-DD") === task.startdate: // Starts today
+        //   backgroundColor = '#70825a';
+        //   break;
+        // case moment().add(1, 'd').format("YYYY-MM-DD") === task.enddate: // Ends tomorrow (last day to work on it is today)
+        //   backgroundColor = '#EFC30A';
+        //   break;
         case task.status === 'in-progress': // in-progress
           backgroundColor = '#F6DDC8';
           break;
@@ -40,7 +40,7 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
           backgroundColor = ' #70825A';
           break;
         default:
-          backgroundColor = '#fc6959'
+          backgroundColor = '#FC6959' // not started
           break
       }
     
@@ -87,9 +87,9 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
         eventClick={handleClick}
       />
       <div className="legend">
-        <Item text={'Tasks to Start Today'} color={'start'} />
-        <Item text={'Tasks Due Today'} color={'end'} />
-        <Item text={'Tasks In Progress'} color={'in-progress'} />
+        <Item text={'Complete Tasks'} color={'complete'} />
+        <Item text={'In-Progress Tasks'} color={'in-progress'} />
+        <Item text={'Not Started Tasks'} color={'not-started'} />
       </div>
       <div className={`${state.isOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isOpen: false, modalTask: {}})}></div>
       <TaskModal
