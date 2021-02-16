@@ -127,8 +127,7 @@ const Profile = ({user, modal, cancel, getUserInfo}) => {
           </div>
         </div>
       </h1>
-      <p className="blurb">Here's all of your information. If anything changes, please update it here by clicking the pencil
-        in the top left corner, so we have the most accurate information for you!
+      <p className="blurb">Here's all of your information. If anything changes, please update it by clicking the pencil in the top left corner. If you need to change your email, reach out to us at <a href="mailto:contact@theindependentbride.com">contact@theindependentbride.com</a>.
       </p>
       <div className="input-holder">
         <span className={`edit-mode ${edit ? 'show' : ''}`}>Edit Mode</span>

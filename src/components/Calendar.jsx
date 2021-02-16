@@ -27,16 +27,16 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
       let textColor = '#FFFFFF';
 
       switch (true) {
-        case moment().format("YYYY-MM-DD") === task.startdate:
+        case moment().format("YYYY-MM-DD") === task.startdate: // Starts today
           backgroundColor = '#70825a';
           break;
-        case moment().add(1, 'd').format("YYYY-MM-DD") === task.enddate:
+        case moment().add(1, 'd').format("YYYY-MM-DD") === task.enddate: // Ends tomorrow (last day to work on it is today)
           backgroundColor = '#EFC30A';
           break;
-        case task.status === 'in-progress':
+        case task.status === 'in-progress': // in-progress
           backgroundColor = '#F6DDC8';
           break;
-        case task.status === 'complete':
+        case task.status === 'complete': // complete
           backgroundColor = ' #70825A';
           break;
         default:

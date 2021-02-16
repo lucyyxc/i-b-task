@@ -1,5 +1,6 @@
 {
   "name": "i-b-task",
+  "author" : "Trevor Brown <TrevorBrown25@Gmail.com> (https://trevbo25.github.io/trevorsportfolio)",
   "version": "0.1.0",
   "proxy": "http://localhost:3333",
   "private": true,

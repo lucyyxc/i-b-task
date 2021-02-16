@@ -44,7 +44,7 @@ const Filters = ({
       <option value="all">All</option>
       <option value="this-week">Due This Week</option>
       <option value="next-week">Due Next Week</option>
-      <option value="custom">Custom Dates</option>
+      <option value="custom">Complete Date</option>
     </select>
     <select
       id="task"
@@ -53,6 +53,7 @@ const Filters = ({
       value={taskFilter}
     >
       <option value="incomplete" selected >Incomplete</option>
+      <option value="in-progress" selected >In-Progress</option>
       <option value="complete">Complete</option>
       <option value="archived">Archived</option>
       <option value="all">All Tasks</option>

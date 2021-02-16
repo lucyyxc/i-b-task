@@ -78,6 +78,10 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
       filteredTasks = filteredTasks.filter( task => task.status !== 'complete' && !task.archived);
     }
 
+    if (taskFilter === 'in-progress') {
+      filteredTasks = filteredTasks.filter( task => task.status === 'in-progress' && !task.archived);
+    }
+
     if(taskFilter === 'archived') {
       filteredTasks = filteredTasks.filter( task => task.archived)
     }
