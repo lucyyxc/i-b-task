@@ -12,18 +12,6 @@
   cursor: pointer;
   color: #42412d;
 }
-.MobileHeader .overlay {
-  position: fixed;
-  opacity: 0.5;
-  background: #000;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  position: fixed;
-  backdrop-filter: blur(5px);
-}
 .MobileHeader .fa-sliders-h {
   position: relative;
 }
@@ -43,6 +31,7 @@
 }
 .MobileHeader .fa-sliders-h .filters-holder .filter {
   padding: 5px 5px 5px 10px;
+  white-space: nowrap;
   font-family: "Roboto", sans-serif;
 }
 .MobileHeader .fa-sliders-h .filters-holder .filter.selected {
@@ -82,6 +71,9 @@
 .MobileHeader .fa-ellipsis-v .views-holder .selected {
   color: white;
   background-color: #70825A;
+}
+.MobileHeader .fa-ellipsis-v .views-holder .selected:visited {
+  color: white;
 }
 @media screen and (min-width: 839px) {
   .MobileHeader {

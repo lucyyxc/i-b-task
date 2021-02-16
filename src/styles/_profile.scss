@@ -112,6 +112,14 @@
     max-width: 450px;
     font-size: 18px;
     padding: 0 20px 30px 20px;
+
+    a {
+      color: #70825A;
+
+      &:visited {
+        color: #70825A;
+      }
+    }
   }
 
   .input-holder {

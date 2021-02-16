@@ -108,6 +108,12 @@
   font-size: 18px;
   padding: 0 20px 30px 20px;
 }
+.Profile .blurb a {
+  color: #70825A;
+}
+.Profile .blurb a:visited {
+  color: #70825A;
+}
 .Profile .input-holder {
   width: 90%;
   max-width: 600px;

@@ -12,6 +12,7 @@
   white-space: nowrap;
   background-color: white;
   font-family: "Roboto", sans-serif;
+  z-index: 1;
 }
 .ProfileMenu .link {
   padding: 0 5px 10px 5px;
@@ -22,6 +23,16 @@
   color: #9C9999;
   cursor: pointer;
   transition: color 0.15s ease;
+}
+.ProfileMenu .email {
+  padding: 0 5px 10px 5px;
+  font-size: 16px;
+}
+.ProfileMenu .email a {
+  color: #70825A;
+}
+.ProfileMenu .email a:visited {
+  color: #70825A;
 }
 .ProfileMenu .name {
   padding-top: 10px 5px 10px 5px;

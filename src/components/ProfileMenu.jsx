@@ -83,6 +83,9 @@ const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo}) => {
       >
         Log Out
       </div>
+      <div className="email">
+        Having issues? Contact us at <br /><a href="mailto:contact@theindependentbride.com">contact@theindependentbride.com</a>.
+      </div>
       {state.display === 'logout'
         ? <LogOutModal {...{modal: state.modal, logOut, cancel}} />
         : <Profile {...{user, modal: state.modal, cancel, getUserTasks, getUserInfo}} />

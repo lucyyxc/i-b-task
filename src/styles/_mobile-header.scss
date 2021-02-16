@@ -12,19 +12,6 @@
         cursor: pointer;
         color: #42412d;
     }
-
-    .overlay {
-        position: fixed;
-        opacity:    0.5; 
-        background: #000; 
-        width:      100%;
-        height:     100%; 
-        z-index:    1;
-        top:        0; 
-        left:       0; 
-        position:   fixed; 
-        backdrop-filter: blur(5px);
-    }
     
     .fa-sliders-h {
         position: relative;
@@ -46,6 +33,7 @@
 
             .filter {
                 padding: 5px 5px 5px 10px;
+                white-space: nowrap;
                 font-family: 'Roboto', sans-serif;
 
                 &.selected {
@@ -93,6 +81,10 @@
             .selected {
                 color: white;
                 background-color: #70825A;
+
+                &:visited {
+                    color: white
+                  }
             }
               
         }

@@ -86,7 +86,19 @@ a {
   display: flex;
   justify-content: center;
   z-index: 1; }
+  .Nav .overlay {
+    position: fixed;
+    opacity: 0.5;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    position: fixed;
+    backdrop-filter: blur(5px); }
   .Nav .nav-content-container {
+    z-index: 2;
     height: 100%;
     width: 92%;
     display: flex;
@@ -165,6 +177,7 @@ a {
         cursor: pointer;
         transition: all .15s ease; }
   .Nav .mobile-nav {
+    z-index: 2;
     display: none;
     height: 100px;
     width: 100%;
@@ -307,7 +320,8 @@ a {
   border-radius: 3px;
   white-space: nowrap;
   background-color: white;
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  z-index: 1; }
   .ProfileMenu .link {
     padding: 0 5px 10px 5px;
     transition: color .15s ease;
@@ -316,6 +330,13 @@ a {
       color: #9C9999;
       cursor: pointer;
       transition: color .15s ease; }
+  .ProfileMenu .email {
+    padding: 0 5px 10px 5px;
+    font-size: 16px; }
+    .ProfileMenu .email a {
+      color: #70825A; }
+      .ProfileMenu .email a:visited {
+        color: #70825A; }
   .ProfileMenu .name {
     padding-top: 10px 5px 10px 5px;
     font-weight: bold;
@@ -1594,6 +1615,10 @@ a {
     max-width: 450px;
     font-size: 18px;
     padding: 0 20px 30px 20px; }
+    .Profile .blurb a {
+      color: #70825A; }
+      .Profile .blurb a:visited {
+        color: #70825A; }
   .Profile .input-holder {
     width: 90%;
     max-width: 600px; }
@@ -1798,17 +1823,6 @@ a {
     font-size: 35px;
     cursor: pointer;
     color: #42412d; }
-  .MobileHeader .overlay {
-    position: fixed;
-    opacity: 0.5;
-    background: #000;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    position: fixed;
-    backdrop-filter: blur(5px); }
   .MobileHeader .fa-sliders-h {
     position: relative; }
     .MobileHeader .fa-sliders-h .filters-holder {
@@ -1825,6 +1839,7 @@ a {
         display: none; }
       .MobileHeader .fa-sliders-h .filters-holder .filter {
         padding: 5px 5px 5px 10px;
+        white-space: nowrap;
         font-family: 'Roboto', sans-serif; }
         .MobileHeader .fa-sliders-h .filters-holder .filter.selected {
           color: white;
@@ -1856,6 +1871,8 @@ a {
       .MobileHeader .fa-ellipsis-v .views-holder .selected {
         color: white;
         background-color: #70825A; }
+        .MobileHeader .fa-ellipsis-v .views-holder .selected:visited {
+          color: white; }
   @media screen and (min-width: 839px) {
     .MobileHeader {
       display: none; } }

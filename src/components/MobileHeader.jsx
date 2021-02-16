@@ -77,6 +77,10 @@ const MobileHeader = ({getUserTasks, tasksLength, taskFilter, updateStateValue, 
                         onClick={() => updateStateValue('taskFilter', 'incomplete')}
                     >Incomplete</span>
                     <span
+                        className={`filter ${taskFilter === 'in-progress' ? 'selected' : ''}`}
+                        onClick={() => updateStateValue('taskFilter', 'in-progress')}
+                    >In-Progress</span>
+                    <span
                         className={`filter ${taskFilter === 'complete' ? 'selected' : ''}`}
                         onClick={() => updateStateValue('taskFilter', 'complete')}
                     >Complete</span>
