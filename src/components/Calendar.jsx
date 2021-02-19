@@ -6,7 +6,7 @@ import listPlugin from '@fullcalendar/list';
 
 import TaskModal from './TaskModal';
 
-const Calendar = ({tasks, selected, getUserTasks}) => {
+const Calendar = ({tasks, selected, getUserTasks, handleDateChangeRaw}) => {
   const [state, setState] = React.useState({
     calTasks: tasks,
     isOpen: false,
@@ -87,7 +87,7 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
         eventClick={handleClick}
       />
       <div className="legend">
-        <Item text={'Complete Tasks'} color={'complete'} />
+        <Item text={'Completed Tasks'} color={'complete'} />
         <Item text={'In-Progress Tasks'} color={'in-progress'} />
         <Item text={'Not Started Tasks'} color={'not-started'} />
       </div>
@@ -98,6 +98,7 @@ const Calendar = ({tasks, selected, getUserTasks}) => {
         modalTask={state.modalTask}
         selected={selected}
         getUserTasks={getUserTasks}
+        handleDateChangeRaw={handleDateChangeRaw}
       />
     </div>
   );

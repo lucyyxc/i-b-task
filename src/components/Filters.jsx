@@ -9,7 +9,8 @@ const Filters = ({
   taskFilter,
   dateStart,
   dateEnd,
-  updateStateValue
+  updateStateValue,
+  handleDateChangeRaw
 }) => (
   <div className="Filters">
     {dateFilter === 'custom'
@@ -18,6 +19,7 @@ const Filters = ({
           selected={dateStart}
           onChange={date => updateStateValue('dateStart', date)}
           selectsStart
+          onChangeRaw={handleDateChangeRaw}
           startdate={dateStart}
           enddate={dateEnd}
           className="pickers"
@@ -26,6 +28,7 @@ const Filters = ({
           selected={dateEnd}
           onChange={date => updateStateValue('dateEnd', date)}
           selectsEnd
+          onChangeRaw={handleDateChangeRaw}
           startdate={dateStart}
           enddate={dateEnd}
           minDate={dateStart}

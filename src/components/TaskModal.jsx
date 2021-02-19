@@ -11,7 +11,7 @@ import DatePicker from "react-datepicker";
 
 import pinkLogo from '../styles/assets/pinkLogo.png';
 
-const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected, getUserTasks, tasksLength}) => {
+const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {}, selected, getUserTasks, tasksLength, handleDateChangeRaw}) => {
   const [state, setState] = React.useState({
     task: {},
     newTask: true,
@@ -346,6 +346,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <span>Start on</span>
               <DatePicker
                 selected={moment(state.task.startdate).toDate() || new Date()}
+                onChangeRaw={handleDateChangeRaw}
                 onChange={date => {
                   if(moment(state.task.enddate).isBefore(moment(date))) {
                     toast.error('You cannot select a Complete by date that is before the Start on date.', {
@@ -379,6 +380,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <span>Complete by</span>
               <DatePicker
                 selected={moment(state.task.enddate).toDate() || new Date()}
+                onChangeRaw={handleDateChangeRaw}
                 onChange={date => {
                   if (moment(date).isBefore(state.task.startdate)) {
                     toast.error('You cannot select a Complete by date that is before the Start on date.', {

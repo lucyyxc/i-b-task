@@ -85,11 +85,16 @@ const Input = ({type = 'text', placeholder = '', value, item, label, showWarning
   );
 };
 
+const handleDateChangeRaw = (e) => {
+  e.preventDefault();
+}
+
 const DateSelect = ({placeholder, value, item, label, updateStateValue}) => (
   <div className="date-container">
     <span className="date-label">{label}</span>
     <DatePicker
       selected={value}
+      onChangeRaw={handleDateChangeRaw}
       className='picker'
       placeholderText={placeholder}
       onChange={date => updateStateValue(item, date)} 
@@ -175,6 +180,7 @@ const Intro = ({updateView}) => {
       setState({
         ...state,
         match: true,
+        disabled: false
       });
     } else if (
       state.password !== state.confirm &&

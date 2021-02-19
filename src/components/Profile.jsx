@@ -45,10 +45,11 @@ const Input = ({type = 'text', placeholder = '', value = '', item, label, showWa
   );
 };
 
-const DateSelect = ({value, item, label, updateChangesValue, disabled}) => (
+const DateSelect = ({value, item, label, updateChangesValue, disabled, handleDateChangeRaw}) => (
   <div className="date-container">
     <span className="date-label">{label}</span>
     <DatePicker
+      onChangeRaw={handleDateChangeRaw}
       selected={value}
       className='picker'
       onChange={updateChangesValue} 
@@ -61,10 +62,11 @@ const DateSelect = ({value, item, label, updateChangesValue, disabled}) => (
   </div>
 );
 
-const Profile = ({user, modal, cancel, getUserInfo}) => {
+const Profile = ({user, modal, cancel, getUserInfo, handleDateChangeRaw}) => {
   const [profile, updateProfile] = React.useState({name: ''});
   const [show, toggleShow] = React.useState(false);
   const [edit, toggleEdit] = React.useState(false);
+  const [hasEdit, setEdit] = React.useState(false);
   const [changes, changeChanges] = React.useState({
     name: '',
     weddingdate: '',
@@ -91,29 +93,40 @@ const Profile = ({user, modal, cancel, getUserInfo}) => {
     if (update.length) {
       axios.all(updates)
       .then(responses => {
-        getUserInfo()
         updateProfile({name: ''})
-        cancelCleanup()
+        cancelCleanup(true)
+        getUserInfo()
       })
       .catch(err => console.log('updating profile error' ,err))
     }
   }
 
-  const cancelCleanup = () => {
+  const cancelCleanup = (save = false) => {
     toggleShow(false)
     toggleEdit(false)
+    setEdit(false)
     updateProfile({name: ''})
-    changeChanges({name: '', weddingdate: '', birthday: '',})
+    if (!save) changeChanges({name: '', weddingdate: '', birthday: '',})
+    getUserInfo()
     cancel();
   };
 
   return (
     <div className={`modal Profile ${modal ? 'show': ''}`} onClick={e => e.stopPropagation()}>
       <div className="control-holder">
-        <div className="control" onClick={() => toggleEdit(!edit)}>
+        <div className="control" onClick={() => {
+          toggleEdit(!edit)
+          setEdit(true)
+        }}>
           <i className="fas fa-edit"></i>
         </div>
-        <div className="control exit" onClick={() => toggleShow(true)}>
+        <div className="control exit" onClick={() => {
+          if (hasEdit) {
+            toggleShow(true)
+          } else {
+            cancelCleanup()
+          }
+        }}>
           <i className="fas fa-times"></i>
         </div>
       </div>
@@ -155,7 +168,8 @@ const Profile = ({user, modal, cancel, getUserInfo}) => {
         <DateSelect {...{
           value:  changes.weddingdate ? moment(changes.weddingdate).toDate() : moment(profile.weddingdate).toDate(), 
           item: 'weddingdate', 
-          label: 'Wedding Date', 
+          label: 'Wedding Date',
+          handleDateChangeRaw: handleDateChangeRaw,
           disabled: !edit,
           updateChangesValue: (date) => updateChangesValue('weddingdate', moment(date).format('YYYY-MM-DD')),
         }} />
@@ -164,6 +178,7 @@ const Profile = ({user, modal, cancel, getUserInfo}) => {
           placeholder: 'We want to make you feel special on your birthday!',
           item: 'birthday', 
           label: 'Birthday', 
+          handleDateChangeRaw: handleDateChangeRaw,
           disabled: !edit,
           updateChangesValue: (date) => updateChangesValue('birthday', moment(date).format('YYYY-MM-DD')),
         }} />

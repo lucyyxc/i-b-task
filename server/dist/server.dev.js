@@ -137,14 +137,7 @@ app.post('/create-checkout-session', function _callee(req, res) {
           return regeneratorRuntime.awrap(stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [{
-              price_data: {
-                currency: 'usd',
-                product_data: {
-                  name: 'The Independent Bride Checklist',
-                  images: ['https://flowerlogo.s3.us-east-2.amazonaws.com/TIB-magnolia-circle-RGB-72dpi-nude.png']
-                },
-                unit_amount: 9900
-              },
+              price: 'price_1I9kFLKX2bGZIfblQyYHFSlh',
               quantity: 1
             }],
             mode: 'payment',

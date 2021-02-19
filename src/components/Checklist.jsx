@@ -5,7 +5,7 @@ import moment from 'moment';
 import Task from './Task';
 import TaskModal from './TaskModal';
 
-const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateEnd, selected, getUserTasks}) => {
+const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateEnd, selected, getUserTasks, handleDateChangeRaw}) => {
   const [state, setState] = React.useState({
     tasklabel: '',
     assignee: '',
@@ -146,6 +146,7 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
         getUserTasks={getUserTasks}
         tasksLength={tasks.length}
         isNewTask={state.isNewTask}
+        handleDateChangeRaw={handleDateChangeRaw}
       />
       <div className="new-task" onClick={() => openModal()}>
         <i class="fas fa-plus"></i>

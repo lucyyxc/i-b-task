@@ -15,7 +15,7 @@ const LogOutModal = ({modal, cancel}) => (
   </div>
 );
 
-const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo}) => {
+const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo, handleDateChangeRaw}) => {
   const [state, setState] = React.useState({
     modal: false,
     display: 'logout',
@@ -42,6 +42,7 @@ const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo}) => {
   };
 
   if(show === 'hidden' && state.modal) {
+    getUserInfo()
     setState({
       ...state,
       modal: false
@@ -51,7 +52,7 @@ const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo}) => {
   if (state.redirect) {
     return <Redirect to="/auth/logout" />
   }
-
+  
   return (
     <div className={`ProfileMenu ${show}`}>
       <div className="name link">
@@ -61,6 +62,7 @@ const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo}) => {
         className="link"
         onClick={(e) => {
           e.stopPropagation();
+          getUserInfo()
           setState({
             ...state,
             display: 'profile',
@@ -88,7 +90,7 @@ const ProfileMenu = ({show, user, toggleMenu, getUserTasks, getUserInfo}) => {
       </div>
       {state.display === 'logout'
         ? <LogOutModal {...{modal: state.modal, logOut, cancel}} />
-        : <Profile {...{user, modal: state.modal, cancel, getUserTasks, getUserInfo}} />
+        : <Profile {...{user, modal: state.modal, cancel, getUserTasks, getUserInfo, handleDateChangeRaw}} />
       }
     </div>
   )

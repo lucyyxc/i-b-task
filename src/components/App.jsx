@@ -3,6 +3,7 @@ import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import _get from 'lodash/get';
 import { ToastContainer, Slide } from 'react-toastify';
+import moment from 'moment';
 
 import Nav from './Nav';
 import Footer from './Footer';
@@ -52,7 +53,7 @@ const App = ({selected}) => {
         ...state,
         dateFilter: filter,
         dateStart: new Date(),
-        dateEnd: new Date(state.user.weddingdate),
+        dateEnd: new Date(moment(new Date()).add(30, 'days').format('YYYY-MM-DD')),
       });
     } else {
       setState({
@@ -92,10 +93,14 @@ const App = ({selected}) => {
       })
   }
 
+  const handleDateChangeRaw = (e) => {
+    e.preventDefault();
+  }
+
   const displayView = () => {
     switch (selected) {
       case 'calendar':
-        return <Calendar {...state} selected={selected} getUserTasks={getUserTasks} />
+        return <Calendar {...state} selected={selected} getUserTasks={getUserTasks} handleDateChangeRaw={handleDateChangeRaw} />
       case 'progress':
         return <Progress {...state} selected={selected} getUserTasks={getUserTasks} />
       case 'files':
@@ -105,9 +110,9 @@ const App = ({selected}) => {
       case 'loading':
         return <Loading />
       case 'checklist':
-        return <Checklist {...state} selected={selected} getUserTasks={getUserTasks} />
+        return <Checklist {...state} selected={selected} getUserTasks={getUserTasks} handleDateChangeRaw={handleDateChangeRaw} />
       default:
-        return <Checklist {...state} selected={selected} getUserTasks={getUserTasks} />
+        return <Checklist {...state} selected={selected} getUserTasks={getUserTasks} handleDateChangeRaw={handleDateChangeRaw} />
       }
   }
 
@@ -122,7 +127,7 @@ const App = ({selected}) => {
           user,
           tasks,
           loading: false,
-          dateEnd: new Date(user.weddingdate),
+          dateEnd: new Date(moment(new Date()).add(30, 'days').format('YYYY-MM-DD')),
           selected: view
         });
       } else (
@@ -154,19 +159,20 @@ const App = ({selected}) => {
     }
   });
 
-
   return (
     <div className="App">
-      <Nav selected={selected} user={state.user} loading={state.loading} error={state.error} getUserTasks={getUserTasks} getUserInfo={getUserInfo} />
+      <Nav selected={selected} user={state.user} loading={state.loading} error={state.error} getUserTasks={getUserTasks} getUserInfo={getUserInfo} handleDateChangeRaw={handleDateChangeRaw} />
       {selected === 'loading' ? null : <Title {...state} />}
       <Footer />
       <MobileHeader 
         getUserTasks={getUserTasks}
+        getUserInfo={getUserInfo}
         tasksLength={state.tasks.length}
         taskFilter={state.taskFilter}
         updateStateValue={updateStateValue}
         user={state.user}
         selected={selected}
+        handleDateChangeRaw={handleDateChangeRaw}
       />
       
       {selected === 'loading'
@@ -177,6 +183,7 @@ const App = ({selected}) => {
             updateStateValue={updateStateValue}
             collabadded={_get(state, 'user.collabadded', false)}
             showSearch={selected === 'checklist' || selected === 'files'}
+            handleDateChangeRaw={handleDateChangeRaw}
           />
           <div className="views-holder">
             <div className="views-content">
@@ -191,6 +198,7 @@ const App = ({selected}) => {
                     selected={selected}
                     updateDateFilter={updateDateFilter}
                     updateStateValue={updateStateValue}
+                    handleDateChangeRaw={handleDateChangeRaw}
                   />
                 : null
               }

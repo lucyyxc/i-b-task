@@ -6,20 +6,20 @@ import logoBlack from '../styles/assets/logoBlack.png';
 import whiteLogo from '../styles/assets/whiteLogo.png';
 import pinkLogoNotCircle from '../styles/assets/pinkLogoNotCircle.jpg';
 
-const ProfileContent = ({initials, toggleMenu, show, user, getUserTasks, getUserInfo}) => {
+const ProfileContent = ({initials, toggleMenu, show, user, getUserTasks, getUserInfo, handleDateChangeRaw}) => {
   return (
   <div className="profile-content">
       <div className="profile-holder">
         <div className="profile-circle" onClick={() => toggleMenu()}>
           {`${initials}`}
         </div>
-        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} getUserTasks={getUserTasks} getUserInfo={getUserInfo} />
+        <ProfileMenu show={show} user={user} toggleMenu={toggleMenu} getUserTasks={getUserTasks} getUserInfo={getUserInfo} handleDateChangeRaw={handleDateChangeRaw} />
       </div>
     </div>
   );
 }
 
-const Nav = ({selected, user = {}, loading, error, getUserTasks, getUserInfo}) => {
+const Nav = ({selected, user = {}, loading, error, getUserTasks, getUserInfo, handleDateChangeRaw}) => {
   const [show, setShow] = React.useState('hidden');
 
   const toggleMenu = () => {
@@ -69,7 +69,7 @@ const Nav = ({selected, user = {}, loading, error, getUserTasks, getUserInfo}) =
             Contact Us
           </a>
           {selected
-            ? <ProfileContent {...{initials, user, toggleMenu, show, getUserTasks, getUserInfo}} />
+            ? <ProfileContent {...{initials, user, toggleMenu, show, getUserTasks, getUserInfo, handleDateChangeRaw}} />
             : null
           }
         </div>

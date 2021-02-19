@@ -3,7 +3,7 @@ import React from "react";
 import TaskModal from './TaskModal';
 import ProfileMenu from './ProfileMenu';
 
-const MobileHeader = ({getUserTasks, tasksLength, taskFilter, updateStateValue, user, selected}) => {
+const MobileHeader = ({getUserTasks, getUserInfo, tasksLength, taskFilter, updateStateValue, user, selected, handleDateChangeRaw}) => {
     const [state, setState] = React.useState({
         isTaskOpen: false,
         isFiltersOpen: false,
@@ -120,7 +120,7 @@ const MobileHeader = ({getUserTasks, tasksLength, taskFilter, updateStateValue, 
                 </div>
             </i>
             <i className="far fa-user-circle icon" onClick={() => toggleMenu()}>
-                <ProfileMenu show={state.show} user={user} toggleMenu={toggleMenu} />
+                <ProfileMenu show={state.show} user={user} toggleMenu={toggleMenu} getUserInfo={getUserInfo} handleDateChangeRaw={handleDateChangeRaw}/>
             </i>
         </div>
         <div className={`${state.isTaskOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isTaskOpen: false, modalTask: {}})}></div>
@@ -131,6 +131,7 @@ const MobileHeader = ({getUserTasks, tasksLength, taskFilter, updateStateValue, 
             getUserTasks={getUserTasks}
             tasksLength={tasksLength}
             isNewTask={true}
+            handleDateChangeRaw={handleDateChangeRaw}
         />
     </>
   );
