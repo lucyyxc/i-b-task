@@ -44,7 +44,7 @@ const EmailOptIn = ({updateStateValue, value, item}) => (
   </div>
 )
 
-const Input = ({type = 'text', placeholder = '', value, item, label, showWarning = false, warning, updateStateValue, showPassTooltip = false}) => {
+const Input = ({type = 'text', placeholder = '', value, item, label, showWarning = false, warning, updateStateValue, showPassTooltip = false, autocomplete}) => {
   const [show, setShow] = React.useState(false);
   let displayType;
 
@@ -70,6 +70,7 @@ const Input = ({type = 'text', placeholder = '', value, item, label, showWarning
         className="input"
         placeholder={placeholder}
         value={value}
+        autocomplete={autocomplete}
         onChange={e => updateStateValue(item, e.target.value)}
       />
       {type === 'password'
@@ -283,6 +284,7 @@ const Intro = ({updateView}) => {
         value: state.name, 
         item: 'name', 
         label: 'Name*', 
+        autocomplete: 'name',
         updateStateValue
       }} />
       <DateSelect {...{
@@ -301,7 +303,8 @@ const Intro = ({updateView}) => {
       <Input {...{
         value: state.email, 
         type: 'email', 
-        item: 'email', 
+        item: 'email',
+        autocomplete: 'email',
         label: 'Email Address*',
         showWarning: !state.validEmail && state.email,
         warning: 'Invalid email address.',
@@ -319,6 +322,7 @@ const Intro = ({updateView}) => {
         type: 'password', 
         item: 'password', 
         label: 'Password*',
+        autocomplete: 'current-password',
         showWarning: (!validatePassword(state.password) && state.password) || (!state.match && state.password && state.confirm),
         warning: passwordWarning,
         showPassTooltip: true,
