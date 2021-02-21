@@ -99,10 +99,10 @@ const Progress = ({ tasks }) => {
   const totalTasks = state.totalCompleted + state.totalToGo;
 
   return (
-
     <div className='Progress'>
       <h3 className='title'>
-        Progress as of {moment().format('dddd, MMMM Do, YYYY')}
+        Progress as of{' '}
+        {moment().tz(moment.tz.guess()).format('dddd, MMMM Do, YYYY')}
       </h3>
       <div className='progress-bar-container'>
         <div className='progress-bar'>
@@ -121,21 +121,12 @@ const Progress = ({ tasks }) => {
             num={state.totalToGo - state.inProgress}
             total={totalTasks}
           />
-
-    <div className="Progress" >
-      <h3 className="title" >Progress as of {moment().tz(moment.tz.guess()).format("dddd, MMMM Do, YYYY")}</h3>
-      <div className="progress-bar-container">
-        <div className="progress-bar">
-          <Section color={'complete'} num={state.totalCompleted} total={totalTasks} />
-          <Section color={'in-progress'} num={state.inProgress} total={totalTasks} />
-          <Section color={'not-started'} num={state.totalToGo - state.inProgress} total={totalTasks} />
-
         </div>
       </div>
       <div className='legend'>
-        <Item text={'Completed Tasks'} color={'complete'} />
-        <Item text={'In Progress Tasks'} color={'in-progress'} />
-        <Item text={'Not Started Tasks'} color={'not-started'} />
+        <Item text={'Tasks Completed'} color={'complete'} />
+        <Item text={'Tasks In Progress'} color={'in-progress'} />
+        <Item text={'Tasks Not Started'} color={'not-started'} />
       </div>
       <div className='circle-container'>
         {' '}
