@@ -289,7 +289,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
                     }
                   })
                 }}
-                value={state.task.status}
+                value={state.task.status || 'not-started'}
                 className="task-status"
               >
                 <option value="not-started">Not Started</option>

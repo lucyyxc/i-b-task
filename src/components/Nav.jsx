@@ -54,13 +54,13 @@ const Nav = ({selected, user = {}, loading, error, getUserTasks, getUserInfo, ha
             Home
           </a>
           <a href="https://theindependentbride.com/the-checklist" target="_blank" rel="noopener noreferrer" className="link nav-link">
-            The Checklist
+            Checklist
           </a>
           <a href="https://theindependentbride.com/blogs" target="_blank" rel="noopener noreferrer" className="link nav-link">
             Blogs
           </a>
           <a href="https://theindependentbride.com/the-bride-tribe-community" target="_blank" rel="noopener noreferrer" className="link nav-link">
-            The Bride Tribe Community
+            Bride Tribe
           </a>
           <a href="https://theindependentbride.com/our-story" target="_blank" rel="noopener noreferrer" className="link nav-link">
             Our Story

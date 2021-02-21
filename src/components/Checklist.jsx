@@ -104,7 +104,7 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
   }
 
   const openModal = (id) => {
-    const newIndex = tasks.findIndex((task) => { 
+    const newIndex = filteredTasks.findIndex((task) => { 
       if (task.id === id) {
         return task;
       }
@@ -113,7 +113,7 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
     setState({
       ...state,
       modalTaskIndex: newIndex,
-      modalTask: tasks[newIndex],
+      modalTask: filteredTasks[newIndex],
       isOpen: true,
     })
   };
@@ -122,15 +122,15 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
     let newIndex;
 
     if (direction === 'next') {
-      newIndex = state.modalTaskIndex + 1 > tasks.length - 1 ? 0 : state.modalTaskIndex + 1;
+      newIndex = state.modalTaskIndex + 1 > filteredTasks.length - 1 ? 0 : state.modalTaskIndex + 1;
     } else {
-      newIndex = state.modalTaskIndex === 0 ? tasks.length - 1 : state.modalTaskIndex - 1;
+      newIndex = state.modalTaskIndex === 0 ? filteredTasks.length - 1 : state.modalTaskIndex - 1;
     }
 
     setState({
       ...state, 
       modalTaskIndex: newIndex,
-      modalTask: tasks[newIndex],
+      modalTask: filteredTasks[newIndex],
     })
   };
 

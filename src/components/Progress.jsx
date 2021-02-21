@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 const getPercent = (num, total) => {
   return Math.round((num / total) * 100);
@@ -99,6 +99,7 @@ const Progress = ({ tasks }) => {
   const totalTasks = state.totalCompleted + state.totalToGo;
 
   return (
+
     <div className='Progress'>
       <h3 className='title'>
         Progress as of {moment().format('dddd, MMMM Do, YYYY')}
@@ -120,6 +121,15 @@ const Progress = ({ tasks }) => {
             num={state.totalToGo - state.inProgress}
             total={totalTasks}
           />
+
+    <div className="Progress" >
+      <h3 className="title" >Progress as of {moment().tz(moment.tz.guess()).format("dddd, MMMM Do, YYYY")}</h3>
+      <div className="progress-bar-container">
+        <div className="progress-bar">
+          <Section color={'complete'} num={state.totalCompleted} total={totalTasks} />
+          <Section color={'in-progress'} num={state.inProgress} total={totalTasks} />
+          <Section color={'not-started'} num={state.totalToGo - state.inProgress} total={totalTasks} />
+
         </div>
       </div>
       <div className='legend'>
