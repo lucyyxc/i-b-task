@@ -219,7 +219,6 @@ const Intro = ({updateView}) => {
     ) {
       axios.post('/api/post/duplicateUser', {email: state.email.toLowerCase()})
       .then(response => {
-        console.log(response.data);
         if (response.data.length) {
           setState({
             ...state,
