@@ -301,7 +301,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
               <span>Assignee</span>
               <input 
                 type="text"
-                placeholder="Enter an assignee"
+                placeholder="Enter assignee"
                 value={state.task.assignee || ''}
                 maxlength="2"
                 className="task-assignee"
@@ -345,7 +345,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             <div className="status-holder">
               <span>Start on</span>
               <DatePicker
-                selected={moment(state.task.startdate).toDate() || new Date()}
+                selected={state.task.startdate ? moment(state.task.startdate).toDate() : new Date()}
                 onChangeRaw={handleDateChangeRaw}
                 onChange={date => {
                   if(moment(state.task.enddate).isBefore(moment(date))) {
@@ -379,7 +379,7 @@ const TaskModal = ({isOpen, setIsOpen, modalTask = {}, changeModalTask = () => {
             <div className="status-holder">
               <span>Complete by</span>
               <DatePicker
-                selected={moment(state.task.enddate).toDate() || new Date()}
+                selected={state.task.enddate ? moment(state.task.enddate).toDate() : moment(new Date()).add(14, 'days').toDate()}
                 onChangeRaw={handleDateChangeRaw}
                 onChange={date => {
                   if (moment(date).isBefore(state.task.startdate)) {

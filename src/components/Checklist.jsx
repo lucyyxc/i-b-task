@@ -10,7 +10,7 @@ const Checklist = ({tasks = [], taskFilter, dateFilter, search, dateStart, dateE
     tasklabel: '',
     assignee: '',
     tags: '',
-    startdate: '',
+    startdate: 'ASC',
     enddate: '',
     status: '',
     isOpen: false,
