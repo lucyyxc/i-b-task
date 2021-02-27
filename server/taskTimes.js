@@ -663,11 +663,6 @@ const taskTimes = [
     endDate: 45,
   },
   {
-    name: 'Create signage ',
-    startDate: 47,
-    endDate: 17,
-  },
-  {
     name: 'Order name cards and table numbers',
     startDate: 37,
     endDate: 31,
