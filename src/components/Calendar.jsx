@@ -1,28 +1,28 @@
 import React from 'react';
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
-// import moment from 'moment';
+import moment from 'moment';
 
 import TaskModal from './TaskModal';
 
-const Calendar = ({tasks, selected, getUserTasks, handleDateChangeRaw}) => {
+const Calendar = ({ tasks, selected, getUserTasks, handleDateChangeRaw }) => {
   const [state, setState] = React.useState({
     calTasks: tasks,
     isOpen: false,
-    modalTask: {}
-  })
+    modalTask: {},
+  });
 
   React.useEffect(() => {
-    const filteredTasks = tasks.filter( task => !task.archived)
+    const filteredTasks = tasks.filter((task) => !task.archived);
     setState({
       ...state,
-      calTasks: filteredTasks
-    })
+      calTasks: filteredTasks,
+    });
   }, [tasks]);
 
   const createCalEvents = () => {
-    return state.calTasks.map(task => {
+    return state.calTasks.map((task) => {
       let backgroundColor = '';
       let textColor = '#000000';
 
@@ -40,61 +40,66 @@ const Calendar = ({tasks, selected, getUserTasks, handleDateChangeRaw}) => {
           backgroundColor = ' #70825A';
           break;
         default:
-          backgroundColor = '#FC6959' // not started
-          break
+          backgroundColor = '#FC6959'; // not started
+          break;
       }
-    
-      return { 
+
+      return {
         title: task.tasklabel,
         id: task.id,
         start: task.startdate,
-        end: task.enddate,
+        end: moment(task.enddate).add(1, 'd').format('YYYY-MM-DD'),
         backgroundColor,
         borderColor: backgroundColor,
-        textColor
-      }
+        textColor,
+      };
     });
-  }
+  };
 
-  const handleClick = ({event}) => {
-    const modalTask = tasks.find(task => +task.id === +event.id)
+  const handleClick = ({ event }) => {
+    const modalTask = tasks.find((task) => +task.id === +event.id);
     setState({
       ...state,
       isOpen: true,
-      modalTask
-    })
-  }
+      modalTask,
+    });
+  };
 
-  const Item = ({text, color}) => (
-    <div className="item">
+  const Item = ({ text, color }) => (
+    <div className='item'>
       <div className={`color ${color}`}></div>
-      <div className="legend-label">{text}</div>
+      <div className='legend-label'>{text}</div>
     </div>
   );
-  
+
   return (
-    <div className="Calendar">
+    <div className='Calendar'>
       <FullCalendar
-        plugins={[ dayGridPlugin, listPlugin]}
-        initialView="dayGridMonth"
+        plugins={[dayGridPlugin, listPlugin]}
+        initialView='dayGridMonth'
         headerToolbar={{
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth dayGridWeek listMonth'
+          right: 'dayGridMonth dayGridWeek listMonth',
         }}
         fixedWeekCount={false}
         events={createCalEvents()}
         eventClick={handleClick}
       />
-      <div className="legend">
+      <div className='legend'>
         <Item text={'Completed Tasks'} color={'complete'} />
         <Item text={'In-Progress Tasks'} color={'in-progress'} />
         <Item text={'Not Started Tasks'} color={'not-started'} />
       </div>
-      <div className={`${state.isOpen ? 'overlay' : ''}`} onClick={() => setState({...state, isOpen: false, modalTask: {}})}></div>
+      <div
+        className={`${state.isOpen ? 'overlay' : ''}`}
+        onClick={() => setState({ ...state, isOpen: false, modalTask: {} })}
+      ></div>
       <TaskModal
         isOpen={state.isOpen}
-        setIsOpen={(bool) => setState({...state, isOpen: bool, modalTask: {}})}
+        setIsOpen={(bool) =>
+          setState({ ...state, isOpen: bool, modalTask: {} })
+        }
         modalTask={state.modalTask}
         selected={selected}
         getUserTasks={getUserTasks}
@@ -102,6 +107,6 @@ const Calendar = ({tasks, selected, getUserTasks, handleDateChangeRaw}) => {
       />
     </div>
   );
-}
+};
 
 export default Calendar;

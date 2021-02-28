@@ -37,7 +37,7 @@ const TaskModal = ({
     showTip: false,
     confirmArchive: false,
   });
-
+  // add 4 new values (tagChanged, etc)
   const defaultChanges = {
     status: '',
     startdate: '',
@@ -111,6 +111,8 @@ const TaskModal = ({
             assignee: state.changes.assignee,
           })
         );
+      // tagsChanged add a state up top and change if statement
+      // notes task label assignee and tags
       if (state.changes.tags)
         updates.push(
           axios.post('/api/post/tagUpdate', {
@@ -437,6 +439,7 @@ const TaskModal = ({
                       ...state.changes,
                       tags: e.target.value,
                     },
+                    // toggle taskChanged to true
                   });
                 }}
               />
